@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menú desplegable con jQuery en 5 minutos</title>
+
+
+
+
+
+
+
+<script type="text/javascript" src="js/jquery-2.1.4.js"></script>   
+        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>   
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+
+        <script type="text/javascript" src="http://www.google.com/uds/api?file=uds.js&amp;v=0.1&amp;key=mykey"></script>
+
+        <link rel="stylesheet" type="text/css" href="http://www.google.com/uds/css/gsearch.css" />
+
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4.custom/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4.custom/jquery-ui.theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.6/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.6/dist/css/bootstrap-theme.css" />
+        <link rel="stylesheet" type="text/css" href="js/jquery.ketchup.0.3.2/css/jquery.ketchup.css" />
+        <link rel="stylesheet" type="text/css" href="css/half-slider.css" />
+
+
+
+
+
+<style>
+    #menu {
+        width: 500px;
+        margin: 0 auto
+    }
+    #menu>ul>li {
+        float: left
+    }
+    #menu>ul>li a {
+        display: block;
+        width: 100px;
+        height: 50px;
+        background: green;
+        text-align: center;
+        line-height: 50px
+    }
+    #menu>ul>li>ul {
+        display: none
+    }
+    #menu>ul>li>ul>li {
+        position: relative
+    }
+    #menu>ul>li>ul>li>a {
+        background: red
+    }
+    #menu>ul>li>ul>li>ul {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        display: none
+    }
+    #menu>ul>li>ul>li>ul a {
+        background: #ff0
+    }
+    #menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0
+    }
+    </style>
+</head>
+
+<body>
+    <nav id="menu">
+        <ul>
+            <li><a href="#">Lorem.</a>
+            </li>
+            <li><a href="#">Repellendus.</a>
+                <ul>
+                    <li><a href="#">Lorem.</a>
+                    </li>
+                    <li><a href="#">Voluptate.</a>
+                    </li>
+                    <li><a href="#">Nesciunt.</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">Fugiat!</a>
+            </li>
+            <li><a href="#">Fuga.</a>
+            </li>
+            <li><a href="#">Ea.</a>
+                <ul>
+                    <li><a href="#">Lorem.</a>
+                    </li>
+                    <li><a href="#">At.</a>
+                    </li>
+                    <li><a href="#">Ratione?</a>
+                    </li>
+                    <li><a href="#">Optio.</a>
+                        <ul>
+                            <li><a href="#">Lorem.</a>
+                            </li>
+                            <li><a href="#">Voluptas!</a>
+                            </li>
+                            <li><a href="#">Error?</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Asperiores.</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script>
+    $(document).ready(function() {
+        $menu = $('#menu').find('ul').find('li');
+
+        $menu.hover(function() {
+            $(this).children('ul').stop();
+            $(this).children('ul').slideDown();
+        }, function() {
+            $(this).children('ul').stop();
+            $(this).children('ul').slideUp();
+        });
+    });
+    </script>
+</body>
+</html>
