@@ -26,9 +26,10 @@
         <div id="container" class="modal-dialog">
             <div id="menu-register">
                 <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
+                <a href="#" title="enviar correo" id="submitEmail">enviar correo</a>
             </div>
             
-            <h1 class="h1">anuncios</h1>
+            <h1 class="h1">suscripciones</h1>
             
             <p>&nbsp;</p>
             
@@ -40,55 +41,18 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">nombre</label>
+                            <div class="form-group" id="divEmail">
+                                <label for="txtEmail" class="control-label">correo</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
+                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-130-message-new.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
+                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="col-sm-6"> 
-                            <div class="form-group" id="divDescription">
-                                <label for="txtDescription" class="control-label">descripción</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
-                                    </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="1000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
-                                </div>                   
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-6"> 
-                            <div class="form-group" id="divActive">
-                                <label for="optActive" class="control-label">activo</label>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="btn-group" data-toggle="buttons">
-        <!--                                    <span class="input-group-addon">
-                                                <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
-                                            </span>-->
-                                            <label class="btn btn-primary">si 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-toggle="tooltip" data-placement="bottom" title="si" disabled="disabled">
-                                            </label>
-                                            <label class="btn btn-primary active">no 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" checked="checked" disabled="disabled">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                                     
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
                         <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" disabled="disabled"/>
@@ -103,9 +67,7 @@
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success">
-                        <th>nombre</th>
-                        <th>descripción</th>
-                        <th>activo</th>
+                        <th>correo</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -154,15 +116,11 @@
                
                                 
                 $("#btnSave").click(function(){
-                    $("#txtName").val($("#txtName").val().trim());
-                    $("#txtDescription").val($("#txtDescription").val().trim());
-                    if(validateLength($("#divName"), $("#txtName"), 3)){
-                        $('#txtDescription').focus();
-                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            saveRecord();
-                            resetForm();
-                            cleanForm();
-                        }
+                    $("#txtEmail").val($("#txtEmail").val().trim());
+                    if(validateLength($("#divEmail"), $("#txtEmail"), 3)){
+                        saveRecord();
+                        resetForm();
+                        cleanForm();
                     }
                 });
                 
@@ -188,15 +146,9 @@
                 
                 
                 //Validaciones focosout: longitud y otros       
-                $("#txtName").focusout(function(){
-                    $("#txtName").val($("#txtName").val().trim());
-                    return validateLength($("#divName"), $("#txtName"), 3);
-                });
-                
-                
-                $("#txtDescription").focusout(function(){
-                    $("#txtDescription").val($("#txtDescription").val().trim());
-                    return validateLength($("#divDescription"), $("#txtDescription"), 3);
+                $("#txtEmail").focusout(function(){
+                    $("#txtEmail").val($("#txtEmail").val().trim());
+                    return validateLength($("#divEmail"), $("#txtEmail"), 3);
                 });
                 
             });
@@ -219,21 +171,18 @@
             function loadRecords()
             {
                 var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_advertisement';
+                var entity = 'melc_newsletter';
                 var objJson = {
                     'bd': {
                         'table': entity
                     },
                     fields: {
                         '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'active'
+                        '1': 'email'
                     }                   
                 }
                 
                 var strJson = JSON.stringify(objJson);
-                var active;
                  
                 $.ajax({
                     url: url,
@@ -246,10 +195,8 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.email + "</a>";
                             table += "</td>";
-                            table += "<td>" + value.description + "</td>";
-                            table += "<td>" + active + "</td>";
                             table += "<td>";
                             table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
@@ -269,7 +216,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        $('#resultTotal').html('listado de anuncios. total registros: ' + data.totalRecords);
+                        $('#resultTotal').html('listado de suscripciones. total registros: ' + data.totalRecords);
                     }                    
                 });                
             }
@@ -277,7 +224,7 @@
             
             function deleteRecord(id)
             {
-                var entity = 'melc_advertisement';
+                var entity = 'melc_newsletter';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -328,11 +275,9 @@
             
             function saveRecord()
             {
-                var entity = 'melc_advertisement';
+                var entity = 'melc_newsletter';
                 var id = $("#txtId").val();
-                var name = $("#txtName").val();
-                var description = $("#txtDescription").val();
-                var active = $("#optActiveYes").is(':checked') ? 1 : 0;
+                var email = $("#txtEmail").val();
 
                 var objJson = {
                     'db': {
@@ -340,9 +285,7 @@
                     },
                     fields: {
                         'id': id,
-                        'name': name,
-                        'description': description,
-                        'active': active
+                        'email': email
                     }
                 };
 
@@ -383,7 +326,7 @@
                             enabledForm(false);
                             cleanForm();
                             $("#txtId").val('0');
-                            $('#txtName').focus();
+                            $('#txtEmail').focus();
                         },
                         "cancelar": function(){
                            $(this).dialog("close"); 
@@ -403,13 +346,7 @@
                         "aceptar": function () {
                             $(this).dialog("close"); 
                             $("#txtId").val(objFields.id);
-                            $("#txtName").val(objFields.name);
-                            $("#txtDescription").val(objFields.description);
-                            if(objFields.active == 1){
-                                $("#optActiveYes").prop('checked', true);
-                            }else{ 
-                                $("#optActiveNo").prop('checked', true);
-                            }
+                            $("#txtEmail").val(objFields.email);
                             enabledForm(false);
                         },
                         "cancelar": function(){
@@ -429,15 +366,14 @@
             
             function cleanForm()
             {
-                $("#frmRegister").find('input[type=text], textarea').val('');
+                $("#frmRegister").find('input[type=text], input[type=email], textarea').val('');
             }
             
             
             function resetForm()
             {
                 enabledForm(true); 
-                $("#divName").removeClass("has-error has-success"); 
-                $("#divDescription").removeClass("has-error has-success"); 
+                $("#divEmail").removeClass("has-error has-success"); 
                 $(".ketchup-error").css("display", "none");
             }
             

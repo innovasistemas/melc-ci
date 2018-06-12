@@ -28,7 +28,7 @@
                 <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
             
-            <h1 class="h1">anuncios</h1>
+            <h1 class="h1">redes sociales</h1>
             
             <p>&nbsp;</p>
             
@@ -46,7 +46,7 @@
                                     <span class="input-group-addon">
                                         <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
+                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                     <span class="input-group-addon">
                                         <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="1000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
+                                    <input type="text" name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"/>
                                 </div>                   
                             </div>
                         </div>
@@ -68,23 +68,9 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divActive">
-                                <label for="optActive" class="control-label">activo</label>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="btn-group" data-toggle="buttons">
-        <!--                                    <span class="input-group-addon">
-                                                <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
-                                            </span>-->
-                                            <label class="btn btn-primary">si 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-toggle="tooltip" data-placement="bottom" title="si" disabled="disabled">
-                                            </label>
-                                            <label class="btn btn-primary active">no 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" checked="checked" disabled="disabled">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="form-group" id="divLogo">
+                                <label for="fleLogo" class="control-label">logo</label>
+                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" placeholder="logo" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
                             </div>
                         </div>
                     </div>
@@ -105,7 +91,7 @@
                     <tr class="success">
                         <th>nombre</th>
                         <th>descripción</th>
-                        <th>activo</th>
+                        <th>logo</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -219,7 +205,7 @@
             function loadRecords()
             {
                 var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_advertisement';
+                var entity = 'melc_social_network';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -228,12 +214,11 @@
                         '0': 'id',
                         '1': 'name',
                         '2': 'description',
-                        '3': 'active'
+                        '3': 'logo'
                     }                   
                 }
                 
                 var strJson = JSON.stringify(objJson);
-                var active;
                  
                 $.ajax({
                     url: url,
@@ -243,13 +228,14 @@
                     success: function(data) {
                         var table = "";
                         $.each(data, function(index, value){
-                            active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
                             table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
-                            table += "<td>" + active + "</td>";
+                            table += "<td>";  
+                            table += "<img src='images/social-networks/" + value.logo + "' class='img-thumbnail' width='50' height='50'/>";  
+                            table += "</td>";
                             table += "<td>";
                             table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
@@ -277,7 +263,7 @@
             
             function deleteRecord(id)
             {
-                var entity = 'melc_advertisement';
+                var entity = 'melc_social_network';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -328,11 +314,10 @@
             
             function saveRecord()
             {
-                var entity = 'melc_advertisement';
+                var entity = 'melc_social_network';
                 var id = $("#txtId").val();
                 var name = $("#txtName").val();
                 var description = $("#txtDescription").val();
-                var active = $("#optActiveYes").is(':checked') ? 1 : 0;
 
                 var objJson = {
                     'db': {
@@ -341,8 +326,7 @@
                     fields: {
                         'id': id,
                         'name': name,
-                        'description': description,
-                        'active': active
+                        'description': description
                     }
                 };
 
@@ -405,11 +389,7 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
-                            if(objFields.active == 1){
-                                $("#optActiveYes").prop('checked', true);
-                            }else{ 
-                                $("#optActiveNo").prop('checked', true);
-                            }
+                            
                             enabledForm(false);
                         },
                         "cancelar": function(){
