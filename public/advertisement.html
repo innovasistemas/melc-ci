@@ -60,7 +60,7 @@
                                     <span class="input-group-addon">
                                         <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control" placeholder="descripción" maxlength="1000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
+                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="1000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
                                 </div>                   
                             </div>
                         </div>
@@ -98,6 +98,23 @@
             </div>
             <!--Fin Formulario-->
             
+            <!--Datos de la base de datos-->
+            <table id='tableData' class='table table-striped table-hover' style='width:100%'>
+            <caption><div id='resultTotal'></div></caption>
+                <thead>
+                    <tr class="success">
+                        <th>nombre</th>
+                        <th>descripción</th>
+                        <th>activo</th>
+                        <th>eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <!--Fin datos de la base de datos-->
+            
             <div id="content-common"></div> 
                         
         </div>
@@ -113,6 +130,9 @@
         <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="js/jQuery.paginate.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
         
         <div id="divStyles"></div>
         
@@ -123,6 +143,8 @@
                 
                 loadRecords();
                 
+                $('#example').DataTable();
+                
                 $('[data-toggle="tooltip"]').tooltip();
                 
                 $('#frmRegister').ketchup();
@@ -131,19 +153,24 @@
                 $("#newRecord").click(function(){
                     newRecord(); 
                 });
-                
+               
                                 
                 $("#btnSave").click(function(){
-                    saveRecord();
-                    enabledForm(true)
+                    $("#txtName").val($("#txtName").val().trim());
+                    $("#txtDescription").val($("#txtDescription").val().trim());
+                    if(validateLength($("#divName"), $("#txtName"), 3)){
+                        $('#txtDescription').focus();
+                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+                            saveRecord();
+                            resetForm();
+                            cleanForm();
+                        }
+                    }
                 });
                 
                 
                 $("#frmRegister").on('reset', function(){
-                    enabledForm(true); 
-                    $("#divName").removeClass("has-error has-success"); 
-                    $("#divDescription").removeClass("has-error has-success"); 
-                    $(".ketchup-error").css("display", "none");
+                    resetForm();
                 });
                 
                 
@@ -165,13 +192,13 @@
                 //Validaciones focosout: longitud y otros       
                 $("#txtName").focusout(function(){
                     $("#txtName").val($("#txtName").val().trim());
-                    validateLength($("#divName"), $("#txtName"), 3);
+                    return validateLength($("#divName"), $("#txtName"), 3);
                 });
                 
                 
                 $("#txtDescription").focusout(function(){
                     $("#txtDescription").val($("#txtDescription").val().trim());
-                    validateLength($("#divDescription"), $("#txtDescription"), 3);
+                    return validateLength($("#divDescription"), $("#txtDescription"), 3);
                 });
                 
             });
@@ -217,25 +244,13 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function(data) {
-                        var table = "<div id='divData' class='table-responsive panel-heading'>"
-                        table += "<table class='table table-striped table-hover table-sm' id='tableData'>";
-                        table += "<caption><div id='resultTotal'></div></caption>";
-                        table += "<thead>";
-                        table += "<tr class='active'>";
-                        table += "<th>" + "nombre" + "</th>";
-                        table += "<th>" + "descripción" + "</th>";
-                        table += "<th>" + "activo" + "</th>";
-                        table += "<th>" + "eliminar" + "</th>";
-                        table += "</tr>";
-                        table += "</thead>";
-                        table += "<tbody>";
+                        var table = "";
                         $.each(data, function(index, value){
                             active = value.active == 1 ? 'si' : 'no';
-                            table += "<tr class='warning'>";
+                            table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>";
-                            table += value.name + "</td>";
-                            table += "</a>";
+                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "</td>";
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";
@@ -245,10 +260,8 @@
                             table += "</td>";
                             table += "<tr>";
                         });
-                        table += "</tbody>";
-                        table += "</table>";
-                        table += "</div>";
-                        $('#result').html(table);
+                        $('#tableData tbody').html(table);
+                        $('#tableData').DataTable();
                     }
                     
                 }); 
@@ -292,7 +305,7 @@
                                 type: 'POST',
                                 dataType: 'json',
                                 success: function(data){
-                                    $( "#dialog" ).html(data.content + " (" + data.result + ")");
+                                    $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
                                     $( "#dialog" ).dialog({
                                         autoOpen: true,
                                         modal: true,
@@ -345,14 +358,14 @@
                     dataType: 'json',
                     type: 'POST',
                     success: function(data) {
-                        $( "#dialog" ).html(data.content + " (" + data.result + ")");
+                        $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
                         $( "#dialog" ).dialog({
                             autoOpen: true,
                             modal: true,
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-                                    loadRecords();
+                                    loadRecords();    
                                 }
                             } 
                         });
@@ -370,9 +383,10 @@
                     buttons: {
                         "aceptar": function () {
                             $(this).dialog("close"); 
-                            $("#txtId").val('0');
                             enabledForm(false);
                             cleanForm();
+                            $("#txtId").val('0');
+                            $('#txtName').focus();
                         },
                         "cancelar": function(){
                            $(this).dialog("close"); 
@@ -419,6 +433,15 @@
             function cleanForm()
             {
                 $("#frmRegister").find('input[type=text], textarea').val('');
+            }
+            
+            
+            function resetForm()
+            {
+                enabledForm(true); 
+                $("#divName").removeClass("has-error has-success"); 
+                $("#divDescription").removeClass("has-error has-success"); 
+                $(".ketchup-error").css("display", "none");
             }
             
             
