@@ -26,6 +26,8 @@
         <div id="container" class="modal-dialog">
             <h1 class="h1">bienvenido</h1>
             
+            <h2>panel principal</h2>
+            
             <p>&nbsp;</p>
             
             <p>espere mientras carga la aplicación...</p>
@@ -109,7 +111,10 @@
                 progressbar.progressbar( "value", val + 2 );
 
                 if ( val < 99 ) {
-                  setTimeout( progress, 80 );
+                    setTimeout( progress, 80 );
+                    if(val >= 90){
+                        progressLabel.text( "completo!" );
+                    }
                 }
             }
 
