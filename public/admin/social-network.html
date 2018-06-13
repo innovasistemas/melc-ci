@@ -28,7 +28,7 @@
                 <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
             
-            <h1 class="h1">información de contacto</h1>
+            <h1 class="h1">redes sociales</h1>
             
             <p>&nbsp;</p>
             
@@ -41,12 +41,12 @@
                     <div class="row">
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divName">
-                                <label for="txtAddress" class="control-label">dirección</label>
+                                <label for="txtName" class="control-label">nombre</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
-                                    <input type="text" name="txtAddress" id="txtAddress" class="form-control input-lg" placeholder="dirección" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la dirección" disabled="disabled"/>                        
+                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -54,13 +54,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divPhone">
-                                <label for="txtPhone" class="control-label">teléfono</label>
+                            <div class="form-group" id="divDescription">
+                                <label for="txtDescription" class="control-label">descripción</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <input type="tel" name="txtPhone" id="txtPhone" class="form-control input-lg" placeholder="teléfono" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono" disabled="disabled"/>                        
+                                    <input type="text" name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"/>
                                 </div>                   
                             </div>
                         </div>
@@ -68,28 +68,9 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divPhone">
-                                <label for="txtCellPhone" class="control-label">teléfono celular</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
-                                    </span>
-                                    <input type="tel" name="txtCellPhone" id="txtCellPhone" class="form-control input-lg" placeholder="teléfono celular" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono celular" disabled="disabled"/>                        
-                                </div>                   
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-6"> 
-                            <div class="form-group" id="divEmail">
-                                <label for="txtEmail" class="control-label">correo</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-130-message-new.png"/>
-                                    </span>
-                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
-                                </div>                   
+                            <div class="form-group" id="divLogo">
+                                <label for="fleLogo" class="control-label">logo</label>
+                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" placeholder="logo" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
                             </div>
                         </div>
                     </div>
@@ -108,10 +89,9 @@
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success">
-                        <th>dirección</th>
-                        <th>teléfono</th>
-                        <th>teléfono celular</th>
-                        <th>correo</th>
+                        <th>nombre</th>
+                        <th>descripción</th>
+                        <th>logo</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -160,22 +140,14 @@
                
                                 
                 $("#btnSave").click(function(){
-                    $("#txtAddress").val($("#txtAddress").val().trim());
-                    $("#txtPhone").val($("#txtPhone").val().trim());
-                    $("#txtCellPhone").val($("#txtCellPhone").val().trim());
-                    $("#txtEmail").val($("#txtEmail").val().trim());
-                    if(validateLength($("#divAddress"), $("#txtAddress"), 3)){
-                        $('#txtPhone').focus();
-                        if(validateLength($("#divPhone"), $("#txtPhone"), 3)){
-                            $('#txtCellPhone').focus();
-                            if(validateLength($("#divCellPhone"), $("#txtCellPhone"), 3)){
-                                $('#txtEmail').focus();
-                                if(validateLength($("#divEmail"), $("#txtEmail"), 3)){
-                                        saveRecord();
-                                        resetForm();
-                                        cleanForm();
-                                }
-                            }
+                    $("#txtName").val($("#txtName").val().trim());
+                    $("#txtDescription").val($("#txtDescription").val().trim());
+                    if(validateLength($("#divName"), $("#txtName"), 3)){
+                        $('#txtDescription').focus();
+                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+                            saveRecord();
+                            resetForm();
+                            cleanForm();
                         }
                     }
                 });
@@ -202,26 +174,15 @@
                 
                 
                 //Validaciones focosout: longitud y otros       
-                $("#txtAddress").focusout(function(){
-                    $("#txtAddress").val($("#txtAddress").val().trim());
-                    return validateLength($("#divAddress"), $("#txtAddress"), 3);
+                $("#txtName").focusout(function(){
+                    $("#txtName").val($("#txtName").val().trim());
+                    return validateLength($("#divName"), $("#txtName"), 3);
                 });
                 
                 
-                $("#txtPhone").focusout(function(){
-                    $("#txtPhone").val($("#txtPhone").val().trim());
-                    return validateLength($("#divPhone"), $("#txtPhone"), 3);
-                });
-                
-                
-                $("#txtCellPhone").focusout(function(){
-                    $("#txtCellPhone").val($("#txtCellPhone").val().trim());
-                    return validateLength($("#divCellPhone"), $("#txtCellPhone"), 3);
-                });
-                
-                $("#txtEmail").focusout(function(){
-                    $("#txtEmail").val($("#txtEmail").val().trim());
-                    return validateLength($("#divEmail"), $("#txtEmail"), 3);
+                $("#txtDescription").focusout(function(){
+                    $("#txtDescription").val($("#txtDescription").val().trim());
+                    return validateLength($("#divDescription"), $("#txtDescription"), 3);
                 });
                 
             });
@@ -244,17 +205,16 @@
             function loadRecords()
             {
                 var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_contact_information';
+                var entity = 'melc_social_network';
                 var objJson = {
                     'bd': {
                         'table': entity
                     },
                     fields: {
                         '0': 'id',
-                        '1': 'address',
-                        '2': 'phone',
-                        '3': 'cell_phone',
-                        '4': 'email'
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'logo'
                     }                   
                 }
                 
@@ -270,11 +230,12 @@
                         $.each(data, function(index, value){
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.address + "</a>";
+                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
-                            table += "<td>" + value.phone + "</td>";
-                            table += "<td>" + value.cell_phone + "</td>";
-                            table += "<td>" + value.email + "</td>";
+                            table += "<td>" + value.description + "</td>";
+                            table += "<td>";  
+                            table += "<img src='images/social-networks/" + value.logo + "' class='img-thumbnail' width='50' height='50'/>";  
+                            table += "</td>";
                             table += "<td>";
                             table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
@@ -283,7 +244,32 @@
                             table += "</tr>";
                         });
                         $('#tableData tbody').html(table);
-                        $('#tableData').DataTable();
+                        $('#tableData').DataTable({
+                            language:{
+                                "sProcessing":     "Procesando...",
+                                "sLengthMenu":     "Mostrar _MENU_ registros",
+                                "sZeroRecords":    "No se encontraron resultados",
+                                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                "sInfoPostFix":    "",
+                                "sSearch":         "Buscar:",
+                                "sUrl":            "",
+                                "sInfoThousands":  ",",
+                                "sLoadingRecords": "Cargando...",
+                                "oPaginate": {
+                                    "sFirst":    "Primero",
+                                    "sLast":     "Último",
+                                    "sNext":     "Siguiente",
+                                    "sPrevious": "Anterior"
+                                },
+                                "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                }
+                            }
+                        });
                     }
                     
                 }); 
@@ -302,7 +288,7 @@
             
             function deleteRecord(id)
             {
-                var entity = 'melc_contact_information';
+                var entity = 'melc_social_network';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -353,12 +339,10 @@
             
             function saveRecord()
             {
-                var entity = 'melc_contact_information';
+                var entity = 'melc_social_network';
                 var id = $("#txtId").val();
-                var address = $("#txtAddress").val();
-                var phone = $("#txtPhone").val();
-                var cellPhone = $("#txtCellPhone").val();
-                var email = $("#txtEmail").val();
+                var name = $("#txtName").val();
+                var description = $("#txtDescription").val();
 
                 var objJson = {
                     'db': {
@@ -366,10 +350,8 @@
                     },
                     fields: {
                         'id': id,
-                        'address': address,
-                        'phone': phone,
-                        'cell_phone': cellPhone,
-                        'email': email
+                        'name': name,
+                        'description': description
                     }
                 };
 
@@ -410,7 +392,7 @@
                             enabledForm(false);
                             cleanForm();
                             $("#txtId").val('0');
-                            $('#txtAddress').focus();
+                            $('#txtName').focus();
                         },
                         "cancelar": function(){
                            $(this).dialog("close"); 
@@ -430,10 +412,9 @@
                         "aceptar": function () {
                             $(this).dialog("close"); 
                             $("#txtId").val(objFields.id);
-                            $("#txtAddress").val(objFields.address);
-                            $("#txtPhone").val(objFields.phone);
-                            $("#txtCellPhone").val(objFields.cell_phone);
-                            $("#txtEmail").val(objFields.email);
+                            $("#txtName").val(objFields.name);
+                            $("#txtDescription").val(objFields.description);
+                            
                             enabledForm(false);
                         },
                         "cancelar": function(){
@@ -453,17 +434,15 @@
             
             function cleanForm()
             {
-                $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], textarea').val('');
+                $("#frmRegister").find('input[type=text], textarea').val('');
             }
             
             
             function resetForm()
             {
                 enabledForm(true); 
-                $("#divAddress").removeClass("has-error has-success"); 
-                $("#divPhone").removeClass("has-error has-success"); 
-                $("#divCellPhone").removeClass("has-error has-success"); 
-                $("#divEmail").removeClass("has-error has-success"); 
+                $("#divName").removeClass("has-error has-success"); 
+                $("#divDescription").removeClass("has-error has-success"); 
                 $(".ketchup-error").css("display", "none");
             }
             

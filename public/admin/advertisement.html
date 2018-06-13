@@ -88,6 +88,20 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLink">
+                                <label for="txtLink" class="control-label">enlace</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                    </span>
+                                    <input type="url" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url" disabled="disabled"/>                        
+                                </div>                   
+                            </div>
+                        </div>
+                    </div>
                                      
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
@@ -106,6 +120,7 @@
                         <th>nombre</th>
                         <th>descripción</th>
                         <th>activo</th>
+                        <th>enlace</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -228,7 +243,8 @@
                         '0': 'id',
                         '1': 'name',
                         '2': 'description',
-                        '3': 'active'
+                        '3': 'active',
+                        '4': 'link'
                     }                   
                 }
                 
@@ -251,6 +267,13 @@
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";
+                            if(value.link != null){
+                                table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
+                            }else{
+                                table += "";
+                            }
+                            table += "</td>";
+                            table += "<td>";
                             table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
@@ -258,7 +281,32 @@
                             table += "</tr>";
                         });
                         $('#tableData tbody').html(table);
-                        $('#tableData').DataTable();
+                        $('#tableData').DataTable({
+                            language:{
+                                "sProcessing":     "Procesando...",
+                                "sLengthMenu":     "Mostrar _MENU_ registros",
+                                "sZeroRecords":    "No se encontraron resultados",
+                                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                "sInfoPostFix":    "",
+                                "sSearch":         "Buscar:",
+                                "sUrl":            "",
+                                "sInfoThousands":  ",",
+                                "sLoadingRecords": "Cargando...",
+                                "oPaginate": {
+                                    "sFirst":    "Primero",
+                                    "sLast":     "Último",
+                                    "sNext":     "Siguiente",
+                                    "sPrevious": "Anterior"
+                                },
+                                "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                }
+                            }
+                        });
                     }
                     
                 }); 
@@ -333,6 +381,7 @@
                 var name = $("#txtName").val();
                 var description = $("#txtDescription").val();
                 var active = $("#optActiveYes").is(':checked') ? 1 : 0;
+                var link = $("#txtLink").val();
 
                 var objJson = {
                     'db': {
@@ -342,7 +391,8 @@
                         'id': id,
                         'name': name,
                         'description': description,
-                        'active': active
+                        'active': active,
+                        'link': link
                     }
                 };
 
@@ -410,6 +460,7 @@
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
+                            $("#txtLink").val(objFields.link);
                             enabledForm(false);
                         },
                         "cancelar": function(){
@@ -429,7 +480,7 @@
             
             function cleanForm()
             {
-                $("#frmRegister").find('input[type=text], textarea').val('');
+                $("#frmRegister").find('input[type=text], input[type=url], textarea').val('');
             }
             
             
