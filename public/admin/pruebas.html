@@ -12,24 +12,58 @@
         
         
         <style>
-            /* ---------------- Parallax ------------------- */
-            #parallax-back {
-                background: transparent url('images/1.jpg') repeat top left;
-                position: absolute;
-                height: 1000px;
-                width: 100%;
-                z-index: 1;
-            }
-            #parallax-front {
-                position: relative;
-                background: transparent url('images/banner-1.jpg') repeat top left;
-                z-index: 1000;
-                height:3000px;
+            #container{
                 
-                -moz-opacity:.80; 
-                opacity:.80;
             }
             
+            .parallax { 
+                /* The image used */
+                background-image: url("images/img_parallax.jpg");
+
+                /* Set a specific height */
+                height: 400px; 
+
+                /* Create the parallax scrolling effect */
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+            .parallax2 { 
+                /*The image used*/ 
+                background-image: url("images/img_parallax2.jpg");
+
+                /*Set a specific height*/ 
+                height: 400px; 
+
+                /*Create the parallax scrolling effect*/ 
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+            .parallax3 { 
+                /*The image used*/ 
+                background-image: url("images/img_parallax3.jpg");
+
+                /*Set a specific height*/ 
+                height: 400px; 
+
+                /*Create the parallax scrolling effect*/ 
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            
+            /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
+            @media only screen and (max-device-width: 1366px) {
+/*                .parallax {
+                    background-attachment: scroll;
+                }*/
+            }
         </style>
         
     </head>
@@ -41,28 +75,58 @@
         
         <!-- Inicio header (cabecera)-->
         <!-- Half Page Image Background Carousel Header -->
-        <header id="myCarousel" class="carousel slide"></header>
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
         <!-- Fin header (cabecera)-->
-                    
-        <!-- Inicio contenido - (formulario principal) -->
-        <div id="container" class="modal-dialog">
-            <h1 class="h1">panel principal</h1>
+        
+        <div>
+            <h1 class="h1"></h1>
+            
+            <img src="images/header1.png" class="header-image" />
+                
             
             <p>&nbsp;</p>
             
             
-            
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            
-            <div id="parallax-back"></div>
-            <div id="parallax-front"></div>
-            
-            <div id="content-common"></div> 
         </div>
+        
+        <div class="parallax"></div>          
+        
+        <!-- Inicio contenido - (formulario principal) -->
+        <div class="margin-map">
+            <h2 class="h2">mapa digital</h2>
+            
+            <img src="images/mapa1.png" class="header-image"/>
+            
+            <p>&nbsp;</p>
+
+        </div>
+        
+        <div id="content-common"></div> 
+        
+        <div class="parallax2"></div> 
+        
+        <div class="">
+            <h2 class="h2">galería</h2>
+            
+            <p>&nbsp;</p>
+            
+
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div class="parallax3"></div> 
+        
+        <div class="footer-2">
+            <h2 class="h2">footer 2</h2>
+            
+            <p>&nbsp;</p>
+            
+
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
@@ -102,30 +166,6 @@
             });
             
             
-            
-            /* Parallax */
-            /* 
-            parallax -&gt; Nunca debe ser 1 ya que entonces el fondo y el frente iran a la misma velocidad. 
-            Si es mayor de 1 el frente irá más deprisa que el fondo. 
-            Si es menor de 1 el fondo irá más deprisa que el frente. 
-            */
-            var parallax  = 3;
-            $(document).ready(function () {
-                $(document).scroll(function () {
-
-                    s = $(document).scrollTop();
-                    /* Efecto parallax */
-                    $(document).scroll(function () {
-                        s = $(document).scrollTop();
-                        $("#parallax-back").css("top", Math.round(s/parallax)  + "px");
-                        var newheight =  parseInt($("#parallax-front").css("height").replace("px","")) - Math.round(s/2);	
-                        $("#parallax-back").css("height", newheight + "px" );
-                    })
-
-                })
-            })
-            
-                        
             //****************************
             //Funciones Javascript
             //****************************

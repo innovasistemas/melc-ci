@@ -1,6 +1,6 @@
 body{
     font-family: 'Roboto' !important;
-    background-image: url('../images/banner-1.jpg') ;
+    /*background-image: url('../images/banner-1.jpg') ;*/
 }
 
 caption{
@@ -8,11 +8,18 @@ caption{
 }
 
 #container{
-    width: 60%;
+    /*width: 1066px;*/
+    /*width: 100%;*/
+/*    height: 682px;
+    -moz-opacity:.20; 
+    filter:alpha(opacity=20);
+    opacity:.20 !important;*/
+    /*background-color: #00c4da;*/
+    /*background-image: url('../images/banner-1.jpg') ;*/
 }
 
 #footer{
-    margin-bottom: -100px !important;
+    margin-bottom: 0px !important;
     background-color: #00BFFF !important;
 }
 
@@ -27,11 +34,31 @@ caption{
 }
 
 #footer.navbar-color{
-    background-color: #00BFFF !important;
+    background-color: #6c00DA !important;
+    height: 100px;
 }
 
 #divForm{
     margin-left: 2px;
+}
+
+#navbar-top{
+    /*background-color: #6c00DA !important;*/
+    background-image: url('../images/menu-bar.png');
+    height: 100px;
+}
+
+.margin-map{
+    margin-left: 40px;
+}
+
+.margin-logo-navbar{
+    margin-top: -15px;
+}
+
+.header-image{
+    max-width: 100%;
+    height: auto;
 }
 
 .hideElement{
@@ -39,7 +66,9 @@ caption{
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
-    background-color: #00BFFF !important;
+/*    background-color: #6c00DA !important;
+    background-color: #6c00DA !important;max-height: 500px !important;
+    height: 500px !important;*/
 }
 
 .ui-progressbar {
