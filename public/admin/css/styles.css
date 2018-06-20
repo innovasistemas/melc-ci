@@ -1,3 +1,4 @@
+
 body{
     font-family: 'Roboto' !important;
     /*background-image: url('../images/banner-1.jpg') ;*/
@@ -45,7 +46,24 @@ caption{
 #navbar-top{
     /*background-color: #6c00DA !important;*/
     background-image: url('../images/menu-bar.png');
-    height: 100px;
+    /*height: 50px;*/
+    height: 165px;
+}
+
+#img-header1{
+    background-image:url('../images/header1.png');
+}
+
+#img-header2{
+    background-image:url('../images/2.jpg');
+}
+
+#img-header3{
+    background-image:url('../images/3.jpg');
+}
+
+.carousel{
+    margin-top: 165px;
 }
 
 .margin-map{
@@ -57,7 +75,7 @@ caption{
 }
 
 .header-image{
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
 }
 
@@ -69,6 +87,18 @@ caption{
 /*    background-color: #6c00DA !important;
     background-color: #6c00DA !important;max-height: 500px !important;
     height: 500px !important;*/
+}
+
+.navbar, .navbar-inverse, .navbar-fixed-top a{
+    /*color: #FFF !important;*/
+}
+
+a.dropdown-toggle{
+    color: #FFF !important;
+}
+
+a.dropdown-toggle:hover{
+    text-decoration: underline !important;
 }
 
 .ui-progressbar {
@@ -88,6 +118,16 @@ caption{
     #container{
         width: 90%;
     }
+    
+    #navbar-top{
+        height: 65px;
+    }
+    
+    .carousel{
+        margin-top: 65px;
+        height: 20% !important;
+    }
+    
 }
 
 /*-----------------------------------------------------------------*/
