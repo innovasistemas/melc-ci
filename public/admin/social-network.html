@@ -68,6 +68,20 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
+                            <div class="form-group" id="divLink">
+                                <label for="txtLink" class="control-label">enlace</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                    </span>
+                                    <input type="url" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url" disabled="disabled"/>                        
+                                </div>                   
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
                                 <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" placeholder="logo" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
@@ -91,6 +105,7 @@
                     <tr class="success">
                         <th>nombre</th>
                         <th>descripción</th>
+                        <th>enlace</th>
                         <th>logo</th>
                         <th>eliminar</th>
                     </tr>
@@ -185,6 +200,8 @@
                     return validateLength($("#divDescription"), $("#txtDescription"), 3);
                 });
                 
+                
+                
             });
             
                         
@@ -214,7 +231,8 @@
                         '0': 'id',
                         '1': 'name',
                         '2': 'description',
-                        '3': 'logo'
+                        '3': 'link',
+                        '4': 'logo'
                     }                   
                 }
                 
@@ -233,6 +251,13 @@
                             table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
+                            table += "<td>";
+                            if(value.link != null){
+                                table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
+                            }else{
+                                table += "";
+                            }
+                            table += "</td>";
                             table += "<td>";  
                             table += "<img src='images/social-networks/" + value.logo + "' class='img-thumbnail' width='50' height='50'/>";  
                             table += "</td>";
@@ -245,6 +270,7 @@
                         });
                         $('#tableData tbody').html(table);
                         $('#tableData').DataTable({
+                            retrieve: true,
                             language:{
                                 "sProcessing":     "Procesando...",
                                 "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -321,6 +347,7 @@
                                             "aceptar": function () {
                                                 $(this).dialog("close");
                                                 loadRecords();
+                                                $('#tableData').DateTable().ajax.reload();
                                             }
                                         } 
                                     });
@@ -343,6 +370,7 @@
                 var id = $("#txtId").val();
                 var name = $("#txtName").val();
                 var description = $("#txtDescription").val();
+                var link = $("#txtLink").val();
 
                 var objJson = {
                     'db': {
@@ -351,7 +379,8 @@
                     fields: {
                         'id': id,
                         'name': name,
-                        'description': description
+                        'description': description,
+                        'link': link
                     }
                 };
 
@@ -371,7 +400,8 @@
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-                                    loadRecords();    
+                                    loadRecords(); 
+                                    $('#tableData').DateTable().ajax.reload();
                                 }
                             } 
                         });
@@ -414,6 +444,7 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
+                            $("#txtLink").val(objFields.link);
                             
                             enabledForm(false);
                         },
@@ -434,7 +465,7 @@
             
             function cleanForm()
             {
-                $("#frmRegister").find('input[type=text], textarea').val('');
+                $("#frmRegister").find('input[type=text], input[type=url], textarea').val('');
             }
             
             

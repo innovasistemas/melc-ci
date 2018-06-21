@@ -10,62 +10,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        
-        <style>
-            #container{
-                
-            }
-            
-            .parallax { 
-                /* The image used */
-                background-image: url("images/img_parallax.png");
-
-                /* Set a specific height */
-                height: 400px; 
-
-                /* Create the parallax scrolling effect */
-                background-attachment: fixed;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            
-            .parallax2 { 
-                /*The image used*/ 
-                background-image: url("images/img_parallax2.png");
-
-                /*Set a specific height*/ 
-                height: 400px; 
-
-                /*Create the parallax scrolling effect*/ 
-                background-attachment: fixed;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            
-            .parallax3 { 
-                /*The image used*/ 
-                background-image: url("images/img_parallax3.png");
-
-                /*Set a specific height*/ 
-                height: 400px; 
-
-                /*Create the parallax scrolling effect*/ 
-                background-attachment: fixed;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            
-            /* Turn off parallax scrolling for all tablets and phones. Increase/decrease the pixels if needed */
-            @media only screen and (max-device-width: 1366px) {
-/*                .parallax {
-                    background-attachment: scroll;
-                }*/
-            }
-        </style>
-        
     </head>
     
     <body>                
@@ -77,26 +21,54 @@
         <!-- Half Page Image Background Carousel Header -->
         <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
         <!-- Fin header (cabecera)-->
-        
+            
         <div>
             <h1 class="h1">mapa digital</h1>
             
-            
             <img src="images/mapa1.png" class="header-image"/>
-                
             
             <p>&nbsp;</p>
             
-            
         </div>
         
-        <div class="parallax"></div>          
+        <div class="parallax"></div>                
         
         <!-- Inicio contenido - (formulario principal) -->
-        <div class="margin-map">
-            <h2 class="h2">galería</h2>
+        <div class="row max-width center-block">
+            <h2 class="h2"></h2>
             
-            <img src="images/header1.png" class="header-image" />
+            <div class="col-sm-4">
+                <!--<div class="container">-->
+                    <div class="div-img" >
+                        <a href="#">
+                            <img class="img" src="images/gallery.png" title="galería" alt="galería">        
+                        </a>
+                    </div>
+                <!--</div>-->
+            </div>
+            
+            <div class="col-sm-4">
+                <!--<div class="container">-->
+                    <div class="div-img" >
+                        <a href="#">
+                            <img class="img" src="images/chronicles.png" title="crónicas" alt="crónicas">   
+                        </a>
+                    </div>
+                <!--</div>-->
+            </div>
+            
+            <div class="col-sm-4">
+                <!--<div class="container">-->
+                    <div class="div-img" >
+                        <a href="#">
+                            <img class="img" src="images/itinerary.png" title="rutas" alt="rutas">
+                        </a>
+                    </div>
+                <!--</div>-->
+            </div>
+            
+
+            
             <p>&nbsp;</p>
 
         </div>
@@ -117,7 +89,7 @@
         
         <div class="parallax3"></div> 
         
-        <div class="footer-2">
+        <div class="">
             <h2 class="h2">footer 2</h2>
             
             <p>&nbsp;</p>
@@ -127,11 +99,14 @@
             <p>&nbsp;</p>
         </div>
         
+        <div class="parallax"></div>
+        
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
         <!--<div id="footer" class="navbar navbar-inverse navbar-color">-->
-        <footer id="footer" class="navbar navbar-color"></footer>
+        <!--<footer id="footer" class="navbar navbar-color"></footer>-->
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-coloraa"></footer>
         <!-- Fin pie de página -->
               
         <!--Scripts de la página-->
