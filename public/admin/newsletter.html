@@ -1,0 +1,427 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>medellín en la cabeza</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+    </head>
+    
+    <body>                
+        <!--Inicio barra de navegación-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navbar-top"></nav>
+        <!-- Fin barra de navegación-->
+        
+        <!-- Inicio header (cabecera)-->
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
+        <!-- Fin header (cabecera)-->
+                    
+        <!-- Inicio contenido - (formulario principal) -->
+        <div id="container" class="modal-dialog">
+            <div id="menu-register">
+                <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
+                <a href="#" title="enviar correo" id="submitEmail">enviar correo</a>
+            </div>
+            
+            <h1 class="h1">suscripciones</h1>
+            
+            <p>&nbsp;</p>
+            
+            <!--Formulario-->
+            <div class="row" id="divForm">
+                <form role="form" name="frmRegister" id="frmRegister" enctype="multipart/form-data">
+                      
+                    <input type="text" name="txtId" id="txtId" class="hideElement" value="" disabled="disabled"/>
+                    
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divEmail">
+                                <label for="txtEmail" class="control-label">correo</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-130-message-new.png"/>
+                                    </span>
+                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
+                                </div>                   
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
+                        <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" disabled="disabled"/>
+                    </div>
+
+                </form>
+            </div>
+            <!--Fin Formulario-->
+            
+            <!--Datos de la base de datos-->
+            <table id='tableData' class='table table-striped table-hover' style='width:100%'>
+            <caption><div id='resultTotal'></div></caption>
+                <thead>
+                    <tr class="success">
+                        <th>correo</th>
+                        <th>eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <!--Fin datos de la base de datos-->
+            
+            <div id="content-common"></div> 
+                        
+        </div>
+        <!-- Fin contenido -->
+        
+        <!-- Inicio pie de página -->
+        <footer id="footer" class="navbar navbar-color"></footer>
+        <!-- Fin pie de página -->
+               
+        <!--Scripts de la página-->
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="js/jQuery.paginate.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        
+        <div id="divStyles"></div>
+        
+        <script>
+            $(function() { 
+                
+                loadLayout();
+                
+                loadRecords();
+                
+                $('[data-toggle="tooltip"]').tooltip();
+                
+                $('#frmRegister').ketchup();
+                
+                
+                $("#newRecord").click(function(){
+                    newRecord(); 
+                });
+               
+                                
+                $("#btnSave").click(function(){
+                    $("#txtEmail").val($("#txtEmail").val().trim());
+                    if(validateLength($("#divEmail"), $("#txtEmail"), 3)){
+                        saveRecord();
+                        resetForm();
+                        cleanForm();
+                    }
+                });
+                
+                
+                $("#frmRegister").on('reset', function(){
+                    resetForm();
+                });
+                
+                
+                $('#navbar-top').delegate('#about', 'click', function(){
+                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
+                    $( "#dialog" ).dialog({
+                        autoOpen: true,
+                        modal: true,
+                        buttons: {
+                            "aceptar": function () {
+                                $(this).dialog("close");
+                                return false; // Evitar ejecutar el submit del formulario.
+                            }
+                        } 
+                    });
+                });   
+                
+                
+                //Validaciones focosout: longitud y otros       
+                $("#txtEmail").focusout(function(){
+                    $("#txtEmail").val($("#txtEmail").val().trim());
+                    return validateLength($("#divEmail"), $("#txtEmail"), 3);
+                });
+                
+            });
+            
+                        
+            //****************************
+            //Funciones Javascript
+            //****************************
+            
+            function loadLayout()
+            {
+                $('#divStyles').load('styles.html');
+                $('#navbar-top').load('layout/panel/navbar-top.html');
+                $('#myCarousel').load('layout/panel/header.html');
+                $('#content-common').load('layout/panel/content-common.html');
+                $('#footer').load('layout/panel/footer.html');
+            }            
+            
+            
+            function loadRecords()
+            {
+                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
+                var entity = 'melc_newsletter';
+                var objJson = {
+                    'bd': {
+                        'table': entity
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'email'
+                    }                   
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: url,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var table = "";
+                        $.each(data, function(index, value){
+                            active = value.active == 1 ? 'si' : 'no';
+                            table += "<tr class='info'>";
+                            table += "<td>";
+                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.email + "</a>";
+                            table += "</td>";
+                            table += "<td>";
+                            table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
+                            table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "</a>";
+                            table += "</td>";
+                            table += "</tr>";
+                        });
+                        $('#tableData tbody').html(table);
+                        $('#tableData').DataTable({
+                            language:{
+                                "sProcessing":     "Procesando...",
+                                "sLengthMenu":     "Mostrar _MENU_ registros",
+                                "sZeroRecords":    "No se encontraron resultados",
+                                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                "sInfoPostFix":    "",
+                                "sSearch":         "Buscar:",
+                                "sUrl":            "",
+                                "sInfoThousands":  ",",
+                                "sLoadingRecords": "Cargando...",
+                                "oPaginate": {
+                                    "sFirst":    "Primero",
+                                    "sLast":     "Último",
+                                    "sNext":     "Siguiente",
+                                    "sPrevious": "Anterior"
+                                },
+                                "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                }
+                            }
+                        });
+                    }
+                    
+                }); 
+                
+                url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/totalrecords/' + entity;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#resultTotal').html('listado de suscripciones. total registros: ' + data.totalRecords);
+                    }                    
+                });                
+            }
+                        
+            
+            function deleteRecord(id)
+            {
+                var entity = 'melc_newsletter';
+                var objJson = {
+                    'bd': {
+                        'table': entity
+                    },
+                    'fields': {
+                        'id': id                      
+                    }                   
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                
+                $( "#dialog" ).html("¿está seguro?");
+                $( "#dialog" ).dialog({
+                    autoOpen: true,
+                    modal: true,
+                    buttons: {
+                        "aceptar": function () {
+                            $(this).dialog("close"); 
+                            $.ajax({
+                                url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/',
+                                data: {'dataSend': strJson},
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function(data){
+                                    $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+                                    $( "#dialog" ).dialog({
+                                        autoOpen: true,
+                                        modal: true,
+                                        buttons: {
+                                            "aceptar": function () {
+                                                $(this).dialog("close");
+                                                loadRecords();
+                                            }
+                                        } 
+                                    });
+                                }
+
+                            });
+                        },
+                        "cancelar": function(){
+                           $(this).dialog("close"); 
+                        }
+                    } 
+
+                });
+            }
+            
+            
+            function saveRecord()
+            {
+                var entity = 'melc_newsletter';
+                var id = $("#txtId").val();
+                var email = $("#txtEmail").val();
+
+                var objJson = {
+                    'db': {
+                        'table': entity
+                    },
+                    fields: {
+                        'id': id,
+                        'email': email
+                    }
+                };
+
+                var strJson = JSON.stringify(objJson);
+
+                $.ajax({
+                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
+                    data: {'dataSend': strJson},
+                    'content-type': 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data) {
+                        $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+                        $( "#dialog" ).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            buttons: {
+                                "Aceptar": function () {
+                                    $(this).dialog("close");
+                                    loadRecords();    
+                                }
+                            } 
+                        });
+                    }
+                });
+            }
+
+
+            function newRecord()
+            {
+                $( "#dialog" ).html("¿está seguro?");
+                $( "#dialog" ).dialog({
+                    autoOpen: true,
+                    modal: true,
+                    buttons: {
+                        "aceptar": function () {
+                            $(this).dialog("close"); 
+                            enabledForm(false);
+                            cleanForm();
+                            $("#txtId").val('0');
+                            $('#txtEmail').focus();
+                        },
+                        "cancelar": function(){
+                           $(this).dialog("close"); 
+                        }
+                    } 
+                });
+            }
+            
+            
+            function updateRecord(objFields)
+            {
+                $( "#dialog" ).html("¿está seguro?");
+                $( "#dialog" ).dialog({
+                    autoOpen: true,
+                    modal: true,
+                    buttons: {
+                        "aceptar": function () {
+                            $(this).dialog("close"); 
+                            $("#txtId").val(objFields.id);
+                            $("#txtEmail").val(objFields.email);
+                            enabledForm(false);
+                        },
+                        "cancelar": function(){
+                           $(this).dialog("close"); 
+                        }
+                    } 
+
+                });
+            }
+            
+            
+            function enabledForm(sw)
+            {
+                $('#frmRegister').find('input, textarea, button, select').prop('disabled', sw);
+            }
+            
+            
+            function cleanForm()
+            {
+                $("#frmRegister").find('input[type=text], input[type=email], textarea').val('');
+            }
+            
+            
+            function resetForm()
+            {
+                enabledForm(true); 
+                $("#divEmail").removeClass("has-error has-success"); 
+                $(".ketchup-error").css("display", "none");
+            }
+            
+            
+            function validateLength(division, input, length)
+            {
+                var sw = false
+                if(input.val().length >= length)
+                {
+                    division.removeClass("has-error"); 
+                    division.addClass("has-success");
+                    sw = true;
+                }
+                else
+                {
+                    division.removeClass("has-success");
+                    division.addClass("has-error");
+                }
+                return sw;
+            }
+            
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>medellín en la cabeza</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+    </head>
+    
+    <body>                
+        <!--Inicio barra de navegación-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navbar-top"></nav>
+        <!-- Fin barra de navegación-->
+        
+        <!-- Inicio header (cabecera)-->
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
+        <!-- Fin header (cabecera)-->
+                    
+        <!-- Inicio contenido - (formulario principal) -->
+        <div id="container" class="modal-dialog">
+            <h1 class="h1">panel principal</h1>
+            
+            <p>&nbsp;</p>
+            
+            <div id="content-common"></div> 
+        </div>
+        <!-- Fin contenido -->
+        
+        <!-- Inicio pie de página -->
+        <!--<div id="footer" class="navbar navbar-inverse navbar-color">-->
+        <footer id="footer" class="navbar navbar-color"></footer>
+        <!-- Fin pie de página -->
+              
+        <!--Scripts de la página-->
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        
+        <div id="divStyles"></div>
+        
+        <script>
+            $(function(){ 
+                
+                loadLayout();
+                
+                
+                $('#navbar-top').delegate('#about', 'click', function(){
+                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
+                    $( "#dialog" ).dialog({
+                        autoOpen: true,
+                        modal: true,
+                        buttons: {
+                            "aceptar": function () {
+                                $(this).dialog("close");
+                                return false; // Evitar ejecutar el submit del formulario.
+                            }
+                        } 
+                    });
+                });                
+                
+            });
+            
+                        
+            //****************************
+            //Funciones Javascript
+            //****************************
+            
+            function loadLayout()
+            {
+                $('#divStyles').load('styles.html');
+                $('#navbar-top').load('layout/panel/navbar-top.html');
+                $('#myCarousel').load('layout/panel/header.html');
+                $('#content-common').load('layout/panel/content-common.html');
+                $('#footer').load('layout/panel/footer.html');
+            }            
+            
+        </script>
+        
+    </body>
+</html>

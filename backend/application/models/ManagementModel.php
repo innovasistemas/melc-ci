@@ -44,6 +44,7 @@ class ManagementModel extends CI_Model
         $this->db->delete($table);
         return $this->db->affected_rows();
     }
+    
 
     // Función genérica para agregar registros 
     public function insert($table, $record)
@@ -53,16 +54,18 @@ class ManagementModel extends CI_Model
     }
     
     
+    // Función genérica para actualizar registros
+    public function update($table, $record)
+    {
+        $this->db->where("id", $record['id']);
+        $this->db->update($table, $record);
+        return $this->db->affected_rows();
+    }
+    
+    
     public function totalRecords($table)
     {
         return $this->db->get($table)->num_rows();
-    }
-    
-    // Función genérica para actualizar registros
-    public function update($table, $record, $id)
-    {
-        $this->db->where("id", $id);
-        $this->db->update($table, $record);
     }
     
     

@@ -55,37 +55,15 @@ class MasterEngine extends CI_Controller {
             }
         }else{
             $arrayResult = [
-                "content" => "Datos incompletos en formulario", 
+                "content" => "datos incompletos para realizar esta solicitud", 
                 "error" => 201
             ];
         }
  
         echo json_encode($arrayResult);
     }
-
-
-    // Función para eliminar registros de una tabla a partir de su id
-    public function deleteRecords()
-    {
-        if(!empty($this->input->post("dataSend"))){
-            $arrayData = json_decode($this->input->post("dataSend"), TRUE);
-            $intResult = $this->ManagementModel->delete(
-                    $arrayData['bd']['table'], $arrayData['fields']['id']
-                );
-            $arrayResult = array(
-                "content" => "Registro eliminado correctamente", 
-                "result" => $intResult
-            );
-        }else{
-            $arrayResult = [
-                "content" => "Datos incompletos para realizar esta solicitud", 
-                "error" => 202
-            ];
-        }
-        echo json_encode($arrayResult);
-    }
-
-
+    
+    
     // Función para devolver el total de registros de una entidad
     public function totalRecords($table="")
     {
@@ -95,6 +73,31 @@ class MasterEngine extends CI_Controller {
     }
 
     
+    // Función para eliminar registros de una tabla a partir de su id
+    public function deleteRecords()
+    {
+        if(!empty($this->input->post("dataSend"))){
+            $arrayData = json_decode($this->input->post("dataSend"), TRUE);
+            $intResult = $this->ManagementModel->delete(
+                    $arrayData['bd']['table'], $arrayData['fields']['id']
+                );
+            $arrayResult = array(
+                "response" => "registro eliminado correctamente", 
+                "affectedRows" => $intResult,
+                "error" => 0
+            );
+        }else{
+            $arrayResult = [
+                "response" => "datos incompletos para realizar esta solicitud", 
+                "affectedRows" => 0,
+                "error" => 201
+            ];
+        }
+        
+        echo json_encode($arrayResult);
+    }
+
+
     // Función para guardar un registro en inserciones o actualizaciones
     public function saveRecord()
     {
@@ -105,16 +108,26 @@ class MasterEngine extends CI_Controller {
             if((int)$arrayData['fields']['id'] == 0){
                 $intResult = $this->ManagementModel->insert(
                         $arrayData['db']['table'], $arrayData['fields']);
-                $arrayResult = array(
-                    "content" => "Registro guardado correctamente", 
-                    "result" => $intResult
-                );
-            }else{
                 
+            }else{
+                $intResult = $this->ManagementModel->update(
+                        $arrayData['db']['table'], $arrayData['fields']);
             }
-
-            echo json_encode($arrayResult);
+            
+            $arrayResult = array(
+                "response" => "registro guardado correctamente", 
+                "affectedRows" => $intResult,
+                "error" => 0
+            );
+        }else{
+            $arrayResult = [
+                "response" => "datos incompletos para realizar esta solicitud", 
+                "affectedRows" => 0,
+                "error" => 201
+            ];
         }
+        
+        echo json_encode($arrayResult);
     }
     
 }
