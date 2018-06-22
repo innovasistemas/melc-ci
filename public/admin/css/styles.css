@@ -74,6 +74,10 @@ caption{
     margin-top: 165px;
 }
 
+.font-carousel{
+    font-size: 2em;
+}
+
 .margin-map{
     margin-left: 40px;
 }
@@ -97,6 +101,11 @@ caption{
 
 .max-width{
     max-width:100%;
+}
+
+.font-social-network{
+    color: #6c00DA;
+    font-weight: bold;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{

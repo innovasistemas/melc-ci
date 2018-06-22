@@ -25,7 +25,7 @@
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog">
             <div id="menu-register">
-                <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
+                <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
             
             <h1 class="h1">redes sociales</h1>
@@ -200,8 +200,6 @@
                     return validateLength($("#divDescription"), $("#txtDescription"), 3);
                 });
                 
-                
-                
             });
             
                         
@@ -248,7 +246,7 @@
                         $.each(data, function(index, value){
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
                             table += "<td>";
@@ -259,10 +257,10 @@
                             }
                             table += "</td>";
                             table += "<td>";  
-                            table += "<img src='images/social-networks/" + value.logo + "' class='img-thumbnail' width='50' height='50'/>";  
+                            table += "<img src='images/social-networks/" + value.logo + "' class='img-thumbnail'/>";  
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";

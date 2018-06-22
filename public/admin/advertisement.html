@@ -25,7 +25,7 @@
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog">
             <div id="menu-register">
-                <a href="#" title="nuevo" id="newRecord">nuevo registro</a>
+                <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
             
             <h1 class="h1">anuncios</h1>
@@ -262,7 +262,7 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
@@ -274,7 +274,7 @@
                             }
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
                             table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";

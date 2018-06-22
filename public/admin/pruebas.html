@@ -40,7 +40,7 @@
             <div class="col-sm-4">
                 <!--<div class="container">-->
                     <div class="div-img" >
-                        <a href="#">
+                        <a href="#!">
                             <img class="img" src="images/gallery.png" title="galería" alt="galería">        
                         </a>
                     </div>
@@ -50,7 +50,7 @@
             <div class="col-sm-4">
                 <!--<div class="container">-->
                     <div class="div-img" >
-                        <a href="#">
+                        <a href="#!">
                             <img class="img" src="images/chronicles.png" title="crónicas" alt="crónicas">   
                         </a>
                     </div>
@@ -60,7 +60,7 @@
             <div class="col-sm-4">
                 <!--<div class="container">-->
                     <div class="div-img" >
-                        <a href="#">
+                        <a href="#!">
                             <img class="img" src="images/itinerary.png" title="rutas" alt="rutas">
                         </a>
                     </div>
@@ -90,13 +90,91 @@
         <div class="parallax3"></div> 
         
         <div class="">
-            <h2 class="h2">footer 2</h2>
+            
+            
+            
+            <div class="carousel slide" data-ride="carousel">
+                <h2 class="h2">footer 2</h2>
+
+
+
+
+
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel2" data-slide-to="1"></li>
+                    <li data-target="#myCarousel2" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for Slides -->
+                <div class="carousel-inner font-carousel">
+                    <div class="item active">
+                        <div class="fill text-center">
+                            <p>dddddd</p>
+                        </div>
+                        <div class="carousel-caption">
+                            <h2>callejear educa</h2>
+                        </div>
+
+                    </div>
+                    <div class="item">
+                         <!--Set the second background image using inline CSS below.--> 
+                        <!--<div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>-->
+                        <div class="fill text-center">
+                            aaaaa
+                        </div>
+                        <div class="carousel-caption">
+                            <h2>medellín en la cabeza</h2>
+                        </div>
+                    </div>
+                    <div class="item">
+                         <!--Set the third background image using inline CSS below.--> 
+                        <!--<div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>-->
+                        <div class="fill text-center">
+                            ttttt
+                        </div>
+                        <div class="carousel-caption">
+                            <h2>jóvenes callejeros</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+                    <span class="icon-prev"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+                    <span class="icon-next"></span>
+                </a>
+
+            
+            
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             <p>&nbsp;</p>
             
 
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+           
         </div>
         
         <div class="parallax"></div>
@@ -122,6 +200,8 @@
             $(function(){ 
                 
                 loadLayout();
+                
+                loadSocialNetworks();
                 
                 
                 $('#navbar-top').delegate('#about', 'click', function(){
@@ -152,7 +232,51 @@
                 $('#myCarousel').load('layout/panel/header.html');
                 $('#content-common').load('layout/panel/content-common.html');
                 $('#footer').load('layout/panel/footer.html');
-            }            
+            }  
+            
+            
+            function loadSocialNetworks()
+            {
+                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
+                var entity = 'melc_social_network';
+                var objJson = {
+                    'bd': {
+                        'table': entity
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'link',
+                        '4': 'logo'
+                    }                   
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: url,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "";
+                        $.each(data, function(index, value){
+                            content += "<div class='row'>";
+                            content += "<div class='col-sm-2'>";
+                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
+                            content += "<img src='images/social-networks/" + value.logo + "' />";
+                            content += "</a>";
+                            content += "</div>";
+                            content += "<div class='col-sm-2 font-social-network'>" + value.description + "</div>";
+                            content += "</div>";
+                        });
+                        $('#links-social-networks').html(content);
+                    }
+                    
+                }); 
+                
+            }
             
         </script>
         
