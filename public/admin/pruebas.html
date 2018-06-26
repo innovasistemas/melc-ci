@@ -91,8 +91,8 @@
                 </div>
                 <div class="col-sm-7" id="map-points">
                     
-                    <a data-toggle="tooltip" title="<img src='images/map-points/sanjavier-stairs.png' />" href="#!">
-                        <img src="images/map.png" style="width: 106%" usemap="#image-map"/>
+                    <a data-toggle="tooltip" title="<img src='images/map-points/sanjavier-stairs.png' />" href="#!" >
+                        <img src="images/map.png" style="width: 106%" usemap="#image-map" data-toggle="modal" data-target="#content-map-modal2"/>
                     </a>
                     
                     
@@ -224,6 +224,43 @@
               </div>
         </div>
         <!-- Fin Modal texto mapa -->
+        
+        <!-- Modal imagen mapa -->
+        <div class="modal fade" id="content-map-modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title text-uppercase" id="exampleModalLabel1">Cementerio de San Javier</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center margin-modal">
+                            <img src='images/map-points/sanjavier-stairs.png' />
+                        </p>
+                        <p class="lead text-left margin-modal">
+                            En la ciudad de Medellín aún quedan algunos cementerios de barrio como los de 
+                            El Rincón, Belén Miravalle, El Poblado y San Javier. Este último cada día 
+                            transforma los hechos de muerte y dolor en ejercicios de memoria y vida. Allí 
+                            podrás encontrar grafitis y jardines de resistencia que te hablarán de una 
+                            nueva forma de mirar el conflicto en este territorio liderado por colectivos 
+                            de jóvenes. 
+                        </p>
+                        <p class="lead text-left margin-modal">
+                            Cerca están el Parque Biblioteca San Javier y las escaleras eléctricas donde 
+                            se realiza un tour de grafitis como voz pública de estos barrios que perdonan, 
+                            pero no olvidan. 
+                        </p>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-capitalize" data-dismiss="modal">cerrar</button>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <!-- Fin Modal imagen mapa -->
 
         <!-- Modal página en construcción -->
         <div class="modal fade" id="modal-page-construction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -239,7 +276,7 @@
                         <p  class="lead text-center margin-modal">
                             Nuestros callejeros están trabajando arduamente para tener este contenido disponible.
                         </p>
-                        <p  class="text-center">
+                        <p class="text-center">
                             <img src="images/page-construction.jpeg" />
                         </p>
                     </div>
