@@ -77,12 +77,12 @@ caption{
 }
 
 #slider-advertisement{
-    max-height: 95px;
+    max-height: 150px;
 }
 
 #carousel-advertisement{
     margin-top: 0px;
-    max-height: 95px;
+    max-height: 150px;
 }
 
 #container h1, #container h2, #container h3{
@@ -117,12 +117,23 @@ caption{
 }
 
 .name-advertisement{
-    margin-top: -130px;
+    margin-top: -110px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.link-advertisement{
+    color: #FFF
+}
+
+.link-advertisement:hover{
     color: #FFF;
 }
 
 .description-advertisement{
     color: #FFF;
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
 .margin-logo-navbar{
@@ -140,6 +151,14 @@ caption{
 
 .max-width{
     max-width:100%;
+}
+
+.margin-modal{
+    margin:5%;
+}
+
+.margin-description-advertisement{
+    margin-top:15%;
 }
 
 .font-social-network{

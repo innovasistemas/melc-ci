@@ -25,6 +25,33 @@
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog lead text-justify">
             
+            
+            
+            <div class="container">
+                <br/>
+                <div class="row" id="panelPrecios">
+                    <div class="items">
+                    <ul>
+                        <li> 
+                            <a data-toggle="tooltip" title="<img src='https://getbootstrap.com/apple-touch-icon.png' />" href="desktop.html">
+                              Hola Mundo!
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="<img src='http://utbcn.com/img/logosCursas/logo_UTBCN_180x180.png' />">
+                             Hola Mundo!
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
             <h1>MAPA JOVEN DE MEDELLÍN</h1>
             <p>&nbsp;</p>
             <p>    
@@ -111,6 +138,13 @@
                 loadAdvertisement();
                 
                 loadSocialNetworks();
+                
+                
+                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
+                    animated: 'fade',
+                    placement: 'bottom',
+                    html: true
+                });
                 
                 
                 $('#navbar-top').delegate('#about', 'click', function(){
