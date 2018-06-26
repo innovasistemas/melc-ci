@@ -141,12 +141,11 @@
                 loadSocialNetworks();
                 
                 
-                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
-                    animated: 'fade',
-                    placement: 'bottom',
-                    html: true
-                });
-                
+//                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
+//                    animated: 'fade',
+//                    placement: 'bottom',
+//                    html: true
+//                });
                 
                 $('#navbar-top').delegate('#about', 'click', function(){
                     $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
@@ -172,7 +171,7 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/panel/navbar-top.html');
+                $('#navbar-top').load('layout/panel/navbar-top-internal.html');
                 $('#myCarousel').load('layout/panel/header.html');
                 $('#content-common').load('layout/panel/content-common.html');
                 $('#footer').load('layout/panel/footer.html');

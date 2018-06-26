@@ -94,6 +94,18 @@ caption{
     margin-top: 165px;
 }
 
+.navbar-top-home{
+    margin-top: 5%;
+    margin-left: 30%;
+}
+
+.navbar-top-home ul li a{
+    font-weight: bold;
+    color: #FFF !important;
+    font-size: 1.2em;
+    
+}
+
 .content-map-row{
     margin-top: 20px;
 }
