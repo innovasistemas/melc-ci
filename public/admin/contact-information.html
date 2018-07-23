@@ -5,10 +5,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>medellín en la cabeza</title>
+        <title>Medellín en la Cabeza</title>
         
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
         
     </head>
     
@@ -23,18 +25,20 @@
         <!-- Fin header (cabecera)-->
                     
         <!-- Inicio contenido - (formulario principal) -->
-        <div id="container" class="modal-dialog">
+        <div id="container" class="modal-dialog container-top">
             <div id="menu-register">
                 <!--<a href="#" title="nuevo" id="newRecord">nuevo registro</a>-->
             </div>
             
-            <h1 class="h1">información de contacto</h1>
+            <hr/>
+            
+            <h1 class="h1 text-capitalize">información de contacto</h1>
             
             <p>&nbsp;</p>
             
             <!--Formulario-->
             <div class="row" id="divForm">
-                <form role="form" name="frmRegister" id="frmRegister" enctype="multipart/form-data">
+                <form role="form" name="frmRegister" id="frmRegister" class="text-capitalize" enctype="multipart/form-data">
                       
                     <input type="text" name="txtId" id="txtId" class="hideElement" value="" disabled="disabled"/>
                     
@@ -44,7 +48,7 @@
                                 <label for="txtAddress" class="control-label">dirección</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-620-industrial-zone.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-620-industrial-zone.png"/>
                                     </span>
                                     <input type="text" name="txtAddress" id="txtAddress" class="form-control input-lg" placeholder="dirección" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la dirección" disabled="disabled"/>                        
                                 </div>                   
@@ -58,7 +62,7 @@
                                 <label for="txtPhone" class="control-label">teléfono</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-442-phone-alt.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-442-phone-alt.png"/>
                                     </span>
                                     <input type="tel" name="txtPhone" id="txtPhone" class="form-control input-lg" placeholder="teléfono" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono" disabled="disabled"/>                        
                                 </div>                   
@@ -72,7 +76,7 @@
                                 <label for="txtCellPhone" class="control-label">teléfono celular</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-337-iphone-shake.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-337-iphone-shake.png"/>
                                     </span>
                                     <input type="tel" name="txtCellPhone" id="txtCellPhone" class="form-control input-lg" placeholder="teléfono celular" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono celular" disabled="disabled"/>                        
                                 </div>                   
@@ -86,7 +90,7 @@
                                 <label for="txtEmail" class="control-label">correo</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-11-envelope.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-11-envelope.png"/>
                                     </span>
                                     <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
                                 </div>                   
@@ -107,7 +111,7 @@
             <table id='tableData' class='table table-striped table-hover' style='width:100%'>
             <caption><div id='resultTotal'></div></caption>
                 <thead>
-                    <tr class="success">
+                    <tr class="success text-capitalize">
                         <th>dirección</th>
                         <th>teléfono</th>
                         <th>teléfono celular</th>
@@ -131,14 +135,14 @@
         <!-- Fin pie de página -->
                
         <!--Scripts de la página-->
-        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
-        <script type="text/javascript" src="js/jQuery.paginate.js"></script>
-        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="../assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -189,21 +193,6 @@
                 });
                 
                 
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });   
-                
-                
                 //Validaciones focosout: longitud y otros       
                 $("#txtAddress").focusout(function(){
                     $("#txtAddress").val($("#txtAddress").val().trim());
@@ -237,10 +226,10 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/panel/navbar-top.html');
-                $('#myCarousel').load('layout/panel/header.html');
-                $('#content-common').load('layout/panel/content-common.html');
-                $('#footer').load('layout/panel/footer.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+//                $('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
+                $('#footer').load('layout/footer.html');
             }            
             
             
@@ -273,7 +262,7 @@
                         $.each(data, function(index, value){
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.address + "</a>";
+                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.address + "</a>";
                             table += "</td>";
                             table += "<td>" + value.phone + "</td>";
                             table += "<td>" + value.cell_phone + "</td>";
@@ -287,6 +276,7 @@
                         });
                         $('#tableData tbody').html(table);
                         $('#tableData').DataTable({
+                            retrieve: true,
                             language:{
                                 "sProcessing":     "Procesando...",
                                 "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -322,7 +312,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        $('#resultTotal').html('listado de anuncios. total registros: ' + data.totalRecords);
+                        $('#resultTotal').html('Listado de anuncios. Total registros: ' + data.totalRecords);
                     }                    
                 });                
             }

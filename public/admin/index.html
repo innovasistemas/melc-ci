@@ -5,10 +5,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>medellín en la cabeza</title>
+        <title>Medellín en la Cabeza</title>
         
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
         
     </head>
     
@@ -23,17 +25,17 @@
         <!-- Fin header (cabecera)-->
                     
         <!-- Inicio contenido - (formulario principal) -->
-        <div id="container" class="modal-dialog">
-            <h1 class="h1">bienvenido</h1>
+        <div id="container" class="modal-dialog container-top">
+            <h1 class="h1 text-capitalize">bienvenido</h1>
             
-            <h2>panel principal</h2>
+            <!--<h2>panel principal</h2>-->
             
-            <p>&nbsp;</p>
+            <!--<p>&nbsp;</p>-->
             
-            <p>espere mientras carga la aplicación...</p>
+            <p>Espere mientras carga la aplicación...</p>
             
             <div id="progressbar">
-                <div class="progress-label">cargando...</div>
+                <div class="progress-label text-capitalize">cargando...</div>
             </div>
             
             <div id="content-common"></div>
@@ -45,11 +47,12 @@
         <!-- Fin pie de página -->
               
         <!--Scripts de la página-->
-        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="../assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -57,21 +60,6 @@
             $(function(){
                 
                 loadLayout();
-                
-                
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });     
                 
             });
             
@@ -83,10 +71,10 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/panel/navbar-top.html');
-                $('#myCarousel').load('layout/panel/header.html');
-                $('#content-common').load('layout/panel/content-common.html');
-                $('#footer').load('layout/panel/footer.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+//                $('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
+                $('#footer').load('layout/footer.html');
             }            
             
             
