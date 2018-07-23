@@ -10,7 +10,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
         
     </head>
     
@@ -29,7 +29,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
                     <!--melc-->
-                    <img src="images/logo-header.png" class="header-image margin-logo-navbar" title="Inicio" id="logo-header">
+                    <img src="assets/images/logo-header.png" class="header-image margin-logo-navbar" title="Inicio" id="logo-header">
                 </a>
             </div>
 
@@ -90,8 +90,8 @@
                 </div>
                 <div class="col-sm-7" id="map-points">
                     
-                    <a data-toggle="tooltip" title="<img src='images/map-points/sanjavier-stairs.png' />" href="#!" >
-                        <img src="images/map.png" style="width: 106%" usemap="#image-map" data-toggle="modal" data-target="#content-map-modal2"/>
+                    <a data-toggle="tooltip" title="<img src='assets/images/map-points/sanjavier-stairs.png' />" href="#!" >
+                        <img src="assets/images/map.png" style="width: 106%" usemap="#image-map" data-toggle="modal" data-target="#content-map-modal2"/>
                     </a>
                     
                     
@@ -148,7 +148,7 @@
             <div class="col-sm-4">
                 <div class="div-img" >
                     <a href="#!" data-toggle="modal" data-target="#modal-page-construction">
-                        <img class="img" src="images/chronicles.png" title="Crónicas" alt="crónicas">   
+                        <img class="img" src="assets/images/chronicles.png" title="Crónicas" alt="crónicas">   
                     </a>
                 </div>
             </div>
@@ -156,7 +156,7 @@
             <div class="col-sm-4">
                 <div class="div-img" >
                     <a href="itinerary.html">
-                        <img class="img" src="images/itinerary.png" title="Rutas" alt="rutas">
+                        <img class="img" src="assets/images/itinerary.png" title="Rutas" alt="rutas">
                     </a>
                 </div>
             </div>
@@ -169,7 +169,7 @@
             <p>&nbsp;</p>
             <p class="text-center ">
                 <a href="http://bit.ly/inscripcionesmedellinenlacabeza" target="_blank" title="Suscríbete en Medellín en la Cabeza">
-                    <img src="images/signup-button.png" class="signup-button" title="Suscríbete en Medellín en la Cabeza" alt="Suscríbete en Medellín en la Cabeza"/>
+                    <img src="assets/images/signup-button.png" class="signup-button" title="Suscríbete en Medellín en la Cabeza" alt="Suscríbete en Medellín en la Cabeza"/>
                 </a>
             </p>
             <p>&nbsp;</p>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center margin-modal">
-                            <img src='images/map-points/sanjavier-stairs.png' />
+                            <img src='assets/images/map-points/sanjavier-stairs.png' />
                         </p>
                         <p class="lead text-left margin-modal">
                             En la ciudad de Medellín aún quedan algunos cementerios de barrio como los de 
@@ -281,7 +281,7 @@
                             Nuestros callejeros están trabajando arduamente para tener este contenido disponible.
                         </p>
                         <p class="text-center">
-                            <img src="images/page-construction.jpeg" />
+                            <img src="assets/images/page-construction.jpeg" />
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -300,13 +300,13 @@
         <!-- Fin pie de página -->
               
         <!--Scripts de la página-->
-        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
-        <script type="text/javascript" src="js/jquery.fancybox.js"></script>
-        <script type="text/javascript" src="js/stickyMojo.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="assets/js/stickyMojo.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>-->
         
         <div id="divStyles"></div>
@@ -404,7 +404,7 @@
                             content += "<div class='row'>";
                             content += "<div class='col-sm-2'>";
                             content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
-                            content += "<img src='images/social-networks/" + value.logo + "' />";
+                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
                             content += "</a>";
                             content += "</div>";
                             content += "<div class='col-sm-2'>";
@@ -497,11 +497,11 @@
                         var content = "";
                         $.each(data, function(index, value){
                             if(value.active == 1){
-                                content += "<a href='images/gallery/" + value.url + "' data-fancybox='gallery' data-caption='" + value.description + "'>";
+                                content += "<a href='assets/images/gallery/" + value.url + "' data-fancybox='gallery' data-caption='" + value.description + "' alt='" + value.description + "'>";
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img class='img' src='images/gallery.png' title='Galería' alt='galería'>";        
+                                    content += "<img class='img' src='assets/images/gallery.png' title='Galería' alt='galería'>";        
                                 }
                                 content += "</a>";
                             }

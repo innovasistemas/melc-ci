@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>medellín en la cabeza</title>
+        <title>Medellín en la Cabeza</title>
         
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
         
     </head>
     
@@ -25,18 +25,20 @@
         <!-- Fin header (cabecera)-->
                     
         <!-- Inicio contenido - (formulario principal) -->
-        <div id="container" class="modal-dialog">
-            <div id="menu-register">
+        <div id="container" class="modal-dialog container-top">
+            <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
             
-            <h1 class="h1">anuncios</h1>
+            <hr/>
+            
+            <h1 class="h1 text-capitalize">anuncios</h1>
             
             <p>&nbsp;</p>
             
             <!--Formulario-->
             <div class="row" id="divForm">
-                <form role="form" name="frmRegister" id="frmRegister" enctype="multipart/form-data">
+                <form role="form" name="frmRegister" id="frmRegister" class="text-capitalize" enctype="multipart/form-data">
                       
                     <input type="text" name="txtId" id="txtId" class="hideElement" value="" disabled="disabled"/>
                     
@@ -46,7 +48,7 @@
                                 <label for="txtName" class="control-label">nombre</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
                                     <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
                                 </div>                   
@@ -60,7 +62,7 @@
                                 <label for="txtDescription" class="control-label">descripción</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
                                     <input type="text" name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"/>
                                 </div>                   
@@ -97,7 +99,7 @@
                                 <label for="txtLink" class="control-label">enlace</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
                                     <input type="url" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url" disabled="disabled"/>                        
                                 </div>                   
@@ -118,7 +120,7 @@
             <table id='tableData' class='table table-striped table-hover' style='width:100%'>
             <caption><div id='resultTotal'></div></caption>
                 <thead>
-                    <tr class="success">
+                    <tr class="success text-capitalize">
                         <th>nombre</th>
                         <th>descripción</th>
                         <th>activo</th>
@@ -142,13 +144,14 @@
         <!-- Fin pie de página -->
                
         <!--Scripts de la página-->
-        <script type="text/javascript" src="js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
-        <script type="text/javascript" src="js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
-        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="../assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -188,21 +191,6 @@
                 });
                 
                 
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });   
-                
-                
                 //Validaciones focosout: longitud y otros       
                 $("#txtName").focusout(function(){
                     $("#txtName").val($("#txtName").val().trim());
@@ -225,10 +213,10 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/panel/navbar-top.html');
-                $('#myCarousel').load('layout/panel/header.html');
-                $('#content-common').load('layout/panel/content-common.html');
-                $('#footer').load('layout/panel/footer.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+//                $('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
+                $('#footer').load('layout/footer.html');
             }            
             
             
@@ -276,7 +264,7 @@
                             table += "</td>";
                             table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
-                            table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
                             table += "</tr>";
@@ -319,7 +307,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        $('#resultTotal').html('listado de anuncios. total registros: ' + data.totalRecords);
+                        $('#resultTotal').html('Listado de anuncios. Total registros: ' + data.totalRecords);
                     }                    
                 });                
             }
