@@ -112,6 +112,7 @@
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success text-capitalize">
+                        <th>id</th>
                         <th>dirección</th>
                         <th>teléfono</th>
                         <th>teléfono celular</th>
@@ -262,8 +263,9 @@
                         $.each(data, function(index, value){
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.address + "</a>";
+                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.id + "</a>";
                             table += "</td>";
+                            table += "<td>" + value.address + "</td>";
                             table += "<td>" + value.phone + "</td>";
                             table += "<td>" + value.cell_phone + "</td>";
                             table += "<td>" + value.email + "</td>";
@@ -352,7 +354,8 @@
                                         buttons: {
                                             "aceptar": function () {
                                                 $(this).dialog("close");
-                                                loadRecords();
+//                                                loadRecords();
+                                                window.location = 'contact-information.html'; //Provisional para cargar el DataTable
                                             }
                                         } 
                                     });
@@ -407,7 +410,8 @@
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-                                    loadRecords();    
+//                                    loadRecords();    
+                                    window.location = 'contact-information.html'; //Provisional para cargar el DataTable
                                 }
                             } 
                         });

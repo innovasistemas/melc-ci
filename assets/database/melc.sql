@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-06-2018 a las 19:20:35
+-- Tiempo de generación: 24-07-2018 a las 00:55:45
 -- Versión del servidor: 5.7.22
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `melc_advertisement` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#!'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -39,11 +39,11 @@ CREATE TABLE `melc_advertisement` (
 --
 
 INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`) VALUES
-(1, 'mapa digital', 'bienvenido a nuestro mapa digital', b'1', NULL),
-(2, 'programación', 'mira la programación del mes', b'1', NULL),
-(4, 'melc', 'medellín en la cabeza', b'1', NULL),
-(18, 'Convocatoria', 'Ya están abiertas las inscripciones para segundo semestre', b'1', 'http://www.youtube.com'),
-(24, 'Nuevo video', 'Estas son las imágenes de nuestra última callejeada', b'1', NULL);
+(1, 'inscríbete', '¡ya está la programación de recorridos! haz clic aquí e inscríbete.', b'1', 'http://bit.ly/inscripcionesmedellinenlacabeza'),
+(2, 'sale a callejear', '1.276 jóvenes han participado en nuestros recorridos. ¿tú qué esperas para salir a callejear?', b'1', '#!'),
+(4, 'melc', 'medellín en la cabeza', b'0', ''),
+(18, 'recorridos', 'en 2018 hemos realizado 72 recorridos y hemos visitado más de 150 lugares en toda la ciudad.', b'1', '#!'),
+(24, 'Nuevo video', 'Estas son las imágenes de nuestra última callejeada', b'0', '');
 
 -- --------------------------------------------------------
 
@@ -91,6 +91,33 @@ CREATE TABLE `melc_contact_information` (
 
 INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`) VALUES
 (1, 'calle 52avenida la playa', '2546699', '3012256565', 'medellinenlacabeza@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_image_gallery`
+--
+
+CREATE TABLE `melc_image_gallery` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `melc_image_gallery`
+--
+
+INSERT INTO `melc_image_gallery` (`id`, `name`, `description`, `url`, `active`) VALUES
+(1, '1', 'Comuna 14 El Poblado. Ruta: Somos educación, arte y cultura.', '1.jpg', b'1'),
+(2, '2', 'Comuna 9 Buenos Aires. Ruta: Medellín en movimiento.', '2.jpg', b'1'),
+(3, '3', 'Comuna 10 La Candelaria. Ruta: El centro: un lugar para descubrir.', '3.jpg', b'1'),
+(4, '4', 'Comuna 3 Manrique. Ruta: Medellín sostenible', '4.jpg', b'1'),
+(5, '5', 'Corregimiento de Santa Elena. Ruta: ¿Tiene Medellín campesinos?', '5.jpg', b'1'),
+(6, '6', 'Comuna 6 Doce de Octubre. Ruta: Equipamientos públicos para la ciudadanía.', '6.jpg', b'1'),
+(7, '7', 'Comuna 8 Villahermosa. Ruta: Medellín en movimiento', '7.jpg', b'1');
 
 -- --------------------------------------------------------
 
@@ -173,6 +200,12 @@ ALTER TABLE `melc_contact_information`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `melc_image_gallery`
+--
+ALTER TABLE `melc_image_gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
@@ -210,6 +243,11 @@ ALTER TABLE `melc_contact`
 ALTER TABLE `melc_contact_information`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `melc_image_gallery`
+--
+ALTER TABLE `melc_image_gallery`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
@@ -218,7 +256,7 @@ ALTER TABLE `melc_newsletter`
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

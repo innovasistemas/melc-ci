@@ -52,8 +52,8 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-130-message-new.png"/>
                                     </span>
-                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
-                                </div>                   
+                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, email)" title="ingrese el correo" disabled="disabled"/>                        
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                 
                 $("#btnSave").click(function(){
                     $("#txtEmail").val($("#txtEmail").val().trim());
-                    if(validateLength($("#divEmail"), $("#txtEmail"), 3)){
+                    if(validateEmail($("#divEmail"), $("#txtEmail"))){
                         saveRecord();
                         resetForm();
                         cleanForm();
@@ -135,10 +135,10 @@
                 });
                 
                 
-                //Validaciones focosout: longitud y otros       
+                //Validaciones focosout: correo válido       
                 $("#txtEmail").focusout(function(){
                     $("#txtEmail").val($("#txtEmail").val().trim());
-                    return validateLength($("#divEmail"), $("#txtEmail"), 3);
+                    return validateEmail($("#divEmail"), $("#txtEmail"));
                 });
                 
             });
@@ -272,7 +272,8 @@
                                         buttons: {
                                             "aceptar": function () {
                                                 $(this).dialog("close");
-                                                loadRecords();
+//                                                loadRecords();
+                                                window.location = 'newsletter.html'; //Provisional para cargar el DataTable
                                             }
                                         } 
                                     });
@@ -321,7 +322,8 @@
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-                                    loadRecords();    
+                                   // loadRecords(); //Al paginar y regresar, no se conservan los cambios y se hace necesario actuallizar la página. Las soluciones consultadas fallan 
+                                    window.location = 'newsletter.html'; //Provisional para cargar el DataTable
                                 }
                             } 
                         });
@@ -376,13 +378,13 @@
             
             function enabledForm(sw)
             {
-                $('#frmRegister').find('input, textarea, button, select').prop('disabled', sw);
+                $('#frmRegister').find('input').prop('disabled', sw);
             }
             
             
             function cleanForm()
             {
-                $("#frmRegister").find('input[type=text], input[type=email], textarea').val('');
+                $("#frmRegister").find('input[type=email]').val('');
             }
             
             
@@ -394,17 +396,14 @@
             }
             
             
-            function validateLength(division, input, length)
+            function validateEmail(division, input)
             {
-                var sw = false
-                if(input.val().length >= length)
-                {
+                var sw = false;
+                if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.val())){
                     division.removeClass("has-error"); 
                     division.addClass("has-success");
                     sw = true;
-                }
-                else
-                {
+                } else{
                     division.removeClass("has-success");
                     division.addClass("has-error");
                 }

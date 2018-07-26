@@ -106,6 +106,16 @@ caption{
     
 }
 
+.navbar-top-home ul li ul li a{
+    font-weight: normal;
+    color: #000 !important;
+    font-size: 1.1em;
+}
+
+.user-session{
+    color: #FFF !important;
+}
+
 .container-top{
     margin-top: -20% !important;
 }

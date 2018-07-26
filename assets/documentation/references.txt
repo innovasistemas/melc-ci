@@ -1,0 +1,88 @@
+---------------------------------------------------------------------------------------------
+Instalar JDK Java y NetBeans
+https://usemoslinux.net/index.php/instalar-jdk-y-netbeans-en-debianubuntulinux-mint/
+
+
+---------------------------------------------------------------------------------------------
+Ejecutar NetBeans
+https://neobrr.wordpress.com/2009/02/23/ejecutar-netbeans-en-linux-mint/
+(Igual que en Windows, usando el archivo ejecutable)
+
+
+---------------------------------------------------------------------------------------------
+How To Install and Use Composer on Ubuntu 16.04
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-16-04
+
+
+---------------------------------------------------------------------------------------------
+Guía oficial de Zend Framework
+https://docs.zendframework.com/tutorials/
+
+
+---------------------------------------------------------------------------------------------
+Guía Zend: Introducción y primera aplicación
+http://www.maestrosdelweb.com/guia-zend/
+
+
+---------------------------------------------------------------------------------------------
+Sincronizar git
+https://www.youtube.com/watch?v=59iY6fgslVI
+https://help.github.com/articles/set-up-git/
+
+
+---------------------------------------------------------------------------------------------
+Instalar Bower
+Indica como instalar además nodejs y npm
+https://tecadmin.net/install-bower-on-ubuntu/
+
+
+---------------------------------------------------------------------------------------------
+Radio buttons Bootstrap
+http://wowslider.com/posts/bootstrap-radio-button-1106.html
+
+
+---------------------------------------------------------------------------------------------
+Iniciar Navicat
+https://stackoverflow.com/questions/29296670/installing-navicat-on-ubuntu-14-04-lts
+
+
+---------------------------------------------------------------------------------------------
+Efecto parallax jQuery Bootstrap
+https://www.w3schools.com/howto/howto_css_parallax.asp
+
+
+---------------------------------------------------------------------------------------------
+Efecto scroll en parallax
+https://www.jose-aguilar.com/blog/anclas-con-efecto-slide-con-jquery/
+
+
+---------------------------------------------------------------------------------------------
+Efectos hover sobre imágenes
+https://blog.interactius.com/12-efectos-css-en-una-imagen-con-el-evento-hover-5026b5cf1983
+
+
+---------------------------------------------------------------------------------------------
+Footer Bootstrap
+https://mdbootstrap.com/components/bootstrap-footer/
+
+
+---------------------------------------------------------------------------------------------
+Plugin galería imágen
+http://fancyapps.com/fancybox/3/
+
+
+---------------------------------------------------------------------------------------------
+Tooltip Bootstrap con imagen
+https://codepen.io/Xino/pen/QGjRaz
+
+
+-------------------------------------------------------------------------------------------
+Expresiones regulares. Evalúa los nuevos caracteres aceptados para direcciones de email
+https://es.stackoverflow.com/questions/142/validar-un-email-en-javascript
+
+
+
+
+---------------------------------------------------------------------------------------------
+
+
