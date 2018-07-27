@@ -78,7 +78,7 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
-                                    <input type="url" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese la url" disabled="disabled"/>                        
+                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese la url" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -138,6 +138,7 @@
         <script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -164,9 +165,12 @@
                     if(validateLength($("#divName"), $("#txtName"), 3)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            saveRecord();
-                            resetForm();
-                            cleanForm();
+                            $('#txtLink').focus();
+                            if(validateUrl($("#divLink"), $("#txtLink"))){
+                                saveRecord();
+                                resetForm();
+                                cleanForm();
+                            }
                         }
                     }
                 });
@@ -195,26 +199,12 @@
                     return validateUrl($("#divLink"), $("#txtLink"));
                 });
                 
-                
-                
-//                isValidUrl(url
-                
             });
             
                         
             //****************************
             //Funciones Javascript
             //****************************
-            
-            function loadLayout()
-            {
-                $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-//                $('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
-                $('#footer').load('layout/footer.html');
-            }            
-            
             
             function loadRecords()
             {
@@ -348,7 +338,6 @@
                                             "aceptar": function () {
                                                 $(this).dialog("close");
                                                 loadRecords();
-                                                $('#tableData').DateTable().ajax.reload();
                                             }
                                         } 
                                     });
@@ -402,7 +391,6 @@
                                 "Aceptar": function () {
                                     $(this).dialog("close");
                                     loadRecords(); 
-                                    $('#tableData').DateTable().ajax.reload();
                                 }
                             } 
                         });
@@ -458,86 +446,20 @@
             }
             
             
-            function enabledForm(sw)
-            {
-                $('#frmRegister').find('input, textarea, button, select').prop('disabled', sw);
-            }
-            
-            
-            function cleanForm()
-            {
-                $("#frmRegister").find('input[type=text], input[type=url], textarea').val('');
-            }
-            
-            
             function resetForm()
             {
                 enabledForm(true); 
                 $("#divName").removeClass("has-error has-success"); 
                 $("#divDescription").removeClass("has-error has-success"); 
+                $("#divLink").removeClass("has-error has-success"); 
                 $(".ketchup-error").css("display", "none");
             }
             
             
-            function validateLength(division, input, length)
-            {
-                var sw = false
-                if(input.val().length >= length)
-                {
-                    division.removeClass("has-error"); 
-                    division.addClass("has-success");
-                    sw = true;
-                }
-                else
-                {
-                    division.removeClass("has-success");
-                    division.addClass("has-error");
-                }
-                return sw;
-            }
             
             
-//            function validateUrl(division, url, obligatory, ftp)
-            function validateUrl(division, url)
-            {
-//                // Si no se especifica el paramatro "obligatory", interpretamos
-//                // que no es obligatorio
-//                if(obligatory==undefined)
-//                    obligatory=0;
-//                // Si no se especifica el parametro "ftp", interpretamos que la
-//                // direccion no puede ser una direccion a un servidor ftp
-//                if(ftp==undefined)
-//                    ftp=0;
-//
-//                if(url=="" && obligatory==0)
-//                    return true;
-//
-//                if(ftp)
-//                    var pattern = /^(http|https|ftp)\:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gi;
-//                else
-//                    var pattern = /^(http|https)\:\/\/[a-z0-9\.-]+\.[a-z]{2,4}/gi;
-
-//                if(url.match(pattern)){
-                
-//                var regExp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-//                var regExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-//                var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
-//                    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
-//                    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
-//                    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
-//                    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
-//                    '(\#[-a-z\d_]*)?$','i'); // fragment locater
-                var pattern = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/; 
-                if(pattern.test(url)){
-                    division.removeClass("has-error"); 
-                    division.addClass("has-success");
-                    return true;                    
-                }else{
-                    division.removeClass("has-success");
-                    division.addClass("has-error");
-                    return false;
-                }
-            }
+            
+            
             
 
         </script>

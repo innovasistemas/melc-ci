@@ -24,3 +24,6 @@ $('#navbar-top').delegate('#about', 'click', function(){
         } 
     });
 });   
+
+
+

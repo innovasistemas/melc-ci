@@ -100,6 +100,7 @@
         <script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -147,16 +148,6 @@
             //****************************
             //Funciones Javascript
             //****************************
-            
-            function loadLayout()
-            {
-                $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-//                $('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
-                $('#footer').load('layout/footer.html');
-            }            
-            
             
             function loadRecords()
             {
@@ -272,8 +263,8 @@
                                         buttons: {
                                             "aceptar": function () {
                                                 $(this).dialog("close");
-//                                                loadRecords();
-                                                window.location = 'newsletter.html'; //Provisional para cargar el DataTable
+                                                loadRecords();
+//                                                window.location = 'newsletter.html'; //Provisional para cargar el DataTable
                                             }
                                         } 
                                     });
@@ -322,8 +313,8 @@
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-                                   // loadRecords(); //Al paginar y regresar, no se conservan los cambios y se hace necesario actuallizar la página. Las soluciones consultadas fallan 
-                                    window.location = 'newsletter.html'; //Provisional para cargar el DataTable
+                                    loadRecords(); //Al paginar y regresar, no se conservan los cambios y se hace necesario actuallizar la página. Las soluciones consultadas fallan 
+//                                    window.location = 'newsletter.html'; //Provisional para cargar el DataTable
                                 }
                             } 
                         });
@@ -376,18 +367,6 @@
             }
             
             
-            function enabledForm(sw)
-            {
-                $('#frmRegister').find('input').prop('disabled', sw);
-            }
-            
-            
-            function cleanForm()
-            {
-                $("#frmRegister").find('input[type=email]').val('');
-            }
-            
-            
             function resetForm()
             {
                 enabledForm(true); 
@@ -396,19 +375,7 @@
             }
             
             
-            function validateEmail(division, input)
-            {
-                var sw = false;
-                if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.val())){
-                    division.removeClass("has-error"); 
-                    division.addClass("has-success");
-                    sw = true;
-                } else{
-                    division.removeClass("has-success");
-                    division.addClass("has-error");
-                }
-                return sw;
-            }
+            
             
 
         </script>

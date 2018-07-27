@@ -44,13 +44,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divName">
+                            <div class="form-group" id="divAddress">
                                 <label for="txtAddress" class="control-label">dirección</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-620-industrial-zone.png"/>
                                     </span>
-                                    <input type="text" name="txtAddress" id="txtAddress" class="form-control input-lg" placeholder="dirección" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la dirección" disabled="disabled"/>                        
+                                    <input type="text" name="txtAddress" id="txtAddress" class="form-control input-lg" placeholder="dirección" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="ingrese la dirección" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-442-phone-alt.png"/>
                                     </span>
-                                    <input type="tel" name="txtPhone" id="txtPhone" class="form-control input-lg" placeholder="teléfono" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono" disabled="disabled"/>                        
+                                    <input type="tel" name="txtPhone" id="txtPhone" class="form-control input-lg" placeholder="teléfono" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="ingrese el teléfono" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -72,13 +72,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divPhone">
+                            <div class="form-group" id="divCellPhone">
                                 <label for="txtCellPhone" class="control-label">teléfono celular</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-337-iphone-shake.png"/>
                                     </span>
-                                    <input type="tel" name="txtCellPhone" id="txtCellPhone" class="form-control input-lg" placeholder="teléfono celular" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), tel)" title="ingrese el teléfono celular" disabled="disabled"/>                        
+                                    <input type="tel" name="txtCellPhone" id="txtCellPhone" class="form-control input-lg" placeholder="teléfono celular" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="ingrese el teléfono celular" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-11-envelope.png"/>
                                     </span>
-                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3), email)" title="ingrese el correo" disabled="disabled"/>                        
+                                    <input type="email" name="txtEmail" id="txtEmail" class="form-control input-lg" placeholder="correo" maxlength="200" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="ingrese el correo" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -144,6 +144,7 @@
         <script type="text/javascript" src="../assets/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -169,23 +170,17 @@
                     $("#txtPhone").val($("#txtPhone").val().trim());
                     $("#txtCellPhone").val($("#txtCellPhone").val().trim());
                     $("#txtEmail").val($("#txtEmail").val().trim());
-                    saveRecord();
-                    resetForm();
-                    cleanForm();
-//                    if(validateLength($("#divAddress"), $("#txtAddress"), 3)){
-//                        $('#txtPhone').focus();
-//                        if(validateLength($("#divPhone"), $("#txtPhone"), 3)){
-//                            $('#txtCellPhone').focus();
-//                            if(validateLength($("#divCellPhone"), $("#txtCellPhone"), 3)){
-//                                $('#txtEmail').focus();
-//                                if(validateLength($("#divEmail"), $("#txtEmail"), 3)){
-//                                        saveRecord();
-//                                        resetForm();
-//                                        cleanForm();
-//                                }
-//                            }
-//                        }
-//                    }
+                    if($("#txtEmail").val().length > 0){
+                        if(validateEmail($("#divEmail"), $("#txtEmail"))){
+                            saveRecord();
+                            resetForm();
+                            cleanForm();
+                        }
+                    }else{
+                        saveRecord();
+                        resetForm();
+                        cleanForm();
+                    }
                 });
                 
                 
@@ -194,27 +189,11 @@
                 });
                 
                 
-                //Validaciones focosout: longitud y otros       
-                $("#txtAddress").focusout(function(){
-                    $("#txtAddress").val($("#txtAddress").val().trim());
-                    return validateLength($("#divAddress"), $("#txtAddress"), 3);
-                });
-                
-                
-                $("#txtPhone").focusout(function(){
-                    $("#txtPhone").val($("#txtPhone").val().trim());
-                    return validateLength($("#divPhone"), $("#txtPhone"), 3);
-                });
-                
-                
-                $("#txtCellPhone").focusout(function(){
-                    $("#txtCellPhone").val($("#txtCellPhone").val().trim());
-                    return validateLength($("#divCellPhone"), $("#txtCellPhone"), 3);
-                });
-                
                 $("#txtEmail").focusout(function(){
                     $("#txtEmail").val($("#txtEmail").val().trim());
-                    return validateLength($("#divEmail"), $("#txtEmail"), 3);
+                    if($("#txtEmail").val().length > 0){
+                        return validateEmail($("#divEmail"), $("#txtEmail"));
+                    }
                 });
                 
             });
@@ -223,16 +202,6 @@
             //****************************
             //Funciones Javascript
             //****************************
-            
-            function loadLayout()
-            {
-                $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-//                $('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
-                $('#footer').load('layout/footer.html');
-            }            
-            
             
             function loadRecords()
             {
@@ -354,8 +323,8 @@
                                         buttons: {
                                             "aceptar": function () {
                                                 $(this).dialog("close");
-//                                                loadRecords();
-                                                window.location = 'contact-information.html'; //Provisional para cargar el DataTable
+                                                loadRecords();
+//                                                window.location = 'contact-information.html'; //Provisional para cargar el DataTable
                                             }
                                         } 
                                     });
@@ -410,8 +379,8 @@
                             buttons: {
                                 "Aceptar": function () {
                                     $(this).dialog("close");
-//                                    loadRecords();    
-                                    window.location = 'contact-information.html'; //Provisional para cargar el DataTable
+                                    loadRecords();    
+//                                    window.location = 'contact-information.html'; //Provisional para cargar el DataTable
                                 }
                             } 
                         });
@@ -467,18 +436,6 @@
             }
             
             
-            function enabledForm(sw)
-            {
-                $('#frmRegister').find('input, textarea, button, select').prop('disabled', sw);
-            }
-            
-            
-            function cleanForm()
-            {
-                $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], textarea').val('');
-            }
-            
-            
             function resetForm()
             {
                 enabledForm(true); 
@@ -489,25 +446,6 @@
                 $(".ketchup-error").css("display", "none");
             }
             
-            
-            function validateLength(division, input, length)
-            {
-                var sw = false
-                if(input.val().length >= length)
-                {
-                    division.removeClass("has-error"); 
-                    division.addClass("has-success");
-                    sw = true;
-                }
-                else
-                {
-                    division.removeClass("has-success");
-                    division.addClass("has-error");
-                }
-                return sw;
-            }
-            
-
         </script>
         
     </body>
