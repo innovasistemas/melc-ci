@@ -77,3 +77,83 @@ function validateUrl(division, input)
         return false;
     }
 }
+
+
+
+
+//****************************
+//Funciones de CRUD
+//****************************
+
+function newRecord(inputDefault)
+{
+    $( "#dialog" ).html("¿está seguro?");
+    $( "#dialog" ).dialog({
+        autoOpen: true,
+        modal: true,
+        buttons: {
+            "aceptar": function () {
+                $(this).dialog("close"); 
+                enabledForm(false);
+                cleanForm();
+                $("#txtId").val('0');
+                inputDefault.focus();
+            },
+            "cancelar": function(){
+               $(this).dialog("close"); 
+            }
+        } 
+    });
+}
+
+
+function deleteRecord(entity, id)
+{
+//    var entity = 'melc_social_network';
+    var objJson = {
+        'bd': {
+            'table': entity
+        },
+        'fields': {
+            'id': id                      
+        }                   
+    }
+
+    var strJson = JSON.stringify(objJson);
+
+    $( "#dialog" ).html("¿está seguro?");
+    $( "#dialog" ).dialog({
+        autoOpen: true,
+        modal: true,
+        buttons: {
+            "aceptar": function () {
+                $(this).dialog("close"); 
+                $.ajax({
+                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/',
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data){
+                        $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+                        $( "#dialog" ).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            buttons: {
+                                "aceptar": function () {
+                                    $(this).dialog("close");
+                                    loadRecords();
+                                }
+                            } 
+                        });
+                    }
+
+                });
+            },
+            "cancelar": function(){
+               $(this).dialog("close"); 
+            }
+        } 
+
+    });
+}
+

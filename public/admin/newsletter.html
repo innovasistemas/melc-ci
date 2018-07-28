@@ -117,7 +117,7 @@
                 
                 
                 $("#newRecord").click(function(){
-                    newRecord(); 
+                    newRecord($("#txtEmail")); 
                 });
                
                                 
@@ -179,7 +179,7 @@
                             table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.email + "</a>";
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", " + value.id + ")'>";
                             table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
@@ -229,58 +229,6 @@
             }
                         
             
-            function deleteRecord(id)
-            {
-                var entity = 'melc_newsletter';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    'fields': {
-                        'id': id                      
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                
-                $( "#dialog" ).html("¿está seguro?");
-                $( "#dialog" ).dialog({
-                    autoOpen: true,
-                    modal: true,
-                    buttons: {
-                        "aceptar": function () {
-                            $(this).dialog("close"); 
-                            $.ajax({
-                                url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/',
-                                data: {'dataSend': strJson},
-                                type: 'POST',
-                                dataType: 'json',
-                                success: function(data){
-                                    $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-                                    $( "#dialog" ).dialog({
-                                        autoOpen: true,
-                                        modal: true,
-                                        buttons: {
-                                            "aceptar": function () {
-                                                $(this).dialog("close");
-                                                loadRecords();
-//                                                window.location = 'newsletter.html'; //Provisional para cargar el DataTable
-                                            }
-                                        } 
-                                    });
-                                }
-
-                            });
-                        },
-                        "cancelar": function(){
-                           $(this).dialog("close"); 
-                        }
-                    } 
-
-                });
-            }
-            
-            
             function saveRecord()
             {
                 var entity = 'melc_newsletter';
@@ -323,28 +271,6 @@
             }
 
 
-            function newRecord()
-            {
-                $( "#dialog" ).html("¿está seguro?");
-                $( "#dialog" ).dialog({
-                    autoOpen: true,
-                    modal: true,
-                    buttons: {
-                        "aceptar": function () {
-                            $(this).dialog("close"); 
-                            enabledForm(false);
-                            cleanForm();
-                            $("#txtId").val('0');
-                            $('#txtEmail').focus();
-                        },
-                        "cancelar": function(){
-                           $(this).dialog("close"); 
-                        }
-                    } 
-                });
-            }
-            
-            
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");

@@ -238,11 +238,6 @@
                             table += "<td>" + value.phone + "</td>";
                             table += "<td>" + value.cell_phone + "</td>";
                             table += "<td>" + value.email + "</td>";
-//                            table += "<td>";
-//                            table += "<a href='#' class='link-delete' onclick='deleteRecord(" + value.id + ")'>";
-//                            table += "<img src='images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
-//                            table += "</a>";
-//                            table += "</td>";
                             table += "</tr>";
                         });
                         $('#tableData tbody').html(table);
@@ -288,58 +283,6 @@
                 });                
             }
                         
-            
-            function deleteRecord(id)
-            {
-                var entity = 'melc_contact_information';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    'fields': {
-                        'id': id                      
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                
-                $( "#dialog" ).html("¿está seguro?");
-                $( "#dialog" ).dialog({
-                    autoOpen: true,
-                    modal: true,
-                    buttons: {
-                        "aceptar": function () {
-                            $(this).dialog("close"); 
-                            $.ajax({
-                                url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/',
-                                data: {'dataSend': strJson},
-                                type: 'POST',
-                                dataType: 'json',
-                                success: function(data){
-                                    $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-                                    $( "#dialog" ).dialog({
-                                        autoOpen: true,
-                                        modal: true,
-                                        buttons: {
-                                            "aceptar": function () {
-                                                $(this).dialog("close");
-                                                loadRecords();
-//                                                window.location = 'contact-information.html'; //Provisional para cargar el DataTable
-                                            }
-                                        } 
-                                    });
-                                }
-
-                            });
-                        },
-                        "cancelar": function(){
-                           $(this).dialog("close"); 
-                        }
-                    } 
-
-                });
-            }
-            
             
             function saveRecord()
             {
