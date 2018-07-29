@@ -97,6 +97,15 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogo">
+                                <label for="fleLogo" class="control-label">logo</label>
+                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" placeholder="logo" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
+                            </div>
+                        </div>
+                    </div>
                                      
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
@@ -117,6 +126,7 @@
                         <th>teléfono</th>
                         <th>teléfono celular</th>
                         <th>correo</th>
+                        <th>logo</th>
                         <!--<th>eliminar</th>-->
                     </tr>
                 </thead>
@@ -166,21 +176,32 @@
                
                                 
                 $("#btnSave").click(function(){
+                    var sw = false;
                     $("#txtAddress").val($("#txtAddress").val().trim());
                     $("#txtPhone").val($("#txtPhone").val().trim());
                     $("#txtCellPhone").val($("#txtCellPhone").val().trim());
                     $("#txtEmail").val($("#txtEmail").val().trim());
                     if($("#txtEmail").val().length > 0){
                         if(validateEmail($("#divEmail"), $("#txtEmail"))){
-                            saveRecord();
-                            resetForm();
-                            cleanForm();
+                            sw = true;
                         }
                     }else{
-                        saveRecord();
+                        sw = true;
+                    }
+                    if(sw){
+                        var entity = 'melc_contact_information';
+                        var fields = {
+                            'id': $("#txtId").val(),
+                            'address': $("#txtAddress").val(),
+                            'phone': $("#txtPhone").val(),
+                            'cell_phone': $("#txtCellPhone").val(),
+                            'email': $("#txtEmail").val()
+                        }  
+
+                        saveRecord(entity, fields);
                         resetForm();
                         cleanForm();
-                    }
+                    }  
                 });
                 
                 
@@ -216,7 +237,8 @@
                         '1': 'address',
                         '2': 'phone',
                         '3': 'cell_phone',
-                        '4': 'email'
+                        '4': 'email',
+                        '5': 'logo'
                     }                   
                 }
                 
@@ -238,6 +260,10 @@
                             table += "<td>" + value.phone + "</td>";
                             table += "<td>" + value.cell_phone + "</td>";
                             table += "<td>" + value.email + "</td>";
+                            table += "</td>";
+                            table += "<td>";  
+                            table += "<img src='../assets/images/" + value.logo + "' class='img-thumbnail'/>";  
+                            table += "</td>";
                             table += "</tr>";
                         });
                         $('#tableData tbody').html(table);
@@ -284,76 +310,6 @@
             }
                         
             
-            function saveRecord()
-            {
-                var entity = 'melc_contact_information';
-                var id = $("#txtId").val();
-                var address = $("#txtAddress").val();
-                var phone = $("#txtPhone").val();
-                var cellPhone = $("#txtCellPhone").val();
-                var email = $("#txtEmail").val();
-
-                var objJson = {
-                    'db': {
-                        'table': entity
-                    },
-                    fields: {
-                        'id': id,
-                        'address': address,
-                        'phone': phone,
-                        'cell_phone': cellPhone,
-                        'email': email
-                    }
-                };
-
-                var strJson = JSON.stringify(objJson);
-
-                $.ajax({
-                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
-                    data: {'dataSend': strJson},
-                    'content-type': 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function(data) {
-                        $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-                        $( "#dialog" ).dialog({
-                            autoOpen: true,
-                            modal: true,
-                            buttons: {
-                                "Aceptar": function () {
-                                    $(this).dialog("close");
-                                    loadRecords();    
-//                                    window.location = 'contact-information.html'; //Provisional para cargar el DataTable
-                                }
-                            } 
-                        });
-                    }
-                });
-            }
-
-
-            function newRecord()
-            {
-                $( "#dialog" ).html("¿está seguro?");
-                $( "#dialog" ).dialog({
-                    autoOpen: true,
-                    modal: true,
-                    buttons: {
-                        "aceptar": function () {
-                            $(this).dialog("close"); 
-                            enabledForm(false);
-                            cleanForm();
-                            $("#txtId").val('0');
-                            $('#txtAddress').focus();
-                        },
-                        "cancelar": function(){
-                           $(this).dialog("close"); 
-                        }
-                    } 
-                });
-            }
-            
-            
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");
@@ -378,16 +334,6 @@
                 });
             }
             
-            
-            function resetForm()
-            {
-                enabledForm(true); 
-                $("#divAddress").removeClass("has-error has-success"); 
-                $("#divPhone").removeClass("has-error has-success"); 
-                $("#divCellPhone").removeClass("has-error has-success"); 
-                $("#divEmail").removeClass("has-error has-success"); 
-                $(".ketchup-error").css("display", "none");
-            }
             
         </script>
         

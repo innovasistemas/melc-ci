@@ -315,8 +315,13 @@ a.dropdown-toggle:hover{
 
 /*@media only screen and (min-width : 480px) and (max-width : 700px) {*/
 @media only screen and (max-width : 480px) {
+    h1, h2{
+        font-size: 1.7em !important;
+    }
+    
     #container{
-        width: 90%;
+        width: 80%;
+        margin-left: 10%;
     }
     
     #navbar-top{

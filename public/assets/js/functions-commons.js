@@ -9,6 +9,11 @@
 //Funciones Javascript
 //****************************
 
+
+//****************************
+//Funciones de página
+//****************************
+
 function loadLayout()
 {
     $('#divStyles').load('styles.html');
@@ -18,6 +23,10 @@ function loadLayout()
     $('#footer').load('layout/footer.html');
 }    
 
+
+//****************************
+//Funciones de formulario
+//****************************
 
 function enabledForm(sw)
 {
@@ -30,6 +39,24 @@ function cleanForm()
     $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], textarea').val('');
 }
 
+
+function resetForm()
+{
+    enabledForm(true); 
+    $(".ketchup-error").css("display", "none");
+
+    $("#frmRegister").find('div').each(function(){
+        var div = this;
+        if(div.id !== undefined){
+            $("#" +  div.id).removeClass("has-error has-success");
+        }
+    });
+}
+        
+
+//****************************
+//Funciones de validación
+//****************************
 
 function validateLength(division, input, length)
 {
@@ -79,10 +106,8 @@ function validateUrl(division, input)
 }
 
 
-
-
 //****************************
-//Funciones de CRUD
+//Funciones del CRUD
 //****************************
 
 function newRecord(inputDefault)
@@ -107,9 +132,43 @@ function newRecord(inputDefault)
 }
 
 
+function saveRecord(entity, fields)
+{
+    var objJson = {
+        'db': {
+            'table': entity
+        },
+        'fields': fields
+    };
+
+    var strJson = JSON.stringify(objJson);
+
+    $.ajax({
+        url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
+        data: {'dataSend': strJson},
+        'content-type': 'application/json; charset=utf-8',
+        dataType: 'json',
+        type: 'POST',
+        success: function(data) {
+            $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+            $( "#dialog" ).dialog({
+                autoOpen: true,
+                modal: true,
+                buttons: {
+                    "Aceptar": function () {
+                        $(this).dialog("close");
+                        loadRecords(); 
+//                        window.location = 'advertisement.html'; //Provisional para cargar el DataTable
+                    }
+                } 
+            });
+        }
+    });
+}
+
+
 function deleteRecord(entity, id)
 {
-//    var entity = 'melc_social_network';
     var objJson = {
         'bd': {
             'table': entity

@@ -162,12 +162,20 @@
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
+                    $("#txtLink").val($("#txtLink").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
                             $('#txtLink').focus();
                             if(validateUrl($("#divLink"), $("#txtLink"))){
-                                saveRecord();
+                                var entity = 'melc_social_network';
+                                var fields = {
+                                    'id': $("#txtId").val(),
+                                    'name': $("#txtName").val(),
+                                    'description': $("#txtDescription").val(),
+                                    'link': $("#txtLink").val()
+                                }
+                                saveRecord(entity, fields);
                                 resetForm();
                                 cleanForm();
                             }
@@ -303,51 +311,6 @@
             }
                         
             
-            function saveRecord()
-            {
-                var entity = 'melc_social_network';
-                var id = $("#txtId").val();
-                var name = $("#txtName").val();
-                var description = $("#txtDescription").val();
-                var link = $("#txtLink").val();
-
-                var objJson = {
-                    'db': {
-                        'table': entity
-                    },
-                    fields: {
-                        'id': id,
-                        'name': name,
-                        'description': description,
-                        'link': link
-                    }
-                };
-
-                var strJson = JSON.stringify(objJson);
-
-                $.ajax({
-                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
-                    data: {'dataSend': strJson},
-                    'content-type': 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function(data) {
-                        $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-                        $( "#dialog" ).dialog({
-                            autoOpen: true,
-                            modal: true,
-                            buttons: {
-                                "Aceptar": function () {
-                                    $(this).dialog("close");
-                                    loadRecords(); 
-                                }
-                            } 
-                        });
-                    }
-                });
-            }
-
-
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");
@@ -361,7 +324,6 @@
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
                             $("#txtLink").val(objFields.link);
-                            
                             enabledForm(false);
                         },
                         "cancelar": function(){
@@ -372,15 +334,6 @@
                 });
             }
             
-            
-            function resetForm()
-            {
-                enabledForm(true); 
-                $("#divName").removeClass("has-error has-success"); 
-                $("#divDescription").removeClass("has-error has-success"); 
-                $("#divLink").removeClass("has-error has-success"); 
-                $(".ketchup-error").css("display", "none");
-            }
             
         </script>
         

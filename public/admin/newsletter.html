@@ -124,7 +124,12 @@
                 $("#btnSave").click(function(){
                     $("#txtEmail").val($("#txtEmail").val().trim());
                     if(validateEmail($("#divEmail"), $("#txtEmail"))){
-                        saveRecord();
+                        var entity = 'melc_newsletter';
+                        var fields = {
+                            'id': $("#txtId").val(),
+                            'email': $("#txtEmail").val()
+                        }
+                        saveRecord(entity, fields);
                         resetForm();
                         cleanForm();
                     }
@@ -229,48 +234,6 @@
             }
                         
             
-            function saveRecord()
-            {
-                var entity = 'melc_newsletter';
-                var id = $("#txtId").val();
-                var email = $("#txtEmail").val();
-
-                var objJson = {
-                    'db': {
-                        'table': entity
-                    },
-                    fields: {
-                        'id': id,
-                        'email': email
-                    }
-                };
-
-                var strJson = JSON.stringify(objJson);
-
-                $.ajax({
-                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
-                    data: {'dataSend': strJson},
-                    'content-type': 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function(data) {
-                        $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-                        $( "#dialog" ).dialog({
-                            autoOpen: true,
-                            modal: true,
-                            buttons: {
-                                "Aceptar": function () {
-                                    $(this).dialog("close");
-                                    loadRecords(); //Al paginar y regresar, no se conservan los cambios y se hace necesario actuallizar la página. Las soluciones consultadas fallan 
-//                                    window.location = 'newsletter.html'; //Provisional para cargar el DataTable
-                                }
-                            } 
-                        });
-                    }
-                });
-            }
-
-
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");
@@ -293,17 +256,6 @@
             }
             
             
-            function resetForm()
-            {
-                enabledForm(true); 
-                $("#divEmail").removeClass("has-error has-success"); 
-                $(".ketchup-error").css("display", "none");
-            }
-            
-            
-            
-            
-
         </script>
         
     </body>
