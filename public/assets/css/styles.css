@@ -132,10 +132,19 @@ caption{
 
 .item-slider{
     margin-top: 0px;
+    height: 120% !important;
 }
 
 .image-item-slider{
     background-image: url('../images/barra-anuncios-web-melc.png');
+}
+
+.img-map{
+    width: 106%;
+}
+
+.img-institutional-footer{
+    width: 150% !important;
 }
 
 .font-carousel{
@@ -160,6 +169,7 @@ caption{
     color: #FFF;
     font-weight: bold;
     font-size: 0.9em;
+    margin-top:15% !important;
 }
 
 .margin-logo-navbar{
@@ -183,9 +193,6 @@ caption{
     margin:5%;
 }
 
-.margin-description-advertisement{
-    margin-top:15%;
-}
 
 .font-social-network{
     color: #6c00DA;
@@ -197,12 +204,36 @@ caption{
     max-height: 75%;
 }
 
+.table-data{
+    /*width: 50%;*/
+}
+
 a.dropdown-toggle{
     color: #FFF !important;
 }
 
 a.dropdown-toggle:hover{
     text-decoration: underline !important;
+}
+
+.zoom {      
+    -webkit-transition: all 0.35s ease-in-out;    
+    -moz-transition: all 0.35s ease-in-out;    
+    transition: all 0.35s ease-in-out;     
+    cursor: -webkit-zoom-in;      
+    cursor: -moz-zoom-in;      
+    cursor: zoom-in;  
+}     
+
+.zoom:hover, .zoom:active, .zoom:focus {
+    /**adjust scale to desired size, add browser prefixes**/
+    -ms-transform: scale(2.5);    
+    -moz-transform: scale(2.5);  
+    -webkit-transform: scale(2.5);  
+    -o-transform: scale(2.5);  
+    transform: scale(2.5);    
+    position:relative;      
+    z-index:100;  
 }
 
 
@@ -333,6 +364,18 @@ a.dropdown-toggle:hover{
         content: url('../images/logo-header-mob.png');
     }
     
+    .navbar-top-home{
+        background: #6C00DA;
+        width: 35%;
+        margin-left: 65%;
+        margin-top: 0;
+        font-size: 0.8em;
+    }
+    
+    .navbar-img-mob{
+        /*background-image: url('../images/menu-burguer.png') !important;*/
+    }
+    
     .carousel{
         margin-top: 100px;
         height: 20% !important;
@@ -351,11 +394,31 @@ a.dropdown-toggle:hover{
         height: 200px; 
     }
     
+    .img-map{
+        width: 108%;
+    }
+    
     .div-img {
-        margin-left: 60px;
+        margin-left: 13%;
         max-width: 250px;
         height: 60%;
     }
+    
+    .div-img-institutional-footer{
+        right: 8%;
+        /*width: 50%;*/
+    }
+    
+    .img-institutional-footer{
+        margin-left: 8%;
+        width: 100% !important;
+    }
+    
+    .margin-description-advertisement{
+        font-size: 0.5em;
+    }
+    
+    
     
 }
 

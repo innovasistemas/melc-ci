@@ -81,6 +81,9 @@ Expresiones regulares. Evalúa los nuevos caracteres aceptados para direcciones 
 https://es.stackoverflow.com/questions/142/validar-un-email-en-javascript
 
 
+---------------------------------------------------------------------------------------------
+Bootstrap Simple Image Zoom
+https://alt-web.com/TUTORIALS/?id=bootstrap_simple_image_zoom
 
 
 ---------------------------------------------------------------------------------------------

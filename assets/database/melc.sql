@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-07-2018 a las 00:55:45
--- Versión del servidor: 5.7.22
+-- Tiempo de generación: 30-07-2018 a las 18:22:45
+-- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -39,11 +39,14 @@ CREATE TABLE `melc_advertisement` (
 --
 
 INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`) VALUES
-(1, 'inscríbete', '¡ya está la programación de recorridos! haz clic aquí e inscríbete.', b'1', 'http://bit.ly/inscripcionesmedellinenlacabeza'),
-(2, 'sale a callejear', '1.276 jóvenes han participado en nuestros recorridos. ¿tú qué esperas para salir a callejear?', b'1', '#!'),
+(1, 'Inscríbete aquí!', '¡Ya está la programación de recorridos! Haz clic aquí e inscríbete.', b'1', 'http://bit.ly/inscripcionesmedellinenlacabeza'),
+(2, 'sale a callejear', '1.276 jóvenes han participado en nuestros recorridos. ¿tú qué esperas para salir a callejear?', b'1', ''),
 (4, 'melc', 'medellín en la cabeza', b'0', ''),
 (18, 'recorridos', 'en 2018 hemos realizado 72 recorridos y hemos visitado más de 150 lugares en toda la ciudad.', b'1', '#!'),
-(24, 'Nuevo video', 'Estas son las imágenes de nuestra última callejeada', b'0', '');
+(24, 'Nuevo video', 'Estas son las imágenes de nuestra última callejeada', b'0', ''),
+(25, 'cine callejero', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com'),
+(26, 'dddd', 'sss', b'0', ''),
+(27, 'anuncio 1', 'anuncio prueba guardar genérico', b'0', 'http://www.youtube.com/#/d');
 
 -- --------------------------------------------------------
 
@@ -82,15 +85,16 @@ CREATE TABLE `melc_contact_information` (
   `address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cell_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
+  `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_contact_information`
 --
 
-INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`) VALUES
-(1, 'calle 52avenida la playa', '2546699', '3012256565', 'medellinenlacabeza@gmail.com');
+INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `logo`) VALUES
+(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'logo-header.png');
 
 -- --------------------------------------------------------
 
@@ -100,8 +104,8 @@ INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, 
 
 CREATE TABLE `melc_image_gallery` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -135,10 +139,12 @@ CREATE TABLE `melc_newsletter` (
 --
 
 INSERT INTO `melc_newsletter` (`id`, `email`) VALUES
-(9, 'aaaadddd'),
+(9, 'aaaaxxx23002dd@ssss.aa'),
+(17, 'aaaxx.aa5a00@xxx.xx.xx'),
+(15, 'aaña@uuu.xxx'),
 (7, 'alquimia@gmail.com'),
 (5, 'gomez1234@gmail.com'),
-(6, 'jeremias'),
+(6, 'jeremias@gmail.com'),
 (4, 'maria1209@gmail.com'),
 (2, 'mariamontes@yahoo.com'),
 (1, 'pedroalvarez@gmail.com'),
@@ -146,7 +152,8 @@ INSERT INTO `melc_newsletter` (`id`, `email`) VALUES
 (8, 'sdf'),
 (13, 'ttee33@aa.dd'),
 (3, 'victorcifuentesperez@hotmail.com'),
-(14, 'yy44');
+(14, 'yy44'),
+(18, 'zzz@zzz.zzz');
 
 -- --------------------------------------------------------
 
@@ -226,7 +233,7 @@ ALTER TABLE `melc_social_network`
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
 ALTER TABLE `melc_advertisement`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `melc_comment`
 --
@@ -246,17 +253,17 @@ ALTER TABLE `melc_contact_information`
 -- AUTO_INCREMENT de la tabla `melc_image_gallery`
 --
 ALTER TABLE `melc_image_gallery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -130,4 +130,74 @@ class MasterEngine extends CI_Controller {
         echo json_encode($arrayResult);
     }
     
+    
+    //Cargar imagen
+    //
+                ///++++++++++++++++++++++++++++++++++
+    public function loadFile()
+    {
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
+        {
+            $mensaje = "";
+
+            //***************************************
+            //Carga de imagen
+            //obtenemos el archivo a subir
+            $file = $_FILES['url']['name'];
+            $type = $_FILES['url']['type'];
+            $size = $_FILES['url']['size'];
+            $error = "";
+
+//            if($file)
+//            {
+                //Comprobamos si existe un directorio para subir el archivo, si no es así, lo creamos
+        //        if(!is_dir("files/")) 
+        //            mkdir("files/", 0777);
+
+//                if(strpos($type, "jpeg") || strpos($type, "png") || strpos($type, "gif"))
+//                {
+                    //Comprobamos si el archivo ha subido
+                    //if (move_uploaded_file($_FILES['fleArchivo']['tmp_name'],"files/".$file))
+//                    if (move_uploaded_file($_FILES['url']['tmp_name'],"../backend/assets/images-article/".$file))
+//                    {
+//                               sleep(2);//retrasamos la petición 2 segundos
+//                               $arrayResult["imagen"] = $file; //Devolvemos el nombre del archivo para pintar la imagen
+//                               $arrayResult["ext"] = $type; 
+//                               $arrayResult["siz"] = $size; 
+
+//                        $arrayRegistro =['title'=>$titulo, 'description'=>$descripcion, 'image'=>$file];
+//                        $this->ModeloGestion->insertarRegistro('article', $arrayRegistro);
+//                    }
+//                    else
+//                    {
+//                        $error = "Ocurrió un error al subir el archivo";
+//                    }
+//                }
+//                else
+//                {
+//                    $error = "Archivo no válido";
+//                }
+
+
+//            }
+
+
+            //***************************************
+
+            //$arrayResult["mensaje"] = $mensaje;
+            //$arrayResult["error"] = $error;
+
+            //echo $mensaje;
+            //echo json_encode($arrayResult);
+
+
+
+        }
+        else
+        {
+            //throw new Exception("Error Processing Request", 1);   
+            return "Error Procesando la petición";   
+        }
+    }
+    
 }

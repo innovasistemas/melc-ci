@@ -20,9 +20,11 @@
             
             <!-- El logotipo y el icono que despliega el menú se agrupan para mostrarlos mejor en los dispositivos móviles -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
+<!--                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-ex1-collapse">-->
+                <button type="button" class="navbar-toggle navbar-img-mob" data-toggle="collapse"
                         data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">desplegar navegación</span>
+                    <!--<span class="sr-only">desplegar navegación</span>-->
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -93,7 +95,7 @@
                 <div class="col-sm-7" id="map-points">
                     
                     <a data-toggle="tooltip" title="<img src='assets/images/map-points/sanjavier-stairs.png' />" href="#!" >
-                        <img src="assets/images/map.png" style="width: 106%" usemap="#image-map" data-toggle="modal" data-target="#content-map-modal2"/>
+                        <img src="assets/images/map.png" class="img-map" usemap="#image-map" data-toggle="modal" data-target="#content-map-modal2"/>
                     </a>
                     
                     
@@ -458,7 +460,7 @@
                                 content += "<div class='fill text-center image-item-slider'>";
                                 content += "</div>";
                                 content += "<div class='carousel-caption margin-description-advertisement'>";
-                                content += "<p class='description-advertisement text-uppercase'>" 
+                                content += "<p class='description-advertisement text-uppercase'><br>" 
                                 content += "<a href='" + value.link + "' class='link-advertisement' target='_blank'>" + value.description + "</a>";
                                 content += "</p>";
                                 content += "</div>";
