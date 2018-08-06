@@ -485,7 +485,7 @@
                         '0': 'id',
                         '1': 'name',
                         '2': 'description',
-                        '3': 'url',
+                        '3': 'logo',
                         '4': 'active'
                     }                   
                 }
@@ -501,7 +501,7 @@
                         var content = "";
                         $.each(data, function(index, value){
                             if(value.active == 1){
-                                content += "<a href='assets/images/gallery/" + value.url + "' data-fancybox='gallery' data-caption='" + value.description + "' alt='" + value.description + "'>";
+                                content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + "' alt='" + value.description + "'>";
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías

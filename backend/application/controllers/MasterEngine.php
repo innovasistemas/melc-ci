@@ -102,13 +102,44 @@ class MasterEngine extends CI_Controller {
     public function saveRecord()
     {
         if(!empty($this->input->post("dataSend"))){
-           
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);  
-
+            
+            //Comprobar si hay imagen para subirla
+            if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
+                    'xmlhttprequest'){
+                if(!empty($_FILES['inputFile'])){
+                    $fName = $_FILES['inputFile']['name'];
+                    $fType = $_FILES['inputFile']['type'];
+                    $fSize = $_FILES['inputFile']['size'];
+                    $fTempName = $_FILES['inputFile']['tmp_name'];
+                    
+                    if((strpos($fType, "jpeg") || strpos($fType, "png") || 
+                            strpos($fType, "gif")) && $fSize <= 2097152){
+                        
+//                        if (move_uploaded_file($fTempName,"../backend/assets/images-article/" . $fName))
+                        if (move_uploaded_file($fTempName, base_url() . 
+                                "public/assets/images/gallery/" . $fName)){
+                            
+                            $arrayData['fields']['logo'] = $fName;
+                            
+                        }else{
+                            $response = "Ocurrió un error al subir el archivo.";
+                        }
+                    }else{
+                        $response = "El tipo o el tamaño del archivo no son válidos.";
+                    }
+                }else{
+                    $response = "No se especificó el archivo.";
+                }
+            }else{
+                $response = "Error procesando la petición de subida de archivos.";
+            }
+            
+            //Verificar insert/update    
             if((int)$arrayData['fields']['id'] == 0){
                 $intResult = $this->ManagementModel->insert(
                         $arrayData['db']['table'], $arrayData['fields']);
-                
             }else{
                 $intResult = $this->ManagementModel->update(
                         $arrayData['db']['table'], $arrayData['fields']);
@@ -128,76 +159,7 @@ class MasterEngine extends CI_Controller {
         }
         
         echo json_encode($arrayResult);
-    }
     
-    
-    //Cargar imagen
-    //
-                ///++++++++++++++++++++++++++++++++++
-    public function loadFile()
-    {
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
-        {
-            $mensaje = "";
-
-            //***************************************
-            //Carga de imagen
-            //obtenemos el archivo a subir
-            $file = $_FILES['url']['name'];
-            $type = $_FILES['url']['type'];
-            $size = $_FILES['url']['size'];
-            $error = "";
-
-//            if($file)
-//            {
-                //Comprobamos si existe un directorio para subir el archivo, si no es así, lo creamos
-        //        if(!is_dir("files/")) 
-        //            mkdir("files/", 0777);
-
-//                if(strpos($type, "jpeg") || strpos($type, "png") || strpos($type, "gif"))
-//                {
-                    //Comprobamos si el archivo ha subido
-                    //if (move_uploaded_file($_FILES['fleArchivo']['tmp_name'],"files/".$file))
-//                    if (move_uploaded_file($_FILES['url']['tmp_name'],"../backend/assets/images-article/".$file))
-//                    {
-//                               sleep(2);//retrasamos la petición 2 segundos
-//                               $arrayResult["imagen"] = $file; //Devolvemos el nombre del archivo para pintar la imagen
-//                               $arrayResult["ext"] = $type; 
-//                               $arrayResult["siz"] = $size; 
-
-//                        $arrayRegistro =['title'=>$titulo, 'description'=>$descripcion, 'image'=>$file];
-//                        $this->ModeloGestion->insertarRegistro('article', $arrayRegistro);
-//                    }
-//                    else
-//                    {
-//                        $error = "Ocurrió un error al subir el archivo";
-//                    }
-//                }
-//                else
-//                {
-//                    $error = "Archivo no válido";
-//                }
-
-
-//            }
-
-
-            //***************************************
-
-            //$arrayResult["mensaje"] = $mensaje;
-            //$arrayResult["error"] = $error;
-
-            //echo $mensaje;
-            //echo json_encode($arrayResult);
-
-
-
-        }
-        else
-        {
-            //throw new Exception("Error Processing Request", 1);   
-            return "Error Procesando la petición";   
-        }
     }
     
 }

@@ -97,7 +97,7 @@
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
-                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
+                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
                             </div>
                         </div>
                     </div>
@@ -168,25 +168,49 @@
                 });
                
                                 
+//                $("#btnSave").click(function(){
+//                    $("#txtName").val($("#txtName").val().trim());
+//                    $("#txtDescription").val($("#txtDescription").val().trim());
+//                    if(validateLength($("#divName"), $("#txtName"), 1)){
+//                        $('#txtDescription').focus();
+//                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+//                            var entity = 'melc_image_gallery';
+//                            var fields = {
+//                                'id': $("#txtId").val(),
+//                                'name': $("#txtName").val(),
+//                                'description': $("#txtDescription").val(),
+//                                'active': $("#optActiveYes").is(':checked') ? 1 : 0
+////                                'url': $("#fleLogo")[0].files[0]
+//                            }
+//                            saveRecord(entity, fields);
+//                            resetForm();
+//                            cleanForm();
+//                        }
+//                    }
+//                });
+                
+                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
-                    if(validateLength($("#divName"), $("#txtName"), 1)){
-                        $('#txtDescription').focus();
-                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            var entity = 'melc_image_gallery';
-                            var fields = {
-                                'id': $("#txtId").val(),
-                                'name': $("#txtName").val(),
-                                'description': $("#txtDescription").val(),
-                                'active': $("#optActiveYes").is(':checked') ? 1 : 0
-//                                'url': btoa($("#fleLogo")[0].files[0])stringify()
+//                    if(validateLength($("#divName"), $("#txtName"), 1)){
+//                        $('#txtDescription').focus();
+//                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+                            if(validateFile($("#divLogo"), $("#fleLogo")[0])){
+                                var entity = 'melc_image_gallery';
+                                var fields = {
+                                    'id': $("#txtId").val(),
+                                    'name': $("#txtName").val(),
+                                    'description': $("#txtDescription").val(),
+                                    'active': $("#optActiveYes").is(':checked') ? 1 : 0
+                                }
+
+                                saveRecord(entity, fields);
+                                resetForm();
+                                cleanForm();
                             }
-                            saveRecord(entity, fields);
-                            resetForm();
-                            cleanForm();
-                        }
-                    }
+//                        }
+//                    }
                 });
                 
                 
@@ -205,6 +229,11 @@
                 $("#txtDescription").focusout(function(){
                     $("#txtDescription").val($("#txtDescription").val().trim());
                     return validateLength($("#divDescription"), $("#txtDescription"), 3);
+                });
+                
+                
+                $("#fleLogo").focusout(function(){
+                    return validateFile($("#divLogo"), $("#fleLogo")[0]);
                 });
                 
             });
@@ -227,7 +256,7 @@
                         '1': 'name',
                         '2': 'description',
                         '3': 'active',
-                        '4': 'url'
+                        '4': 'logo'
                     }                   
                 }
                 
@@ -251,7 +280,7 @@
                             table += "<td>" + active + "</td>";
                             table += "<td>";  
                             if(value.url !== ''){
-                                table += "<img src='../assets/images/gallery/" + value.url + "' class='img-thumbnail zoom'/>";  
+                                table += "<img src='../assets/images/gallery/" + value.logo + "' class='img-thumbnail zoom'/>";  
                             }else{
                                 table += "&nbsp;";
                             }

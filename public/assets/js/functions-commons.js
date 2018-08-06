@@ -60,15 +60,12 @@ function resetForm()
 
 function validateLength(division, input, length)
 {
-    var sw = false
-    if(input.val().length >= length)
-    {
+    var sw = false;
+    if(input.val().length >= length){
         division.removeClass("has-error"); 
         division.addClass("has-success");
         sw = true;
-    }
-    else
-    {
+    }else{
         division.removeClass("has-success");
         division.addClass("has-error");
     }
@@ -79,7 +76,8 @@ function validateLength(division, input, length)
 function validateEmail(division, input)
 {
     var sw = false;
-    if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(input.val())){
+    var pattern = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (pattern.test(input.val())){
         division.removeClass("has-error"); 
         division.addClass("has-success");
         sw = true;
@@ -104,6 +102,32 @@ function validateUrl(division, input)
         return false;
     }
 }
+
+
+function validateFile(division, input)
+{
+    var sw = false;
+    var file = input.files[0];
+    var fName = file.name;
+    var fExtension = fName.substring(fName.lastIndexOf('.') + 1);
+    var fSize = file.size;
+    
+    if(/gif|jpeg|jpg|png$/i.test(fExtension)){
+        if(fSize <= 2097152){
+            sw = true;
+        }
+    }
+    
+    if(sw){
+        division.removeClass("has-error"); 
+        division.addClass("has-success");
+    }else{
+        division.removeClass("has-success");
+        division.addClass("has-error");
+    }
+    return sw;
+}
+  
 
 
 //****************************
@@ -132,6 +156,42 @@ function newRecord(inputDefault)
 }
 
 
+//function saveRecord(entity, fields)
+//{
+//    var objJson = {
+//        'db': {
+//            'table': entity
+//        },
+//        'fields': fields
+//    };
+//    
+//    var strJson = JSON.stringify(objJson);
+//    
+//    $.ajax({
+//        url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
+//        data: {'dataSend': strJson},
+//        'content-type': 'application/json; charset=utf-8',
+//        data: formData,
+//        type: 'POST',
+//        dataType: 'json',
+//        success: function(data) {
+//            $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+//            $( "#dialog" ).dialog({
+//                autoOpen: true,
+//                modal: true,
+//                buttons: {
+//                    "Aceptar": function () {
+//                        $(this).dialog("close");
+//                        loadRecords(); 
+////                        window.location = 'advertisement.html'; //Provisional para cargar el DataTable
+//                    }
+//                } 
+//            });
+//        }
+//    });
+//}
+
+
 function saveRecord(entity, fields)
 {
     var objJson = {
@@ -140,15 +200,24 @@ function saveRecord(entity, fields)
         },
         'fields': fields
     };
-
+    
     var strJson = JSON.stringify(objJson);
-
+    
+    var formData = new FormData($("#frmRegistro"));
+    formData.append('dataSend', strJson);
+    
+    if($("form").find("input:file").prop("type") === "file"){
+        formData.append('inputFile', $("form").find("input:file")[0].files[0]);
+    }
+    
     $.ajax({
         url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
-        data: {'dataSend': strJson},
-        'content-type': 'application/json; charset=utf-8',
-        dataType: 'json',
+        data: formData,
         type: 'POST',
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        cache: false,
         success: function(data) {
             $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
             $( "#dialog" ).dialog({
