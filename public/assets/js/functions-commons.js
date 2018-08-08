@@ -115,7 +115,7 @@ function validateFile(division, input)
     var fExtension = fName.substring(fName.lastIndexOf('.') + 1);
     var fSize = file.size;
     
-    if(/gif|jpeg|jpg|png$/i.test(fExtension) && fName !== ""){
+    if(/gif|jpeg|jpg|png$/i.test(fExtension)){
         if(fSize <= 2097152){
             sw = true;
         }
