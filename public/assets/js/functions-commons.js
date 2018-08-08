@@ -44,6 +44,9 @@ function resetForm()
 {
     enabledForm(true); 
     $(".ketchup-error").css("display", "none");
+    
+    $("#frmRegister").find('#logoViewUpdate').attr('src', '#');
+    $("#frmRegister").find("#logoViewUpdate").attr('class', 'hide');
 
     $("#frmRegister").find('div').each(function(){
         var div = this;
@@ -112,7 +115,7 @@ function validateFile(division, input)
     var fExtension = fName.substring(fName.lastIndexOf('.') + 1);
     var fSize = file.size;
     
-    if(/gif|jpeg|jpg|png$/i.test(fExtension)){
+    if(/gif|jpeg|jpg|png$/i.test(fExtension) && fName !== ""){
         if(fSize <= 2097152){
             sw = true;
         }
@@ -156,42 +159,6 @@ function newRecord(inputDefault)
 }
 
 
-//function saveRecord(entity, fields)
-//{
-//    var objJson = {
-//        'db': {
-//            'table': entity
-//        },
-//        'fields': fields
-//    };
-//    
-//    var strJson = JSON.stringify(objJson);
-//    
-//    $.ajax({
-//        url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
-//        data: {'dataSend': strJson},
-//        'content-type': 'application/json; charset=utf-8',
-//        data: formData,
-//        type: 'POST',
-//        dataType: 'json',
-//        success: function(data) {
-//            $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
-//            $( "#dialog" ).dialog({
-//                autoOpen: true,
-//                modal: true,
-//                buttons: {
-//                    "Aceptar": function () {
-//                        $(this).dialog("close");
-//                        loadRecords(); 
-////                        window.location = 'advertisement.html'; //Provisional para cargar el DataTable
-//                    }
-//                } 
-//            });
-//        }
-//    });
-//}
-
-
 function saveRecord(entity, fields)
 {
     var objJson = {
@@ -219,7 +186,15 @@ function saveRecord(entity, fields)
         processData: false,
         cache: false,
         success: function(data) {
-            $( "#dialog" ).html(data.response + " <br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+            $( "#dialog" ).html(
+                    "<b>respuesta:</b>" + 
+                    "<br><u>datos:</u> " + data.response + 
+                    "<br><u>carga:</u> " + data.responseFile +
+                    "<br><b>filas afectadas:</b> " + data.affectedRows + 
+                    "<br><b>errores:</b>" +
+                    "<br><u>datos:</u> " + data.error +
+                    "<br><u>carga:</u> " + data.errorFile
+                    );
             $( "#dialog" ).dialog({
                 autoOpen: true,
                 modal: true,

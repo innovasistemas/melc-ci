@@ -77,8 +77,16 @@ https://codepen.io/Xino/pen/QGjRaz
 
 
 -------------------------------------------------------------------------------------------
+Expresiones regulares: conceptos
+https://www.arkaitzgarro.com/javascript/capitulo-11.html
+
+
 Expresiones regulares. Evalúa los nuevos caracteres aceptados para direcciones de email
 https://es.stackoverflow.com/questions/142/validar-un-email-en-javascript
+
+
+Expresiones regulares. Evalúa los nuevos caracteres aceptados para una url
+https://www.w3resource.com/javascript-exercises/javascript-regexp-exercise-9.php
 
 
 ---------------------------------------------------------------------------------------------
@@ -87,5 +95,18 @@ https://alt-web.com/TUTORIALS/?id=bootstrap_simple_image_zoom
 
 
 ---------------------------------------------------------------------------------------------
+Previsualizar imágenes con jQuery
+https://www.uno-de-piera.com/previsualizar-imagenes-con-javascript/
+
+---------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------
+
+
+
 
 

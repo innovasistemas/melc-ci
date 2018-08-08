@@ -100,6 +100,11 @@
                                 <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
                             </div>
                         </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogoView">
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />                                    
+                            </div>
+                        </div>
                     </div>
                                      
                     <div class="form-group">
@@ -159,43 +164,22 @@
                 loadRecords();
                 
                 $('[data-toggle="tooltip"]').tooltip();
-                
+        
                 $('#frmRegister').ketchup();
-                
-                
+
+        
                 $("#newRecord").click(function(){
                     newRecord($("#txtName")); 
                 });
-               
-                                
-//                $("#btnSave").click(function(){
-//                    $("#txtName").val($("#txtName").val().trim());
-//                    $("#txtDescription").val($("#txtDescription").val().trim());
-//                    if(validateLength($("#divName"), $("#txtName"), 1)){
-//                        $('#txtDescription').focus();
-//                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-//                            var entity = 'melc_image_gallery';
-//                            var fields = {
-//                                'id': $("#txtId").val(),
-//                                'name': $("#txtName").val(),
-//                                'description': $("#txtDescription").val(),
-//                                'active': $("#optActiveYes").is(':checked') ? 1 : 0
-////                                'url': $("#fleLogo")[0].files[0]
-//                            }
-//                            saveRecord(entity, fields);
-//                            resetForm();
-//                            cleanForm();
-//                        }
-//                    }
-//                });
                 
                 
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
-//                    if(validateLength($("#divName"), $("#txtName"), 1)){
-//                        $('#txtDescription').focus();
-//                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+                    if(validateLength($("#divName"), $("#txtName"), 1)){
+                        $('#txtDescription').focus();
+                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
+                            $('#fleLogo').focus();
                             if(validateFile($("#divLogo"), $("#fleLogo")[0])){
                                 var entity = 'melc_image_gallery';
                                 var fields = {
@@ -209,8 +193,8 @@
                                 resetForm();
                                 cleanForm();
                             }
-//                        }
-//                    }
+                        }
+                    }
                 });
                 
                 
@@ -235,6 +219,24 @@
                 $("#fleLogo").focusout(function(){
                     return validateFile($("#divLogo"), $("#fleLogo")[0]);
                 });
+                
+                
+                $("#fleLogo").change(function(){
+                    readURL(this);
+                });
+                
+                const readURL = (input) => {
+ 
+                    if (input.files && input.files[0]) {
+                        const reader = new FileReader();
+
+                        reader.onload = (e) => {
+                            $('#logoViewUpdate').attr('src', e.target.result);
+                            $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                };
                 
             });
             
@@ -274,7 +276,7 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
@@ -287,7 +289,7 @@
                             table += "</td>";
                             table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", " + value.id + ")'>";
-                            table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "<img src='assets/images/delete.png' class='img-thumbnail' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
                             table += "</tr>";
@@ -353,6 +355,8 @@
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
+                            $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                            $("#logoViewUpdate").attr('src', '../assets/images/gallery/' + objFields.logo);
                             enabledForm(false);
                         },
                         "cancelar": function(){
