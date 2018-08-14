@@ -98,10 +98,32 @@ https://alt-web.com/TUTORIALS/?id=bootstrap_simple_image_zoom
 Previsualizar imágenes con jQuery
 https://www.uno-de-piera.com/previsualizar-imagenes-con-javascript/
 
+
 ---------------------------------------------------------------------------------------------
+Mapas de imágenes con CSS
+http://librosweb.es/libro/css_avanzado/capitulo_6/mapas_de_imagen.html
+
+
+
+---------------------------------------------------------------------------------------------
+OAuth 2.0
+https://tools.ietf.org/pdf/rfc6749.pdf
+
+http://www.thegameofcode.com/2012/07/conceptos-basicos-de-oauth2.html
+
+
 
 
 ---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
 
 
 ---------------------------------------------------------------------------------------------

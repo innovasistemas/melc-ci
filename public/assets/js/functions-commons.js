@@ -36,7 +36,7 @@ function enabledForm(sw)
 
 function cleanForm()
 {
-    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], textarea').val('');
+    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], textarea').val('');
 }
 
 

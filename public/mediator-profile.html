@@ -1,0 +1,283 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Medellín en la Cabeza</title>
+        
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+        
+    </head>
+    
+    <body>                
+        <!--Inicio barra de navegación-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navbar-top"></nav>
+        <!-- Fin barra de navegación-->
+        
+        <!-- Inicio header (cabecera)-->
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
+        <!-- Fin header (cabecera)-->
+        
+        <!-- Inicio contenido - (formulario principal) -->
+        <div id="content-map">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div id="container" class="modal-dialog lead text-justify">
+            
+
+            <h1>PERFILES MEDIADORES</h1>
+            <p>&nbsp;</p>
+            
+            
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="assets/images/mediator-profile/01_EDWIN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                        <img src="assets/images/mediator-profile/01_EDWIN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a href="assets/images/mediator-profile/02_DARLIN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                        <img src="assets/images/mediator-profile/02_DARLIN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4">
+                    <a href="assets/images/mediator-profile/04_EVELYN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                        <img src="assets/images/mediator-profile/04_EVELYN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
+                    </a>
+                </div>
+                
+            </div>
+            
+            <a href="assets/images/mediator-profile/05_KATHERINE_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/05_KATHERINE_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+            
+            <a href="assets/images/mediator-profile/06_CARLOS_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/06_CARLOS_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+            
+            <a href="assets/images/mediator-profile/07_DIDIER_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/07_DIDIER_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+
+            <a href="assets/images/mediator-profile/09_LUIS_MIGUEL_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/09_LUIS_MIGUEL_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+            
+            <a href="assets/images/mediator-profile/11_MANUELA_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/11_MANUELA_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+            
+            <a href="assets/images/mediator-profile/12_ANTON_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/12_ANTON_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+
+            <a href="assets/images/mediator-profile/13_DALIA_MED.png" data-fancybox="gallery" data-caption="Caption #1">
+                <img src="assets/images/mediator-profile/13_DALIA_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
+            </a>
+            
+            
+            
+                     
+            
+            
+            
+            
+            
+            
+        </div>
+        
+        
+        <div id="content-common"></div>
+        
+        <!-- Fin contenido -->
+        
+        <!-- Inicio pie de página -->
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color"></footer>
+        <!-- Fin pie de página -->
+              
+        <!--Scripts de la página-->
+        <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.fancybox.js"></script>
+        
+        <div id="divStyles"></div>
+        
+        <script>
+            $(function(){ 
+                
+                loadLayout();
+                
+                loadFooterDate();
+                
+                loadAdvertisement();
+                
+                loadSocialNetworks();
+                
+                
+//                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
+//                    animated: 'fade',
+//                    placement: 'bottom',
+//                    html: true
+//                });
+                
+                $('#navbar-top').delegate('#about', 'click', function(){
+                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
+                    $( "#dialog" ).dialog({
+                        autoOpen: true,
+                        modal: true,
+                        buttons: {
+                            "aceptar": function () {
+                                $(this).dialog("close");
+                                return false; // Evitar ejecutar el submit del formulario.
+                            }
+                        } 
+                    });
+                });                
+                
+            });
+            
+            
+            //****************************
+            //Funciones Javascript
+            //****************************
+            
+            function loadLayout()
+            {
+                $('#divStyles').load('styles.html');
+                $('#navbar-top').load('layout/navbar-top-internal.html');
+                $('#myCarousel').load('layout/header.html');
+                $('#content-common').load('layout/content-common.html');
+                $('#footer').load('layout/footer.html');
+            }  
+            
+            
+            function loadSocialNetworks()
+            {
+                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
+                var entity = 'melc_social_network';
+                var objJson = {
+                    'bd': {
+                        'table': entity
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'link',
+                        '4': 'logo'
+                    }                   
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: url,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "";
+                        $.each(data, function(index, value){
+                            content += "<div class='row'>";
+                            content += "<div class='col-sm-2'>";
+                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
+                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
+                            content += "</a>";
+                            content += "</div>";
+                            content += "<div class='col-sm-2'>";
+                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
+                            content += value.description;
+                            content += "</a>";
+                            content += "</div>";
+                            content += "</div>";
+                        });
+                        $('#links-social-networks').html(content);
+                    }
+                    
+                }); 
+                
+            }
+            
+            function loadAdvertisement()
+            {
+                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
+                var entity = 'melc_advertisement';
+                var objJson = {
+                    'bd': {
+                        'table': entity
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'active',
+                        '4': 'link'
+                    }                   
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: url,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "";
+                        $.each(data, function(index, value){
+                            if(value.active == 1){
+                                if(index == 0){
+                                    content += "<div class='item active item-slider'>";
+                                }else{
+                                    content += "<div class='item item-slider'>";
+                                }
+
+                                content += "<div class='fill text-center image-item-slider'>";
+                                content += "<img src='assets/images/menu-bar.png'/>";
+                                content += "<p class='name-advertisement'>";
+                                content += "<a href='" + value.link + "'>" + value.name + "</a>";
+                                content += "</p>";
+                                content += "</div>";
+                                content += "<div class='carousel-caption'>";
+                                content += "<p class='description-advertisement'>" + value.description + "</p>";
+                                content += "</div>";
+                                content += "</div>";
+                            }
+                        });
+                        $('#slider-advertisement').html(content);
+                    }
+                }); 
+                
+            }
+            
+            
+            function loadFooterDate()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+//                alert(year + 5)
+                
+                $('#footer-date').html('1 + year');
+                    
+            }
+            
+        </script>
+        
+    </body>
+</html>

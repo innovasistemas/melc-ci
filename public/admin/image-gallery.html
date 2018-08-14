@@ -102,7 +102,8 @@
                         </div>
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogoView">
-                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />                                    
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
+                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
                             </div>
                         </div>
                     </div>
@@ -180,7 +181,22 @@
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
                             $('#fleLogo').focus();
-                            if(validateFile($("#divLogo"), $("#fleLogo")[0])){
+                            var isFile = false;
+                            if($("#txtLogoView").val().trim().length == 0){
+                                isFile = true;
+                            }else{
+                                if($("#txtLogoView").val() != $("#logoViewUpdate").attr('src')){
+                                    isFile = true;
+                                }
+                            }
+                                
+                            if(isFile){
+                                isFile = validateFile($("#divLogo"), $("#fleLogo")[0]);
+                            }else{
+                                isFile = true;
+                            }
+                            
+                            if(isFile){
                                 var entity = 'melc_image_gallery';
                                 var fields = {
                                     'id': $("#txtId").val(),
@@ -193,6 +209,8 @@
                                 resetForm();
                                 cleanForm();
                             }
+                            
+                            
                         }
                     }
                 });
@@ -355,8 +373,12 @@
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
-                            $("#logoViewUpdate").attr('class', 'show img-thumbnail');
-                            $("#logoViewUpdate").attr('src', '../assets/images/gallery/' + objFields.logo);
+                            if(objFields.logo.trim().length > 0){
+                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                                $("#logoViewUpdate").attr('src', '../assets/images/gallery/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/gallery/' + objFields.logo);
+                            }
+                            
                             enabledForm(false);
                         },
                         "cancelar": function(){
