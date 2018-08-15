@@ -100,34 +100,109 @@ class MasterEngine extends CI_Controller {
 
     // Función para guardar un registro en inserciones o actualizaciones
     public function saveRecord()
-    {
+    { 
         if(!empty($this->input->post("dataSend"))){
-           
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);  
-
+            
+            $response = "";
+            $error = 0;
+            
+            //Comprobar si hay imagen para subirla
+            if(!empty($_FILES)){
+                $arrayFile = $this->loadFile();
+                $arrayData['fields']['logo'] = $arrayFile['nameFile']; 
+            }else{
+                $arrayFile['responseFile'] = "sin archivo para cargar";
+                $arrayFile['errorFile'] = 0;
+            }
+            
+            //Verificar insert/update    
             if((int)$arrayData['fields']['id'] == 0){
                 $intResult = $this->ManagementModel->insert(
                         $arrayData['db']['table'], $arrayData['fields']);
-                
             }else{
                 $intResult = $this->ManagementModel->update(
                         $arrayData['db']['table'], $arrayData['fields']);
             }
             
-            $arrayResult = array(
-                "response" => "registro guardado correctamente", 
-                "affectedRows" => $intResult,
-                "error" => 0
-            );
+            if($intResult > 0){
+                $response = "registro(s) guardado(s) correctamente";
+            }else{
+                $response = "no se pudo guardar el (los) registro(s)";
+                $error = 301;
+            }
+            
         }else{
-            $arrayResult = [
-                "response" => "datos incompletos para realizar esta solicitud", 
-                "affectedRows" => 0,
-                "error" => 201
-            ];
+            $response = "datos incompletos para realizar esta solicitud"; 
+            $error = 201;
+            $intResult = 0;
         }
         
+        $arrayResult = [
+            "response" =>  $response,
+            "responseFile" => $arrayFile['responseFile'], 
+            "affectedRows" => $intResult,
+            "error" =>  $error,
+            "errorFile" => $arrayFile['errorFile']
+        ];
+        
         echo json_encode($arrayResult);
+    }
+    
+    
+    //Función para cargar archivos en el servidor (usado para imágenes)
+    public function loadFile()
+    {
+        $responseFile = "";
+        $nameFile = "";
+        $errorFile = 0;
+        
+        //Comprobar si hay imagen para subirla
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
+                'xmlhttprequest'){
+            if(!empty($_FILES['inputFile'])){
+                $fName = $_FILES['inputFile']['name'];
+                $fType = $_FILES['inputFile']['type'];
+                $fSize = $_FILES['inputFile']['size'];
+                $fTempName = $_FILES['inputFile']['tmp_name'];
+
+                if((strpos($fType, "jpeg") || strpos($fType, "png") || 
+                        strpos($fType, "gif")) && $fSize <= 2097152){
+
+                    if(move_uploaded_file($fTempName, 
+                            $_SERVER['DOCUMENT_ROOT'] .  
+                            "/melc-ci/public/assets/images/gallery/" . $fName)){
+
+                        $nameFile = $fName;
+                        $responseFile = "se subió el archivo correctamente.";
+
+                    }else{
+                        $responseFile = "Ocurrió un error al subir el archivo.";
+                        $errorFile = 601;
+                    }
+                }else{
+                    $responseFile = "El tipo o el tamaño del archivo no "
+                            . "son válidos.";
+                    $errorFile = 602;
+                }
+            }else{
+                $responseFile = "No se especificó el archivo.";
+                $errorFile = 603;
+            }
+        }else{
+            $responseFile = "Error procesando la petición de subida "
+                    . "de archivos.";
+            $errorFile = 604;
+        }
+        
+        $arrayFile = [
+            "responseFile" => $responseFile, 
+            "nameFile" => $nameFile, 
+            "errorFile" => $errorFile
+        ];
+        
+        return $arrayFile;
     }
     
 }

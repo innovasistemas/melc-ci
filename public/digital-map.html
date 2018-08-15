@@ -1,0 +1,108 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Medellín en la Cabeza</title>
+        
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+        
+    </head>
+    
+    <body>                
+        <!--Inicio barra de navegación-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navbar-top"></nav>
+        <!-- Fin barra de navegación-->
+        
+        <!-- Inicio header (cabecera)-->
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
+        <!-- Fin header (cabecera)-->
+        
+        <!-- Inicio contenido - (formulario principal) -->
+        <div id="content-map">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div id="container" class="modal-dialog lead text-justify">
+            
+
+            <h1>MAPA DIGITAL</h1>
+            <p>&nbsp;</p>
+            <p>    
+                Este mapa contiene una selección de lugares que hemos visitado en nuestros recorridos. Antes de explorarlo puedes preguntarte ¿qué quiero conocer hoy? ¿dónde y cómo voy a llegar? ¿a quién quiero invitar? O puedes mirarlo sin expectativas, dejando que alguno de estos lugares llame tu atención. La ciudad te ofrece algo diferente cada día. Puedes seguir alguna de las nueve rutas que te proponemos o creando tu propia ruta.
+            </p>
+            
+            ***
+
+            <h2>RUTAS</h2>
+
+            <h3>Haciendo memoria para construir futuro</h3> 
+            <p>
+                No se trata de darnos golpes de pecho, de quejarnos eternamente ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y que pasan desapercibidos, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día. 
+            </p>
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7932.121338100805!2d-75.62565037581246!3d6.255738131887671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442bd61b35b135%3A0x7ac589026488978b!2sSan+Javier%2C+Medell%C3%ADn%2C+Antioquia!5e0!3m2!1ses!2sco!4v1534174102668" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            
+        </div>
+        
+        
+        <div id="content-common"></div>
+        
+        <!-- Fin contenido -->
+        
+        <!-- Inicio pie de página -->
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color"></footer>
+        <!-- Fin pie de página -->
+              
+        <!--Scripts de la página-->
+        <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
+        
+        <div id="divStyles"></div>
+        
+        <script>
+            $(function(){ 
+                
+                loadLayout();
+                
+                loadFooterDate();
+                
+                loadAdvertisement();
+                
+                loadSocialNetworks();
+                
+                
+            });
+            
+            
+            //****************************
+            //Funciones Javascript
+            //****************************
+            
+            function loadLayout()
+            {
+                $('#divStyles').load('styles.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+                //$('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
+                $('#footer').load('layout/footer.html');
+            } 
+
+        </script>
+        
+    </body>
+</html>

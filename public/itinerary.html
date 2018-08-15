@@ -25,36 +25,16 @@
         <!-- Fin header (cabecera)-->
         
         <!-- Inicio contenido - (formulario principal) -->
+        <div id="content-map">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+        
         <div id="container" class="modal-dialog lead text-justify">
-            
 
-
-
-<!--            <div class="container">
-                <br/>
-                <div class="row" id="panelPrecios">
-                    <div class="items">
-                    <ul>
-                        <li> 
-                            <a data-toggle="tooltip" title="<img src='images/map-points/sanjavier-stairs.png' />" href="desktop.html">
-                              Hola Mundo!
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tooltip" title="<img src='images/map-points/moravia-nose.png' />">
-                             Hola Mundo!
-                            </a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-            </div>-->
-            
-            
-            
-            
-            
-            
             <h1>MAPA JOVEN DE MEDELLÍN</h1>
             <p>&nbsp;</p>
             <p>    
@@ -108,11 +88,8 @@
                 Ojalá esta ruta motive reflexiones sobre qué consideras y en qué piensas cuando se habla de sostenibilidad. ¿Qué significa que algo sea sostenible?, ¿qué significó para nuestros ancestros el buen vivir? o ¿cuáles podrían ser las relaciones armónicas con la naturaleza? 
                 Muchos jóvenes tienen presente las últimas contingencias ambientales que ha vivido la ciudad y algunos ya generaron cambios en sus comportamientos y actitudes con la vida. Descubre, pregunta, aporta o imita aquellos comportamientos ciudadanos que nos permitan convivir y reducir nuestro impacto en el medio ambiente ¡Ah!  Pero no olvides que también existen la sostenibilidad social, económica, política, entre otras. 
             </p>
-
-            
             
         </div>
-        
         
         <div id="content-common"></div>
         
@@ -128,6 +105,7 @@
         <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
         
         <div id="divStyles"></div>
         
@@ -138,17 +116,9 @@
                 
                 loadFooterDate();
                 
-                loadAdvertisement();
-                
                 loadSocialNetworks();
                 
-                
-//                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
-//                    animated: 'fade',
-//                    placement: 'bottom',
-//                    html: true
-//                });
-                
+
                 $('#navbar-top').delegate('#about', 'click', function(){
                     $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
                     $( "#dialog" ).dialog({
@@ -173,122 +143,12 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/navbar-top-internal.html');
-                $('#myCarousel').load('layout/header.html');
-                $('#content-common').load('layout/content-common.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+                //$('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
                 $('#footer').load('layout/footer.html');
-            }  
+            } 
             
-            
-            function loadSocialNetworks()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_social_network';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'link',
-                        '4': 'logo'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            content += "<div class='row'>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
-                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
-                            content += "</a>";
-                            content += "</div>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-                            content += value.description;
-                            content += "</a>";
-                            content += "</div>";
-                            content += "</div>";
-                        });
-                        $('#links-social-networks').html(content);
-                    }
-                    
-                }); 
-                
-            }
-            
-            function loadAdvertisement()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_advertisement';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'active',
-                        '4': 'link'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            if(value.active == 1){
-                                if(index == 0){
-                                    content += "<div class='item active item-slider'>";
-                                }else{
-                                    content += "<div class='item item-slider'>";
-                                }
-
-                                content += "<div class='fill text-center image-item-slider'>";
-                                content += "<img src='assets/images/menu-bar.png'/>";
-                                content += "<p class='name-advertisement'>";
-                                content += "<a href='" + value.link + "'>" + value.name + "</a>";
-                                content += "</p>";
-                                content += "</div>";
-                                content += "<div class='carousel-caption'>";
-                                content += "<p class='description-advertisement'>" + value.description + "</p>";
-                                content += "</div>";
-                                content += "</div>";
-                            }
-                        });
-                        $('#slider-advertisement').html(content);
-                    }
-                }); 
-                
-            }
-            
-            
-            function loadFooterDate()
-            {
-                var date = new Date();
-                var year = date.getFullYear();
-//                alert(year + 5)
-                
-                $('#footer-date').html('1 + year');
-                    
-            }
             
         </script>
         

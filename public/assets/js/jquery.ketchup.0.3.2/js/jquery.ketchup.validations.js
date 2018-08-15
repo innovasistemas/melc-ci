@@ -59,9 +59,9 @@ jQuery.ketchup
 })
 
 //.validation('url', 'Must be a valid URL.', function(form, el, value) {
-.validation('url', 'ebe ser una url válida.', function(form, el, value) {
-  return this.isUrl(value);
-})
+//.validation('url', 'debe ser una url válida.', function(form, el, value) {
+//  return this.isUrl(value);
+//})
 
 //.validation('username', 'Must be a valid username.', function(form, el, value) {
 .validation('username', 'debe ser un nombre de usuario válido.', function(form, el, value) {
