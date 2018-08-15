@@ -34,71 +34,10 @@
         </div>
         
         <div id="container" class="modal-dialog lead text-justify">
-            
-
-            <h1>PERFILES MEDIADORES</h1>
+            <h1 class="h1 text-center">PERFILES MEDIADORES</h1>
             <p>&nbsp;</p>
-            
-            
-            <div class="row">
-                <div class="col-sm-4">
-                    <a href="assets/images/mediator-profile/01_EDWIN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                        <img src="assets/images/mediator-profile/01_EDWIN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="assets/images/mediator-profile/02_DARLIN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                        <img src="assets/images/mediator-profile/02_DARLIN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
-                    </a>
-                </div>
-
-                <div class="col-sm-4">
-                    <a href="assets/images/mediator-profile/04_EVELYN_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                        <img src="assets/images/mediator-profile/04_EVELYN_MED.png" alt="" class="thumbnail zoom img-thumbnail-mediator-profile" />
-                    </a>
-                </div>
-                
-            </div>
-            
-            <a href="assets/images/mediator-profile/05_KATHERINE_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/05_KATHERINE_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-            
-            <a href="assets/images/mediator-profile/06_CARLOS_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/06_CARLOS_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-            
-            <a href="assets/images/mediator-profile/07_DIDIER_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/07_DIDIER_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-
-            <a href="assets/images/mediator-profile/09_LUIS_MIGUEL_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/09_LUIS_MIGUEL_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-            
-            <a href="assets/images/mediator-profile/11_MANUELA_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/11_MANUELA_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-            
-            <a href="assets/images/mediator-profile/12_ANTON_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/12_ANTON_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-
-            <a href="assets/images/mediator-profile/13_DALIA_MED.png" data-fancybox="gallery" data-caption="Caption #1">
-                <img src="assets/images/mediator-profile/13_DALIA_MED.png" alt="" class="thumbnail img-thumbnail-mediator-profile" />
-            </a>
-            
-            
-            
-                     
-            
-            
-            
-            
-            
-            
+            <div id="mediator-profile"></div>
         </div>
-        
         
         <div id="content-common"></div>
         
@@ -115,6 +54,7 @@
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
         <script type="text/javascript" src="assets/js/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
         
         <div id="divStyles"></div>
         
@@ -123,32 +63,11 @@
                 
                 loadLayout();
                 
-                loadFooterDate();
-                
-                loadAdvertisement();
+                loadMediatorProfile();
                 
                 loadSocialNetworks();
                 
-                
-//                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
-//                    animated: 'fade',
-//                    placement: 'bottom',
-//                    html: true
-//                });
-                
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });                
+                loadFooterDate();
                 
             });
             
@@ -160,17 +79,17 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/navbar-top-internal.html');
-                $('#myCarousel').load('layout/header.html');
-                $('#content-common').load('layout/content-common.html');
+                $('#navbar-top').load('../layout/navbar-top.html');
+                //$('#myCarousel').load('../layout/header.html');
+                $('#content-common').load('../layout/content-common.html');
                 $('#footer').load('layout/footer.html');
-            }  
+            } 
             
             
-            function loadSocialNetworks()
+            function loadMediatorProfile()
             {
                 var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_social_network';
+                var entity = 'melc_user';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -179,7 +98,7 @@
                         '0': 'id',
                         '1': 'name',
                         '2': 'description',
-                        '3': 'link',
+                        '3': 'active',
                         '4': 'logo'
                     }                   
                 }
@@ -192,90 +111,38 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            content += "<div class='row'>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
-                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
-                            content += "</a>";
-                            content += "</div>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-                            content += value.description;
-                            content += "</a>";
-                            content += "</div>";
-                            content += "</div>";
-                        });
-                        $('#links-social-networks').html(content);
-                    }
-                    
-                }); 
-                
-            }
-            
-            function loadAdvertisement()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_advertisement';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'active',
-                        '4': 'link'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
+//                        var content = "";
+                        var column=0;
+                        var content = "<div class='row'>";
                         $.each(data, function(index, value){
                             if(value.active == 1){
-                                if(index == 0){
-                                    content += "<div class='item active item-slider'>";
-                                }else{
-                                    content += "<div class='item item-slider'>";
+                                if(index !== 0){
+                                    content += "<div class='col-sm-4'>";
+                                    content += "<a href='assets/images/mediator-profile/" + value.logo + "' data-fancybox='gallery' data-caption='#1'>";
+                                    content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='' class='thumbnail zoom img-thumbnail-mediator-profile'/>";
+                                    content += "</a>";
+                                    content += "</div>";
+                                    column ++;
+                                    
+                                    if(column >= 3){
+                                        content += "</div>";
+                                        content += "<div class='row'>";
+                                        column = 0;
+                                    }
                                 }
-
-                                content += "<div class='fill text-center image-item-slider'>";
-                                content += "<img src='assets/images/menu-bar.png'/>";
-                                content += "<p class='name-advertisement'>";
-                                content += "<a href='" + value.link + "'>" + value.name + "</a>";
-                                content += "</p>";
-                                content += "</div>";
-                                content += "<div class='carousel-caption'>";
-                                content += "<p class='description-advertisement'>" + value.description + "</p>";
-                                content += "</div>";
-                                content += "</div>";
                             }
                         });
-                        $('#slider-advertisement').html(content);
+                        
+                        if(column < 3){
+                            content += "</div>";
+                        }
+                        
+                        $('#mediator-profile').html(content);
                     }
                 }); 
                 
             }
             
-            
-            function loadFooterDate()
-            {
-                var date = new Date();
-                var year = date.getFullYear();
-//                alert(year + 5)
-                
-                $('#footer-date').html('1 + year');
-                    
-            }
             
         </script>
         

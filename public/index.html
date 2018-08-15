@@ -125,8 +125,6 @@
                         <area alt="Medellín sostenible" title="Medellín sostenible" href="#!" coords="100,100,100" shape="circle">-->
                     </map>
                     
-                    
-                    
                 </div>
             </div>
             
@@ -369,6 +367,7 @@
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
         <script type="text/javascript" src="assets/js/jquery.fancybox.js"></script>
         <script type="text/javascript" src="assets/js/stickyMojo.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>-->
         
         <div id="divStyles"></div>
@@ -376,7 +375,7 @@
         <script>
             $(function(){ 
                 
-                loadLayout();
+                loadLayoutIndex();
                 
                 loadFooterDate();
                 
@@ -415,21 +414,6 @@
                     window.location = 'digital-map.html';
                 });
                 
-                
-//                $('#navbar-top').delegate('#about', 'click', function(){
-//                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-//                    $( "#dialog" ).dialog({
-//                        autoOpen: true,
-//                        modal: true,
-//                        buttons: {
-//                            "aceptar": function () {
-//                                $(this).dialog("close");
-//                                return false; // Evitar ejecutar el submit del formulario.
-//                            }
-//                        } 
-//                    });
-//                });                
-                
             });
             
             
@@ -437,7 +421,7 @@
             //Funciones Javascript
             //****************************
             
-            function loadLayout()
+            function loadLayoutIndex()
             {
                 $('#divStyles').load('styles.html');
 //                $('#navbar-top').load('layout/navbar-top-home.html');
@@ -445,52 +429,6 @@
                 $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
             }  
-            
-            
-            function loadSocialNetworks()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_social_network';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'link',
-                        '4': 'logo'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            content += "<div class='row'>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
-                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
-                            content += "</a>";
-                            content += "</div>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-                            content += value.description;
-                            content += "</a>";
-                            content += "</div>";
-                            content += "</div>";
-                        });
-                        $('#links-social-networks').html(content);
-                    }
-                }); 
-            }
             
             
             function loadAdvertisement()
@@ -584,16 +522,6 @@
                 }); 
             }
             
-            
-            function loadFooterDate()
-            {
-                var date = new Date();
-                var year = date.getFullYear();
-//                alert(year + 5)
-                
-                $('#footer-date').html('1 + year');
-                    
-            }
             
         </script>
         
