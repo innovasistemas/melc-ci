@@ -4,42 +4,6 @@
  * and open the template in the editor.
  */
 
-
-//****************************
-//Funciones Javascript
-//****************************
-
-
-//****************************
-//Funciones de página
-//****************************
-
-function loadLayout()
-{
-    $('#divStyles').load('styles.html');
-    $('#navbar-top').load('layout/navbar-top-internal.html');
-    $('#myCarousel').load('layout/header.html');
-    $('#content-common').load('layout/content-common.html');
-    $('#footer').load('layout/footer.html');
-}  
-            
-
-
-function loadFooterDate()
-{
-    var date = new Date();
-    var year = date.getFullYear();
-//                alert(year + 5)
-
-    $('#footer-date').html('1 + year');
-
-}
-
-
-//****************************
-//Funciones del CRUD
-//****************************
-
 function loadSocialNetworks()
 {
     var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
@@ -84,4 +48,4 @@ function loadSocialNetworks()
         }
     }); 
 }
-
+            

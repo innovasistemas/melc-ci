@@ -52,7 +52,7 @@
             </p>
             
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7932.121338100805!2d-75.62565037581246!3d6.255738131887671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442bd61b35b135%3A0x7ac589026488978b!2sSan+Javier%2C+Medell%C3%ADn%2C+Antioquia!5e0!3m2!1ses!2sco!4v1534174102668" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            
+                        
         </div>
         
         
@@ -81,8 +81,6 @@
                 
                 loadFooterDate();
                 
-                loadAdvertisement();
-                
                 loadSocialNetworks();
                 
                 
@@ -96,12 +94,23 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-                //$('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
+                $('#navbar-top').load('layout/navbar-top-internal.html');
+                $('#myCarousel').load('layout/header.html');
+                $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
-            } 
-
+            }  
+            
+            
+            function loadFooterDate()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+//                alert(year + 5)
+                
+                $('#footer-date').html('1 + year');
+                    
+            }
+            
         </script>
         
     </body>

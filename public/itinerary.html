@@ -34,6 +34,7 @@
         </div>
         
         <div id="container" class="modal-dialog lead text-justify">
+            
 
             <h1>MAPA JOVEN DE MEDELLÍN</h1>
             <p>&nbsp;</p>
@@ -88,8 +89,10 @@
                 Ojalá esta ruta motive reflexiones sobre qué consideras y en qué piensas cuando se habla de sostenibilidad. ¿Qué significa que algo sea sostenible?, ¿qué significó para nuestros ancestros el buen vivir? o ¿cuáles podrían ser las relaciones armónicas con la naturaleza? 
                 Muchos jóvenes tienen presente las últimas contingencias ambientales que ha vivido la ciudad y algunos ya generaron cambios en sus comportamientos y actitudes con la vida. Descubre, pregunta, aporta o imita aquellos comportamientos ciudadanos que nos permitan convivir y reducir nuestro impacto en el medio ambiente ¡Ah!  Pero no olvides que también existen la sostenibilidad social, económica, política, entre otras. 
             </p>
+
             
         </div>
+        
         
         <div id="content-common"></div>
         
@@ -118,20 +121,6 @@
                 
                 loadSocialNetworks();
                 
-
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });                
                 
             });
             
@@ -143,12 +132,22 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-                //$('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
+                $('#navbar-top').load('layout/navbar-top-internal.html');
+                $('#myCarousel').load('layout/header.html');
+                $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
-            } 
+            }  
             
+            
+            function loadFooterDate()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+//                alert(year + 5)
+                
+                $('#footer-date').html('1 + year');
+                    
+            }
             
         </script>
         

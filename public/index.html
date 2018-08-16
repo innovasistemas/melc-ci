@@ -125,6 +125,8 @@
                         <area alt="Medellín sostenible" title="Medellín sostenible" href="#!" coords="100,100,100" shape="circle">-->
                     </map>
                     
+                    
+                    
                 </div>
             </div>
             
@@ -375,7 +377,7 @@
         <script>
             $(function(){ 
                 
-                loadLayoutIndex();
+                loadLayout();
                 
                 loadFooterDate();
                 
@@ -414,6 +416,7 @@
                     window.location = 'digital-map.html';
                 });
                 
+                
             });
             
             
@@ -421,7 +424,7 @@
             //Funciones Javascript
             //****************************
             
-            function loadLayoutIndex()
+            function loadLayout()
             {
                 $('#divStyles').load('styles.html');
 //                $('#navbar-top').load('layout/navbar-top-home.html');
@@ -522,6 +525,16 @@
                 }); 
             }
             
+            
+            function loadFooterDate()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+//                alert(year + 5)
+                
+                $('#footer-date').html('1 + year');
+                    
+            }
             
         </script>
         

@@ -34,10 +34,15 @@
         </div>
         
         <div id="container" class="modal-dialog lead text-justify">
+            
+
             <h1 class="h1 text-center">PERFILES MEDIADORES</h1>
             <p>&nbsp;</p>
+            
             <div id="mediator-profile"></div>
+            
         </div>
+        
         
         <div id="content-common"></div>
         
@@ -63,11 +68,12 @@
                 
                 loadLayout();
                 
-                loadMediatorProfile();
+                loadMediatorProfile()
+                
+                loadFooterDate();
                 
                 loadSocialNetworks();
                 
-                loadFooterDate();
                 
             });
             
@@ -79,11 +85,11 @@
             function loadLayout()
             {
                 $('#divStyles').load('styles.html');
-                $('#navbar-top').load('../layout/navbar-top.html');
-                //$('#myCarousel').load('../layout/header.html');
-                $('#content-common').load('../layout/content-common.html');
+                $('#navbar-top').load('layout/navbar-top-internal.html');
+                $('#myCarousel').load('layout/header.html');
+                $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
-            } 
+            }  
             
             
             function loadMediatorProfile()
@@ -97,7 +103,7 @@
                     fields: {
                         '0': 'id',
                         '1': 'name',
-                        '2': 'description',
+                        '2': 'user',
                         '3': 'active',
                         '4': 'logo'
                     }                   
@@ -111,25 +117,24 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function(data) {
-//                        var content = "";
-                        var column=0;
+                        var column = 0;
                         var content = "<div class='row'>";
                         $.each(data, function(index, value){
                             if(value.active == 1){
-                                if(index !== 0){
-                                    content += "<div class='col-sm-4'>";
-                                    content += "<a href='assets/images/mediator-profile/" + value.logo + "' data-fancybox='gallery' data-caption='#1'>";
-                                    content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='' class='thumbnail zoom img-thumbnail-mediator-profile'/>";
-                                    content += "</a>";
-                                    content += "</div>";
-                                    column ++;
-                                    
+                                if(index != 0){
                                     if(column >= 3){
                                         content += "</div>";
                                         content += "<div class='row'>";
                                         column = 0;
                                     }
+                                    content += "<div class='col-sm-4'>";
+                                    content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + "' data-fancybox='gallery' data-caption='" + value.user  + "'>" 
+                                    content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
+                                    content += "</a>";
+                                    content += "</div>";
+                                    column ++;
                                 }
+                                
                             }
                         });
                         
@@ -140,9 +145,18 @@
                         $('#mediator-profile').html(content);
                     }
                 }); 
-                
             }
             
+            
+            function loadFooterDate()
+            {
+                var date = new Date();
+                var year = date.getFullYear();
+//                alert(year + 5)
+                
+                $('#footer-date').html('1 + year');
+                    
+            }
             
         </script>
         
