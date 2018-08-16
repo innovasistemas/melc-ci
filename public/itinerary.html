@@ -108,6 +108,7 @@
         <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
         
         <div id="divStyles"></div>
         
@@ -118,30 +119,8 @@
                 
                 loadFooterDate();
                 
-                loadAdvertisement();
-                
                 loadSocialNetworks();
                 
-                
-//                $('#panelPrecios [data-toggle="tooltip"]').tooltip({
-//                    animated: 'fade',
-//                    placement: 'bottom',
-//                    html: true
-//                });
-                
-                $('#navbar-top').delegate('#about', 'click', function(){
-                    $( "#dialog" ).html("melc<br>developed by: <strong>jaime montoya</strong>");
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "aceptar": function () {
-                                $(this).dialog("close");
-                                return false; // Evitar ejecutar el submit del formulario.
-                            }
-                        } 
-                    });
-                });                
                 
             });
             
@@ -158,106 +137,6 @@
                 $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
             }  
-            
-            
-            function loadSocialNetworks()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_social_network';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'link',
-                        '4': 'logo'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            content += "<div class='row'>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
-                            content += "<img src='assets/images/social-networks/" + value.logo + "' />";
-                            content += "</a>";
-                            content += "</div>";
-                            content += "<div class='col-sm-2'>";
-                            content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-                            content += value.description;
-                            content += "</a>";
-                            content += "</div>";
-                            content += "</div>";
-                        });
-                        $('#links-social-networks').html(content);
-                    }
-                    
-                }); 
-                
-            }
-            
-            function loadAdvertisement()
-            {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
-                var entity = 'melc_advertisement';
-                var objJson = {
-                    'bd': {
-                        'table': entity
-                    },
-                    fields: {
-                        '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'active',
-                        '4': 'link'
-                    }                   
-                }
-                
-                var strJson = JSON.stringify(objJson);
-                 
-                $.ajax({
-                    url: url,
-                    data: {'dataSend': strJson},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(data) {
-                        var content = "";
-                        $.each(data, function(index, value){
-                            if(value.active == 1){
-                                if(index == 0){
-                                    content += "<div class='item active item-slider'>";
-                                }else{
-                                    content += "<div class='item item-slider'>";
-                                }
-
-                                content += "<div class='fill text-center image-item-slider'>";
-                                content += "<img src='assets/images/menu-bar.png'/>";
-                                content += "<p class='name-advertisement'>";
-                                content += "<a href='" + value.link + "'>" + value.name + "</a>";
-                                content += "</p>";
-                                content += "</div>";
-                                content += "<div class='carousel-caption'>";
-                                content += "<p class='description-advertisement'>" + value.description + "</p>";
-                                content += "</div>";
-                                content += "</div>";
-                            }
-                        });
-                        $('#slider-advertisement').html(content);
-                    }
-                }); 
-                
-            }
             
             
             function loadFooterDate()
