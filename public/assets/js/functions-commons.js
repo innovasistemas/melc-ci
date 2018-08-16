@@ -14,14 +14,7 @@
 //Funciones de página
 //****************************
 
-function loadLayout()
-{
-    $('#divStyles').load('styles.html');
-    $('#navbar-top').load('../layout/navbar-top.html');
-    //$('#myCarousel').load('../layout/header.html');
-    $('#content-common').load('../layout/content-common.html');
-    $('#footer').load('layout/footer.html');
-}    
+   
 
 
 //****************************
