@@ -115,8 +115,31 @@ http://www.thegameofcode.com/2012/07/conceptos-basicos-de-oauth2.html
 
 
 ---------------------------------------------------------------------------------------------
+https://console.cloud.google.com/google/maps-apis/apis/maps-backend.googleapis.com/credentials?project=my-maps-213520&duration=PT1H
+Se creó la clave de API
+
+Para usar esta clave en tu aplicación, transfiérela con el parámetro 
+key=API_KEY 
+Tu clave de API 
+AIzaSyChD53dyoftlc72doGeUPUAC6U_DMPeerU
 
 
+
+---------------------------------------------------------------------------------------------
+Obtener clave api key Google Maps
+http://www.rubenalcaraz.es/pinakes/informatica/como-obtener-una-clave-api-para-google-maps/#codesyntax_1
+
+
+
+---------------------------------------------------------------------------------------------
+Crear marcadores
+https://developers.google.com/maps/documentation/javascript/markers
+
+https://developers.google.com/maps/documentation/javascript/adding-a-google-map
+
+https://programacion.net/articulo/google_maps_con_multiples_marcadores_y_ventana_de_informacion_mediante_la_api_v3_1738
+
+https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 
 ---------------------------------------------------------------------------------------------
 
@@ -124,6 +147,8 @@ http://www.thegameofcode.com/2012/07/conceptos-basicos-de-oauth2.html
 
 ---------------------------------------------------------------------------------------------
 
+
+---------------------------------------------------------------------------------------------
 
 
 ---------------------------------------------------------------------------------------------
