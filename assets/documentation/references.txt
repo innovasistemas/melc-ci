@@ -141,6 +141,12 @@ https://programacion.net/articulo/google_maps_con_multiples_marcadores_y_ventana
 
 https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 
+http://javascriptes.com/javascript-cambiar-el-color-del-marcador-del-map-de-google.html
+
+
+Ventana informativa con clic en el marcador
+https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+
 ---------------------------------------------------------------------------------------------
 
 
