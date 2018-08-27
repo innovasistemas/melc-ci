@@ -11,6 +11,12 @@ var map;
 var markers1 = [];
 var markers2 = [];
 var markers3 = [];
+var markers4 = [];
+var markers5 = [];
+var markers6 = [];
+var markers7 = [];
+var markers8 = [];
+var markers9 = [];
 var markers = [];
 
 var locations = [];
@@ -44,7 +50,7 @@ function initMap()
 
     });
     
-//    var marker = new google.maps.Marker({position: uluru, map: map});
+    var marker = new google.maps.Marker({position: uluru, map: map});
 //    marker.setIcon('http://img.javascriptes.com/javascript/green-dot.png') 
 
 
@@ -123,7 +129,7 @@ function initMap()
 //        }
 //    })
 
-
+    var title;
 
 //        {lat: 6.2518401, lng: -75.563591},
     var locations1 = [
@@ -162,9 +168,10 @@ function initMap()
         '¿Sabes porqué hay una plazoleta que se llama Plazoleta Barrientos en la Universidad de Antioquia? ¿por qué se encuentran allí los bustos de varios docentes y quiénes fueron? ¿qué les sucedió? ¿quién fue Gustavo Adolfo Muñoz y por qué un auditorio lleva su nombre? o ¿Hernán Henao? La Universidad, en su objetivo de transformar la sociedad, ha sido escenario de duras confrontaciones del pensamiento y, lastimosamente, de muertes por esta causa. Sus memorias hablan ya de más de 200 años de nuestra historia.'
     ];
     
+    title = 'Haciendo memoria para construir futuro';
     
     $.each(locations1, function(index, value){
-        addMarker1(index, value, logos[0]);
+        addMarker1(index, value, logos[0], title);
     });
 
     var locations2 = [
@@ -191,10 +198,13 @@ function initMap()
         'La ciudad cuenta con más de 50 estaciones de bicicletas públicas que se pueden utilizar con la tarjeta cívica del Metro. Es un maravilloso sistema para recorrer trayectos cortos y siempre se encuentran en zonas aledañas a ciclorrutas. En bici puedes acceder a equipamientos públicos, instituciones educativas, parques, plazas, UVA y sedes culturales y artísticas de diferentes organizaciones.'
     ];
     
+    title = 'Medellín en movimiento';
+    
     $.each(locations2, function(index, value){
-        addMarker2(index, value);
+        addMarker2(index, value, logos[0], title);
        
     });
+    
 
     var locations3 = [
         {lat: 6.2500271, lng: -75.570322},
@@ -203,42 +213,222 @@ function initMap()
         {lat: 6.2439346, lng: -75.5738133}
     ];
     
+    places = [
+        'Parque de Berrío',
+        'Banco de La República',
+        'Distrito Patrimonial San Ignacio',
+        'Otros lugares para callejear en El Centro'
+    ];
+    
+    descriptionPlace = [
+        '¿Sabes cuál es la importancia de este parque y cómo era antes de tener una gigante estación del Metro? ¿qué grupo de mujeres, desde hace más de 15 años, se encuentra todos los miércoles al mediodía en el atrio de la Iglesia La Candelaria? ¿de quién es la escultura ubicada en el centro del parque? ¿cómo se llamaba antes el Parque de Berrio? Estas son algunas de las preguntas que puedes plantearte antes de visitar este lugar.',
+        'En el costado sur del Parque de Berrío se encuentra la sucursal Medellín del Banco de la República, el más importante del país y de propiedad del Estado (¡o sea de todos nosotros!) Para más pistas, es el que luce a la famosa escultura que se conoce popularmente como la Gorda de Botero (su nombre original fue Mujer sin Cabeza). En una de sus torres se encuentra el área cultural del banco que promueve diversos procesos culturales del país ¡Sácale tiempo, no te arrepentirás!',
+        '¿Sabes cuáles edificios o lugares conforman el Distrito Patrimonial San Ignacio? ¿de qué año es la Ceiba ubicada en la esquina de Ayacucho? ¿quienes fueron los primeros habitantes del Claustro y qué colegio fundaron? ¿de dónde viene la palabra claustro? y ¿Paraninfo? Estas son solo unas cuantas de las mil preguntas que puede inspirarte esta zona ¡Ve con tiempo porque seguro lo vas a necesitar pero, aún más seguro, lo disfrutarás!',
+        'Galería Bolívar / Plazuela La Veracruz/ Edificio Víctor / Casa del Encuentro / Museo de Antioquia / Mercado Abierto de Tejelo / Plazuela Rojas Pinilla / La Bachue Parque de Boston / Parque Obrero / Escultura Esfera Pública / Placita de Flórez / Teatro El Trueque / Comando de Policía / Parque e Iglesia de San Antonio / Taberna Diógenes / Palacio de Bellas Artes / CEFA / Pequeño Teatro / Piscina desarenadora / Antiguo Café Cyrano (Reunión de los Pánidas) ¡De resto, el reto es tuyo, tan tuyo como El Centro de Medellín!'
+    ];
+    
+    title = 'El centro: un lugar para descubrir';
+    
     $.each(locations3, function(index, value){
-        addMarker3(index, value);
+        addMarker3(index, value, logos[0], title);
+    });
+    
+
+    var locations4 = [
+        {lat: 6.251926, lng: -75.6009126},
+        {lat: 6.245461, lng: -75.5618417},
+        {lat: 6.3500098, lng: -75.7087648},
+    ];
+    
+    places = [
+        'Plaza de Mercado de La América',
+        'Placita de Flórez',
+        'Otros lugares que puedes visitar'
+    ];
+    
+    descriptionPlace = [
+        'En la ciudad existieron varias plazas de mercado donde las pasadas generaciones iban de costal y canasta a comprar productos frescos y recién traídos de zonas rurales. La Plaza de La América es una sobreviviente, pues otras desaparecieron y fueron reemplazadas por supermercados y almacenes de cadena. Además de ir a mercar ¿qué más puedes encontrar en la Plaza de la América? ¡Es un tesorito sostenible y campesino de la ciudad!',
+        '¡Sí, Flórez con “z”, no está mal escrita! Es que su nombre no se debe a la cantidad de flores que bajaban en silletas humanas desde el Corregimiento de Santa Elena, sino a que quien donó el predio para su construcción fue Don Rafael Flórez. Antes de ser la primera plaza de mercado cubierta en la ciudad, fue patronato de trabajadores, convento religioso y hasta circo de toros (no plaza) ¡Tendremos que averiguar también la diferencia entre un circo y una plaza de toros!',
+        'Palmitas: Asociación de Mujeres de Palmitas - Biblioteca pública - Red Corregimental de Jóvenes - Alguna de las fincas de los campesinos asociados a Campo vivo. Santa Elena: Parque Arví - Centralidad Vereda Mazo con su importante proyecto Sapiencia. Altavista: La Casa Museo y las huertas de la Vereda Manzanillo Crea tu propia lista de lugares corregimentales o te contáctate con la Gerencia de Corregimientos quienes impulsan un importante proyecto de Turismo Rural Comunitario.'
+    ];
+    
+    title = '¿Tiene Medellín campesinos?';
+    
+    $.each(locations4, function(index, value){
+        addMarker4(index, value, logos[0], title);
+    });
+    
+    
+    var locations5 = [
+        {lat: 6.2609775, lng: -75.5766487},
+        {lat: 6.2577165, lng: -75.5890918},
+        {lat: 6.264745, lng: -75.5847107},
+        {lat: 6.2771457, lng: -75.5700965},
+        {lat: 6.2372616, lng: -75.5858295},
+        {lat: 6.2470025, lng: -75.5375514},
+    ];
+    
+    places = [
+        'Universidad Nacional de Colombia (Agronomía)',
+        'Barrio Carlos E. Restrepo',
+        'Cerro El Volador',
+        'Morro de Moravia',
+        'Parque de las pacas – Belén Fátima',
+        'Otros lugares de Medellín Sostenible para visitar'
+    ];
+    
+    descriptionPlace = [
+        'En el campus de Agronomía, que en su interior guarda un oasis ambiental de flora y fauna, puedes encontrar el Palmetum, que es la colección de palmas vivas más grande y diversa del país. Igualmente, el Arboretum, que es una colección de árboles de muchos lugares del mundo que posee la Universidad y, además de servir de hábitat para muchas especies de aves, también es el motivo de muchas investigaciones forestales.',
+        'Esta unidad residencial construida en los años 70  se consolida como otro gran pulmón de la ciudad,  pues en él reposan cerca de 1.800 árboles que hacen parte del importante corredor verde Cerro El Volador, Universidad Nacional, Carlos E. Restrepo y Suramericana.',
+        'Es tal vez el más cerro tutelar mejor conservado y arborizado de los siete con que cuenta la ciudad. En este oasis en medio de la ciudad se puede visitar el mariposario al aire libre, un vivero pedagógico, la estación de abejas angelito y varios miradores desde donde se puede tener hermosas panorámicas a la ciudad ¡Sin duda es un patrimonio natural y arqueológico!',
+        'Moravia es una flor, dice “Mamá Chila”, quien  orienta los recorridos por el barrio que hace unas décadas fue un basurero a cielo abierto y donde se asentaron numerosas familias de manera precaria. Varios años de intervención y la reubicación de la gran mayoría de ellas permitió que el morro hoy sea un gran jardín coronado en su cima con un vivero de plantas ornamentales liderado por mujeres que, además de ofrecer la guía y vender plantas, cuentan una historia de resistencia y perseverancia características de este barrio.',
+        'Un pequeño grupo de empeliculados con el tema de la sostenibilidad y el problema de las basuras, se dieron a la tarea de explorar estrategias reales y posibles de implementar contando con las dinámicas de la ciudad. Aprovechando los espacios disponibles en su entorno, crearon un proyecto de compostaje con la técnica denominada Pacas bio-digestoras Silva. Con estas han logrado tratar más de 4 toneladas de residuos orgánicos que producen en sus casas ¿Alguna vez habías pensado qué pasa con la basura que produces?',
+        'Jardín Circunvalar / Cerro Pan de Azúcar / Huertas caseras del Parque Biblioteca de San Cristóbal / Mercado Col y flor / Red de Huerteros Casa de la Cultura Los Alcázares / Barrio Naranjal.'
+    ];
+    
+    title = 'Medellín sostenible';
+    
+    $.each(locations5, function(index, value){
+        addMarker5(index, value, logos[0], title);
+    });
+    
+
+    var locations6 = [
+        {lat: 6.2609775, lng: -75.5766487},
+        {lat: 6.2577165, lng: -75.5890918},
+        {lat: 6.264745, lng: -75.5847107},
+        {lat: 6.2771457, lng: -75.5700965},
+        {lat: 6.2372616, lng: -75.5858295},
+        {lat: 6.2470025, lng: -75.5375514},
+    ];
+    
+    places = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    descriptionPlace = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    title = 'Equipamientos públicos para la ciudadanía';
+    
+    $.each(locations6, function(index, value){
+        addMarker6(index, value, logos[0], title);
+    });
+    
+
+    var locations7 = [
+        {lat: 6.2609775, lng: -75.5766487},
+        {lat: 6.2577165, lng: -75.5890918},
+        {lat: 6.264745, lng: -75.5847107},
+        {lat: 6.2771457, lng: -75.5700965},
+        {lat: 6.2372616, lng: -75.5858295},
+        {lat: 6.2470025, lng: -75.5375514},
+    ];
+    
+    places = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    descriptionPlace = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    title = 'Somos educación, arte y cultura';
+    
+    $.each(locations7, function(index, value){
+        addMarker7(index, value, logos[0], title);
     });
 
 
-
-//18
-//:
-//{lat: 6.251926, lng: -75.6009126}
-//19
-//:
-//{lat: 6.245461, lng: -75.5618417}
-//20
-//:
-//{lat: 6.3500098, lng: -75.7087648}
-//21
-//:
-//{lat: 6.2609775, lng: -75.5766487}
-//22
-//:
-//{lat: 6.2577165, lng: -75.5890918}
-//23
-//:
-//{lat: 6.264745, lng: -75.5847107}
-//24
-//:
-//{lat: 6.2771457, lng: -75.5700965}
-//25
-//:
-//{lat: 6.2372616, lng: -75.5858295}
-//26
-//:
-//{lat: 6.2470025, lng: -75.5375514}
-
+    var locations8 = [
+        {lat: 6.2609775, lng: -75.5766487},
+        {lat: 6.2577165, lng: -75.5890918},
+        {lat: 6.264745, lng: -75.5847107},
+        {lat: 6.2771457, lng: -75.5700965},
+        {lat: 6.2372616, lng: -75.5858295},
+        {lat: 6.2470025, lng: -75.5375514},
+    ];
     
+    places = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
     
+    descriptionPlace = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    title = 'Territorios jóvenes nocturnos';
+    
+    $.each(locations8, function(index, value){
+        addMarker8(index, value, logos[0], title);
+    });
+    
+
+    var locations9 = [
+        {lat: 6.2609775, lng: -75.5766487},
+        {lat: 6.2577165, lng: -75.5890918},
+        {lat: 6.264745, lng: -75.5847107},
+        {lat: 6.2771457, lng: -75.5700965},
+        {lat: 6.2372616, lng: -75.5858295},
+        {lat: 6.2470025, lng: -75.5375514},
+    ];
+    
+    places = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    descriptionPlace = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+    ];
+    
+    title = 'Somos jóvenes, somos diversos';
+    
+    $.each(locations9, function(index, value){
+        addMarker9(index, value, logos[0], title);
+    });
+
+
     
     
     //---------------------------------------------------------------
@@ -330,6 +520,26 @@ function optionsMarkers3()
 }
 
 
+function optionsMarkers4()
+{ 
+    if($("#chkItinerary4").prop('checked')){
+        showMarkers4(); 
+    }else{
+        clearMarkers4();
+    }
+}
+
+
+function optionsMarkers5()
+{ 
+    if($("#chkItinerary5").prop('checked')){
+        showMarkers5(); 
+    }else{
+        clearMarkers5();
+    }
+}
+
+
 // Adds a marker to the map and push to the array.
 //function addMarker(location) 
 //{
@@ -347,7 +557,7 @@ function optionsMarkers3()
 
 
 // Adds a marker to the map and push to the array.
-function addMarker1(index, location, logo) 
+function addMarker1(index, location, logo, title) 
 {
     var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -368,7 +578,7 @@ function addMarker1(index, location, logo)
     
     var marker = new google.maps.Marker({
         position: location,
-        title: 'Memoria',
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
         map: map, 
 //        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
 //        icon: 'http://img.javascriptes.com/javascript/blue-dot.png'
@@ -427,7 +637,7 @@ function deleteMarkers1()
 
 
 // Adds a marker to the map and push to the array.
-function addMarker2(index, location, name) 
+function addMarker2(index, location, name, title) 
 {
     var contentString = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -449,7 +659,7 @@ function addMarker2(index, location, name)
     
     var marker = new google.maps.Marker({
         position: location,
-        title: 'Medellín en movimiento',
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
         map: map
     });
 //    marker.setIcon('http://img.javascriptes.com/javascript/green-dot.png') 
@@ -495,15 +705,36 @@ function deleteMarkers2()
 
 
 // Adds a marker to the map and push to the array.
-function addMarker3(index, location) 
+function addMarker3(index, location, name, title) 
 {
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
     var marker = new google.maps.Marker({
         position: location,
-        title: 'Centro',
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
         map: map, 
         icon: 'assets/images/map-icons/Centro.png'
     });
     markers3.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
 }
 
 
@@ -536,3 +767,394 @@ function deleteMarkers3()
     clearMarkers3();
     markers3 = [];
 }
+
+
+// Adds a marker to the map and push to the array.
+function addMarker4(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Campesinos.png'
+    });
+    markers4.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll4(map) 
+{
+    for (var i = 0; i < markers4.length; i++) {
+        markers4[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers4() 
+{
+    setMapOnAll4(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers4() 
+{
+    setMapOnAll4(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers4() 
+{
+    clearMarkers4();
+    markers4 = [];
+}
+
+
+// Adds a marker to the map and push to the array.
+function addMarker5(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Sostenible.png'
+    });
+    markers5.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll5(map) 
+{
+    for (var i = 0; i < markers5.length; i++) {
+        markers5[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers5() 
+{
+    setMapOnAll5(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers5() 
+{
+    setMapOnAll5(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers5() 
+{
+    clearMarkers5();
+    markers5 = [];
+}
+
+
+// Adds a marker to the map and push to the array.
+function addMarker6(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Equipamientos.png'
+    });
+    markers6.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll6(map) 
+{
+    for (var i = 0; i < markers6.length; i++) {
+        markers6[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers6() 
+{
+    setMapOnAll6(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers6() 
+{
+    setMapOnAll6(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers6() 
+{
+    clearMarkers6();
+    markers6 = [];
+}
+
+
+// Adds a marker to the map and push to the array.
+function addMarker7(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Educacion.png'
+    });
+    markers7.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll7(map) 
+{
+    for (var i = 0; i < markers7.length; i++) {
+        markers7[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers7() 
+{
+    setMapOnAll7(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers7() 
+{
+    setMapOnAll7(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers7() 
+{
+    clearMarkers7();
+    markers7 = [];
+}
+
+
+// Adds a marker to the map and push to the array.
+function addMarker8(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Educacion.png'
+    });
+    markers8.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll8(map) 
+{
+    for (var i = 0; i < markers8.length; i++) {
+        markers8[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers8() 
+{
+    setMapOnAll8(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers8() 
+{
+    setMapOnAll8(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers8() 
+{
+    clearMarkers8();
+    markers8 = [];
+}
+
+
+// Adds a marker to the map and push to the array.
+function addMarker9(index, location, name, title) 
+{
+    var contentString = 
+        '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
+        '<div id="bodyContent">'+
+        '<p>'+ descriptionPlace[index] +'</p>'+
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+    
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        title: 'Ruta: ' + title + '. (Clic para ver sobre el lugar)',
+        map: map, 
+        icon: 'assets/images/map-icons/Educacion.png'
+    });
+    markers9.push(marker);
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
+}
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll9(map) 
+{
+    for (var i = 0; i < markers9.length; i++) {
+        markers9[i].setMap(map);
+    }
+}
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers9() 
+{
+    setMapOnAll9(null);
+}
+
+
+// Shows any markers currently in the array.
+function showMarkers9() 
+{
+    setMapOnAll9(map);
+}
+
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers9() 
+{
+    clearMarkers9();
+    markers9 = [];
+}
+

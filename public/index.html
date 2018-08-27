@@ -49,7 +49,7 @@
                     <li><a href="#sign-up" class="anchor">inscríbete</a></li>
                     <li><a href="#!" class="" data-toggle="modal" data-target="#modal-about-us">nosotros</a></li>
                     <li><a href="mediator-profile.html" class="">mediadores</a></li>
-                    <li><a href="#allies-project" class="anchor">aliados</a></li>
+                    <!--<li><a href="#allies-project" class="anchor">aliados</a></li>-->
                 </ul>
                     
                   
@@ -187,7 +187,7 @@
             <p>&nbsp;</p>
             <p class="text-center ">
                 <a href="http://bit.ly/inscripcionesmedellinenlacabeza" target="_blank" title="Suscríbete en Medellín en la Cabeza">
-                    <img src="assets/images/signup-button.png" class="signup-button" title="Suscríbete en Medellín en la Cabeza" alt="Suscríbete en Medellín en la Cabeza"/>
+                    <img src="assets/images/signup-button.png" class="signup-button" alt="Suscríbete en Medellín en la Cabeza" data-toggle='tooltip' data-placement='left' title="En este link podrás acceder al formulario de inscripción de Medellín en la Cabeza, lo cual te permitirá recibir quincenalmente en tu correo nuestra programación de recorridos. Si ya te inscribiste, también puedes hacer clic para ver la agenda y elegir el recorrido en el que vas a participar."/>
                 </a>
             </p>
             <p>&nbsp;</p>
@@ -213,11 +213,11 @@
         <div class="parallax"></div>
         
         
-        <div id="allies-project">
+<!--        <div id="allies-project">
             
         </div>
         
-        <div class="parallax2"></div>
+        <div class="parallax2"></div>-->
         
         
         <div id="content-common"></div>
@@ -276,17 +276,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title text-uppercase" id="exampleModalLabel2">página en construcción</h2>
+                        <h2 class="modal-title text-uppercase" id="exampleModalLabel2">crónicas</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p  class="lead text-center margin-modal">
-                            Nuestros callejeros están trabajando arduamente para tener este contenido disponible.
+                            En este lugar encontrarás los trabajos de algunos jóvenes que participaron en la convocatoria de crónicas Medellín en la Cabeza. Nuestros jurados están leyendo y releyendo. ¡Muy pronto tú conocerás los textos seleccionados!
                         </p>
                         <p class="text-center">
-                            <img src="assets/images/page-construction.jpeg" />
+                            <img src="assets/images/logo-header.png" />
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -336,6 +336,12 @@
                 clearMarkers1();
                 clearMarkers2();
                 clearMarkers3();
+                clearMarkers4();
+                clearMarkers5();
+                clearMarkers6();
+                clearMarkers7();
+                clearMarkers8();
+                clearMarkers9();
                 
                 loadImageGallery();
                 
@@ -367,6 +373,11 @@
                 
                 // Tooltip
                 $('[data-toggle="tooltip"]').tooltip();
+                
+                
+                $("#img-gallery").contextmenu(function(){
+                   window.open('http://bit.ly/fotosmedellinenlacabeza', '_blank'); 
+                });
 
                 
         
@@ -479,7 +490,7 @@
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img class='img' src='assets/images/gallery.png' title='Galería' alt='galería'>";        
+                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Estas son algunas de las fotos que hemos tomado en nuestros recorridos. Visita nuestro banco de imágenes completo haciendo clic aquí: http://bit.ly/fotosmedellinenlacabeza' >";        
                                 }
                                 content += "</a>";
                             }
