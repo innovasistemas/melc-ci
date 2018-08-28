@@ -162,7 +162,7 @@ ul.notas li#nota3 {
  
  #panel-itinerary {
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: 0%;
     z-index: 5;
     background-color: #fff;
