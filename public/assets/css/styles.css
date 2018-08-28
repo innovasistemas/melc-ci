@@ -134,6 +134,11 @@ ul.notas li#nota3 {
     margin-top: -20px;
 }
 
+#allies-project{
+    background-image: url('../images/img_parallax2.png');
+    margin-top: -20px;
+}
+
 #slider-advertisement{
     max-height: 150px;
 }
@@ -155,9 +160,9 @@ ul.notas li#nota3 {
 
  }
  
- #floating-panel {
-    position: relative;
-    top: 50px;
+ #panel-itinerary {
+    position: absolute;
+    top: 110%;
     left: 0%;
     z-index: 5;
     background-color: #fff;
@@ -167,8 +172,16 @@ ul.notas li#nota3 {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
-    width: 30%;
+    width: 25%;
     text-align: left;
+}
+
+
+.accordion {
+    position: absolute;
+    top: 75px;
+    left: 0%;
+    font-family: 'Roboto','sans-serif';
 }
 
 

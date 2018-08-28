@@ -49,6 +49,7 @@
                     <li><a href="#sign-up" class="anchor">inscríbete</a></li>
                     <li><a href="#!" class="" data-toggle="modal" data-target="#modal-about-us">nosotros</a></li>
                     <li><a href="mediator-profile.html" class="">mediadores</a></li>
+                    <!--<li><a href="#allies-project" class="anchor">aliados</a></li>-->
                 </ul>
                     
                   
@@ -73,16 +74,56 @@
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             
-            <div id="floating-panel">
-                <input type="checkbox" value="1" checked="checked" id="chkItinerary1" name="chkItinerary1" onclick="optionsMarkers1()" title="Equipamentos" />
-                Ruta 1
-                <input type="checkbox" value="2" checked="checked" id="chkItinerary2" name="chkItinerary2" onclick="optionsMarkers2()" title="Medellín tiene campesinos"/>
-                Ruta 2
+            
+            <div id="accordion" class="accordion11">
+                <p>
+                    
+<!--                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#panel-itinerary" aria-expanded="false" aria-controls="panel-itinerary">
+                      Ocultar rutas
+                    </button>-->
+                </p>
                 
+                <div id="panel-itinerary">
+                    <!--<h3>Rutas</h3>-->
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapse-itinerary" role="button" aria-expanded="false" aria-controls="collapse-itinerary">
+                        Mostrar/Ocultar Rutas
+                    </a>
+                    <div id="collapse-itinerary" class="collapse">
+<!--                        <input type="checkbox" value="1" id="chkItinerary1" name="chkItinerary1" onclick="optionsMarkers1()" data-toggle="tooltip" data-placement="bottom" title="No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día."/>
+                        <label for="chkItinerary1">Haciendo memoria para construir futuro</label>
+                        <br>
+                        <input type="checkbox" value="2" id="chkItinerary2" name="chkItinerary2" onclick="optionsMarkers2()" data-toggle="tooltip" data-placement="bottom" title="Estamos seguros de que alguien que conoce y sabe utilizar el sistema de transporte público masivo de la ciudad tiene un alto porcentaje de éxito en conocerla y aprender de ella ¡Un transporte público incluyente, equitativo, seguro, sostenible y conectado a la intermodalidad es la mejor excusa para salir a callejear!"/>
+                        <label for="chkItinerary2">Medellín en movimiento</label>
+                        <br>
+                        <input type="checkbox" value="3" id="chkItinerary3" name="chkItinerary3" onclick="optionsMarkers3()" data-toggle="tooltip" data-placement="bottom" title="El centro de la ciudad es el territorio con menor número de población residente (aproximadamente 80.000), pero por sus calles pasan diariamente cerca de ¡1.2 millones de personas! Muchos de sus lugares convocan a miles de jóvenes cotidianamente: universidades, colegios, teatros, restaurantes, museos, parques, centros financieros y comerciales, clínicas y lugares de diversión nocturna ¡No te niegues la oportunidad de visitar un lugar lleno de historias y cultura!"/>
+                        <label for="chkItinerary3">El centro: un lugar para descubrir</label>
+                        <br>
+                        <input type="checkbox" value="4" id="chkItinerary4" name="chkItinerary4" onclick="optionsMarkers4()" data-toggle="tooltip" data-placement="bottom" title="¿Sabes qué porcentaje del suelo de Medellín es rural?, ¿cuáles son los corregimientos de nuestra ciudad y qué porcentaje de la población del municipio habita en estos territorios? ¿Sabes cómo se hace una silleta?, ¿qué hacen y venden en Altavista?, ¿qué se cultiva en San Cristóbal?, ¿qué corregimiento tiene un cable aéreo? Cuando tengas las respuestas a las preguntas anteriores, puedes hacerte muchas otras y podrás encontrar la respuesta a la pregunta ¿Tiene Medellín campesinos?"/>
+                        <label for="chkItinerary4">¿Tiene Medellín campesinos?</label>
+                        <br>
+                        <input type="checkbox" value="5" id="chkItinerary5" name="chkItinerary5" onclick="optionsMarkers5()" data-toggle="tooltip" data-placement="bottom" title="Ojalá esta ruta motive reflexiones sobre qué consideras y en qué piensas cuando se habla de sostenibilidad. ¿Qué significa que algo sea sostenible?, ¿qué significó para nuestros ancestros el buen vivir? o ¿cuáles podrían ser las relaciones armónicas con la naturaleza? Muchos jóvenes tienen presente las últimas contingencias ambientales que ha vivido la ciudad y algunos ya generaron cambios en sus comportamientos y actitudes con la vida. Descubre, pregunta, aporta o imita aquellos comportamientos ciudadanos que nos permitan convivir y reducir nuestro impacto en el medio ambiente ¡Ah!  Pero no olvides que también existen la sostenibilidad social, económica, política, entre otras."/>
+                        <label for="chkItinerary5">Medellín sostenible</label>
+                        <br>
+                        <input type="checkbox" value="6" id="chkItinerary6" name="chkItinerary6" onclick="optionsMarkers6()" data-toggle="tooltip" data-placement="bottom" title="Nuestra ciudad puede estar orgullosa de contar con un importante número de equipamientos públicos en cada una de sus comunas y corregimientos. Parques, plazas, centros culturales, museos, sedes comunales, bibliotecas, UVA, placas polideportivas, parques lineales, instituciones educativas, unidades deportivas, jardín circunvalar y hasta cerros tutelares con reservas forestales. El reto de los jóvenes hoy bajarle al cemento y subirle a los contenidos, la programación, la oferta y las oportunidades de calidad que los ciudadanos pueden encontrar en estos equipamientos; hacer que lo construido socialmente permanezca en el tiempo ¿Cuántos equipamientos de ciudad visitas cotidianamente? ¿Conoces su oferta educativa, cultural y artística? Si no ¡¿qué estás esperando?!"/>
+                        <label for="chkItinerary6">Equipamientos públicos para la ciudadanía</label>
+                        <br>
+                        <input type="checkbox" value="7" id="chkItinerary7" name="chkItinerary7" onclick="optionsMarkers47()" data-toggle="tooltip" data-placement="bottom" title="Hoy existen muchas expresiones educativas, artísticas y culturales que van más allá de la institucionalidad, donde los jóvenes encontramos múltiples formas de manifestarnos con nuestros talentos y propuestas. No sólo se nos educa, también se aprende con nosotros, desde nuestra capacidad creativa, de innovación y transformación de procesos. Sabemos que la ciudad cuenta con una oferta diversa, numerosa y complementaria, y podemos afirmar que todos los días suceden actividades de este tipo en la ciudad."/>
+                        <label for="chkItinerary7">Somos educación, arte y cultura</label>
+                        <br>
+                        <input type="checkbox" value="8" id="chkItinerary8" name="chkItinerary8" onclick="optionsMarkers8()" data-toggle="tooltip" data-placement="bottom" title="Al caer la noche los ritmos cambian, pero aún nos queda mucha energía y buscamos alternativas para compartir. La noche no se puede asociar exclusivamente a la diversión, a la comida o al licor, también la aprovechamos para muchas otras actividades. En las noches algunos estudian, hacen deporte o se dedican a sus actividades productivas ¡La Medellín nocturna es una oportunidad para encontrarnos con los otros! Si eres de los que creen que en la noche hay que entrarse para la casa o la ciudad pierde la gracia, aquí te vamos a contar de muchos lugares que están llenos de vida en las noches."/>
+                        <label for="chkItinerary8">Territorios jóvenes nocturnos</label>
+                        <br>
+                        <input type="checkbox" value="9" id="chkItinerary9" name="chkItinerary9" onclick="optionsMarkers9()" data-toggle="tooltip" data-placement="bottom" title="La juventud es tan diversa como la humanidad misma, pero es necesario reconocerla, respetarla y protegerla, porque en ella está la riqueza presente y futura de nuestra sociedad y de nuestra ciudad. Nos gusta recorrer los lugares en los que habitan diferentes juventudes, ya sea por su preferencia sexual, su procedencia étnica, sus gustos musicales, religiosos o deportivos. Nuestros hobbies, saberes, capacidades e ideologías nos diferencian, pero nos dan muchos temas de qué hablar y motivos para conocernos."/>
+                        <label for="chkItinerary9">Somos jóvenes, somos diversos</label>-->
+                    </div>
+                    
+
+
+    <!--                <input onclick="clearMarkers();" type=button value="Ocultar">
+                    <input onclick="showMarkers();" type=button value="Mostrar">
+                    <input onclick="deleteMarkers();" type=button value="Delete Markers">-->
+                </div>
                 
-<!--                <input onclick="clearMarkers();" type=button value="Ocultar">
-                <input onclick="showMarkers();" type=button value="Mostrar">
-                <input onclick="deleteMarkers();" type=button value="Delete Markers">-->
             </div>
 
             
@@ -146,7 +187,7 @@
             <p>&nbsp;</p>
             <p class="text-center ">
                 <a href="http://bit.ly/inscripcionesmedellinenlacabeza" target="_blank" title="Suscríbete en Medellín en la Cabeza">
-                    <img src="assets/images/signup-button.png" class="signup-button" title="Suscríbete en Medellín en la Cabeza" alt="Suscríbete en Medellín en la Cabeza"/>
+                    <img src="assets/images/signup-button.png" class="signup-button" alt="Suscríbete en Medellín en la Cabeza" data-toggle='tooltip' data-placement='left' title="En este link podrás acceder al formulario de inscripción de Medellín en la Cabeza, lo cual te permitirá recibir quincenalmente en tu correo nuestra programación de recorridos. Si ya te inscribiste, también puedes hacer clic para ver la agenda y elegir el recorrido en el que vas a participar."/>
                 </a>
             </p>
             <p>&nbsp;</p>
@@ -168,80 +209,22 @@
             </a>
 
         </div>
-
-        <div id="content-common"></div>
         
         <div class="parallax"></div>
         
         
+<!--        <div id="allies-project">
+            
+        </div>
+        
+        <div class="parallax2"></div>-->
+        
+        
+        <div id="content-common"></div>
+        
         <!-- Modales -->
         
-        <!-- Modal texto mapa -->
-        <div class="modal fade" id="content-map-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title text-uppercase" id="exampleModalLabel">mapa joven de medellín</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p  class="lead text-left margin-modal">
-                            Este mapa contiene una selección de algunos de los lugares que hemos visitado en nuestros 
-                            recorridos. Antes de explorarlo puedes preguntarte ¿qué quiero conocer hoy? ¿dónde y cómo 
-                            voy a llegar? ¿a quién quiero invitar? O puedes mirarlo sin expectativas dejando que alguno 
-                            de estos lugares llame tu atención.
-                            Queremos que este mapa te acerque a nuevos territorios, que despierte tu sensibilidad de 
-                            turista para que te conviertas en un verdadero habitante local. La ciudad te ofrece algo 
-                            diferente cada día, así que aproveches esta excelente forma de ejercer la ciudadanía 
-                            siguiendo alguna de las nueve rutas que te proponemos o creando tu propia ruta.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary text-capitalize" data-dismiss="modal">cerrar</button>
-                    </div>
-                </div>
-              </div>
-        </div>
-        <!-- Fin Modal texto mapa -->
         
-        <!-- Modal imagen mapa -->
-        <div class="modal fade" id="content-map-modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title text-uppercase" id="exampleModalLabel1">Cementerio de San Javier</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-center margin-modal">
-                            <img src='assets/images/map-points/sanjavier-stairs.png' />
-                        </p>
-                        <p class="lead text-left margin-modal">
-                            En la ciudad de Medellín aún quedan algunos cementerios de barrio como los de 
-                            El Rincón, Belén Miravalle, El Poblado y San Javier. Este último cada día 
-                            transforma los hechos de muerte y dolor en ejercicios de memoria y vida. Allí 
-                            podrás encontrar grafitis y jardines de resistencia que te hablarán de una 
-                            nueva forma de mirar el conflicto en este territorio liderado por colectivos 
-                            de jóvenes. 
-                        </p>
-                        <p class="lead text-left margin-modal">
-                            Cerca están el Parque Biblioteca San Javier y las escaleras eléctricas donde 
-                            se realiza un tour de grafitis como voz pública de estos barrios que perdonan, 
-                            pero no olvidan. 
-                        </p>
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary text-capitalize" data-dismiss="modal">cerrar</button>
-                    </div>
-                </div>
-              </div>
-        </div>
-        <!-- Fin Modal imagen mapa -->
 
         <!-- Modal sobre nosotros -->
         <div class="modal fade" id="modal-about-us" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -293,17 +276,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title text-uppercase" id="exampleModalLabel2">página en construcción</h2>
+                        <h2 class="modal-title text-uppercase" id="exampleModalLabel2">crónicas</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p  class="lead text-center margin-modal">
-                            Nuestros callejeros están trabajando arduamente para tener este contenido disponible.
+                            En este lugar encontrarás los trabajos de algunos jóvenes que participaron en la convocatoria de crónicas Medellín en la Cabeza. Nuestros jurados están leyendo y releyendo. ¡Muy pronto tú conocerás los textos seleccionados!
                         </p>
                         <p class="text-center">
-                            <img src="assets/images/page-construction.jpeg" />
+                            <img src="assets/images/logo-header.png" />
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -323,14 +306,17 @@
               
         <!--Scripts de la página-->
         <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <!--<script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>-->
+        <script type="text/javascript" src="assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
         <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
         <script type="text/javascript" src="assets/js/jquery.fancybox.js"></script>
         <script type="text/javascript" src="assets/js/stickyMojo.js"></script>
         <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyChD53dyoftlc72doGeUPUAC6U_DMPeerU"></script>
+        <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyChD53dyoftlc72doGeUPUAC6U_DMPeerU"></script>--><!--Api personal-->
+<!--        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCj0cpqWl8YhdLp5mneH8lgys5luN2bwSw"></script>Api Melc-->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAYyhDj5L_sjcllmb8PX9lqItQTPNXrJuk"></script><!--Api Melc pago-->
         <script type="text/javascript" src="assets/js/functions-maps.js"></script>
 
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>-->
@@ -340,9 +326,24 @@
         <script>
             $(function(){ 
                 
+                // Carga de funciones para formar la página
+                
                 loadLayout();
                 
+                loadMaps();
+                
                 initMap();
+                
+
+                clearMarkers1();
+                clearMarkers2();
+                clearMarkers3();
+                clearMarkers4();
+                clearMarkers5();
+                clearMarkers6();
+                clearMarkers7();
+                clearMarkers8();
+                clearMarkers9();
                 
                 loadImageGallery();
                 
@@ -351,6 +352,9 @@
                 loadSocialNetworks();
                 
                 loadFooterDate();
+                
+                
+                //Carga de plugins
                 
                 // Efecto de scroll parallax
                 $('.anchor').click(function(){
@@ -361,8 +365,27 @@
                     }, 2000);
                     return false;
                 });
+                
+                                
+                // Efecto acordeón
+//                $('#accordion').accordion();
+                
+                //  Estilos para checkbox
+//                $("input[type='checkbox']").checkboxradio();
+                
+                // Tooltip
+                $('[data-toggle="tooltip"]').tooltip();
+                
+                
+                $("#img-gallery").contextmenu(function(){
+                   window.open('http://bit.ly/fotosmedellinenlacabeza', '_blank'); 
+                });
 
-                                              
+                
+        
+                //
+//                $("#chkItinerary1").css('display', 'none')
+//                document.getElementById("chkItinerary1").setAttribute('title', 'No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día.')
                 
             });
             
@@ -371,11 +394,7 @@
             // The user can then click an option to hide, show or delete the markers.
             
             
-            // Variables globales a nivel de página+
             
-            var map;
-            var markers1 = [];
-            var markers2 = [];
             
             
             //****************************
@@ -390,9 +409,6 @@
                 $('#content-common').load('layout/content-common.html');
                 $('#footer').load('layout/footer.html');
             }  
-            
-            
- 
             
             
             function loadAdvertisement()
@@ -476,7 +492,7 @@
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img class='img' src='assets/images/gallery.png' title='Galería' alt='galería'>";        
+                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Estas son algunas de las fotos que hemos tomado en nuestros recorridos. Visita nuestro banco de imágenes completo haciendo clic aquí: http://bit.ly/fotosmedellinenlacabeza' >";        
                                 }
                                 content += "</a>";
                             }
