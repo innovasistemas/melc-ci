@@ -401,30 +401,36 @@ function initMap()
     
 
     var locations9 = [
-        {lat: 6.2609775, lng: -75.5766487},
-        {lat: 6.2577165, lng: -75.5890918},
-        {lat: 6.264745, lng: -75.5847107},
-        {lat: 6.2771457, lng: -75.5700965},
-        {lat: 6.2372616, lng: -75.5858295},
-        {lat: 6.2470025, lng: -75.5375514},
+        {lat: 6.2350287, lng: -75.6040404},
+        {lat: 6.2110582, lng: -75.5751874},
+        {lat: 6.256864, lng: -75.5923187},
+        {lat: 6.229265, lng: -75.5503717},
+        {lat: 6.2684353, lng: -75.5682742},
+        {lat: 6.251233, lng: -75.561925},
+        {lat: 6.252932, lng: -75.5708444},
+        {lat: 6.2698761, lng: -75.5681568},
     ];
     
     places = [
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
+        'Plazoleta de la Nueva Villa de Aburrá',
+        'Granja Somos Gente (Corregimiento de San Cristóbal)',
+        'Unidad Deportiva Atanasio Girardot',
+        'Centro de formación Los Pomos',
+        'Parque de los Deseos',
+        'Corporación Carabantú Afrocolombiana de Desarrollo Social y Cultural ',
+        'Esquina del Raudal',
+        'Exploratorio'
     ];
     
     descriptionPlace = [
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
+        'Esta plazoleta con forma de herradura se construyó en la segunda etapa de la urbanización de la Nueva Villa de Aburrá a comienzos de los años 80. Hoy es lugar de encuentro de jóvenes amantes de diferentes tendencias del rock. El street workout, escuelas de pensamiento como de la Fernando González, los amantes del juego "Mil espadas" y el ya institucionalizado concierto del Grupo Suramérica para despedir el año, se dan cita en este espacio',
+        'Este lugar alberga a población en condición de calle que adelanta su proceso de reintegración a la sociedad. Allí, mediante cultivos agrícolas y actividades complementarias, pasa los días y las noches este grupo poblacional que tiene mucho que aportar a los jóvenes desde su experiencia de vida.',
+        'La unidad deportiva de la ciudad es un espacio donde las noches están vivas hasta muy tarde. Jóvenes que practican de manera competitiva alguna disciplina deportiva, se recrean con una actividad física despreocupada o se enfrenta a las peripecias de un skate, una bici o unos patines, se encuentran allí. Y ni hablar de los aficionados al fútbol que dejan escapar sus emociones por el amor a su camiseta. Es una pasión que ha intentado convertirse en acciones creadoras, creativas y ciudadanas para superar el estigma que cargan las palabras hincha o barra.',
+        'Las creencias religiosas pueden ser el motor de vida para muchos y la diversidad de estas creencias en la ciudad es lo que la hace fascinante y nos impulsa ser mejores personas cada día. En este lugar se desarrolla el programa Animadores de la Juventud que son jóvenes católicos comprometidos con la vida, la vocación y el servicio. Cada uno recibe una formación integral que le permite replicar la experiencia a otros jóvenes.',
+        'Este lugar está ubicado estratégicamente en el sector Carabobo Norte, debajo de la Estación Universidad del Metro, se convirtió en el referente de encuentro para buena parte de la población LGBTI de la ciudad. Allí, con la diversa oferta cultural de la Fundación EPM, la Universidad de Antioquia, la Alcaldía y otras instituciones, esta población encontró un lugar donde la diversidad es respetada.',
+        'La Corporación Afrocolombiana de Desarrollo Social y Cultural está localizada en el barrio Los Ángeles y trabaja por la reivindicación, reconocimiento y fortalecimiento de la labor de la mujer y los derechos de la población afrocolombiana en Medellín, mediante la implementación de acciones en contra del racismo y la xenofobia; la promoción de la etno-educación afrocolombiana y la cátedra de estudios afrocolombianos.',
+        'Este lugar es otra expresión de la diversidad en la ciudad. Por décadas ha sido un espacio donde se ha ejercido la prostitución, pero que no ha escapado a la visita de la poesía, la música, el baile y el encuentro de amigos bohemios. Un lugar del que han salido importantes exponentes de la literatura como Mario Escobar Velásquez con algunos de sus cuentos.',
+        'Este es un espacio lleno de empeliculados buscando cómo inventar algo nuevo ¿Ya habías escuchado algo sobre un lugar así? Toma el Metro, llega al Parque Explora y en sus afueras, con entrada gratis, vas a encontrar tal vez a alguien tan empeliculado como tú. Los jóvenes buscamos maneras para innovar en diversos procesos para que se acoplen a nuestros ritmos y a nuestras inquietudes. Allí también encontrarás experiencias con sonido, amplificación, generación alternativa de energías, stop motion, escuchas remotas, entre otras. En fin, ¡como para creerse científico!'
     ];
     
     title = 'Somos jóvenes, somos diversos';
