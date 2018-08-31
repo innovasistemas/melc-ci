@@ -165,10 +165,6 @@
                 
                 loadRecords();
                 
-                $('[data-toggle="tooltip"]').tooltip();
-                
-                $('#frmRegister').ketchup();
-                
                 
                 $("#newRecord").click(function(){
                     newRecord(); 
@@ -202,11 +198,6 @@
                         resetForm();
                         cleanForm();
                     }  
-                });
-                
-                
-                $("#frmRegister").on('reset', function(){
-                    resetForm();
                 });
                 
                 

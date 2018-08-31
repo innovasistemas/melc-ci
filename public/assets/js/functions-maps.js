@@ -460,7 +460,9 @@ function loadMaps()
             '0': 'id',
             '1': 'name',
             '2': 'description',
-            '3': 'logo'
+            '3': 'logo',
+            '4': 'color'
+            
         }                   
     }
 
@@ -478,7 +480,7 @@ function loadMaps()
                 id = 'chkItinerary' + value.id;
                 functionOptionMarker = 'optionsMarkers' + value.id + '()';
                 content += "<input type='checkbox' value='" + value.id + "' id='" + id + "' name='" + id + "' onclick='" + functionOptionMarker + "' data-toggle='tooltip' data-placement='bottom' title='" + value.description + "'/>";
-                content += "<label for='" + id + "' title='" + value.description + "'>" + value.name +"</label>";
+                content += "<label for='" + id + "' title='" + value.description + "' style='color:" + value.color + ";'>" + value.name+"</label>";
                 content += "<br>";
                 logos[index] = value.logo;        
             });
