@@ -36,13 +36,15 @@ function enabledForm(sw)
 
 function cleanForm()
 {
-    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], textarea').val('');
+    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], textarea').val('');
 }
 
 
 function resetForm()
-{
-    enabledForm(true); 
+{ 
+    if($("#btnReset").attr('data-page') !== "index"){
+        enabledForm(true); 
+    }
     $(".ketchup-error").css("display", "none");
     
     $("#frmRegister").find('#logoViewUpdate').attr('src', '#');

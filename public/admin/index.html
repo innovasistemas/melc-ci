@@ -42,22 +42,19 @@
             <p>&nbsp;</p>
             
             
-            
             <!--Formulario-->
             <div class="row" id="divForm">
                 <form role="form" name="frmRegister" id="frmRegister" class="text-capitalize" enctype="multipart/form-data">
                       
-                    <input type="text" name="txtId" id="txtId" class="hideElement" value="" disabled="disabled"/>
-                    
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">nombre</label>
+                            <div class="form-group" id="divUser">
+                                <label for="txtUser" class="control-label">usuario</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-4-user.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
+                                    <input type="text" name="txtUser" id="txtUser" class="form-control input-lg" placeholder="usuario" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese el nombre de usuario" /> 
                                 </div>                   
                             </div>
                         </div>
@@ -65,13 +62,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divDescription">
-                                <label for="txtPassword" class="control-label">descripción</label>
+                            <div class="form-group" id="divPassword">
+                                <label for="txtPassword" class="control-label">contraseña</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-204-lock.png"/>
                                     </span>
-                                    <input type="text" name="txtPassword" id="txtPassword" class="form-control input-lg" placeholder="contraseña" maxlength="30" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(6))" title="ingrese su contraseña" />
+                                    <input type="password" name="txtPassword" id="txtPassword" class="form-control input-lg" placeholder="contraseña" maxlength="30" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese su contraseña" />
                                 </div>                   
                             </div>
                         </div>
@@ -79,7 +76,7 @@
                                      
                     <div class="form-group">
                         <input type="button" value="ingresar" class="btn btn-primary" id="btnSave" title="enviar" />
-                        <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" />
+                        <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" data-page="index" title="restablecer" />
                     </div>
 
                 </form>
@@ -105,6 +102,7 @@
         <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
         
         <div id="divStyles"></div>
         
@@ -114,6 +112,19 @@
                 loadLayout();
                 
                 loadFooterDate();
+                
+                //Validaciones focosout: longitud y otros       
+                $("#txtUser").focusout(function(){
+                    $("#txtUser").val($("#txtUser").val().trim());
+                    return validateLength($("#divUser"), $("#txtUser"), 1);
+                });
+                
+                
+                $("#txtPassword").focusout(function(){
+                    $("#txtPassword").val($("#txtPassword").val().trim());
+                    return validateLength($("#divPassword"), $("#txtPassword"), 1);
+                });
+                
                 
                 
                 
