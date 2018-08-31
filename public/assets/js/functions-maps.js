@@ -129,6 +129,7 @@ function initMap()
             $.each(locations, function(index, value){
                 addMarker(index, value);
             })
+            clearMarkers();
         }
     }); 
 }
@@ -166,7 +167,6 @@ function addMarker(index, location)
     });
     
     markers.push(marker);
-    clearMarkers();
 }
 
 
