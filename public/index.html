@@ -281,7 +281,7 @@
                 
                 initMap();
                 
-                clearMarkers();
+//                clearMarkers();
                 
                 loadImageGallery();
                 
@@ -400,11 +400,11 @@
                         var content = "";
                         $.each(data, function(index, value){
                             if(value.active == 1){
-                                content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + "' alt='" + value.description + "'>";
+                                content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>' alt='" + value.description + "'>";
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Estas son algunas de las fotos que hemos tomado en nuestros recorridos. Visita nuestro banco de imágenes completo haciendo clic aquí: http://bit.ly/fotosmedellinenlacabeza' >";        
+                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Estas son algunas de las fotos que hemos tomado en nuestros recorridos. Visita nuestro banco de imágenes completo ingresando en: http://bit.ly/fotosmedellinenlacabeza' >";        
                                 }
                                 content += "</a>";
                             }

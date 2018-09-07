@@ -85,7 +85,6 @@ function initMap()
         center: uluru,
         title: 'Medellín',
         mapTypeId: 'roadmap'
-
     });
     var marker = new google.maps.Marker({position: uluru, map: map});
 
@@ -123,17 +122,14 @@ function initMap()
             var id;
             $.each(data, function(index, value){
                 idMap[index] = parseInt(value.id_map);
-//                idMapNumbers[index] = parseInt(value.id_map);
                 locations[index] = {lat: parseFloat(value.latitude), lng: parseFloat(value.longitude)};
                 places[index] = value.name;
                 descriptionPlace[index] = value.description;
                 urlPlace[index] = value.url;
             });
-            console.log(idMap)
             $.each(locations, function(index, value){
                 addMarker(index, value);
-            })
-            
+            });
         }
     }); 
 }
@@ -143,54 +139,55 @@ function initMap()
 // Adds a marker to the map and push to the array.
 function addMarker(index, location) 
 { 
-    var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
+    var contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
             '<h1 id="firstHeading" class="firstHeading">' + places[index] + '</h1>' +
-            '<div id="bodyContent">'+
+            '<div id="bodyContent">' +
             '<p>'+ descriptionPlace[index] +'</p>' +
-            '<p>Lugar en detalle: <a href="' + urlPlace[index] + '" target="_blank">' + urlPlace[index] + 'dd</a></p>'+
-            '</div>'+
+            '<p>Lugar en detalle: <a href="' + urlPlace[index] + '" target="_blank">' + urlPlace[index] + 'dd</a></p>' +
+            '</div>' +
             '</div>';
 
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
+    var infoWindow = new google.maps.InfoWindow({
+        content: contentString
+    });
         
     var pos = findElementArray(idItinerary, idMap[index]);
     
     var marker = new google.maps.Marker({
         position: location,
-        title: 'Ruta: ' + names[pos] + '. (Clic para ver sobre el lugar)',
+        title: 'Ruta: ' + names[pos] + '. (Clic para ver acerca del lugar)',
         map: map, 
         icon: 'assets/images/map-icons/' + logos[pos]
     });
     
     marker.addListener('click', function() {
-        infowindow.open(map, marker);
+        infoWindow.open(map, marker);
     });
     
     markers.push(marker);
+    clearMarkers(0, markers.length - 1);
 }
 
 
 function optionsMarkers(id)
 {
+    var element = parseInt($("#" + id).val());
+    var positionInitial = findElementArray(idMap, element);
+    var positionFinal = findLastElementSubArray(idMap, positionInitial);
     if($("#" + id).prop('checked')){
-        var element = parseInt($("#" + id).val());
-        var positionInitial = findElementArray(idMap, element);
-        var positionFinal = findLastElementSubArray(idMap, positionInitial);
         showMarkers(positionInitial, positionFinal); 
     }else{
-        clearMarkers();
+        clearMarkers(positionInitial, positionFinal);
     }
 }
 
 
 // Removes the markers from the map, but keeps them in the array.
-function clearMarkers() 
+function clearMarkers(positionInitial, positionFinal) 
 {
-    setMapOnAll(null, 0, idMap.length-1);
+    setMapOnAll(null, positionInitial, positionFinal);
 }
 
 
@@ -215,7 +212,7 @@ function setMapOnAll(map, positionInitial, positionFinal)
 //    for (var i = 0; i < markers.length; i++) {
 //        markers[i].setMap(map);
 //    }
-    for (var i = positionInitial; i < positionFinal; i++) {
+    for (var i = positionInitial; i <= positionFinal; i++) {
         markers[i].setMap(map);
     }
 }
@@ -241,10 +238,12 @@ function findElementArray(arrayData, item)
 function findLastElementSubArray(arrayData, positionInitial)
 {
     var positionFinal = positionInitial;
+    var sw = false;
     var i = positionInitial + 1;
-    while(i < arrayData.length && positionFinal === positionInitial){
+    while(i < arrayData.length && !sw){
         if(arrayData[i] !== arrayData[positionInitial]){
             positionFinal = i - 1;
+            sw = true;
         }else{
             i++;
         }
@@ -252,6 +251,6 @@ function findLastElementSubArray(arrayData, positionInitial)
     if(i === arrayData.length){
         positionFinal = i - 1;
     }
-    return positionFinal
+    return positionFinal;
 }
 
