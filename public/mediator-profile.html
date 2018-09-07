@@ -75,12 +75,22 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color"></footer>
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
+            
+            <div id="footer-links" class="container-fluid text-center text-md-left"></div>
+            
+            <div id="footer-date" class="footer-copyright text-center py-3 text-capitalize">
+                &copy; <span id="footer-date-copyright"></span> copyright:
+                <a href="#!">medellín en la cabeza</a>
+            </div>
+            
+        </footer>
         <!-- Fin pie de página -->
               
         <!--Scripts de la página-->
         <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <!--<script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>-->
+        <script type="text/javascript" src="assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
         <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
@@ -92,31 +102,20 @@
         <script>
             $(function(){ 
                 
-                loadLayout();
+                loadLayout(false);
                 
                 loadMediatorProfile()
                 
-                loadFooterDate();
-                
                 loadSocialNetworks();
-                
-                
+
+                loadFooterDate();
+                                
             });
             
             
             //****************************
             //Funciones Javascript
             //****************************
-            
-            function loadLayout()
-            {
-                $('#divStyles').load('styles.html');
-                $('#navbar-top').load('layout/navbar-top-internal.html');
-                $('#myCarousel').load('layout/header.html');
-                $('#content-common').load('layout/content-common.html');
-                $('#footer').load('layout/footer.html');
-            }  
-            
             
             function loadMediatorProfile()
             {
@@ -154,7 +153,7 @@
                                         column = 0;
                                     }
                                     content += "<div class='col-sm-4'>";
-                                    content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + "' data-fancybox='gallery' data-caption='" + value.user  + "'>" 
+                                    content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>'>" 
                                     content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
                                     content += "</a>";
                                     content += "</div>";
@@ -171,17 +170,6 @@
                         $('#mediator-profile').html(content);
                     }
                 }); 
-            }
-            
-            
-            function loadFooterDate()
-            {
-                var date = new Date();
-                var year = date.getFullYear();
-//                alert(year + 5)
-                
-                $('#footer-date').html('1 + year');
-                    
             }
             
         </script>

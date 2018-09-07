@@ -1,8 +1,35 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Funciones Javascript para la home (inicio) y las internas
+ * 
  */
+
+//****************************
+//Funciones de página
+//****************************
+
+function loadLayout(isHome)
+{
+    $('#divStyles').load('styles.html');
+    if(!isHome){
+        $('#navbar-top').load('layout/navbar-top-internal.html');
+    }
+    $('#myCarousel').load('layout/header.html');
+    $('#content-common').load('layout/content-common.html');
+    $('#footer-links').load('layout/footer.html');
+}  
+            
+
+function loadFooterDate()
+{
+    var date = new Date();
+    var year = date.getFullYear();
+    $('#footer').find('#footer-date').find('#footer-date-copyright').html(year);
+}
+
+
+//****************************
+//Funciones del CRUD y BD
+//****************************
 
 function loadSocialNetworks()
 {
@@ -49,3 +76,5 @@ function loadSocialNetworks()
     }); 
 }
             
+
+

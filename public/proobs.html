@@ -10,7 +10,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
         
     </head>
     
@@ -23,27 +23,31 @@
         <!-- Half Page Image Background Carousel Header -->
         <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
         <!-- Fin header (cabecera)-->
-                    
+        
         <!-- Inicio contenido - (formulario principal) -->
-        <div id="container" class="modal-dialog container-top">
-            
-            <hr/>
-            
-            <h1 class="h1 text-capitalize">panel principal</h1>
-            
-            <div class="text-center">
-                <img src="../assets/images/logo-header.png" alt="Medellín en la Cabeza" title="Medellín en la Cabeza" />
-            </div>
-            
+        <div id="content-map">
             <p>&nbsp;</p>
-            
-            <div id="content-common"></div> 
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
+        
+        <div id="container" class="modal-dialog lead text-justify">
+            
+
+            <h1>MAPA JOVEN DE MEDELLÍN</h1>
+            
+            
+        </div>
+        
+        
+        <div id="content-common"></div>
+        
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-        <!--<div id="footer" class="navbar navbar-inverse navbar-color">-->
-         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
             
             <div id="footer-links" class="container-fluid text-center text-md-left"></div>
             
@@ -56,30 +60,32 @@
         <!-- Fin pie de página -->
               
         <!--Scripts de la página-->
-        <script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script> 
-        <!--<script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>-->
-        <script type="text/javascript" src="../assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="../assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
-        <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
-        <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
-        <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-2.1.4.js"></script> 
+        <script type="text/javascript" src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <script type="text/javascript" src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script type="text/javascript" src="assets/js/functions-commons-home.js"></script>
         
         <div id="divStyles"></div>
         
         <script>
             $(function(){ 
                 
-                loadLayout(false);
+                loadLayout();
                 
                 loadFooterDate();
                 
+                loadSocialNetworks();
+                
             });
             
-                        
+            
             //****************************
             //Funciones Javascript
             //****************************
+            
+            
             
             
         </script>

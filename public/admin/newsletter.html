@@ -88,12 +88,22 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-        <footer id="footer" class="navbar navbar-color"></footer>
+         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
+            
+            <div id="footer-links" class="container-fluid text-center text-md-left"></div>
+            
+            <div id="footer-date" class="footer-copyright text-center py-3 text-capitalize">
+                &copy; <span id="footer-date-copyright"></span> copyright:
+                <a href="#!">medellín en la cabeza</a>
+            </div>
+            
+        </footer>
         <!-- Fin pie de página -->
                
         <!--Scripts de la página-->
         <script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script> 
-        <script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+        <!--<script type="text/javascript" src="../assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>-->
+        <script type="text/javascript" src="../assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
         <script type="text/javascript" src="../assets/css/bootstrap-3.3.6/dist/js/bootstrap.js"></script>
         <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
         <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
@@ -110,6 +120,8 @@
                 loadLayout();
                 
                 loadRecords();
+                
+                loadFooterDate();
                 
                 
                 $("#newRecord").click(function(){

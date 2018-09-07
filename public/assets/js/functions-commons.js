@@ -1,7 +1,6 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Funciones para el admin
+ * 
  */
 
 
@@ -13,13 +12,23 @@
 //****************************
 //Funciones de página
 //****************************
-function loadLayout()
+function loadLayout(isHome)
 {
     $('#divStyles').load('styles.html');
-    $('#navbar-top').load('../layout/navbar-top.html');
+    if(!isHome){
+        $('#navbar-top').load('../layout/navbar-top.html');
+    }
 //    $('#myCarousel').load('../layout/header.html');
     $('#content-common').load('../layout/content-common.html');
-    $('#footer').load('layout/footer.html');
+//    $('#footer-links').load('layout/footer.html');
+}
+
+
+function loadFooterDate()
+{
+    var date = new Date();
+    var year = date.getFullYear();
+    $('#footer').find('#footer-date').find('#footer-date-copyright').html(year);
 }
    
 

@@ -1,5 +1,9 @@
 /* 
- * Funciones para el tratamiento de los mapas.
+ *  (In the following example, markers appear when the user clicks on the map.
+    The markers are stored in an array.
+    The user can then click an option to hide, show or delete the markers.)
+ * 
+ *  Funciones para el tratamiento de los mapas.
  * 
  */
 
@@ -55,7 +59,7 @@ function loadMaps()
             var id;
             $.each(data, function(index, value){
                 id = 'chkItinerary' + value.map_number;
-                content += "<input type='checkbox' value='" + value.map_number + "' id='" + id + "' name='" + id + "' onclick='optionsMarkers(\"" + id + "\")' data-toggle='tooltip' data-placement='bottom' title='" + value.description + "'/>";
+                content += "<input type='checkbox' value='" + value.id + "' id='" + id + "' name='" + id + "' onclick='optionsMarkers(\"" + id + "\")' data-toggle='tooltip' data-placement='bottom' title='" + value.description + "'/>";
                 content += "<label for='" + id + "' title='" + value.description + "' style='color:" + value.color + ";'>" + value.name+"</label>";
                 content += "<br>";
                 idItinerary[index] = parseInt(value.id);        
@@ -119,17 +123,17 @@ function initMap()
             var id;
             $.each(data, function(index, value){
                 idMap[index] = parseInt(value.id_map);
-                idMapNumbers[index] = parseInt(value.id_map);
+//                idMapNumbers[index] = parseInt(value.id_map);
                 locations[index] = {lat: parseFloat(value.latitude), lng: parseFloat(value.longitude)};
                 places[index] = value.name;
                 descriptionPlace[index] = value.description;
                 urlPlace[index] = value.url;
             });
-
+            console.log(idMap)
             $.each(locations, function(index, value){
                 addMarker(index, value);
             })
-            clearMarkers();
+            
         }
     }); 
 }
@@ -173,7 +177,10 @@ function addMarker(index, location)
 function optionsMarkers(id)
 {
     if($("#" + id).prop('checked')){
-        showMarkers(); 
+        var element = parseInt($("#" + id).val());
+        var positionInitial = findElementArray(idMap, element);
+        var positionFinal = findLastElementSubArray(idMap, positionInitial);
+        showMarkers(positionInitial, positionFinal); 
     }else{
         clearMarkers();
     }
@@ -183,14 +190,14 @@ function optionsMarkers(id)
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() 
 {
-    setMapOnAll(null);
+    setMapOnAll(null, 0, idMap.length-1);
 }
 
 
 // Shows any markers currently in the array.
-function showMarkers() 
+function showMarkers(positionInitial, positionFinal) 
 {
-    setMapOnAll(map);
+    setMapOnAll(map, positionInitial, positionFinal);
 }
 
 
@@ -203,9 +210,12 @@ function deleteMarkers()
 
 
 // Sets the map on all markers in the array.
-function setMapOnAll(map) 
+function setMapOnAll(map, positionInitial, positionFinal) 
 {
-    for (var i = 0; i < markers.length; i++) {
+//    for (var i = 0; i < markers.length; i++) {
+//        markers[i].setMap(map);
+//    }
+    for (var i = positionInitial; i < positionFinal; i++) {
         markers[i].setMap(map);
     }
 }
@@ -224,5 +234,24 @@ function findElementArray(arrayData, item)
         }
     }
     return pos
+}
+
+
+//  Función para encontrar el último elemento en un sub array, devolviendo la posición
+function findLastElementSubArray(arrayData, positionInitial)
+{
+    var positionFinal = positionInitial;
+    var i = positionInitial + 1;
+    while(i < arrayData.length && positionFinal === positionInitial){
+        if(arrayData[i] !== arrayData[positionInitial]){
+            positionFinal = i - 1;
+        }else{
+            i++;
+        }
+    }
+    if(i === arrayData.length){
+        positionFinal = i - 1;
+    }
+    return positionFinal
 }
 
