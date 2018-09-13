@@ -147,8 +147,10 @@ http://javascriptes.com/javascript-cambiar-el-color-del-marcador-del-map-de-goog
 Ventana informativa con clic en el marcador
 https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
----------------------------------------------------------------------------------------------
 
+---------------------------------------------------------------------------------------------
+Select 2 Query
+https://select2.org
 
 
 ---------------------------------------------------------------------------------------------
