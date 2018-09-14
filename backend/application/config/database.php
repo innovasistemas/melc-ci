@@ -75,9 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'prueba12?',
+	'hostname' => 'medellin-en-la-cabeza.cxyflsnbmpva.us-west-2.rds.amazonaws.com',
+	'username' => 'rdsmaster',
+	'password' => 'mXc7DB3iCwAJrUHqAAfHaksUocrCEGUn',
+//	'hostname' => 'localhost',
+//	'username' => 'root',
+//	'password' => 'prueba12?',
 	'database' => 'melc',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
