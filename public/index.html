@@ -281,8 +281,6 @@
                 
                 initMap();
                 
-//                clearMarkers();
-                
                 loadImageGallery();
                 
                 loadAdvertisement();
@@ -325,7 +323,6 @@
             
             function loadAdvertisement()
             {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
                 var entity = 'melc_advertisement';
                 var objJson = {
                     'bd': {
@@ -343,7 +340,7 @@
                 var strJson = JSON.stringify(objJson);
                  
                 $.ajax({
-                    url: url,
+                    url: urlListRecord,
                     data: {'dataSend': strJson},
                     type: 'POST',
                     dataType: 'json',
@@ -374,7 +371,6 @@
             
             function loadImageGallery()
             {
-                var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
                 var entity = 'melc_image_gallery';
                 var objJson = {
                     'bd': {
@@ -392,7 +388,7 @@
                 var strJson = JSON.stringify(objJson);
                  
                 $.ajax({
-                    url: url,
+                    url: urlListRecord,
                     data: {'dataSend': strJson},
                     type: 'POST',
                     dataType: 'json',

@@ -31,7 +31,6 @@ var urlPlace = [];
 // Función para cargar las rutas (mapas)
 function loadMaps()
 {
-    var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
     var entity = 'melc_map';
     var objJson = {
         'bd': {
@@ -50,7 +49,7 @@ function loadMaps()
     var strJson = JSON.stringify(objJson);
 
     $.ajax({
-        url: url,
+        url: urlListRecord,
         data: {'dataSend': strJson},
         type: 'POST',
         dataType: 'json',
@@ -93,7 +92,6 @@ function initMap()
 //                    addMarker(event.latLng);
 //                });
 
-    var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
     var entity = 'melc_place';
     var objJson = {
         'bd': {
@@ -113,7 +111,7 @@ function initMap()
     var strJson = JSON.stringify(objJson);
 
     $.ajax({
-        url: url,
+        url: urlListRecord,
         data: {'dataSend': strJson},
         type: 'POST',
         dataType: 'json',
@@ -209,9 +207,6 @@ function deleteMarkers()
 // Sets the map on all markers in the array.
 function setMapOnAll(map, positionInitial, positionFinal) 
 {
-//    for (var i = 0; i < markers.length; i++) {
-//        markers[i].setMap(map);
-//    }
     for (var i = positionInitial; i <= positionFinal; i++) {
         markers[i].setMap(map);
     }

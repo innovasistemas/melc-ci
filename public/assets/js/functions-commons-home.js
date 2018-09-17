@@ -3,6 +3,15 @@
  * 
  */
 
+var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
+
+if(isUrlLocalRemote < 0){
+    urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+}else{
+    urlListRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/';
+}
+
+
 //****************************
 //Funciones de página
 //****************************
@@ -33,7 +42,6 @@ function loadFooterDate()
 
 function loadSocialNetworks()
 {
-    var url = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/'
     var entity = 'melc_social_network';
     var objJson = {
         'bd': {
@@ -51,7 +59,7 @@ function loadSocialNetworks()
     var strJson = JSON.stringify(objJson);
 
     $.ajax({
-        url: url,
+        url: urlListRecord,
         data: {'dataSend': strJson},
         type: 'POST',
         dataType: 'json',

@@ -3,6 +3,25 @@
  * 
  */
 
+var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
+
+var urlListRecord;
+var urlTotalRecord;
+var urlSaveRecord;
+var urlDeleteRecord;
+
+if(isUrlLocalRemote < 0){
+    urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+    urlTotalRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/totalrecords/';
+    urlSaveRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
+    urlDeleteRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
+}else{
+    urlListRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/';
+    urlTotalRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/totalrecords/';
+    urlSaveRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/';
+    urlDeleteRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/';
+}
+
 
 //****************************
 //Funciones Javascript
@@ -189,7 +208,7 @@ function saveRecord(entity, fields)
     }
     
     $.ajax({
-        url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/',
+        url: urlSaveRecord,
         data: formData,
         type: 'POST',
         dataType: 'json',
@@ -243,7 +262,7 @@ function deleteRecord(entity, id)
             "aceptar": function () {
                 $(this).dialog("close"); 
                 $.ajax({
-                    url: 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/',
+                    url: urlDeleteRecord,
                     data: {'dataSend': strJson},
                     type: 'POST',
                     dataType: 'json',
