@@ -6,7 +6,12 @@
 var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
 
 if(isUrlLocalRemote < 0){
-    urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+    isUrlLocalRemote = window.location.toString().indexOf('http://medellinenlacabeza', 0);
+    if(isUrlLocalRemote < 0){
+        urlListRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+    }else{
+        urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+    }
 }else{
     urlListRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/';
 }

@@ -11,10 +11,18 @@ var urlSaveRecord;
 var urlDeleteRecord;
 
 if(isUrlLocalRemote < 0){
-    urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
-    urlTotalRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/totalrecords/';
-    urlSaveRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
-    urlDeleteRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
+    isUrlLocalRemote = window.location.toString().indexOf('http://medellinenlacabeza', 0);
+    if(isUrlLocalRemote < 0){
+        urlListRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+        urlTotalRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/totalrecords/';
+        urlSaveRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
+        urlDeleteRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
+    }else{
+        urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
+        urlTotalRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/totalrecords/';
+        urlSaveRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
+        urlDeleteRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
+    }
 }else{
     urlListRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/';
     urlTotalRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/totalrecords/';
