@@ -78,6 +78,9 @@ switch($_SERVER["SERVER_NAME"]){
     case "medellinenlacabeza.medellinjoven.com":
         $active_group = 'production';
         break;
+    case "melc.medellinjoven.com":
+        $active_group = 'production';
+        break;
 }
 
 //$active_group = 'default';
