@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |				'ssl_key'    - Path to the private key file
 |				'ssl_cert'   - Path to the public key certificate file
-|				'ssl_ca'     - Path to the certificate authority file
+|           			'ssl_ca'     - Path to the certificate authority file
 |				'ssl_capath' - Path to a directory containing trusted CA certificats in PEM format
 |				'ssl_cipher' - List of *allowed* ciphers to be used for the encryption, separated by colons (':')
 |				'ssl_verify' - TRUE/FALSE; Whether verify the server certificate or not ('mysqli' only)
@@ -70,17 +70,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+
+switch($_SERVER["SERVER_NAME"]){
+    case "127.0.0.1":
+        $active_group = 'default';
+        break;
+    case "medellin-en-la-cabeza.cxyflsnbmpva.us-west-2.rds.amazonaws.com":
+        $active_group = 'production';
+        break;
+}
+
+//$active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	'hostname' => '127.0.0.1',
+	'username' => 'root',
+	'password' => 'prueba12?',
+	'database' => 'melc',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['production'] = array(
+	'dsn'	=> '',
 	'hostname' => 'medellin-en-la-cabeza.cxyflsnbmpva.us-west-2.rds.amazonaws.com',
 	'username' => 'rdsmaster',
 	'password' => 'mXc7DB3iCwAJrUHqAAfHaksUocrCEGUn',
-//	'hostname' => 'localhost',
-//	'username' => 'root',
-//	'password' => 'prueba12?',
 	'database' => 'melc',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
