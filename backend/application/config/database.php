@@ -75,7 +75,7 @@ switch($_SERVER["SERVER_NAME"]){
     case "127.0.0.1":
         $active_group = 'default';
         break;
-    case "medellin-en-la-cabeza.cxyflsnbmpva.us-west-2.rds.amazonaws.com":
+    case "medellinenlacabeza.medellinjoven.com":
         $active_group = 'production';
         break;
 }
@@ -85,7 +85,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'prueba12?',
 	'database' => 'melc',
