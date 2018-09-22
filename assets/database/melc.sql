@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-09-2018 a las 14:20:04
+-- Tiempo de generación: 22-09-2018 a las 04:52:25
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -31,22 +31,24 @@ CREATE TABLE `melc_advertisement` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#!'
+  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#!',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_advertisement`
 --
 
-INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`) VALUES
-(1, 'Inscríbete aquí!', '¡Ya está la programación de recorridos! Haz clic aquí e inscríbete.', b'1', 'http://bit.ly/inscripcionesmedellinenlacabeza'),
-(2, 'sale a callejear', 'Cerca de 2.200 jóvenes han callejeado este años con Medellín en la Cabeza', b'1', ''),
-(4, 'melc', 'El 60% de las personas que callejean con nosotros son mujeres', b'1', ''),
-(18, 'recorridos', 'Hemos realizado más de 150 recorridos', b'1', '#!'),
-(24, 'Nuevo video', 'El 83% de los jóvenes que participan en Medellín en la Cabeza pertenecen a los estratos 1, 2 y 3', b'1', ''),
-(25, 'cine callejero', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com'),
-(26, 'dddd', 'sss', b'0', ''),
-(27, 'anuncio 1', 'anuncio prueba guardar genérico', b'0', 'http://www.youtube.com/#/d');
+INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`, `creation_date`, `last_update`) VALUES
+(1, 'Inscríbete aquí!', '¡Ya está la programación de recorridos! Haz clic aquí e inscríbete.', b'1', 'http://bit.ly/inscripcionesmedellinenlacabeza', '2018-09-22 08:31:59', NULL),
+(2, 'sale a callejear', 'Cerca de 2.200 jóvenes han callejeado este años con Medellín en la Cabeza', b'1', '', '2018-09-22 08:31:59', NULL),
+(4, 'melc', 'El 60% de las personas que callejean con nosotros son mujeres', b'1', '', '2018-09-22 08:31:59', NULL),
+(18, 'recorridos', 'Hemos realizado más de 150 recorridos', b'1', '#!', '2018-09-22 08:31:59', NULL),
+(24, 'Nuevo video', 'El 83% de los jóvenes que participan en Medellín en la Cabeza pertenecen a los estratos 1, 2 y 3', b'1', '', '2018-09-22 08:31:59', NULL),
+(25, 'cine callejero', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com', '2018-09-22 08:31:59', NULL),
+(26, 'dddd', 'sss', b'0', '', '2018-09-22 08:31:59', NULL),
+(27, 'anuncio 1', 'anuncio prueba guardar genérico', b'0', 'http://www.youtube.com/#/d', '2018-09-22 08:31:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,9 @@ CREATE TABLE `melc_comment` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `affair` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `opinion` varchar(2000) COLLATE utf8_unicode_ci NOT NULL
+  `opinion` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -71,7 +75,9 @@ CREATE TABLE `melc_comment` (
 CREATE TABLE `melc_contact` (
   `id` bigint(20) NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -86,15 +92,17 @@ CREATE TABLE `melc_contact_information` (
   `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cell_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_contact_information`
 --
 
-INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `logo`) VALUES
-(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'logo-header.png');
+INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `logo`, `creation_date`, `last_update`) VALUES
+(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'logo-header.png', '2018-09-22 08:36:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -107,21 +115,23 @@ CREATE TABLE `melc_image_gallery` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `active` bit(1) NOT NULL
+  `active` bit(1) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_image_gallery`
 --
 
-INSERT INTO `melc_image_gallery` (`id`, `name`, `description`, `logo`, `active`) VALUES
-(1, '1', 'Comuna 14 El Poblado. Ruta: Somos educación, arte y cultura.', '1.jpg', b'1'),
-(2, '2', 'Comuna 9 Buenos Aires. Ruta: Medellín en movimiento.', '2.jpg', b'1'),
-(3, '3', 'Comuna 10 La Candelaria. Ruta: El centro: un lugar para descubrir.', '3.jpg', b'1'),
-(4, '4', 'Comuna 3 Manrique. Ruta: Medellín sostenible', '4.jpg', b'1'),
-(5, '5', 'Corregimiento de Santa Elena. Ruta: ¿Tiene Medellín campesinos?', '5.jpg', b'1'),
-(6, '6', 'Comuna 6 Doce de Octubre. Ruta: Equipamientos públicos para la ciudadanía.', '6.jpg', b'1'),
-(7, '7', 'Comuna 8 Villahermosa. Ruta: Medellín en movimiento', '7.jpg', b'1');
+INSERT INTO `melc_image_gallery` (`id`, `name`, `description`, `logo`, `active`, `creation_date`, `last_update`) VALUES
+(1, '1', 'Comuna 14 El Poblado. Ruta: Somos educación, arte y cultura.', '1.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(2, '2', 'Comuna 9 Buenos Aires. Ruta: Medellín en movimiento.', '2.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(3, '3', 'Comuna 10 La Candelaria. Ruta: El centro: un lugar para descubrir.', '3.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(4, '4', 'Comuna 3 Manrique. Ruta: Medellín sostenible', '4.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(5, '5', 'Corregimiento de Santa Elena. Ruta: ¿Tiene Medellín campesinos?', '5.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(6, '6', 'Comuna 6 Doce de Octubre. Ruta: Equipamientos públicos para la ciudadanía.', '6.jpg', b'1', '2018-09-22 08:37:50', NULL),
+(7, '7', 'Comuna 8 Villahermosa. Ruta: Medellín en movimiento', '7.jpg', b'1', '2018-09-22 08:37:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -137,7 +147,7 @@ CREATE TABLE `melc_map` (
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -163,31 +173,33 @@ INSERT INTO `melc_map` (`id`, `map_number`, `name`, `description`, `logo`, `colo
 
 CREATE TABLE `melc_newsletter` (
   `id` bigint(20) NOT NULL,
-  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_newsletter`
 --
 
-INSERT INTO `melc_newsletter` (`id`, `email`) VALUES
-(9, 'aaaaxxx23002dd@ssss.aa'),
-(17, 'aaaxx.aa5a00@xxx.xx.xx'),
-(15, 'aañaa@uuu.xxx'),
-(7, 'alquimia@gmail.com'),
-(5, 'gomez1234@gmail.com'),
-(6, 'jeremias@gmail.com'),
-(4, 'maria1209@gmail.com'),
-(2, 'mariamontes@yahoo.com'),
-(19, 'nuevapruebacargaarchivo@gmail.com'),
-(1, 'pedroalvarez@gmail.com'),
-(11, 'qqqwww222@yahoo.es'),
-(8, 'sdf'),
-(13, 'ttee33@aa.dd'),
-(3, 'victorcifuentesperez@hotmail.com'),
-(20, 'xyz@zxy.yxz'),
-(14, 'yy44'),
-(18, 'zzz@zzz.zzz');
+INSERT INTO `melc_newsletter` (`id`, `email`, `creation_date`, `last_update`) VALUES
+(1, 'pedroalvarez@gmail.com', '2018-09-22 08:40:28', NULL),
+(2, 'mariamontes@yahoo.com', '2018-09-22 08:40:28', NULL),
+(3, 'victorcifuentesperez@hotmail.com', '2018-09-22 08:40:28', NULL),
+(4, 'maria1209@gmail.com', '2018-09-22 08:40:28', NULL),
+(5, 'gomez1234@gmail.com', '2018-09-22 08:40:28', NULL),
+(6, 'jeremias@gmail.com', '2018-09-22 08:40:28', NULL),
+(7, 'alquimia@gmail.com', '2018-09-22 08:40:28', NULL),
+(8, 'sdf', '2018-09-22 08:40:28', NULL),
+(9, 'aaaaxxx23002dd@ssss.aa', '2018-09-22 08:40:28', NULL),
+(11, 'qqqwww222@yahoo.es', '2018-09-22 08:40:28', NULL),
+(13, 'ttee33@aa.dd', '2018-09-22 08:40:28', NULL),
+(14, 'yy44', '2018-09-22 08:40:28', NULL),
+(15, 'aañaa@uuu.xxx', '2018-09-22 08:40:28', NULL),
+(17, 'aaaxx.aa5a00@xxx.xx.xx', '2018-09-22 08:40:28', NULL),
+(18, 'zzz@zzz.zzz', '2018-09-22 08:40:28', NULL),
+(19, 'nuevapruebacargaarchivo@gmail.com', '2018-09-22 08:40:28', NULL),
+(20, 'xyz@zxy.yxz', '2018-09-22 08:40:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -204,7 +216,7 @@ CREATE TABLE `melc_place` (
   `url` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `id_map` bigint(20) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -325,17 +337,19 @@ CREATE TABLE `melc_social_network` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'social-networks.png'
+  `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'social-networks.png',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_social_network`
 --
 
-INSERT INTO `melc_social_network` (`id`, `name`, `description`, `link`, `logo`) VALUES
-(1, 'facebook', '@delajuventud', 'https://www.facebook.com/delajuventud/', 'fb-footer.png'),
-(2, 'instagram', '@medellinenlacabeza', 'https://www.instagram.com/medellinenlacabeza/', 'instagram-footer.png'),
-(3, 'correo', 'medellinenlacabeza@gmail.com', 'http://www.gmail.com', 'mail-footer.png');
+INSERT INTO `melc_social_network` (`id`, `name`, `description`, `link`, `logo`, `creation_date`, `last_update`) VALUES
+(1, 'facebook', '@delajuventud', 'https://www.facebook.com/delajuventud/', 'fb-footer.png', '2018-09-22 08:45:02', NULL),
+(2, 'instagram', '@medellinenlacabeza', 'https://www.instagram.com/medellinenlacabeza/', 'instagram-footer.png', '2018-09-22 08:45:02', NULL),
+(3, 'correo', 'medellinenlacabeza@gmail.com', 'http://www.gmail.com', 'mail-footer.png', '2018-09-22 08:45:02', NULL);
 
 -- --------------------------------------------------------
 
