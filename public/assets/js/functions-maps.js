@@ -225,7 +225,7 @@ function findElementArray(arrayData, item)
             i++;
         }
     }
-    return pos
+    return pos;
 }
 
 

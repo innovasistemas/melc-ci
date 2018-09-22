@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-09-2018 a las 04:52:25
+-- Tiempo de generación: 22-09-2018 a las 05:57:25
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -324,7 +324,7 @@ CREATE TABLE `melc_profile_user` (
 --
 
 INSERT INTO `melc_profile_user` (`id`, `id_melc_profile`, `id_melc_user`, `creation_date`, `last_update`) VALUES
-(0, 1, 1, '2018-08-15 04:27:16', NULL);
+(1, 1, 1, '2018-08-15 04:27:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -456,6 +456,7 @@ ALTER TABLE `melc_profile`
 -- Indices de la tabla `melc_profile_user`
 --
 ALTER TABLE `melc_profile_user`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_melc_profile` (`id_melc_profile`),
   ADD KEY `id_melc_user` (`id_melc_user`);
 
@@ -521,6 +522,11 @@ ALTER TABLE `melc_place`
 --
 ALTER TABLE `melc_profile`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `melc_profile_user`
+--
+ALTER TABLE `melc_profile_user`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
