@@ -176,12 +176,6 @@
                 loadRecords();
                 
                 loadFooterDate();
-                
-                
-                $("#newRecord").click(function(){
-                    newRecord(); 
-                });
-               
                                 
                 $("#btnSave").click(function(){
                     var sw = false;
@@ -325,6 +319,7 @@
                             $("#txtPhone").val(objFields.phone);
                             $("#txtCellPhone").val(objFields.cell_phone);
                             $("#txtEmail").val(objFields.email);
+                            resetForm("update");
                             enabledForm(false);
                         },
                         "cancelar": function(){

@@ -97,7 +97,12 @@
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
-                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
+                                    </span>
+                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6"> 
@@ -176,12 +181,6 @@
                 
                 loadFooterDate();
                 
-        
-                $("#newRecord").click(function(){
-                    newRecord($("#txtName")); 
-                });
-                
-                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
@@ -193,7 +192,7 @@
                             if($("#txtLogoView").val().trim().length == 0){
                                 isFile = true;
                             }else{
-                                if($("#txtLogoView").val() != $("#logoViewUpdate").attr('src')){
+                                if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
                                     isFile = true;
                                 }
                             }
@@ -216,8 +215,8 @@
                                 saveRecord(entity, fields);
                                 resetForm();
                                 cleanForm();
+                                enabledForm(true);
                             }
-                            
                             
                         }
                     }
@@ -238,26 +237,13 @@
                 
                 
                 $("#fleLogo").focusout(function(){
-                    return validateFile($("#divLogo"), $("#fleLogo")[0]);
+                    return validateFile($("#divLogo"), $("#fleLogo")[0], 2097152);
                 });
                 
                 
                 $("#fleLogo").change(function(){
                     readURL(this);
                 });
-                
-                const readURL = (input) => {
- 
-                    if (input.files && input.files[0]) {
-                        const reader = new FileReader();
-
-                        reader.onload = (e) => {
-                            $('#logoViewUpdate').attr('src', e.target.result);
-                            $("#logoViewUpdate").attr('class', 'show img-thumbnail');
-                        }
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                };
                 
             });
             
@@ -379,7 +365,7 @@
                                 $("#logoViewUpdate").attr('src', '../assets/images/gallery/' + objFields.logo);
                                 $("#txtLogoView").val('../assets/images/gallery/' + objFields.logo);
                             }
-                            
+                            resetForm("update");
                             enabledForm(false);
                         },
                         "cancelar": function(){

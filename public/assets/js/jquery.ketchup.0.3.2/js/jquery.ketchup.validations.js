@@ -29,26 +29,30 @@ jQuery.ketchup
 
 //.validation('min', 'Must be at least {arg1}.', function(form, el, value, min) {
 .validation('min', 'debe ser al menos {arg1}.', function(form, el, value, min) {
-  return (this.isNumber(value) && +value >= +min);
+//  return (this.isNumber(value) && +value >= +min);
+    return !isNaN(value) && parseFloat(value) >= min; //Refactorizado
 })
 
 //.validation('max', 'Can not be greater than {arg1}.', function(form, el, value, max) {
 .validation('max', 'no puede ser mayor que {arg1}.', function(form, el, value, max) {
-  return (this.isNumber(value) && +value <= +max);
+//  return (this.isNumber(value) && +value <= +max);
+    return !isNaN(value) && parseFloat(value) <= max; //Refactorizado
 })
 
-.validation('range', 'Must be between {arg1} and {arg2}.', function(form, el, value, min, max) {
-//.validation('range', 'Debe estar entre {arg1} y {arg2}.', function(form, el, value, min, max) {
-  return (this.isNumber(value) && +value >= +min && +value <= +max);
+//.validation('range', 'Must be between {arg1} and {arg2}.', function(form, el, value, min, max) {
+.validation('range', 'Debe estar entre {arg1} y {arg2}.', function(form, el, value, min, max) {
+//  return (this.isNumber(value) && +value >= +min && +value <= +max);
+return !isNaN(value) && parseFloat(value) >= min && parseFloat(value) <= max; //Refactorizado
 })
 
 //.validation('number', 'Must be a number.', function(form, el, value) {
 .validation('number', 'debe ser un número.', function(form, el, value) {
-  return this.isNumber(value);
+//  return this.isNumber(value);
+    return (value!== "" && !isNaN(value)); //Refactorizado
 })
 
 //.validation('digits', 'Must be digits.', function(form, el, value) {
-.validation('digits', 'deben ser dígitos.', function(form, el, value) {
+.validation('digits', 'debe contener solo dígitos.', function(form, el, value) {
   return /^\d+$/.test(value);
 })
 
@@ -59,9 +63,10 @@ jQuery.ketchup
 })
 
 //.validation('url', 'Must be a valid URL.', function(form, el, value) {
-//.validation('url', 'debe ser una url válida.', function(form, el, value) {
-//  return this.isUrl(value);
-//})
+.validation('url', 'debe ser una url válida.', function(form, el, value) {
+  return value === "#!" || /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/.test(value);
+;
+})
 
 //.validation('username', 'Must be a valid username.', function(form, el, value) {
 .validation('username', 'debe ser un nombre de usuario válido.', function(form, el, value) {

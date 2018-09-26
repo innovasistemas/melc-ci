@@ -123,12 +123,6 @@
                 
                 loadFooterDate();
                 
-                
-                $("#newRecord").click(function(){
-                    newRecord($("#txtEmail")); 
-                });
-               
-                                
                 $("#btnSave").click(function(){
                     $("#txtEmail").val($("#txtEmail").val().trim());
                     if(validateEmail($("#divEmail"), $("#txtEmail"))){
@@ -246,6 +240,7 @@
                             $(this).dialog("close"); 
                             $("#txtId").val(objFields.id);
                             $("#txtEmail").val(objFields.email);
+                            resetForm("update");
                             enabledForm(false);
                         },
                         "cancelar": function(){

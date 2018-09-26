@@ -3,6 +3,10 @@
  * 
  */
 
+//****************************
+// Variables globales Javascript
+//****************************
+
 var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
 
 var urlListRecord;
@@ -32,12 +36,12 @@ if(isUrlLocalRemote < 0){
 
 
 //****************************
-//Funciones Javascript
+// Funciones Javascript
 //****************************
 
 
 //****************************
-//Funciones de página
+// Funciones de página
 //****************************
 function loadLayout(isHome)
 {
@@ -57,12 +61,26 @@ function loadFooterDate()
     var year = date.getFullYear();
     $('#footer').find('#footer-date').find('#footer-date-copyright').html(year);
 }
-   
 
 
 //****************************
-//Funciones de formulario
+// Funciones de formulario
 //****************************
+
+// Permite cambiar la imagen visualmente a medida que se seleccionan archivos
+const readURL = (input) => {
+ 
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            $('#logoViewUpdate').attr('src', e.target.result);
+            $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
 
 function enabledForm(sw)
 {
@@ -72,19 +90,18 @@ function enabledForm(sw)
 
 function cleanForm()
 {
-    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], textarea').val('');
+    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], input[type=number], input[type=color], textarea').val('');
 }
 
 
-function resetForm()
+function resetForm(state)
 { 
-    if($("#btnReset").attr('data-page') !== "index"){
-        enabledForm(true); 
-    }
     $(".ketchup-error").css("display", "none");
     
-    $("#frmRegister").find('#logoViewUpdate').attr('src', '#');
-    $("#frmRegister").find("#logoViewUpdate").attr('class', 'hide');
+    if(state !== "update"){
+        $("#frmRegister").find('#logoViewUpdate').attr('src', '#');
+        $("#frmRegister").find("#logoViewUpdate").attr('class', 'hide');
+    }
 
     $("#frmRegister").find('div').each(function(){
         var div = this;
@@ -96,8 +113,22 @@ function resetForm()
         
 
 //****************************
-//Funciones de validación
+// Funciones de validación
 //****************************
+
+function validateValueBetween(division, input, valMin, valMax)
+{
+    if(!isNaN(input.val()) && parseFloat(input.val()) >= valMin && parseFloat(input.val()) <= valMax){
+        division.removeClass("has-error"); 
+        division.addClass("has-success");
+        return true;                    
+    }else{
+        division.removeClass("has-success");
+        division.addClass("has-error");
+        return false;
+    }
+}
+
 
 function validateLength(division, input, length)
 {
@@ -133,7 +164,7 @@ function validateEmail(division, input)
 function validateUrl(division, input)
 {
     var pattern = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
-    if(pattern.test(input.val())){
+    if(pattern.test(input.val()) || input.val() === "#!"){
         division.removeClass("has-error"); 
         division.addClass("has-success");
         return true;                    
@@ -145,7 +176,7 @@ function validateUrl(division, input)
 }
 
 
-function validateFile(division, input)
+function validateFile(division, input, maxSize)
 {
     var sw = false;
     var file = input.files[0];
@@ -154,7 +185,7 @@ function validateFile(division, input)
     var fSize = file.size;
     
     if(/gif|jpeg|jpg|png$/i.test(fExtension)){
-        if(fSize <= 2097152){
+        if(fSize <= maxSize){
             sw = true;
         }
     }
@@ -170,12 +201,11 @@ function validateFile(division, input)
 }
   
 
-
 //****************************
-//Funciones del CRUD
+// Funciones del CRUD
 //****************************
 
-function newRecord(inputDefault)
+function newRecord()
 {
     $( "#dialog" ).html("¿está seguro?");
     $( "#dialog" ).dialog({
@@ -184,10 +214,11 @@ function newRecord(inputDefault)
         buttons: {
             "aceptar": function () {
                 $(this).dialog("close"); 
+                resetForm();
+                cleanForm(); 
                 enabledForm(false);
-                cleanForm();
                 $("#txtId").val('0');
-                inputDefault.focus();
+                $(':input:visible:enabled:first').focus();
             },
             "cancelar": function(){
                $(this).dialog("close"); 

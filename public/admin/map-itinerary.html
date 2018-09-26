@@ -73,13 +73,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divLink">
-                                <label for="txtLink" class="control-label">enlace</label>
+                            <div class="form-group" id="divMapNumber">
+                                <label for="nbrMapNumber" class="control-label">número ruta</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-750-hash.png"/>
                                     </span>
-                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese la url" disabled="disabled"/>                        
+                                    <input type="number" name="nbrMapNumber" id="nbrMapNumber" min="1" max="50" class="form-control input-lg" placeholder="número mapa" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, number, digits, range(1, 50))" title="ingrese un número único de ruta" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -87,16 +87,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divLink">
-                                <label for="txtLink" class="control-label">enlace</label>
+                            <div class="form-group" id="divColor">
+                                <label for="clrColor" class="control-label">color</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-597-activity.png"/>
                                     </span>
-                                    <select class="js-example-basic-single form-control input-lg" name="state">
-                                        <option value="AL">Alabama</option>
-                                        <option value="WY">Wyoming</option>
-                                    </select>
+                                    <input type="color" name="clrColor" id="clrColor" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione el color" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -106,7 +103,18 @@
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
-                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
+                                    </span>
+                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 5KB [32x32 píxeles])" disabled="disabled"/>                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogoView">
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
+                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
                             </div>
                         </div>
                     </div>
@@ -182,36 +190,47 @@
                 
                 loadFooterDate();
                 
-                // In your Javascript (external .js resource or <script> tag)
-                $('.js-example-basic-single').select2({
-//                    dropdownParent: $('#container')
-                });
-                
-                
-                $("#newRecord").click(function(){
-                    newRecord($("#txtName")); 
-                });
-               
-                                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
-                    $("#txtLink").val($("#txtLink").val().trim());
+                    $("#nbrMapNumber").val($("#nbrMapNumber").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            $('#txtLink').focus();
-                            if(validateUrl($("#divLink"), $("#txtLink"))){
-                                var entity = 'melc_social_network';
-                                var fields = {
-                                    'id': $("#txtId").val(),
-                                    'name': $("#txtName").val(),
-                                    'description': $("#txtDescription").val(),
-                                    'link': $("#txtLink").val()
+                            $('#nbrMapNumber').focus();
+                            if(validateValueBetween($("#divMapNumber"), $("#nbrMapNumber"), 1, 50)){
+                                $('#fleLogo').focus();
+                                var isFile = false;
+                                if($("#txtLogoView").val().trim().length == 0){
+                                    isFile = true;
+                                }else{
+                                    if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
+                                        isFile = true;
+                                    }
                                 }
-                                saveRecord(entity, fields);
-                                resetForm();
-                                cleanForm();
+
+                                if(isFile){
+                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0]);
+                                }else{
+                                    isFile = true;
+                                }
+
+                                if(isFile){
+                                    var entity = 'melc_map';
+                                    var fields = {
+                                        'id': $("#txtId").val(),
+                                        'name': $("#txtName").val(),
+                                        'description': $("#txtDescription").val(),
+                                        'map_number': $("#nbrMapNumber").val(),
+                                        'color': $("#clrColor").val()
+                                    }
+
+                                    saveRecord(entity, fields);
+                                    resetForm();
+                                    cleanForm();
+                                    enabledForm(true);
+                                }
+                                
                             }
                         }
                     }
@@ -231,9 +250,19 @@
                 });
                 
                 
-                $("#txtLink").focusout(function(){
-                    $("#txtLink").val($("#txtLink").val().trim());
-                    return validateUrl($("#divLink"), $("#txtLink"));
+                $("#nbrMapNumber").focusout(function(){
+                    $("#nbrMapNumber").val($("#nbrMapNumber").val().trim());
+                    return validateValueBetween($("#divMapNumber"), $("#nbrMapNumber"), 1, 50);
+                });
+                
+                
+                $("#fleLogo").focusout(function(){
+                    return validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
+                });
+                
+                
+                $("#fleLogo").change(function(){
+                    readURL(this);
                 });
                 
             });
@@ -348,7 +377,14 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
-                            $("#txtLink").val(objFields.link);
+                            $("#nbrMapNumber").val(objFields.map_number);
+                            $("#clrColor").val(objFields.color);
+                            if(objFields.logo.trim().length > 0){
+                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                                $("#logoViewUpdate").attr('src', '../assets/images/map-icons/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/map-icons/' + objFields.logo);
+                            }
+                            resetForm("update");
                             enabledForm(false);
                         },
                         "cancelar": function(){

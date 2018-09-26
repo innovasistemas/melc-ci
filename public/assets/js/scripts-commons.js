@@ -4,12 +4,20 @@
  */
 
 $('[data-toggle="tooltip"]').tooltip();
+
                 
 $('#frmRegister').ketchup();
+
 
 $("#frmRegister").on('reset', function(){
     resetForm();
 });
+
+
+$("#newRecord").click(function(){
+    newRecord(); 
+});
+
 
 $('#navbar-top').delegate('#about', 'click', function(){
     var date = new Date()
