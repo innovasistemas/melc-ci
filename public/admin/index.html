@@ -26,7 +26,7 @@
                     
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog container-top">
-            
+            <input type="hidden" name="txtPage" id="txtPage" data-page="noMenu"/>
             <hr/>
             <div class="row">
                 <div class="col-sm-6">
@@ -76,15 +76,12 @@
                                      
                     <div class="form-group">
                         <input type="button" value="ingresar" class="btn btn-primary" id="btnSave" title="enviar" />
-                        <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" data-page="index" title="restablecer" />
+                        <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" />
                     </div>
 
                 </form>
             </div>
             <!--Fin Formulario-->
-            
-            
-            
             
             <div id="content-common"></div> 
         </div>
@@ -118,10 +115,6 @@
         
         <script>
             $(function(){ 
-                
-                loadLayout(true);
-                
-                loadFooterDate();
                 
                 //Validaciones focosout: longitud y otros       
                 $("#txtUser").focusout(function(){

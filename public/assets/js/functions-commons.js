@@ -43,6 +43,10 @@ if(isUrlLocalRemote < 0){
 //****************************
 // Funciones de página
 //****************************
+
+loadFooterDate();
+                
+
 function loadLayout(isHome)
 {
     $('#divStyles').load('styles.html');

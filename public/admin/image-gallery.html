@@ -26,6 +26,7 @@
                     
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog container-top">
+            <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
@@ -175,12 +176,6 @@
         <script>
             $(function() { 
                 
-                loadLayout(false);
-                
-                loadRecords();
-                
-                loadFooterDate();
-                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
@@ -198,12 +193,13 @@
                             }
                                 
                             if(isFile){
-                                isFile = validateFile($("#divLogo"), $("#fleLogo")[0]);
+                                isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 2097152);
                             }else{
                                 isFile = true;
                             }
                             
                             if(isFile){
+                                $('input').blur();
                                 var entity = 'melc_image_gallery';
                                 var fields = {
                                     'id': $("#txtId").val(),
@@ -287,10 +283,10 @@
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";  
-                            if(value.url !== ''){
+                            if(value.logo !== ''){
                                 table += "<img src='../assets/images/gallery/" + value.logo + "' class='img-thumbnail zoom'/>";  
                             }else{
-                                table += "&nbsp;";
+                                table += "<img src='assets/images/no-photo.jpg' class='img-thumbnail zoom'/>";
                             }
                             table += "</td>";
                             table += "<td>";

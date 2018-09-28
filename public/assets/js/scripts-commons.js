@@ -3,14 +3,33 @@
  * Usado por las páginas del admin
  */
 
+$('body').ready(function(){
+    switch($('body').find('input').attr('data-page')){
+        case 'noMenu':
+            loadLayout(true);
+            break;
+        case 'noRecords':
+            loadLayout(false);
+            break;
+        case 'records':
+            loadLayout(false);
+            loadRecords();
+            break;
+    }
+});
+
+
 $('[data-toggle="tooltip"]').tooltip();
 
                 
 $('#frmRegister').ketchup();
 
 
-$("#frmRegister").on('reset', function(){
+$('#frmRegister').on('reset', function(){
     resetForm();
+    if($('body').find('input').attr('data-page') !== 'noRecords'){
+        enabledForm(true);
+    }
 });
 
 

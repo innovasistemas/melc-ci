@@ -26,6 +26,7 @@
                     
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog container-top">
+            <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
             <div id="menu-register">
                 <!--<a href="#" title="nuevo" id="newRecord">nuevo registro</a>-->
             </div>
@@ -171,12 +172,6 @@
         <script>
             $(function() { 
                 
-                loadLayout(false);
-                
-                loadRecords();
-                
-                loadFooterDate();
-                                
                 $("#btnSave").click(function(){
                     var sw = false;
                     $("#txtAddress").val($("#txtAddress").val().trim());
@@ -191,6 +186,7 @@
                         sw = true;
                     }
                     if(sw){
+                        $('input').blur();
                         var entity = 'melc_contact_information';
                         var fields = {
                             'id': $("#txtId").val(),

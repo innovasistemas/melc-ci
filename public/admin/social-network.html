@@ -26,6 +26,7 @@
                     
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog container-top">
+            <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
@@ -78,7 +79,7 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
-                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, url)" title="ingrese la url" disabled="disabled"/>                        
+                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -155,12 +156,6 @@
         <script>
             $(function() { 
                 
-                loadLayout();
-                
-                loadRecords();
-                
-                loadFooterDate();
-                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
@@ -170,6 +165,7 @@
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
                             $('#txtLink').focus();
                             if(validateUrl($("#divLink"), $("#txtLink"))){
+                                $('input').blur();
                                 var entity = 'melc_social_network';
                                 var fields = {
                                     'id': $("#txtId").val(),

@@ -27,6 +27,7 @@
         <!-- Inicio contenido - (formulario principal) -->
         <!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">-->
         <div id="container" class="modal-dialog container-top" aria-hidden="true">
+            <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
             </div>
@@ -184,12 +185,6 @@
         <script>
             $(function() { 
                 
-                loadLayout();
-                
-                loadRecords();
-                
-                loadFooterDate();
-                
                 $("#btnSave").click(function(){
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
@@ -210,12 +205,13 @@
                                 }
 
                                 if(isFile){
-                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0]);
+                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
                                 }else{
                                     isFile = true;
                                 }
 
                                 if(isFile){
+                                    $('input').blur();
                                     var entity = 'melc_map';
                                     var fields = {
                                         'id': $("#txtId").val(),
@@ -309,10 +305,10 @@
                             table +=  "<div style='background-color:" + value.color + ";'>&nbsp;</div>";
                             table += "</td>";
                             table += "<td>";  
-                            if(value.logo != null){
+                            if(value.logo !== null){
                                 table += "<img src='../assets/images/map-icons/" + value.logo + "' class='img-thumbnail zoom'/>";  
                             }else{
-                                table += "&nbsp;";
+                                table += "<img src='assets/images/no-photo.jpg' class='img-thumbnail zoom'/>";
                             }
                             table += "</td>";
                             table += "<td>";
