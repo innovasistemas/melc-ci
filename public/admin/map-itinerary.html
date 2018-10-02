@@ -196,7 +196,7 @@
                             if(validateValueBetween($("#divMapNumber"), $("#nbrMapNumber"), 1, 50)){
                                 $('#fleLogo').focus();
                                 var isFile = false;
-                                if($("#txtLogoView").val().trim().length == 0){
+                                if($("#txtLogoView").val().trim().length === 0){
                                     isFile = true;
                                 }else{
                                     if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
@@ -212,7 +212,6 @@
 
                                 if(isFile){
                                     $('input').blur();
-                                    var entity = 'melc_map';
                                     var fields = {
                                         'id': $("#txtId").val(),
                                         'name': $("#txtName").val(),
@@ -221,7 +220,7 @@
                                         'color': $("#clrColor").val()
                                     }
 
-                                    saveRecord(entity, fields);
+                                    saveRecord(entity, fields, folder);
                                     resetForm();
                                     cleanForm();
                                     enabledForm(true);
@@ -268,9 +267,12 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_map';
+            folder = 'map-icons';
+            
+            
             function loadRecords()
             {
-                var entity = 'melc_map';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -312,7 +314,7 @@
                             }
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", " + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
                             table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";

@@ -5,6 +5,8 @@
 
 var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
 
+var urlListRecord;
+
 if(isUrlLocalRemote < 0){
     isUrlLocalRemote = window.location.toString().indexOf('http://medellinenlacabeza', 0);
     if(isUrlLocalRemote < 0){

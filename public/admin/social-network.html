@@ -89,7 +89,18 @@
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
-                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
+                                    </span>
+                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 5KB [42x42 píxeles])" disabled="disabled"/>                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogoView">
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
+                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
                             </div>
                         </div>
                     </div>
@@ -165,17 +176,35 @@
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
                             $('#txtLink').focus();
                             if(validateUrl($("#divLink"), $("#txtLink"))){
-                                $('input').blur();
-                                var entity = 'melc_social_network';
-                                var fields = {
-                                    'id': $("#txtId").val(),
-                                    'name': $("#txtName").val(),
-                                    'description': $("#txtDescription").val(),
-                                    'link': $("#txtLink").val()
+                                $('#fleLogo').focus();
+                                var isFile = false;
+                                if($("#txtLogoView").val().trim().length === 0){
+                                    isFile = true;
+                                }else{
+                                    if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
+                                        isFile = true;
+                                    }
                                 }
-                                saveRecord(entity, fields);
-                                resetForm();
-                                cleanForm();
+
+                                if(isFile){
+                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
+                                }else{
+                                    isFile = true;
+                                }
+                                
+                                if(isFile){
+                                    $('input').blur();
+                                    var fields = {
+                                        'id': $("#txtId").val(),
+                                        'name': $("#txtName").val(),
+                                        'description': $("#txtDescription").val(),
+                                        'link': $("#txtLink").val()
+                                    }
+                                    saveRecord(entity, fields, folder);
+                                    resetForm();
+                                    cleanForm();
+                                    enabledForm(true);
+                                }
                             }
                         }
                     }
@@ -200,6 +229,16 @@
                     return validateUrl($("#divLink"), $("#txtLink"));
                 });
                 
+                
+                $("#fleLogo").focusout(function(){
+                    return validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
+                });
+                
+                
+                $("#fleLogo").change(function(){
+                    readURL(this);
+                });
+                
             });
             
                         
@@ -207,9 +246,12 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_social_network';
+            folder = 'social-networks';
+            
+            
             function loadRecords()
             {
-                var entity = 'melc_social_network';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -253,7 +295,7 @@
                             }
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", " + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
                             table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
@@ -315,6 +357,11 @@
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
                             $("#txtLink").val(objFields.link);
+                            if(objFields.logo.trim().length > 0){
+                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                                $("#logoViewUpdate").attr('src', '../assets/images/social-networks/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/social-networks/' + objFields.logo);
+                            }
                             resetForm("update");
                             enabledForm(false);
                         },

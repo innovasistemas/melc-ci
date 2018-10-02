@@ -7,6 +7,9 @@
 // Variables globales Javascript
 //****************************
 
+var entity;
+var folder;
+
 var isUrlLocalRemote = window.location.toString().indexOf('http://127.0.0.1', 0);
 
 var urlListRecord;
@@ -94,7 +97,7 @@ function enabledForm(sw)
 
 function cleanForm()
 {
-    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], input[type=number], input[type=color], textarea').val('');
+    $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], input[type=number], input[type=color], input[type=file], textarea').val('');
 }
 
 
@@ -209,6 +212,7 @@ function validateFile(division, input, maxSize)
 // Funciones del CRUD
 //****************************
 
+
 function newRecord()
 {
     $( "#dialog" ).html("¿está seguro?");
@@ -232,13 +236,14 @@ function newRecord()
 }
 
 
-function saveRecord(entity, fields)
-{
+function saveRecord(entity, fields, folder)
+{ 
     var objJson = {
         'db': {
             'table': entity
         },
-        'fields': fields
+        'fields': fields,
+        'folder': folder
     };
     
     var strJson = JSON.stringify(objJson);
@@ -284,15 +289,16 @@ function saveRecord(entity, fields)
 }
 
 
-function deleteRecord(entity, id)
-{
+function deleteRecord(entity, folder, id)
+{ 
     var objJson = {
         'bd': {
             'table': entity
         },
         'fields': {
             'id': id                      
-        }                   
+        },
+        'folder': folder
     }
 
     var strJson = JSON.stringify(objJson);
@@ -310,7 +316,15 @@ function deleteRecord(entity, id)
                     type: 'POST',
                     dataType: 'json',
                     success: function(data){
-                        $( "#dialog" ).html(data.response + "<br>filas afectadas: " + data.affectedRows + " <br>error: " + data.error);
+                        $( "#dialog" ).html(
+                            "<b>respuesta:</b>" + 
+                            "<br><u>datos:</u> " + data.response + 
+                            "<br><u>archivos:</u> " + data.responseFile +
+                            "<br><b>filas afectadas:</b> " + data.affectedRows + 
+                            "<br><b>errores:</b>" +
+                            "<br><u>datos:</u> " + data.error +
+                            "<br><u>archivos:</u> " + data.errorFile
+                        );
                         $( "#dialog" ).dialog({
                             autoOpen: true,
                             modal: true,

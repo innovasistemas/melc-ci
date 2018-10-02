@@ -122,12 +122,11 @@
                     $("#txtEmail").val($("#txtEmail").val().trim());
                     if(validateEmail($("#divEmail"), $("#txtEmail"))){
                         $('input').blur();
-                        var entity = 'melc_newsletter';
                         var fields = {
                             'id': $("#txtId").val(),
                             'email': $("#txtEmail").val()
                         }
-                        saveRecord(entity, fields);
+                        saveRecord(entity, fields, folder);
                         resetForm();
                         cleanForm();
                     }
@@ -147,9 +146,12 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_newsletter';
+            folder = 'no-folder';
+            
+            
             function loadRecords()
             {
-                var entity = 'melc_newsletter';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -176,7 +178,7 @@
                             table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.email + "</a>";
                             table += "</td>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", " + value.id + ")'>";
+                            table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
                             table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";

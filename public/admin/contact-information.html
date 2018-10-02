@@ -103,7 +103,18 @@
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divLogo">
                                 <label for="fleLogo" class="control-label">logo</label>
-                                <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen" disabled="disabled"/>                        
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
+                                    </span>
+                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 50KB)" disabled="disabled"/>                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogoView">
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
+                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
                             </div>
                         </div>
                     </div>
@@ -187,7 +198,6 @@
                     }
                     if(sw){
                         $('input').blur();
-                        var entity = 'melc_contact_information';
                         var fields = {
                             'id': $("#txtId").val(),
                             'address': $("#txtAddress").val(),
@@ -196,7 +206,7 @@
                             'email': $("#txtEmail").val()
                         }  
 
-                        saveRecord(entity, fields);
+                        saveRecord(entity, fields, folder);
                         resetForm();
                         cleanForm();
                     }  
@@ -210,6 +220,16 @@
                     }
                 });
                 
+                
+                $("#fleLogo").focusout(function(){
+                    return validateFile($("#divLogo"), $("#fleLogo")[0], 51200);
+                });
+                
+                
+                $("#fleLogo").change(function(){
+                    readURL(this);
+                });
+                
             });
             
                         
@@ -217,9 +237,12 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_contact_information';
+            folder = '';
+            
+            
             function loadRecords()
             {
-                var entity = 'melc_contact_information';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -315,6 +338,11 @@
                             $("#txtPhone").val(objFields.phone);
                             $("#txtCellPhone").val(objFields.cell_phone);
                             $("#txtEmail").val(objFields.email);
+                            if(objFields.logo.trim().length > 0){
+                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                                $("#logoViewUpdate").attr('src', '../assets/images/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/' + objFields.logo);
+                            }
                             resetForm("update");
                             enabledForm(false);
                         },

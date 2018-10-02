@@ -37,7 +37,11 @@ class MasterEngine extends CI_Controller {
     {
         
     }
-
+    
+    
+    //****************************
+    // Funciones del CRUD
+    //****************************
 
     // Función para devolver un listado general de registros en un objeto JSON. 
     // Recibe un objeto JSON     // que contiene la tabla, los campos a mostrar 
@@ -76,23 +80,41 @@ class MasterEngine extends CI_Controller {
     // Función para eliminar registros de una tabla a partir de su id
     public function deleteRecords()
     {
+        $response = "";
+        $error = 0;
+        $intResult = 0;
+        $arrayFile['responseFile'] = "N/A";
+        $arrayFile['errorFile'] = 0;
+        
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
+            if($arrayData['folder'] != 'no-folder'){
+                $arrayFile = $this->deleteFile($arrayData['bd']['table'], 
+                        $arrayData['fields']['id'], $arrayData['folder']);
+            }else{
+                $arrayFile['responseFile'] = "sin archivo para eliminar";
+                $arrayFile['errorFile'] = 0;
+            }
             $intResult = $this->ManagementModel->delete(
                     $arrayData['bd']['table'], $arrayData['fields']['id']
                 );
-            $arrayResult = array(
-                "response" => "registro eliminado correctamente", 
-                "affectedRows" => $intResult,
-                "error" => 0
-            );
+            if($intResult > 0){
+                $response = "registro eliminado correctamente";
+            }else{
+                $response = "no se pudo eliminar el registro";
+                $error = 801;
+            }
         }else{
-            $arrayResult = [
-                "response" => "datos incompletos para realizar esta solicitud", 
-                "affectedRows" => 0,
-                "error" => 201
-            ];
+            $response = "datos incompletos para realizar esta solicitud";
         }
+        
+        $arrayResult = [
+            "response" => $response, 
+            "responseFile" => $arrayFile['responseFile'], 
+            "affectedRows" => $intResult,
+            "error" =>  $error,
+            "errorFile" => $arrayFile['errorFile']
+        ];
         
         echo json_encode($arrayResult);
     }
@@ -101,22 +123,25 @@ class MasterEngine extends CI_Controller {
     // Función para guardar un registro en inserciones o actualizaciones
     public function saveRecord()
     { 
+        $response = "";
+        $error = 0;
+        $intResult = 0;
+        $arrayFile['responseFile'] = "N/A";
+        $arrayFile['errorFile'] = 0;
+        
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);  
             
-            $response = "";
-            $error = 0;
-            
-            //Comprobar si hay imagen para subirla
+            // Comprobar si hay imagen para subirla
             if(!empty($_FILES)){
-                $arrayFile = $this->loadFile();
+                $arrayFile = $this->loadFile($arrayData['folder']);
                 $arrayData['fields']['logo'] = $arrayFile['nameFile']; 
             }else{
                 $arrayFile['responseFile'] = "sin archivo para cargar";
                 $arrayFile['errorFile'] = 0;
             }
             
-            //Verificar insert/update    
+            // Verificar insert/update    
             if((int)$arrayData['fields']['id'] == 0){
                 $intResult = $this->ManagementModel->insert(
                         $arrayData['db']['table'], $arrayData['fields']);
@@ -148,16 +173,20 @@ class MasterEngine extends CI_Controller {
         
         echo json_encode($arrayResult);
     }
+
     
-    
-    //Función para cargar archivos en el servidor (usado para imágenes)
-    public function loadFile()
-    {
+    //****************************
+    // Funciones para el tratamiento de archivos
+    //****************************
+
+    // Función para cargar archivos en el servidor (usado para imágenes)
+    public function loadFile($folder)
+    { 
         $responseFile = "";
         $nameFile = "";
         $errorFile = 0;
         
-        //Comprobar si hay imagen para subirla
+        // Comprobar si hay imagen para subirla
         if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
                 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
                 'xmlhttprequest'){
@@ -172,33 +201,70 @@ class MasterEngine extends CI_Controller {
 
                     if(move_uploaded_file($fTempName, 
                             $_SERVER['DOCUMENT_ROOT'] .  
-                            "/melc-ci/public/assets/images/gallery/" . $fName)){
+                            "/melc-ci/public/assets/images/" . $folder . "/" . $fName)){
 
                         $nameFile = $fName;
                         $responseFile = "se subió el archivo correctamente.";
 
                     }else{
-                        $responseFile = "Ocurrió un error al subir el archivo.";
+                        $responseFile = "ocurrió un error al subir el archivo.";
                         $errorFile = 601;
                     }
                 }else{
-                    $responseFile = "El tipo o el tamaño del archivo no "
+                    $responseFile = "el tipo o el tamaño del archivo no "
                             . "son válidos.";
                     $errorFile = 602;
                 }
             }else{
-                $responseFile = "No se especificó el archivo.";
+                $responseFile = "no se especificó el archivo.";
                 $errorFile = 603;
             }
         }else{
-            $responseFile = "Error procesando la petición de subida "
-                    . "de archivos.";
+            $responseFile = "error procesando la petición de subida de "
+                    . "archivos.";
             $errorFile = 604;
         }
         
         $arrayFile = [
             "responseFile" => $responseFile, 
             "nameFile" => $nameFile, 
+            "errorFile" => $errorFile
+        ];
+        
+        return $arrayFile;
+    }
+    
+    
+    // Función para eliminar el archivo correspondiente a un registro eliminado 
+    // o editado que contenga imagen
+    public function deleteFile($table, $id, $folder)
+    {
+        $responseFile = "";
+        $errorFile = 0;
+        
+        $arrayFind = $this->ManagementModel->find($table, 'id', $id);
+        $arrayResult = $arrayFind->result_array();
+        
+        $route = $_SERVER['DOCUMENT_ROOT'] 
+                . "/melc-ci/public/assets/images/$folder/" 
+                . $arrayResult[0]['logo'];
+        
+        if(file_exists($route)){
+            if(unlink($route)){
+                $responseFile = "el archivo se eliminó correctamente.";
+            }else{
+                $responseFile = "no se puede eliminar el archivo; es posible que no exista.";
+                $errorFile = 701;
+            }
+        }else{
+            $responseFile = "no se puede eliminar el archivo; no hay uno asociado al registro.";
+            $errorFile = 702;
+        }
+        
+        
+        $arrayFile = [
+            "responseFile" => $responseFile, 
+            "nameFile" => $folder . "/" . $arrayResult[0]['logo'], 
             "errorFile" => $errorFile
         ];
         
