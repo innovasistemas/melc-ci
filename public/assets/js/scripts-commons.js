@@ -38,6 +38,12 @@ $("#newRecord").click(function(){
 });
 
 
+$('#reloadPage').click(function() {
+    location.reload();
+});
+            
+
+
 $('#navbar-top').delegate('#about', 'click', function(){
     var date = new Date()
     var year = date.getFullYear();
