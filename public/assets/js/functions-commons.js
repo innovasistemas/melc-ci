@@ -47,9 +47,6 @@ if(isUrlLocalRemote < 0){
 // Funciones de página
 //****************************
 
-loadFooterDate();
-                
-
 function loadLayout(isHome)
 {
     $('#divStyles').load('styles.html');
@@ -66,7 +63,11 @@ function loadFooterDate()
 {
     var date = new Date();
     var year = date.getFullYear();
-    $('#footer').find('#footer-date').find('#footer-date-copyright').html(year);
+    var month = date.getMonth();
+    var months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+    
+    $('#footer').find('#footer-date').find('#footer-date-copyright').html(months[month] + " - " + year);
 }
 
 

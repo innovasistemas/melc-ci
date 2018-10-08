@@ -104,14 +104,11 @@ Mapas de imágenes con CSS
 http://librosweb.es/libro/css_avanzado/capitulo_6/mapas_de_imagen.html
 
 
-
 ---------------------------------------------------------------------------------------------
 OAuth 2.0
 https://tools.ietf.org/pdf/rfc6749.pdf
 
 http://www.thegameofcode.com/2012/07/conceptos-basicos-de-oauth2.html
-
-
 
 
 ---------------------------------------------------------------------------------------------
@@ -124,11 +121,9 @@ Tu clave de API
 AIzaSyChD53dyoftlc72doGeUPUAC6U_DMPeerU
 
 
-
 ---------------------------------------------------------------------------------------------
 Obtener clave api key Google Maps
 http://www.rubenalcaraz.es/pinakes/informatica/como-obtener-una-clave-api-para-google-maps/#codesyntax_1
-
 
 
 ---------------------------------------------------------------------------------------------
@@ -154,9 +149,33 @@ https://select2.org
 
 
 ---------------------------------------------------------------------------------------------
+Longitud máxima de caracteres admitida para un input text en el atributo maxlengt
+https://www.w3schools.com/tags/att_input_maxlength.asp
 
 
 ---------------------------------------------------------------------------------------------
+Seleccionar elementos en select2 generados dinámicamente
+https://es.stackoverflow.com/questions/80690/c%C3%B3mo-le-digo-al-plugin-select2-qu%C3%A9-elemento-poner-llenado-por-ajax
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
 
 
 ---------------------------------------------------------------------------------------------

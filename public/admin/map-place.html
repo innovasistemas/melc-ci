@@ -25,18 +25,19 @@
         <!-- Fin header (cabecera)-->
                     
         <!-- Inicio contenido - (formulario principal) -->
-        <!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">-->
-        <div id="container" class="modal-dialog container-top" aria-hidden="true">
+        <div id="container" class="modal-dialog container-top">
             <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
+                |
+                <a href="#!" title="importar" id="importExcel">importar excel</a>
                 |
                 <a href="#!" title="recargar" id="reloadPage">recargar página</a>
             </div>
             
             <hr/>
             
-            <h1 class="h1 text-capitalize">rutas</h1>
+            <h1 class="h1 text-capitalize">lugares</h1>
             
             <p>&nbsp;</p>
             
@@ -76,13 +77,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divMapNumber">
-                                <label for="nbrMapNumber" class="control-label">número ruta</label>
+                            <div class="form-group" id="divLatitude">
+                                <label for="txtLatitude" class="control-label">latitud <small>(coordenadas decimales)</small></label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-750-hash.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <input type="number" name="nbrMapNumber" id="nbrMapNumber" min="1" max="50" class="form-control input-lg" placeholder="número mapa" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, number, digits, range(1, 50))" title="ingrese un número único de ruta" disabled="disabled"/>                        
+                                    <input type="text" name="txtLatitude" id="txtLatitude" class="form-control input-lg" placeholder="latitud" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, number)" title="ingrese la latitud en coordenadas decimales" disabled="disabled"/>
                                 </div>                   
                             </div>
                         </div>
@@ -90,13 +91,13 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divColor">
-                                <label for="clrColor" class="control-label">color</label>
+                            <div class="form-group" id="divLongitude">
+                                <label for="txtLongitude" class="control-label">longitud <small>(coordenadas decimales)</small></label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-597-activity.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <input type="color" name="clrColor" id="clrColor" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione el color" disabled="disabled"/>                        
+                                    <input type="text" name="txtLongitude" id="txtLongitude" class="form-control input-lg" placeholder="latitud" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, number)" title="ingrese la longitud en coordenadas decimales" disabled="disabled"/>
                                 </div>                   
                             </div>
                         </div>
@@ -104,20 +105,32 @@
                     
                     <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divLogo">
-                                <label for="fleLogo" class="control-label">logo</label>
+                            <div class="form-group" id="divLink">
+                                <label for="txtLink" class="control-label">enlace</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
-                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 5KB [32x32 píxeles])" disabled="disabled"/>                        
-                                </div>
+                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="2000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url o #! para omitir" disabled="disabled"/>                        
+                                </div>                   
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="row">
                         <div class="col-sm-6"> 
-                            <div class="form-group" id="divLogoView">
-                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
-                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
+                            <div class="form-group" id="divRoute">
+                                <label for="cboRoute" class="control-label">ruta</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                    </span>
+                                    <select name="cboRoute" id="cboRoute" class="form-control input-sm select2" style="width: 100%;" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione la ruta a la que pertenece el lugar" disabled="disabled">
+<!--                                        <option value="" selected="selected"></option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="WY">Wyoming</option>-->
+                                    </select>
+                                </div>                   
                             </div>
                         </div>
                     </div>
@@ -132,15 +145,16 @@
             <!--Fin Formulario-->
             
             <!--Datos de la base de datos-->
-            <table id='tableData' class='table table-striped table-hover table-data'>
+            <table id='tableData' class='table table-striped table-hover'>
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success text-capitalize">
                         <th>nombre</th>
                         <th>descripción</th>
-                        <th>ruta número</th>
-                        <th>color</th>
-                        <th>logo</th>
+                        <th>latitud</th>
+                        <th>longitud</th>
+                        <th>enlace</th>
+                        <th>ruta</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -156,7 +170,9 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
+        <!--<footer id="footer" class="navbar navbar-color"></footer>-->
+        
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
             
             <div id="footer-links" class="container-fluid text-center text-md-left"></div>
             
@@ -179,53 +195,45 @@
         <script type="text/javascript" src="../assets/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/select2-4.0.6-rc.1/dist/js/select2.full.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>-->
         
         <div id="divStyles"></div>
         
         <script>
             $(function() { 
                 
+                loadListRoute();
+                
                 $("#btnSave").click(function(){
+                    var sw = false;
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
-                    $("#nbrMapNumber").val($("#nbrMapNumber").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            $('#nbrMapNumber').focus();
-                            if(validateValueBetween($("#divMapNumber"), $("#nbrMapNumber"), 1, 50)){
-                                $('#fleLogo').focus();
-                                var isFile = false;
-                                if($("#txtLogoView").val().trim().length === 0){
-                                    isFile = true;
-                                }else{
-                                    if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
-                                        isFile = true;
-                                    }
+                            $('#txtLink').focus();
+                            if($("#txtLink").val().length > 0){
+                                if(validateUrl($("#divLink"), $("#txtLink"))){
+                                    sw = true;
                                 }
-
-                                if(isFile){
-                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
-                                }else{
-                                    isFile = true;
-                                }
-
-                                if(isFile){
-                                    $('input').blur();
-                                    var fields = {
-                                        'id': $("#txtId").val(),
-                                        'name': $("#txtName").val(),
-                                        'description': $("#txtDescription").val(),
-                                        'map_number': $("#nbrMapNumber").val(),
-                                        'color': $("#clrColor").val()
-                                    }
-
-                                    saveRecord(entity, fields, folder);
-                                    resetForm();
-                                    cleanForm();
-                                    enabledForm(true);
+                            }else{
+                                sw = true;
+                            }
+                            if(sw){
+                                $('input').blur();
+                                var fields = {
+                                    'id': $("#txtId").val(),
+                                    'name': $("#txtName").val(),
+                                    'description': $("#txtDescription").val(),
+                                    'active': $("#optActiveYes").is(':checked') ? 1 : 0,
+                                    'link': $("#txtLink").val()
                                 }
                                 
+                                saveRecord(entity, fields, folder);
+                                resetForm();
+                                cleanForm();
+                                enabledForm(true);
                             }
                         }
                     }
@@ -245,20 +253,22 @@
                 });
                 
                 
-                $("#nbrMapNumber").focusout(function(){
-                    $("#nbrMapNumber").val($("#nbrMapNumber").val().trim());
-                    return validateValueBetween($("#divMapNumber"), $("#nbrMapNumber"), 1, 50);
+                $("#txtLink").focusout(function(){
+                    $("#txtLink").val($("#txtLink").val().trim());
+                    if($("#txtLink").val().length > 0){
+                        return validateUrl($("#divLink"), $("#txtLink"));
+                    }
                 });
                 
                 
-                $("#fleLogo").focusout(function(){
-                    return validateFile($("#divLogo"), $("#fleLogo")[0], 5120);
+                $('.select2').select2({
+                    placeholder: 'seleccione una opción',
+                    language: "es"
+//                    width: 'resolve'
+//                    theme: 'classic'
                 });
                 
-                
-                $("#fleLogo").change(function(){
-                    readURL(this);
-                });
+//                 $(".select2").select2();
                 
             });
             
@@ -267,8 +277,8 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_map';
-            folder = 'map-icons';
+            entity = 'melc_place';
+            folder = 'no-folder';
             
             
             function loadRecords()
@@ -279,15 +289,17 @@
                     },
                     fields: {
                         '0': 'id',
-                        '1': 'map_number',
-                        '2': 'name',
-                        '3': 'description',
-                        '4': 'logo',
-                        '5': 'color'
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'latitude',
+                        '4': 'longitude',
+                        '5': 'link',
+                        '6': 'id_map'
                     }                   
                 }
                 
                 var strJson = JSON.stringify(objJson);
+                var active;
                  
                 $.ajax({
                     url: urlListRecord,
@@ -302,17 +314,16 @@
                             table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description.substr(0, 50) + "...</td>";
-                            table += "<td>" + value.map_number + "</td>";
+                            table += "<td>" + value.latitude + "</td>";
+                            table += "<td>" + value.longitude + "</td>";
                             table += "<td>";
-                            table +=  "<div style='background-color:" + value.color + ";'>&nbsp;</div>";
-                            table += "</td>";
-                            table += "<td>";  
-                            if(value.logo !== null){
-                                table += "<img src='../assets/images/map-icons/" + value.logo + "' class='img-thumbnail zoom'/>";  
+                            if(value.link !== null){
+                                table += "<a href='" + value.link + "' title='enlace del lugar' target='_blank'>" + value.link + "</a>";
                             }else{
-                                table += "<img src='assets/images/no-photo.jpg' class='img-thumbnail zoom'/>";
+                                table += "";
                             }
                             table += "</td>";
+                            table += "<td>" + value.id_map + "</td>";
                             table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
                             table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
@@ -363,6 +374,37 @@
             }
                         
             
+            function loadListRoute()
+            {
+                var entity2 = 'melc_map';
+                var objJson = {
+                    'bd': {
+                        'table': entity2
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name'
+                    }                   
+                }
+
+                var strJson = JSON.stringify(objJson);
+
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "<option value='' selected='selected'></option>";
+                        $.each(data, function(index, value){
+                            content += "<option value='" + value.id +"'>" + value.name + "</option>";
+                        });
+                        $('#cboRoute').html(content);
+                    }
+                }); 
+            }
+            
+            
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");
@@ -375,13 +417,10 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
-                            $("#nbrMapNumber").val(objFields.map_number);
-                            $("#clrColor").val(objFields.color);
-                            if(objFields.logo.trim().length > 0){
-                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
-                                $("#logoViewUpdate").attr('src', '../assets/images/map-icons/' + objFields.logo);
-                                $("#txtLogoView").val('../assets/images/map-icons/' + objFields.logo);
-                            }
+                            $("#txtLatitude").val(objFields.latitude);
+                            $("#txtLongitude").val(objFields.longitude);
+                            $("#txtLink").val(objFields.link);
+                            $('#cboRoute').val(objFields.id_map).trigger('change') ;
                             resetForm("update");
                             enabledForm(false);
                         },

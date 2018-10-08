@@ -103,7 +103,7 @@ function initMap()
             '2': 'description',
             '3': 'latitude',
             '4': 'longitude',
-            '5': 'url',
+            '5': 'link',
             '6': 'id_map',
         }                   
     }
@@ -123,7 +123,7 @@ function initMap()
                 locations[index] = {lat: parseFloat(value.latitude), lng: parseFloat(value.longitude)};
                 places[index] = value.name;
                 descriptionPlace[index] = value.description;
-                urlPlace[index] = value.url;
+                urlPlace[index] = value.link;
             });
             $.each(locations, function(index, value){
                 addMarker(index, value);

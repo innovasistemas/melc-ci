@@ -16,6 +16,8 @@ $('body').ready(function(){
             loadRecords();
             break;
     }
+    
+    loadFooterDate();
 });
 
 

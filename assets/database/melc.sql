@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-09-2018 a las 05:57:25
+-- Tiempo de generación: 08-10-2018 a las 01:59:38
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -31,7 +31,7 @@ CREATE TABLE `melc_advertisement` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#!',
+  `link` varchar(4000) COLLATE utf8_unicode_ci DEFAULT '#!',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -47,7 +47,6 @@ INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`,
 (18, 'recorridos', 'Hemos realizado más de 150 recorridos', b'1', '#!', '2018-09-22 08:31:59', NULL),
 (24, 'Nuevo video', 'El 83% de los jóvenes que participan en Medellín en la Cabeza pertenecen a los estratos 1, 2 y 3', b'1', '', '2018-09-22 08:31:59', NULL),
 (25, 'cine callejero', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com', '2018-09-22 08:31:59', NULL),
-(26, 'dddd', 'sss', b'0', '', '2018-09-22 08:31:59', NULL),
 (27, 'anuncio 1', 'anuncio prueba guardar genérico', b'0', 'http://www.youtube.com/#/d', '2018-09-22 08:31:59', NULL);
 
 -- --------------------------------------------------------
@@ -92,6 +91,7 @@ CREATE TABLE `melc_contact_information` (
   `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cell_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -101,8 +101,8 @@ CREATE TABLE `melc_contact_information` (
 -- Volcado de datos para la tabla `melc_contact_information`
 --
 
-INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `logo`, `creation_date`, `last_update`) VALUES
-(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'logo-header.png', '2018-09-22 08:36:40', NULL);
+INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `link`, `logo`, `creation_date`, `last_update`) VALUES
+(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'http://medellinenlacabeza.medellinjoven.com', 'logo-header.png', '2018-09-22 08:36:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -190,16 +190,15 @@ INSERT INTO `melc_newsletter` (`id`, `email`, `creation_date`, `last_update`) VA
 (5, 'gomez1234@gmail.com', '2018-09-22 08:40:28', NULL),
 (6, 'jeremias@gmail.com', '2018-09-22 08:40:28', NULL),
 (7, 'alquimia@gmail.com', '2018-09-22 08:40:28', NULL),
-(8, 'sdf', '2018-09-22 08:40:28', NULL),
 (9, 'aaaaxxx23002dd@ssss.aa', '2018-09-22 08:40:28', NULL),
 (11, 'qqqwww222@yahoo.es', '2018-09-22 08:40:28', NULL),
 (13, 'ttee33@aa.dd', '2018-09-22 08:40:28', NULL),
-(14, 'yy44', '2018-09-22 08:40:28', NULL),
-(15, 'aañaa@uuu.xxx', '2018-09-22 08:40:28', NULL),
 (17, 'aaaxx.aa5a00@xxx.xx.xx', '2018-09-22 08:40:28', NULL),
 (18, 'zzz@zzz.zzz', '2018-09-22 08:40:28', NULL),
 (19, 'nuevapruebacargaarchivo@gmail.com', '2018-09-22 08:40:28', NULL),
-(20, 'xyz@zxy.yxz', '2018-09-22 08:40:28', NULL);
+(20, 'xyz@zxy.yxz', '2018-09-22 08:40:28', NULL),
+(21, 'corte@abc.co', '2018-10-03 02:49:49', NULL),
+(22, 'abcdef@aaa.aa', '2018-10-03 02:58:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +212,7 @@ CREATE TABLE `melc_place` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `url` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `id_map` bigint(20) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -223,7 +222,7 @@ CREATE TABLE `melc_place` (
 -- Volcado de datos para la tabla `melc_place`
 --
 
-INSERT INTO `melc_place` (`id`, `name`, `description`, `latitude`, `longitude`, `url`, `id_map`, `creation_date`, `last_update`) VALUES
+INSERT INTO `melc_place` (`id`, `name`, `description`, `latitude`, `longitude`, `link`, `id_map`, `creation_date`, `last_update`) VALUES
 (1, 'Museo Casa de la Memoria', '¿Sabes por qué es un museo y también una casa? ¿de qué memoria se habla allí? ¿mental, urbana, social, afectiva, del conflicto? En el entorno público de este museo, ubicado en el Parque Bicentenario, puedes encontrar un memorial con nombres y situaciones de victimización, unos totem sonoros, jardines de la memoria, un busto de Mahatma Ghandi ¡y hasta un árbol construido con cuchillos! Si vas a conocer sus salas internas reserva por lo menos 4 horas de tu día. ', 6.2459273, -75.5588449, 'https://goo.gl/maps/wwTFcFrSBVN2', 1, '2018-08-22 06:11:01', '0000-00-00 00:00:00'),
 (2, 'Parque Biblioteca La Ladera', '¡¿Vas para la antigua cárcel de varones de la ciudad?! En 1921, un ingeniero belga, el mismo que construyó el Palacio de la Cultura, la Facultad de Derecho de la Universidad de Antioquia y la Iglesia del Sagrado Corazón, comenzó su construcción ¿Sabes cómo se llamaba el ingeniero? ¿desde cuándo se transformó en parque y en biblioteca?', 6.2506827, -75.5563988, 'https://goo.gl/maps/VcXFqzSzBwy', 1, '2018-08-22 06:11:01', '0000-00-00 00:00:00'),
 (3, 'Cementerio de San Javier / Parque Biblioteca / Jardines de Resistencia / Casa Morada', 'En la ciudad de Medellín aún quedan algunos cementerios de barrio como los de El Rincón, Belén Miravalle, El Poblado y San Javier. Este último cada día transforma los hechos de muerte y dolor en ejercicios de memoria y vida. Allí podrás encontrar grafitis y jardines de resistencia que te hablarán de una nueva forma de mirar el conflicto en este territorio liderado por colectivos de jóvenes. \nCerquita están el Parque Biblioteca San Javier y las escaleras eléctricas donde se realiza un tour de grafitis como voz pública de estos barrios que perdonan, pero no olvidan.\n', 6.2540511, -75.6176208, 'https://goo.gl/maps/BisstfCDPx52', 1, '2018-08-22 06:17:31', '0000-00-00 00:00:00'),
@@ -336,7 +335,7 @@ CREATE TABLE `melc_social_network` (
   `id` bigint(20) NOT NULL,
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'social-networks.png',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -506,12 +505,12 @@ ALTER TABLE `melc_image_gallery`
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
 ALTER TABLE `melc_map`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `melc_place`
 --

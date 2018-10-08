@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-09-2018 a las 05:58:16
+-- Tiempo de generación: 08-10-2018 a las 02:00:54
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -31,7 +31,7 @@ CREATE TABLE `melc_advertisement` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#!',
+  `link` varchar(4000) COLLATE utf8_unicode_ci DEFAULT '#!',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -78,6 +78,7 @@ CREATE TABLE `melc_contact_information` (
   `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cell_phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -141,7 +142,7 @@ CREATE TABLE `melc_place` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `url` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `id_map` bigint(20) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -185,7 +186,7 @@ CREATE TABLE `melc_social_network` (
   `id` bigint(20) NOT NULL,
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'social-networks.png',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -329,12 +330,12 @@ ALTER TABLE `melc_image_gallery`
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
 ALTER TABLE `melc_map`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `melc_place`
 --
