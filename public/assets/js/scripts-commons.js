@@ -29,6 +29,7 @@ $('#frmRegister').ketchup();
 
 $('#frmRegister').on('reset', function(){
     resetForm();
+    cleanForm();
     if($('body').find('input').attr('data-page') !== 'noRecords'){
         enabledForm(true);
     }
@@ -44,7 +45,6 @@ $('#reloadPage').click(function() {
     location.reload();
 });
             
-
 
 $('#navbar-top').delegate('#about', 'click', function(){
     var date = new Date()

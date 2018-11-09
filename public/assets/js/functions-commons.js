@@ -99,6 +99,7 @@ function enabledForm(sw)
 function cleanForm()
 {
     $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], input[type=number], input[type=color], input[type=file], textarea').val('');
+    $("#frmRegister").find('.select2').val('').trigger('change');
 }
 
 
@@ -116,6 +117,15 @@ function resetForm(state)
         if(div.id !== undefined){
             $("#" +  div.id).removeClass("has-error has-success");
         }
+    });
+    
+    $("#frmRegister").find('.select2').select2().trigger('select2:close'); 
+    $("#frmRegister").find('.select2').select2({
+        placeholder: 'seleccione una opción',
+        language: "es",
+        allowClear: true
+//        width: 'resolve'
+//        theme: 'classic'
     });
 }
         
@@ -281,7 +291,29 @@ function saveRecord(entity, fields, folder)
                     "Aceptar": function () {
                         $(this).dialog("close");
                         loadRecords(); 
-//                        window.location = 'advertisement.html'; //Provisional para cargar el DataTable
+                    }
+                } 
+            });
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $( "#dialog" ).html(
+                    "<b>respuesta:</b>" + 
+                    "<br><span class='text-danger'>Sucedió un problema al tratar de guardar</span>" + 
+                    "<br><b>incidencia</b>" + 
+                    "<br><span class='text-danger'>" + textStatus + "</span>" +
+                    "<br><b>tipo de error</b>" + 
+                    "<br><span class='text-danger'>" + errorThrown + "</span>" +
+                    "<br><b>estado:</b>" +
+                    "<br><span class='text-danger'>" + XMLHttpRequest.status + "</span>" +
+                    "<!--br><b>detalle:</b>" +
+                    "<br>" + XMLHttpRequest.responseText + "-->"
+                    );
+            $( "#dialog" ).dialog({
+                autoOpen: true,
+                modal: true,
+                buttons: {
+                    "Aceptar": function () {
+                        $(this).dialog("close");
                     }
                 } 
             });
