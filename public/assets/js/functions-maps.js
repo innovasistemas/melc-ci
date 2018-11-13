@@ -95,7 +95,8 @@ function initMap()
     var entity = 'melc_place';
     var objJson = {
         'bd': {
-            'table': entity
+            'table': entity,
+            'orderField': 'id_map'
         },
         fields: {
             '0': 'id',

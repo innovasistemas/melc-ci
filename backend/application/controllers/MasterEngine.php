@@ -50,9 +50,10 @@ class MasterEngine extends CI_Controller {
     {
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
-            $objResult = $this->ManagementModel->read(
-                    $arrayData['bd']['table'], array_values($arrayData['fields']
-                ));
+            $orderFile = empty($arrayData['bd']['orderField']) 
+                    ? "id" : $arrayData['bd']['orderField'];
+            $objResult = $this->ManagementModel->read($arrayData['bd']['table'], 
+                    array_values($arrayData['fields']), $orderFile);
             $arrayResult = [];
             foreach ($objResult->result() as $row){
                 $arrayResult[] = $row;  
