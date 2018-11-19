@@ -106,9 +106,17 @@ http://librosweb.es/libro/css_avanzado/capitulo_6/mapas_de_imagen.html
 
 ---------------------------------------------------------------------------------------------
 OAuth 2.0
+https://oauth.net/2/
+https://tools.ietf.org/html/rfc6749
 https://tools.ietf.org/pdf/rfc6749.pdf
 
 http://www.thegameofcode.com/2012/07/conceptos-basicos-de-oauth2.html
+
+https://www.digitalocean.com/community/tutorials/una-introduccion-a-oauth-2-es
+
+OAuth2 para PHP
+https://github.com/bshaffer/oauth2-server-php
+http://bshaffer.github.io/oauth2-server-php-docs/
 
 
 ---------------------------------------------------------------------------------------------
@@ -162,11 +170,26 @@ https://es.stackoverflow.com/questions/80690/c%C3%B3mo-le-digo-al-plugin-select2
 phpspreadsheet
 https://phpspreadsheet.readthedocs.io/en/develop/
 
----------------------------------------------------------------------------------------------
-
-
 
 ---------------------------------------------------------------------------------------------
+Recaptcha
+https://www.google.com/recaptcha
+Clave del sitio
+(cuenta jaime.montoya.rosario@gmail.com)
+Úsala en el código HTML que muestra tu sitio a los usuarios.
+6LcoeHsUAAAAAK0csXVQeQMYj6y84-x4BFBpy5cE
+6Le8eHsUAAAAAAwh7vxwA_nQb9B_Vljk629Y9lOk (local)
+
+
+Clave secreta
+Úsala para las comunicaciones entre tu sitio y Google. Ten la precaución de no revelársela a nadie.
+6LcoeHsUAAAAAOopWg8WTaJdnzlXOSSnFjom8gTV
+6Le8eHsUAAAAANLQKAior4ho1NcgrsFQTFjj6XwI (localk)
+
+
+---------------------------------------------------------------------------------------------
+Búsqueda sensible de cadenas en MySQL
+https://stackoverflow.com/questions/29313394/mysql-binary-in-codeigniter
 
 
 

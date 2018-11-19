@@ -12,6 +12,8 @@
         
         <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
         
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        
     </head>
     
     <body>                
@@ -30,7 +32,7 @@
             <hr/>
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="h1 text-capitalize">inicio de sesión</h1>
+                    <h1 class="h1 text-capitalize">iniciar sesión</h1>
                 </div>
                 <div class="col-sm-6">
                     <div class="text-center">
@@ -45,16 +47,31 @@
             <!--Formulario-->
             <div class="row" id="divForm">
                 <form role="form" name="frmRegister" id="frmRegister" class="text-capitalize" enctype="multipart/form-data">
-                      
+                    
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divProfile">
+                                <label for="cboProfile" class="control-label">perfil</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-44-group.png"/>
+                                    </span>
+                                    <select name="cboProfile" id="cboProfile" class="form-control input-lg select2" style="width: 100%;" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione el perfil del usuario">
+                                    </select>
+                                </div>                   
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-sm-6"> 
                             <div class="form-group" id="divUser">
-                                <label for="txtUser" class="control-label">usuario</label>
+                                <label for="txtUser" class="control-label">usuario / correo</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-4-user.png"/>
                                     </span>
-                                    <input type="text" name="txtUser" id="txtUser" class="form-control input-lg" placeholder="usuario" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese el nombre de usuario" /> 
+                                    <input type="text" name="txtUser" id="txtUser" class="form-control input-lg" placeholder="usuario o correo" maxlength="255" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="ingrese el nombre de usuario" /> 
                                 </div>                   
                             </div>
                         </div>
@@ -77,6 +94,7 @@
                     <div class="form-group">
                         <input type="button" value="ingresar" class="btn btn-primary" id="btnSave" title="enviar" />
                         <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" />
+                        <div class="g-recaptcha" data-sitekey="6Le8eHsUAAAAAAwh7vxwA_nQb9B_Vljk629Y9lOk"></div>
                     </div>
 
                 </form>
@@ -110,11 +128,37 @@
         <script type="text/javascript" src="../assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
+        <script type="text/javascript" src="../assets/js/select2-4.0.6-rc.1/dist/js/select2.full.js"></script>
         
         <div id="divStyles"></div>
         
         <script>
             $(function(){ 
+                
+                loadProfiles();
+                
+                $("#btnSave").click(function(){
+                    var sw = false;
+                    $("#txtUser").val($("#txtUser").val().trim());
+                    $("#txtPassword").val($("#txtPassword").val().trim());
+                    if(validateLength($("#divUser"), $("#txtUser"), 1)){
+                        $('#txtPassword').focus();
+                        if(validateLength($("#divUser"), $("#txtUser"), 1)){
+                            $('input').blur();
+                            var fields = {
+                                'user': $("#txtUser").val(),
+                                'password': $("#txtPassword").val(),
+                                'profile': $("#cboProfile").val()
+                            }  
+
+                            requestAccess(entity, fields);
+                            resetForm();
+                            cleanForm();
+                        }
+                    }
+                    
+                });
+                
                 
                 //Validaciones focosout: longitud y otros       
                 $("#txtUser").focusout(function(){
@@ -126,7 +170,14 @@
                 $("#txtPassword").focusout(function(){
                     $("#txtPassword").val($("#txtPassword").val().trim());
                     return validateLength($("#divPassword"), $("#txtPassword"), 1);
-                });                                                
+                }); 
+                
+                
+                $('.select2').select2({
+                    placeholder: 'seleccione una opción',
+                    language: "es",
+                    allowClear: true
+                });
                 
             });
             
@@ -135,6 +186,113 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_user';
+            
+            function requestAccess(entity, fields)
+            { 
+                var objJson = {
+                    'db': {
+                        'table': entity
+                    },
+                    'fields': fields
+                };
+
+                var strJson = JSON.stringify(objJson);
+
+                var formData = new FormData($("#frmRegistro"));
+                formData.append('dataSend', strJson);
+
+                if($("form").find("input:file").prop("type") === "file"){
+                    formData.append('inputFile', $("form").find("input:file")[0].files[0]);
+                }
+
+                $.ajax({
+                    url: urlRequestAccess,
+                    data: formData,
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        var content;
+                        content = "<b>respuesta:</b><br>" + data.response + 
+                                "<br><b>errores:</b><br>" + data.error;
+                        if(data.error === 0){
+                            content += "<br><b>datos:</b><br>" + data.user +
+                                    "<br><b>datos:</b><br>" + data.profile_name
+                        }
+                        $( "#dialog" ).html(content);
+                        $( "#dialog" ).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            buttons: {
+                                "Aceptar": function () {
+                                    $(this).dialog("close");
+                                    if(data.error === 0){
+                                        $(location).attr('href', 'load-admin.html');
+                                    }
+                                }
+                            } 
+                        });
+                       
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $( "#dialog" ).html(
+                                "<b>respuesta:</b>" + 
+                                "<br><span class='text-danger'>Sucedió un problema al tratar de acceder</span>" + 
+                                "<br><b>incidencia</b>" + 
+                                "<br><span class='text-danger'>" + textStatus + "</span>" +
+                                "<br><b>tipo de error</b>" + 
+                                "<br><span class='text-danger'>" + errorThrown + "</span>" +
+                                "<br><b>estado:</b>" +
+                                "<br><span class='text-danger'>" + XMLHttpRequest.status + "</span>" +
+                                "<!--br><b>detalle:</b>" +
+                                "<br>" + XMLHttpRequest.responseText + "-->"
+                                );
+                        $( "#dialog" ).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            buttons: {
+                                "Aceptar": function () {
+                                    $(this).dialog("close");
+                                }
+                            } 
+                        });
+                    }
+                });
+            }
+            
+            
+            function loadProfiles()
+            {
+                var entity2 = 'melc_profile';
+                var objJson = {
+                    'bd': {
+                        'table': entity2
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name'
+                    }                   
+                }
+
+                var strJson = JSON.stringify(objJson);
+
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "<option value='' selected='selected'></option>";
+                        $.each(data, function(index, value){
+                            content += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        });
+                        $('#cboProfile').html(content);
+                    }
+                }); 
+            }
             
         </script>
         

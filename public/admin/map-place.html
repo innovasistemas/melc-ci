@@ -415,7 +415,7 @@
                     success: function(data) {
                         var content = "<option value='' selected='selected'></option>";
                         $.each(data, function(index, value){
-                            content += "<option value='" + value.id +"'>" + value.name + "</option>";
+                            content += "<option value='" + value.id + "'>" + value.name + "</option>";
                         });
                         $('#cboRoute').html(content);
                     }

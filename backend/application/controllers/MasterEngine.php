@@ -272,4 +272,62 @@ class MasterEngine extends CI_Controller {
         return $arrayFile;
     }
     
+    
+    //****************************
+    // Funciones para el tratamiento de la autenticación
+    //****************************
+    
+    // Función para devolver un token de autenticación en un objeto JSON, si las
+    // credenciales son válidas o un mensaje de error. 
+    // Recibe un objeto JSON que contiene la tabla, los campos a mostrar 
+    // y un criterio de búsqueda
+    public function requestAccess()
+    {
+        if(!empty($this->input->post("dataSend"))){
+            $arrayData = json_decode($this->input->post("dataSend"), TRUE);
+            $objResult = $this->ManagementModel->validateAccess(
+                    $arrayData['db']['table'], array_keys($arrayData['fields']),
+                    array_values($arrayData['fields']));
+            $arrayResult = [];
+            if($objResult->num_rows() > 0){
+                $arrayResult['user'] = $objResult->result()[0]->user;
+                $arrayResult['profile_name'] = 
+                        $objResult->result()[0]->profile_name;
+                $arrayResult['token'] = $this->getToken();
+                $arrayResult['response'] = "acceso concedido";
+                $arrayResult['error'] = 0;
+            }else{
+                $arrayResult = [
+                    "response" => "las credenciales no coinciden", 
+                    "error" => 901
+                ];
+            }
+        }else{
+            $arrayResult = [
+                "response" => "datos incompletos para realizar esta solicitud", 
+                "error" => 201
+            ];
+        }
+        
+        echo json_encode($arrayResult);
+    }
+    
+    
+    // Función para generar una cadena de autenticación aleatoria
+    public function getToken()
+    {
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyz" . 
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*/";
+        $lenCharacters = strlen($characters);
+        $token = "";
+        for($i=0; $i < 30; $i++){
+            $token .= $characters[rand(0, $lenCharacters - 1)]; 
+        }
+        echo $_SERVER['REMOTE_ADDR']; //exit();
+        echo $_SERVER['HTTP_USER_AGENT']; //exit();
+        echo $lenCharacters; exit();
+//        echo st$token; exit();
+        
+    }
+    
 }

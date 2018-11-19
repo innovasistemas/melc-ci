@@ -76,6 +76,26 @@ class ManagementModel extends CI_Model
         $this->db->where("UPPER($field)", strtoupper($data));
         return $this->db->get($table);
     }
+    
+    
+    // Función para validar las credenciales de acceso en la BD
+    public function validateAccess($table, $arrayFields, $arrayValues)
+    {
+        $query = 
+                "SELECT " . $arrayFields[0] . ", " . $arrayFields[1] . 
+                ", melc_profile.name AS profile_name " .
+                "FROM melc_user " .
+                "INNER JOIN melc_profile_user " .
+                "ON melc_user.id=melc_profile_user.id_melc_user " . 
+                "INNER JOIN melc_profile " . 
+                "ON melc_profile.id=melc_profile_user.id_melc_profile " . 
+                "WHERE (BINARY user='" . $arrayValues[0]  . "' " .
+                "OR BINARY email='" . $arrayValues[0] . "') " .
+                "AND BINARY password='" . $arrayValues[1] . "' " .
+                "AND BINARY melc_profile.id='" . $arrayValues[2] . "'";
+        
+        return $this->db->query($query);
+    }
 
 
     //Buscar el registro para tomar el nombre de la imagen y eliminar el 
