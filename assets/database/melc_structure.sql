@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-10-2018 a las 02:00:54
+-- Tiempo de generación: 20-11-2018 a las 11:32:41
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -19,6 +19,34 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `melc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_access`
+--
+
+CREATE TABLE `melc_access` (
+  `id` bigint(20) NOT NULL,
+  `id_melc_profile_user` bigint(20) NOT NULL,
+  `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time_exit` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_access_token`
+--
+
+CREATE TABLE `melc_access_token` (
+  `id` bigint(20) NOT NULL,
+  `id_access` bigint(20) NOT NULL,
+  `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -133,6 +161,17 @@ CREATE TABLE `melc_newsletter` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `melc_params`
+--
+
+CREATE TABLE `melc_params` (
+  `id` bigint(20) NOT NULL,
+  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `melc_place`
 --
 
@@ -220,6 +259,20 @@ CREATE TABLE `melc_user` (
 --
 
 --
+-- Indices de la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_melc_profile_user` (`id_melc_profile_user`);
+
+--
+-- Indices de la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_access` (`id_access`);
+
+--
 -- Indices de la tabla `melc_advertisement`
 --
 ALTER TABLE `melc_advertisement`
@@ -264,6 +317,12 @@ ALTER TABLE `melc_newsletter`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indices de la tabla `melc_params`
+--
+ALTER TABLE `melc_params`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `melc_place`
 --
 ALTER TABLE `melc_place`
@@ -274,7 +333,8 @@ ALTER TABLE `melc_place`
 -- Indices de la tabla `melc_profile`
 --
 ALTER TABLE `melc_profile`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indices de la tabla `melc_profile_user`
@@ -295,12 +355,23 @@ ALTER TABLE `melc_social_network`
 --
 ALTER TABLE `melc_user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user` (`user`);
+  ADD UNIQUE KEY `user` (`user`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -330,17 +401,22 @@ ALTER TABLE `melc_image_gallery`
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
 ALTER TABLE `melc_map`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
+-- AUTO_INCREMENT de la tabla `melc_params`
+--
+ALTER TABLE `melc_params`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `melc_place`
 --
 ALTER TABLE `melc_place`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT de la tabla `melc_profile`
 --
@@ -364,6 +440,18 @@ ALTER TABLE `melc_user`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  ADD CONSTRAINT `melc_access_ibfk_1` FOREIGN KEY (`id_melc_profile_user`) REFERENCES `melc_profile_user` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  ADD CONSTRAINT `melc_access_token_ibfk_1` FOREIGN KEY (`id_access`) REFERENCES `melc_access` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `melc_place`

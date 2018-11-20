@@ -294,6 +294,9 @@ class MasterEngine extends CI_Controller {
                 $arrayResult['profile_name'] = 
                         $objResult->result()[0]->profile_name;
                 $arrayResult['token'] = $this->getToken();
+                $arrayResult['ip_access'] = $_SERVER['REMOTE_ADDR'];
+                $arrayResult['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+                //devolver también el id de la sesión (access or access_token)
                 $arrayResult['response'] = "acceso concedido";
                 $arrayResult['error'] = 0;
             }else{
@@ -317,17 +320,14 @@ class MasterEngine extends CI_Controller {
     public function getToken()
     {
         $characters = "0123456789abcdefghijklmnopqrstuvwxyz" . 
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*/";
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*/%$#=&";
         $lenCharacters = strlen($characters);
         $token = "";
         for($i=0; $i < 30; $i++){
             $token .= $characters[rand(0, $lenCharacters - 1)]; 
         }
-        echo $_SERVER['REMOTE_ADDR']; //exit();
-        echo $_SERVER['HTTP_USER_AGENT']; //exit();
-        echo $lenCharacters; exit();
-//        echo st$token; exit();
         
+        return $token;
     }
     
 }

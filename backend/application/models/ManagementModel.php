@@ -82,7 +82,10 @@ class ManagementModel extends CI_Model
     public function validateAccess($table, $arrayFields, $arrayValues)
     {
         $query = 
-                "SELECT " . $arrayFields[0] . ", " . $arrayFields[1] . 
+                "SELECT " . 
+                $arrayFields[0] . 
+                ", " . $arrayFields[1] . 
+                ", melc_user.name AS full_user_name" . 
                 ", melc_profile.name AS profile_name " .
                 "FROM melc_user " .
                 "INNER JOIN melc_profile_user " .

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-11-2018 a las 08:02:40
+-- Tiempo de generación: 20-11-2018 a las 11:34:14
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -19,6 +19,34 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `melc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_access`
+--
+
+CREATE TABLE `melc_access` (
+  `id` bigint(20) NOT NULL,
+  `id_melc_profile_user` bigint(20) NOT NULL,
+  `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time_exit` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_access_token`
+--
+
+CREATE TABLE `melc_access_token` (
+  `id` bigint(20) NOT NULL,
+  `id_access` bigint(20) NOT NULL,
+  `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -199,6 +227,24 @@ INSERT INTO `melc_newsletter` (`id`, `email`, `creation_date`, `last_update`) VA
 (20, 'xyz@zxy.yxz', '2018-09-22 08:40:28', NULL),
 (21, 'corte@abc.co', '2018-10-03 02:49:49', NULL),
 (22, 'abcdef@aaa.aa', '2018-10-03 02:58:21', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_params`
+--
+
+CREATE TABLE `melc_params` (
+  `id` bigint(20) NOT NULL,
+  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `melc_params`
+--
+
+INSERT INTO `melc_params` (`id`, `expiration_time`) VALUES
+(1, 60);
 
 -- --------------------------------------------------------
 
@@ -385,21 +431,35 @@ CREATE TABLE `melc_user` (
 --
 
 INSERT INTO `melc_user` (`id`, `user`, `password`, `name`, `address`, `phone`, `cell_phone`, `email`, `birth_date`, `active`, `description`, `logo`, `creation_date`, `last_update`) VALUES
-(1, 'admin', 'admin', 'administrador', '', '', '', '', '0000-00-00', b'1', '', 'thumbnail.png', '2018-08-15 04:22:19', NULL),
-(2, 'edwin', 'edwin', '', '', '', '', '', '0000-00-00', b'1', '', '01_EDWIN_MED.png', '2018-08-15 04:33:26', NULL),
-(3, 'darlin', 'darlin', '', '', '', '', '', '0000-00-00', b'1', '', '02_DARLIN_MED.png', '2018-08-15 04:33:26', NULL),
-(4, 'evelyn', 'evelyn', '', '', '', '', '', '0000-00-00', b'1', '', '04_EVELYN_MED.png', '2018-08-15 04:35:49', NULL),
-(5, 'katherine', 'katherine', '', '', '', '', '', '0000-00-00', b'1', '', '05_KATHERINE_MED.png', '2018-08-15 04:35:49', NULL),
-(6, 'carlos', 'carlos', '', '', '', '', '', '0000-00-00', b'1', '', '06_CARLOS_MED.png', '2018-08-15 04:38:00', NULL),
-(7, 'didier', 'didier', '', '', '', '', '', '0000-00-00', b'1', '', '07_DIDIER_MED.png', '2018-08-15 04:38:00', NULL),
-(8, 'luis', 'luis', '', '', '', '', '', '0000-00-00', b'1', '', '09_LUIS_MIGUEL_MED.png', '2018-08-15 04:39:40', NULL),
-(9, 'manuela', 'manuela', '', '', '', '', '', '0000-00-00', b'1', '', '11_MANUELA_MED.png', '2018-08-15 04:39:40', NULL),
-(10, 'anton', 'anton', '', '', '', '', '', '0000-00-00', b'1', '', '12_ANTON_MED.png', '2018-08-15 04:40:47', NULL),
-(11, 'dalia', 'dalia', '', '', '', '', '', '0000-00-00', b'1', '', '13_DALIA_MED.png', '2018-08-15 04:40:47', NULL);
+(1, 'admin', 'admin', 'administrador', '', '', '', 'admin@localhost.com', '0000-00-00', b'1', '', 'thumbnail.png', '2018-08-15 04:22:19', NULL),
+(2, 'edwin', 'edwin', '', '', '', '', 'edwin@localhost.com', '0000-00-00', b'1', '', '01_EDWIN_MED.png', '2018-08-15 04:33:26', NULL),
+(3, 'darlin', 'darlin', '', '', '', '', 'darlin@localhost.com', '0000-00-00', b'1', '', '02_DARLIN_MED.png', '2018-08-15 04:33:26', NULL),
+(4, 'evelyn', 'evelyn', '', '', '', '', 'evelyn@localhost.com', '0000-00-00', b'1', '', '04_EVELYN_MED.png', '2018-08-15 04:35:49', NULL),
+(5, 'katherine', 'katherine', '', '', '', '', 'katherine@localhost.com', '0000-00-00', b'1', '', '05_KATHERINE_MED.png', '2018-08-15 04:35:49', NULL),
+(6, 'carlos', 'carlos', '', '', '', '', 'carlos@localhost.com', '0000-00-00', b'1', '', '06_CARLOS_MED.png', '2018-08-15 04:38:00', NULL),
+(7, 'didier', 'didier', '', '', '', '', 'didier@localhost.com', '0000-00-00', b'1', '', '07_DIDIER_MED.png', '2018-08-15 04:38:00', NULL),
+(8, 'luis', 'luis', '', '', '', '', 'luis@localhost.com', '0000-00-00', b'1', '', '09_LUIS_MIGUEL_MED.png', '2018-08-15 04:39:40', NULL),
+(9, 'manuela', 'manuela', '', '', '', '', 'manuela@localhost.com', '0000-00-00', b'1', '', '11_MANUELA_MED.png', '2018-08-15 04:39:40', NULL),
+(10, 'anton', 'anton', '', '', '', '', 'anton@localhost.com', '0000-00-00', b'1', '', '12_ANTON_MED.png', '2018-08-15 04:40:47', NULL),
+(11, 'dalia', 'dalia', '', '', '', '', 'dalia@localhost.com', '0000-00-00', b'1', '', '13_DALIA_MED.png', '2018-08-15 04:40:47', NULL);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_melc_profile_user` (`id_melc_profile_user`);
+
+--
+-- Indices de la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_access` (`id_access`);
 
 --
 -- Indices de la tabla `melc_advertisement`
@@ -446,6 +506,12 @@ ALTER TABLE `melc_newsletter`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indices de la tabla `melc_params`
+--
+ALTER TABLE `melc_params`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `melc_place`
 --
 ALTER TABLE `melc_place`
@@ -456,7 +522,8 @@ ALTER TABLE `melc_place`
 -- Indices de la tabla `melc_profile`
 --
 ALTER TABLE `melc_profile`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indices de la tabla `melc_profile_user`
@@ -477,12 +544,23 @@ ALTER TABLE `melc_social_network`
 --
 ALTER TABLE `melc_user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user` (`user`);
+  ADD UNIQUE KEY `user` (`user`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -519,6 +597,11 @@ ALTER TABLE `melc_map`
 ALTER TABLE `melc_newsletter`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
+-- AUTO_INCREMENT de la tabla `melc_params`
+--
+ALTER TABLE `melc_params`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `melc_place`
 --
 ALTER TABLE `melc_place`
@@ -546,6 +629,18 @@ ALTER TABLE `melc_user`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `melc_access`
+--
+ALTER TABLE `melc_access`
+  ADD CONSTRAINT `melc_access_ibfk_1` FOREIGN KEY (`id_melc_profile_user`) REFERENCES `melc_profile_user` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `melc_access_token`
+--
+ALTER TABLE `melc_access_token`
+  ADD CONSTRAINT `melc_access_token_ibfk_1` FOREIGN KEY (`id_access`) REFERENCES `melc_access` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `melc_place`
