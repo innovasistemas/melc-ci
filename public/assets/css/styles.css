@@ -209,8 +209,12 @@ ul.notas li#nota3 {
     font-size: 1.1em;
 }
 
+.user-session-div{
+    color: #ABABAB;
+}
+
 .user-session{
-    color: #FFF !important;
+    color: #229EEA;
 }
 
 .container-top{

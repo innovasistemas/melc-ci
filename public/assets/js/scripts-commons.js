@@ -10,14 +10,18 @@ $('body').ready(function(){
             break;
         case 'noRecords':
             loadLayout(false);
+            verifyAuthentication();
             break;
         case 'records':
             loadLayout(false);
             loadRecords();
+            verifyAuthentication();
             break;
     }
     
     loadFooterDate();
+    loadUserSession();
+    
 });
 
 
@@ -46,6 +50,12 @@ $('#reloadPage').click(function() {
 });
             
 
+$('#closeSession').click(function() {
+    sessionStorage.clear();
+    $(location).attr('href', 'index.html');
+});
+            
+
 $('#navbar-top').delegate('#about', 'click', function(){
     var date = new Date()
     var year = date.getFullYear();
@@ -56,7 +66,8 @@ $('#navbar-top').delegate('#about', 'click', function(){
     contentHTML += "<br>";
     contentHTML += "MELC - medellín en la cabeza";
     contentHTML += "<br>desarrollado por: ";
-    contentHTML += "<strong>jaime montoya</strong>";
+    contentHTML += "<br><strong>jaime montoya</strong> ";
+    contentHTML += "<small><code>(innovasistemas@gmail.com)</code></small>";
     contentHTML += "<br>&copy; Copyright " + year;
     
     $( "#dialog" ).html(contentHTML);

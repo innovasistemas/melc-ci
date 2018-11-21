@@ -17,6 +17,7 @@ var urlTotalRecord;
 var urlSaveRecord;
 var urlDeleteRecord;
 var urlRequestAccess;
+var urlVerifyAuthentication;
 
 if(isUrlLocalRemote < 0){
     isUrlLocalRemote = window.location.toString().indexOf('http://medellinenlacabeza', 0);
@@ -26,12 +27,14 @@ if(isUrlLocalRemote < 0){
         urlSaveRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
         urlDeleteRecord = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
         urlRequestAccess = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/requestAccess/';
+        urlVerifyAuthentication = 'http://melc.medellinjoven.com/backend/index.php/MasterEngine/verifyAuthentication/';
     }else{
         urlListRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/listrecords/';
         urlTotalRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/totalrecords/';
         urlSaveRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/saverecord/';
         urlDeleteRecord = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/deleterecords/';
         urlRequestAccess = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/requestAccess/';
+        urlVerifyAuthentication = 'http://medellinenlacabeza.medellinjoven.com/backend/index.php/MasterEngine/verifyAuthentication/';
     }
 }else{
     urlListRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/listrecords/';
@@ -39,6 +42,7 @@ if(isUrlLocalRemote < 0){
     urlSaveRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/saverecord/';
     urlDeleteRecord = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/deleterecords/';
     urlRequestAccess = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/requestAccess/';
+    urlVerifyAuthentication = 'http://127.0.0.1/melc-ci/backend/index.php/MasterEngine/verifyAuthentication/';
 }
 
 
@@ -72,6 +76,96 @@ function loadFooterDate()
 
     
     $('#footer').find('#footer-date').find('#footer-date-copyright').html(months[month] + " - " + year);
+}
+
+
+//****************************
+// Funciones de sesión
+//****************************
+
+function loadUserSession()
+{
+    var content;
+    content = sessionStorage.getItem('full_user_name') + " (" + sessionStorage.getItem('user') + ")";
+    $('#container').find('#user-session-div').find('#user-session').html(content);
+}
+
+
+function verifyAuthentication()
+{
+    var content;
+    entity = 'melc_access';
+        
+        $( "#dialog" ).html("sessionStorage.length");
+        $( "#dialog" ).dialog({
+            autoOpen: true,
+            modal: true,
+            buttons: {
+                "Aceptar": function () {
+                    $(this).dialog("close");
+                    
+                }
+            } 
+        });
+    
+    if(sessionStorage.length > 0){
+//        var objJson = {
+//            'bd': {
+//                'table': entity
+//            },
+//            fields: {
+//                '0': 'id',
+//                '1': 'email'
+//            }                   
+//        }
+//
+//        var strJson = JSON.stringify(objJson);
+//
+//        $.ajax({
+//            url: urlVerifyAuthentication,
+//            data: {'dataSend': strJson},
+//            type: 'POST',
+//            dataType: 'json',
+//            success: function(data) {
+//                
+//                content = "<b>respuesta:</b><br>" + data.response + 
+//                        "<br><b>errores:</b><br>" + data.error;
+//                
+//                $( "#dialog" ).html(content);
+//                $( "#dialog" ).dialog({
+//                    autoOpen: true,
+//                    modal: true,
+//                    buttons: {
+//                        "Aceptar": function () {
+//                            $(this).dialog("close");
+//
+//                        }
+//                    } 
+//                });
+//            
+//            }
+//
+//        }); 
+        
+    }else{
+        content = "<b>respuesta:</b><br>no se ha autenticado en el sisitema" +  
+                        "<br><b>errores:</b><br>9001";
+        alert(content)
+        $(location).attr('href', 'index.html');
+        
+        $( "#dialog" ).html(content);
+        $( "#dialog" ).dialog({
+            autoOpen: true,
+            modal: true,
+            buttons: {
+                "Aceptar": function () {
+                    $(this).dialog("close");
+                    $(location).attr('href', 'index.html');
+                    
+                }
+            } 
+        });
+    }
 }
 
 

@@ -27,12 +27,22 @@
         <!-- Inicio contenido - (formulario principal) -->
         <div id="container" class="modal-dialog container-top">
             <input type="hidden" name="txtPage" id="txtPage" data-page="records"/>
+            
+            <div id="user-session-div" class="text-left text-capitalize user-session-div">
+                usuario: 
+                <!--<a href="#!" class="">-->
+                    <span id="user-session" class="user-session navbar-link"></span>
+                <!--</a>-->
+            </div>
+
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
                 |
 <!--                <a href="#!" title="importar" id="importExcel">importar excel</a>
                 |-->
                 <a href="#!" title="recargar" id="reloadPage">recargar página</a>
+                |
+                <a href="#!" title="cerrar sesión" id="closeSession">Cerrar sesión</a>
             </div>
             
             <hr/>

@@ -218,11 +218,6 @@
                         var content;
                         content = "<b>respuesta:</b><br>" + data.response + 
                                 "<br><b>errores:</b><br>" + data.error;
-                        if(data.error === 0){
-                            content += "<br><b>datos:</b><br>" + data.user +
-                                    "<br><b>datos:</b><br>" + data.full_user_name +
-                                    "<br><b>datos:</b><br>" + data.profile_name
-                        }
                         $( "#dialog" ).html(content);
                         $( "#dialog" ).dialog({
                             autoOpen: true,
@@ -231,6 +226,14 @@
                                 "Aceptar": function () {
                                     $(this).dialog("close");
                                     if(data.error === 0){
+                                        sessionStorage.setItem('session_id', data.session_id);
+                                        sessionStorage.setItem('user', data.user);
+                                        sessionStorage.setItem('full_user_name', data.full_user_name);
+                                        sessionStorage.setItem('profile_name', data.profile_name);
+                                        sessionStorage.setItem('ip_access', data.ip_access);
+                                        sessionStorage.setItem('user_agent', data.user_agent);
+                                        sessionStorage.setItem('token', data.token);
+                                        
                                         $(location).attr('href', 'load-admin.html');
                                     }
                                 }

@@ -65,12 +65,26 @@ class ManagementModel extends CI_Model
     }
     
     
+    // Función para devolver el último id insertado
+    public function lastInsertId($table)
+    {
+        $this->db->select_max("id");
+        return $this->db->get($table);
+    }
+   
+    
+
+    
+
+    
+    // Función para devolver el total de filas de una tabla
     public function totalRecords($table)
     {
         return $this->db->get($table)->num_rows();
     }
     
     
+    // Función para buscar un dato sobre una columna en alguna tabla
     public function find($table, $field, $data)
     {
         $this->db->where("UPPER($field)", strtoupper($data));
@@ -85,6 +99,7 @@ class ManagementModel extends CI_Model
                 "SELECT " . 
                 $arrayFields[0] . 
                 ", " . $arrayFields[1] . 
+                ", melc_profile_user.id AS id_profile_user" . 
                 ", melc_user.name AS full_user_name" . 
                 ", melc_profile.name AS profile_name " .
                 "FROM melc_user " .
@@ -95,19 +110,12 @@ class ManagementModel extends CI_Model
                 "WHERE (BINARY user='" . $arrayValues[0]  . "' " .
                 "OR BINARY email='" . $arrayValues[0] . "') " .
                 "AND BINARY password='" . $arrayValues[1] . "' " .
-                "AND BINARY melc_profile.id='" . $arrayValues[2] . "'";
+                "AND BINARY melc_profile.id='" . $arrayValues[2] . "' " .
+                "AND melc_profile_user.active";
         
         return $this->db->query($query);
     }
-
-
-    //Buscar el registro para tomar el nombre de la imagen y eliminar el 
-    //archivo correspondiente
-    // $buscarRegistro = $this->buscarClave($tabla, "id", $id);
-    // foreach ($buscarRegistro->result() as $fila)
-    // {
-    //     unlink(getcwd() . "/assets/images-article/" . $fila->image);
-    // }
+    
         
 }
 

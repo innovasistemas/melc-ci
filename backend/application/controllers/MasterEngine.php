@@ -103,10 +103,11 @@ class MasterEngine extends CI_Controller {
                 $response = "registro eliminado correctamente";
             }else{
                 $response = "no se pudo eliminar el registro";
-                $error = 801;
+                $error = 802;
             }
         }else{
             $response = "datos incompletos para realizar esta solicitud";
+            $error = 801;
         }
         
         $arrayResult = [
@@ -155,12 +156,12 @@ class MasterEngine extends CI_Controller {
                 $response = "registro(s) guardado(s) correctamente";
             }else{
                 $response = "no se pudo guardar el (los) registro(s)";
-                $error = 301;
+                $error = 302;
             }
             
         }else{
             $response = "datos incompletos para realizar esta solicitud"; 
-            $error = 201;
+            $error = 301;
             $intResult = 0;
         }
         
@@ -290,25 +291,44 @@ class MasterEngine extends CI_Controller {
                     array_values($arrayData['fields']));
             $arrayResult = [];
             if($objResult->num_rows() > 0){
-                $arrayResult['user'] = $objResult->result()[0]->user;
-                $arrayResult['profile_name'] = 
-                        $objResult->result()[0]->profile_name;
-                $arrayResult['token'] = $this->getToken();
+                // Datos a guardar en la sesión del servidor (acceso)
+                $arrayResult['id_melc_profile_user'] = 
+                        $objResult->result()[0]->id_profile_user;
                 $arrayResult['ip_access'] = $_SERVER['REMOTE_ADDR'];
                 $arrayResult['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-                //devolver también el id de la sesión (access or access_token)
-                $arrayResult['response'] = "acceso concedido";
-                $arrayResult['error'] = 0;
+                $arrayResult['token'] = $this->getToken();
+                if($this->ManagementModel->insert('melc_access', $arrayResult)){
+                    // Datos para enviar a la sesión del cliente junto con los
+                    // anteriores
+                    $objResultId = 
+                            $this->ManagementModel->lastInsertId('melc_access');
+                    $arrayResult['session_id'] = 
+                            $objResultId->result()[0]->id;
+                    $arrayResult['user'] = $objResult->result()[0]->user;
+                    $arrayResult['profile_name'] = 
+                            $objResult->result()[0]->profile_name;
+                    $arrayResult['full_user_name'] = 
+                            $objResult->result()[0]->full_user_name;
+                    $arrayResult['response'] = "acceso concedido";
+                    $arrayResult['error'] = 0;
+                    
+                }else{
+                    $arrayResult = [
+                        "response" => "Ocurrio un problema en el servidor. "
+                            . "No se pudo crear la sesión", 
+                        "error" => 903
+                    ];
+                }
             }else{
                 $arrayResult = [
                     "response" => "las credenciales no coinciden", 
-                    "error" => 901
+                    "error" => 902
                 ];
             }
         }else{
             $arrayResult = [
                 "response" => "datos incompletos para realizar esta solicitud", 
-                "error" => 201
+                "error" => 901
             ];
         }
         
@@ -320,13 +340,13 @@ class MasterEngine extends CI_Controller {
     public function getToken()
     {
         $characters = "0123456789abcdefghijklmnopqrstuvwxyz" . 
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*/%$#=&";
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*%/\\$#=&[]{}()~|<>?^.,;:";
         $lenCharacters = strlen($characters);
         $token = "";
         for($i=0; $i < 30; $i++){
             $token .= $characters[rand(0, $lenCharacters - 1)]; 
         }
-        
+
         return $token;
     }
     
