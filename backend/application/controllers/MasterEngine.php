@@ -103,11 +103,11 @@ class MasterEngine extends CI_Controller {
                 $response = "registro eliminado correctamente";
             }else{
                 $response = "no se pudo eliminar el registro";
-                $error = 802;
+                $error = 203;
             }
         }else{
             $response = "datos incompletos para realizar esta solicitud";
-            $error = 801;
+            $error = 202;
         }
         
         $arrayResult = [
@@ -156,12 +156,12 @@ class MasterEngine extends CI_Controller {
                 $response = "registro(s) guardado(s) correctamente";
             }else{
                 $response = "no se pudo guardar el (los) registro(s)";
-                $error = 302;
+                $error = 204;
             }
             
         }else{
             $response = "datos incompletos para realizar esta solicitud"; 
-            $error = 301;
+            $error = 205;
             $intResult = 0;
         }
         
@@ -203,28 +203,29 @@ class MasterEngine extends CI_Controller {
 
                     if(move_uploaded_file($fTempName, 
                             $_SERVER['DOCUMENT_ROOT'] .  
-                            "/melc-ci/public/assets/images/" . $folder . "/" . $fName)){
+                            "/melc-ci/public/assets/images/" . $folder . 
+                            "/" . $fName)){
 
                         $nameFile = $fName;
                         $responseFile = "se subió el archivo correctamente.";
 
                     }else{
                         $responseFile = "ocurrió un error al subir el archivo.";
-                        $errorFile = 601;
+                        $errorFile = 301;
                     }
                 }else{
                     $responseFile = "el tipo o el tamaño del archivo no "
                             . "son válidos.";
-                    $errorFile = 602;
+                    $errorFile = 302;
                 }
             }else{
                 $responseFile = "no se especificó el archivo.";
-                $errorFile = 603;
+                $errorFile = 303;
             }
         }else{
             $responseFile = "error procesando la petición de subida de "
                     . "archivos.";
-            $errorFile = 604;
+            $errorFile = 304;
         }
         
         $arrayFile = [
@@ -255,12 +256,14 @@ class MasterEngine extends CI_Controller {
             if(unlink($route)){
                 $responseFile = "el archivo se eliminó correctamente.";
             }else{
-                $responseFile = "no se puede eliminar el archivo; es posible que no exista.";
-                $errorFile = 701;
+                $responseFile = "no se puede eliminar el archivo; "
+                        . "es posible que no exista.";
+                $errorFile = 305;
             }
         }else{
-            $responseFile = "no se puede eliminar el archivo; no hay uno asociado al registro.";
-            $errorFile = 702;
+            $responseFile = "no se puede eliminar el archivo; "
+                    . "no hay uno asociado al registro.";
+            $errorFile = 306;
         }
         
         
@@ -316,19 +319,57 @@ class MasterEngine extends CI_Controller {
                     $arrayResult = [
                         "response" => "Ocurrio un problema en el servidor. "
                             . "No se pudo crear la sesión", 
-                        "error" => 903
+                        "error" => 403
                     ];
                 }
             }else{
                 $arrayResult = [
                     "response" => "las credenciales no coinciden", 
-                    "error" => 902
+                    "error" => 402
                 ];
             }
         }else{
             $arrayResult = [
                 "response" => "datos incompletos para realizar esta solicitud", 
-                "error" => 901
+                "error" => 401
+            ];
+        }
+        
+        echo json_encode($arrayResult);
+    }
+    
+    
+    // Función para verificar los datos de autenticación al navegar en el admin
+    public function verifyAuthentication()
+    {
+        if(!empty($this->input->post("dataSend"))){
+            $arrayData = json_decode($this->input->post("dataSend"), TRUE);
+            
+//            var_dump(array_values($arrayData['fields'])); 
+//            var_dump(array_keys($arrayData['fields'])); exit();
+            
+            $objResult = $this->ManagementModel->verifyAuthentication(
+                    $arrayData['db']['table'], array_keys($arrayData['fields']),
+                    array_values($arrayData['fields']));
+            
+//            var_dump($objResult->result());exit();
+            
+            
+            $arrayResult = [];
+            if($objResult->num_rows() > 0){
+                $arrayResult['response'] = "credenciales de acceso correctas";
+                    $arrayResult['error'] = 0;
+            }else{
+                $arrayResult = [
+                    "response" => "credenciales de autenticación incorrectas", 
+                    "error" => 406
+                ];
+            }
+        }else{
+            $arrayResult = [
+                "response" => "datos incompletos para realizar esta solicitud. "
+                . "Debe iniciar sesión nuevamente", 
+                "error" => 405
             ];
         }
         

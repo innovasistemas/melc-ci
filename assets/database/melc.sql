@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-11-2018 a las 11:34:14
+-- Tiempo de generación: 22-11-2018 a las 00:48:49
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -31,22 +31,39 @@ CREATE TABLE `melc_access` (
   `id_melc_profile_user` bigint(20) NOT NULL,
   `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_time_exit` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `melc_access_token`
---
-
-CREATE TABLE `melc_access_token` (
-  `id` bigint(20) NOT NULL,
-  `id_access` bigint(20) NOT NULL,
   `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `state` bit(1) NOT NULL DEFAULT b'1',
+  `observation` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ninguna',
+  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time_exit` datetime DEFAULT NULL,
+  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `melc_access`
+--
+
+INSERT INTO `melc_access` (`id`, `id_melc_profile_user`, `ip_access`, `user_agent`, `token`, `state`, `observation`, `date_time_access`, `date_time_exit`, `date_time_updated`) VALUES
+(1, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '/h>Y5#^UFTp,=wT/mpMyuVgM85{vbn', b'1', 'ninguna', '2018-11-21 08:59:36', NULL, '2018-11-21 08:59:36'),
+(2, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '&n)^I?+}2VKcL%qbe_;l.Lx<W,fhG$', b'1', 'ninguna', '2018-11-21 09:02:48', NULL, '2018-11-21 09:02:48'),
+(3, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '.p3]kM\\?z#P<>9Xkk[>i5)*D#yA,P(', b'1', 'ninguna', '2018-11-21 09:04:20', NULL, '2018-11-21 09:04:20'),
+(4, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'BF)@DY:@0{=3^g%>]B|;Vb*RyT+*V6', b'1', 'ninguna', '2018-11-21 09:05:56', NULL, '2018-11-21 09:05:56'),
+(5, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '.j/&YAu19V(y2Ai<cc(s8\\~+w)bDsP', b'1', 'ninguna', '2018-11-21 09:18:07', NULL, '2018-11-21 09:18:07'),
+(6, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'EA&S]2iLlm6b%@3Ez:Zt40AU;yW;MX', b'1', 'ninguna', '2018-11-21 10:49:05', NULL, '2018-11-21 10:49:05'),
+(7, 2, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', ':5FR|I#D-4K}#j|mT~?^??wP>*j<p)', b'1', 'ninguna', '2018-11-21 11:37:33', NULL, '2018-11-21 11:37:33'),
+(8, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', ']$T09cG\\T7tCCOf0k&@FDN=Rnx83|:', b'1', 'ninguna', '2018-11-21 11:45:16', NULL, '2018-11-21 11:45:16'),
+(9, 2, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'Oo^2}{LXqn@=aJ21/W<_R}V^CPZWI.', b'1', 'ninguna', '2018-11-21 11:46:34', NULL, '2018-11-21 11:46:34'),
+(10, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '[oSpJn;_Nq7.3/ha4-U5_EoPomLQr7', b'1', 'ninguna', '2018-11-21 12:21:47', NULL, '2018-11-21 12:21:47'),
+(11, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'iimcI<^8M9|l>v7W=Zs{JL>0q-=YUp', b'1', 'ninguna', '2018-11-21 15:18:42', NULL, '2018-11-21 15:18:42'),
+(12, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '=FKCKp0i2,5YLEYAMb[E%(H,Bl,Y:r', b'1', 'ninguna', '2018-11-21 15:31:36', NULL, '2018-11-21 15:31:36'),
+(13, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'jK#ed?g*M:S}teTBX;^&b_CGUg#QZq', b'1', 'ninguna', '2018-11-21 15:33:40', NULL, '2018-11-21 15:33:40'),
+(14, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'ShA\\qC[W;_I>z/|f@sM2;,(B_~8U/8', b'1', 'ninguna', '2018-11-21 16:47:13', NULL, '2018-11-21 16:47:13'),
+(15, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'F)<&=VbO^C^]=Zp9l/}R+S6^e9iOws', b'1', 'ninguna', '2018-11-22 02:47:41', NULL, '2018-11-22 02:47:41'),
+(16, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'rZ\\:mW_rpuy>at,K*LerUz>+WKt1es', b'1', 'ninguna', '2018-11-22 04:28:35', NULL, '2018-11-22 04:28:35'),
+(17, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '${Z4I)ks%*v})pL^qgUaLamo+NrM}y', b'1', 'ninguna', '2018-11-22 05:38:58', NULL, '2018-11-22 05:38:58'),
+(18, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'Q=).W-x){;nPptz?*dsReWsBPl2-R7', b'1', 'ninguna', '2018-11-22 05:42:59', NULL, '2018-11-22 05:42:59'),
+(19, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'n\\->B&t#$^GTRhl~^ZoY\\;0^shhXP;', b'1', 'ninguna', '2018-11-22 05:44:31', NULL, '2018-11-22 05:44:31'),
+(20, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'yg)odL0KB{JYB#:=--.4tb@WMo~O0I', b'1', 'ninguna', '2018-11-22 05:45:34', NULL, '2018-11-22 05:45:34');
 
 -- --------------------------------------------------------
 
@@ -367,6 +384,7 @@ CREATE TABLE `melc_profile_user` (
   `id` bigint(20) NOT NULL,
   `id_melc_profile` bigint(20) NOT NULL,
   `id_melc_user` bigint(20) NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -375,8 +393,9 @@ CREATE TABLE `melc_profile_user` (
 -- Volcado de datos para la tabla `melc_profile_user`
 --
 
-INSERT INTO `melc_profile_user` (`id`, `id_melc_profile`, `id_melc_user`, `creation_date`, `last_update`) VALUES
-(1, 1, 1, '2018-08-15 04:27:16', NULL);
+INSERT INTO `melc_profile_user` (`id`, `id_melc_profile`, `id_melc_user`, `active`, `creation_date`, `last_update`) VALUES
+(1, 1, 1, b'1', '2018-08-15 04:27:16', NULL),
+(2, 2, 4, b'0', '2018-11-21 11:34:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -431,10 +450,10 @@ CREATE TABLE `melc_user` (
 --
 
 INSERT INTO `melc_user` (`id`, `user`, `password`, `name`, `address`, `phone`, `cell_phone`, `email`, `birth_date`, `active`, `description`, `logo`, `creation_date`, `last_update`) VALUES
-(1, 'admin', 'admin', 'administrador', '', '', '', 'admin@localhost.com', '0000-00-00', b'1', '', 'thumbnail.png', '2018-08-15 04:22:19', NULL),
+(1, 'admin', 'admin', 'administrador web', '', '', '', 'admin@localhost.com', '0000-00-00', b'1', '', 'thumbnail.png', '2018-08-15 04:22:19', NULL),
 (2, 'edwin', 'edwin', '', '', '', '', 'edwin@localhost.com', '0000-00-00', b'1', '', '01_EDWIN_MED.png', '2018-08-15 04:33:26', NULL),
 (3, 'darlin', 'darlin', '', '', '', '', 'darlin@localhost.com', '0000-00-00', b'1', '', '02_DARLIN_MED.png', '2018-08-15 04:33:26', NULL),
-(4, 'evelyn', 'evelyn', '', '', '', '', 'evelyn@localhost.com', '0000-00-00', b'1', '', '04_EVELYN_MED.png', '2018-08-15 04:35:49', NULL),
+(4, 'evelyn', 'evelyn', 'evelyn moreno', '', '', '', 'evelyn@localhost.com', '0000-00-00', b'1', '', '04_EVELYN_MED.png', '2018-08-15 04:35:49', NULL),
 (5, 'katherine', 'katherine', '', '', '', '', 'katherine@localhost.com', '0000-00-00', b'1', '', '05_KATHERINE_MED.png', '2018-08-15 04:35:49', NULL),
 (6, 'carlos', 'carlos', '', '', '', '', 'carlos@localhost.com', '0000-00-00', b'1', '', '06_CARLOS_MED.png', '2018-08-15 04:38:00', NULL),
 (7, 'didier', 'didier', '', '', '', '', 'didier@localhost.com', '0000-00-00', b'1', '', '07_DIDIER_MED.png', '2018-08-15 04:38:00', NULL),
@@ -453,13 +472,6 @@ INSERT INTO `melc_user` (`id`, `user`, `password`, `name`, `address`, `phone`, `
 ALTER TABLE `melc_access`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_melc_profile_user` (`id_melc_profile_user`);
-
---
--- Indices de la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_access` (`id_access`);
 
 --
 -- Indices de la tabla `melc_advertisement`
@@ -555,12 +567,7 @@ ALTER TABLE `melc_user`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -615,7 +622,7 @@ ALTER TABLE `melc_profile`
 -- AUTO_INCREMENT de la tabla `melc_profile_user`
 --
 ALTER TABLE `melc_profile_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
@@ -635,12 +642,6 @@ ALTER TABLE `melc_user`
 --
 ALTER TABLE `melc_access`
   ADD CONSTRAINT `melc_access_ibfk_1` FOREIGN KEY (`id_melc_profile_user`) REFERENCES `melc_profile_user` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  ADD CONSTRAINT `melc_access_token_ibfk_1` FOREIGN KEY (`id_access`) REFERENCES `melc_access` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `melc_place`

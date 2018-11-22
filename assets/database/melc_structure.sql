@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-11-2018 a las 11:32:41
+-- Tiempo de generación: 22-11-2018 a las 00:50:31
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -31,21 +31,12 @@ CREATE TABLE `melc_access` (
   `id_melc_profile_user` bigint(20) NOT NULL,
   `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_time_exit` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `melc_access_token`
---
-
-CREATE TABLE `melc_access_token` (
-  `id` bigint(20) NOT NULL,
-  `id_access` bigint(20) NOT NULL,
   `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `state` bit(1) NOT NULL DEFAULT b'1',
+  `observation` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ninguna',
+  `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time_exit` datetime DEFAULT NULL,
+  `date_time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -211,6 +202,7 @@ CREATE TABLE `melc_profile_user` (
   `id` bigint(20) NOT NULL,
   `id_melc_profile` bigint(20) NOT NULL,
   `id_melc_user` bigint(20) NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -264,13 +256,6 @@ CREATE TABLE `melc_user` (
 ALTER TABLE `melc_access`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_melc_profile_user` (`id_melc_profile_user`);
-
---
--- Indices de la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_access` (`id_access`);
 
 --
 -- Indices de la tabla `melc_advertisement`
@@ -366,12 +351,7 @@ ALTER TABLE `melc_user`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -426,7 +406,7 @@ ALTER TABLE `melc_profile`
 -- AUTO_INCREMENT de la tabla `melc_profile_user`
 --
 ALTER TABLE `melc_profile_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
@@ -446,12 +426,6 @@ ALTER TABLE `melc_user`
 --
 ALTER TABLE `melc_access`
   ADD CONSTRAINT `melc_access_ibfk_1` FOREIGN KEY (`id_melc_profile_user`) REFERENCES `melc_profile_user` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `melc_access_token`
---
-ALTER TABLE `melc_access_token`
-  ADD CONSTRAINT `melc_access_token_ibfk_1` FOREIGN KEY (`id_access`) REFERENCES `melc_access` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `melc_place`

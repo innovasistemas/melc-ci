@@ -73,10 +73,6 @@ class ManagementModel extends CI_Model
     }
    
     
-
-    
-
-    
     // Función para devolver el total de filas de una tabla
     public function totalRecords($table)
     {
@@ -112,6 +108,21 @@ class ManagementModel extends CI_Model
                 "AND BINARY password='" . $arrayValues[1] . "' " .
                 "AND BINARY melc_profile.id='" . $arrayValues[2] . "' " .
                 "AND melc_profile_user.active";
+        
+        return $this->db->query($query);
+    }
+    
+        
+    // Función para validar las credenciales de acceso en la BD
+    public function verifyAuthentication($table, $arrayFields, $arrayValues)
+    {
+        $query = 
+                "SELECT " . implode(",", $arrayFields) . " " .
+                "FROM $table " .
+                "WHERE id=" . $arrayValues[0]  . " " .
+                "AND BINARY ip_access='" . $arrayValues[1] . "' " .
+                "AND BINARY user_agent='" . $arrayValues[2] . "' " .
+                "AND BINARY token='" . $arrayValues[3] . "'";
         
         return $this->db->query($query);
     }

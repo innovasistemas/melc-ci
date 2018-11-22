@@ -109,63 +109,72 @@ function verifyAuthentication()
         });
     
     if(sessionStorage.length > 0){
-//        var objJson = {
-//            'bd': {
-//                'table': entity
-//            },
-//            fields: {
-//                '0': 'id',
-//                '1': 'email'
-//            }                   
-//        }
-//
-//        var strJson = JSON.stringify(objJson);
-//
-//        $.ajax({
-//            url: urlVerifyAuthentication,
-//            data: {'dataSend': strJson},
-//            type: 'POST',
-//            dataType: 'json',
-//            success: function(data) {
-//                
-//                content = "<b>respuesta:</b><br>" + data.response + 
-//                        "<br><b>errores:</b><br>" + data.error;
-//                
-//                $( "#dialog" ).html(content);
-//                $( "#dialog" ).dialog({
-//                    autoOpen: true,
-//                    modal: true,
-//                    buttons: {
-//                        "Aceptar": function () {
-//                            $(this).dialog("close");
-//
-//                        }
-//                    } 
-//                });
-//            
-//            }
-//
-//        }); 
+        var objJson = {
+            'db': {
+                'table': entity
+            },
+            fields: {
+                'id': sessionStorage.getItem('session_id'),
+                'ip_access': sessionStorage.getItem('ip_access'),
+                'user_agent': sessionStorage.getItem('user_agent'),
+                'token': sessionStorage.getItem('token'),
+            }                   
+        }
+
+        var strJson = JSON.stringify(objJson);
+        
+        $.ajax({
+            url: urlVerifyAuthentication,
+            data: {'dataSend': strJson},
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+                if(data.error !== 0){
+                    closeSession();
+//                    $(location).attr('href', 'index.html');
+                    content = "<b>respuesta:</b><br>" + data.response + 
+                        "<br><b>errores:</b><br>" + data.error;
+                    
+                    $( "#dialog" ).html(content);
+                    $( "#dialog" ).dialog({
+                        autoOpen: true,
+                        modal: true,
+                        buttons: {
+                            "Aceptar": function () {
+                                $(this).dialog("close");
+                                closeSession();
+                            }
+                        } 
+                    });
+                }
+            }
+        }); 
         
     }else{
-        content = "<b>respuesta:</b><br>no se ha autenticado en el sisitema" +  
-                        "<br><b>errores:</b><br>9001";
-        alert(content)
-        $(location).attr('href', 'index.html');
+//        content = "<b>respuesta:</b><br>no se ha autenticado en el sisitema" +  
+//                        "<br><b>errores:</b><br>9001";
+        closeSession();
         
-        $( "#dialog" ).html(content);
-        $( "#dialog" ).dialog({
-            autoOpen: true,
-            modal: true,
-            buttons: {
-                "Aceptar": function () {
-                    $(this).dialog("close");
-                    $(location).attr('href', 'index.html');
-                    
-                }
-            } 
-        });
+//        $( "#dialog" ).html(content);
+//        $( "#dialog" ).dialog({
+//            autoOpen: true,
+//            modal: true,
+//            buttons: {
+//                "Aceptar": function () {
+//                    $(this).dialog("close");
+//                    $(location).attr('href', 'index.html');
+//                    
+//                }
+//            } 
+//        });
     }
+}
+
+
+function closeSession()
+{
+    sessionStorage.clear();
+    $(location).attr('href', 'index.html');
 }
 
 

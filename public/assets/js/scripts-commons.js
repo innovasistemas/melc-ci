@@ -51,8 +51,7 @@ $('#reloadPage').click(function() {
             
 
 $('#closeSession').click(function() {
-    sessionStorage.clear();
-    $(location).attr('href', 'index.html');
+    closeSession();
 });
             
 
