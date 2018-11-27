@@ -234,6 +234,7 @@ function resetForm(state)
 //        width: 'resolve'
 //        theme: 'classic'
     });
+    
 }
         
 

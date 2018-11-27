@@ -31,7 +31,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
                     <!--melc-->
-                    <img src="assets/images/logo-header.png" class="header-image margin-logo-navbar" title="Inicio" id="logo-header">
+                    <img src="assets/images/logo-header.png" class="header-image margin-logo-navbar img-fluid img-circle" title="Inicio" id="logo-header" style="border: 1px solid #FFF; ">
                 </a>
             </div>
 
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color text-uppercase navbar-top-home" id="navbar-top-home">
                  <ul class="nav navbar-nav">
                      <li><a href="#content-map" class="anchor">mapa</a></li>
-                    <li><a href="#content-general" class="anchor">fotos</a></li>
+                    <li><a href="#content-general" class="anchor">galería</a></li>
                     <li><a href="#content-general" class="anchor">crónicas</a></li>
                     <li><a href="#content-general" class="anchor">rutas</a></li>
                     <li><a href="#sign-up" class="anchor">inscríbete</a></li>
@@ -68,19 +68,12 @@
         
         <!-- Inicio contenido mapa -->
         <div id="content-map">
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
             
-            <div id="accordion">
-                <div id="panel-itinerary">
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapse-itinerary" role="button" aria-expanded="false" aria-controls="collapse-itinerary">
-                        Mostrar/Ocultar Rutas
-                    </a>
-                    <div id="collapse-itinerary" class="collapse"></div>
-                </div>
+            <div id="panel-itinerary">
+                <a id="button-accordion" class="btn btn-primary" data-toggle="collapse" href="#collapse-itinerary" role="button" aria-expanded="false" aria-controls="collapse-itinerary">
+                    ver/ocultar rutas
+                </a>
+                <div id="collapse-itinerary" class="collapse"></div>
             </div>
             
             <div id="map"></div>
@@ -302,18 +295,13 @@
                     return false;
                 });
                 
-                                             
-                //  Estilos para checkbox
-//                $("input[type='checkbox']").checkboxradio();
                 
                 // Tooltip
                 $('[data-toggle="tooltip"]').tooltip();
                 
-                
-//                $("#img-gallery").contextmenu(function(){
-//                   window.open('http://bit.ly/fotosmedellinenlacabeza', '_blank'); 
-//                });
-
+                $("#button-accordion").hover(function(){
+                   console.log("ss") 
+                });
             });
             
             
