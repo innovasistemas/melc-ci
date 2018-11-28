@@ -95,18 +95,18 @@ function verifyAuthentication()
 {
     var content;
     entity = 'melc_access';
-        
-        $( "#dialog" ).html("sessionStorage.length");
-        $( "#dialog" ).dialog({
-            autoOpen: true,
-            modal: true,
-            buttons: {
-                "Aceptar": function () {
-                    $(this).dialog("close");
-                    
-                }
-            } 
-        });
+//        alert("")
+//        $( "#dialog" ).html("sessionStorage.length");
+//        $( "#dialog" ).dialog({
+//            autoOpen: true,
+//            modal: true,
+//            buttons: {
+//                "Aceptar": function () {
+//                    $(this).dialog("close");
+//                    
+//                }
+//            } 
+//        });
     
     if(sessionStorage.length > 0){
         var objJson = {

@@ -10,6 +10,19 @@ https://neobrr.wordpress.com/2009/02/23/ejecutar-netbeans-en-linux-mint/
 
 
 ---------------------------------------------------------------------------------------------
+Postgres
+https://stackoverflow.com/questions/7641024/enable-php-support-for-postgresql-in-ubuntu-11-04-server
+
+
+Desinstalar Postgresql 9.4
+https://vidagnu.blogspot.com.co/2016/10/como-desinstalar-postgresql-en-linux.html
+
+
+Instalar Postgresql 10
+http://yallalabs.com/linux/how-to-install-and-use-postgresql-10-on-ubuntu-16-04/
+
+
+---------------------------------------------------------------------------------------------
 How To Install and Use Composer on Ubuntu 16.04
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-16-04
 
@@ -198,11 +211,13 @@ http://www.maestrosdelweb.com/tutorial-local-session-storage/
 
 
 ---------------------------------------------------------------------------------------------
-
+Medir velocidad de carga de la página
+https://developers.google.com/speed/pagespeed/insights/?hl=es
 
 
 ---------------------------------------------------------------------------------------------
-
+Validar web
+https://validator.w3.org/
 
 
 ---------------------------------------------------------------------------------------------
