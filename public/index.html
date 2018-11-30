@@ -84,17 +84,15 @@
         <div class="parallax"></div>                
         
         <!-- Inicio contenido -->
-        <div id="content-general" class="row max-width center-block">
-            <h2 class="h2">&nbsp;</h2>
-            <p>&nbsp;</p>
+        <div id="content-general" class="row max-width center-block text-center">
             <p>&nbsp;</p>
             
             <div class="col-sm-4">
-                <div class="div-img" id="img-gallery"></div>
+                <div class="div-img center-block" id="img-gallery"></div>
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img" >
+                <div class="div-img center-block">
                     <a href="#!" data-toggle="modal" data-target="#modal-page-construction">
                         <img class="img" src="assets/images/chronicles.png" title="Crónicas" alt="crónicas">   
                     </a>
@@ -102,7 +100,7 @@
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img" >
+                <div class="div-img center-block">
                     <a href="itinerary.html">
                         <img class="img" src="assets/images/itinerary.png" title="Rutas" alt="rutas">
                     </a>
@@ -112,16 +110,21 @@
         
         <div class="parallax2"></div> 
         
-        <div id="sign-up">
-            <h2 class="h2">&nbsp;</h2>
+        <div id="sign-up" class="row max-width center-block">
             <p>&nbsp;</p>
-            <p class="text-center ">
+            <div class="col-sm-1">&nbsp;</div>
+            <div class="col-sm-5 img-subscribe text-center">
                 <a href="http://bit.ly/inscripcionesmedellinenlacabeza" target="_blank" title="Suscríbete en Medellín en la Cabeza">
-                    <img src="assets/images/signup-button.png" class="signup-button" alt="Suscríbete en Medellín en la Cabeza" data-toggle='tooltip' data-placement='left' title="En este link podrás acceder al formulario de inscripción de Medellín en la Cabeza, lo cual te permitirá recibir quincenalmente en tu correo nuestra programación de recorridos. Si ya te inscribiste, también puedes hacer clic para ver la agenda y elegir el recorrido en el que vas a participar."/>
+                    <img src="assets/images/signup-button.png" class="signup-button" alt="Suscríbete en Medellín en la Cabeza" data-toggle='tooltip' data-placement='right' title="Suscríbete en Medellín en la Cabeza"/>
                 </a>
-            </p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+            </div>
+            <div class="col-sm-4 text-subscribe">
+                En este link podrás acceder al formulario de inscripción de 
+                Medellín en la Cabeza, lo cual te permitirá recibir quincenalmente 
+                en tu correo nuestra programación de recorridos. Si ya te inscribiste, 
+                también puedes hacer clic para ver la agenda y elegir el recorrido 
+                en el que vas a participar.
+            </div>
         </div>
         
         <div class="parallax3"></div> 
@@ -278,8 +281,10 @@
                 
                 loadAdvertisement();
                 
-                loadSocialNetworks();
+                loadContactInformation()
                 
+                loadSocialNetworks();
+                                
                 loadFooterDate();
                 
                 
@@ -299,9 +304,9 @@
                 // Tooltip
                 $('[data-toggle="tooltip"]').tooltip();
                 
-                $("#button-accordion").hover(function(){
-                   console.log("ss") 
-                });
+//                $("#button-accordion").hover(function(){
+//                   console.log("ss") 
+//                });
             });
             
             
@@ -388,7 +393,7 @@
                                 if(index == 0){
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Estas son algunas de las fotos que hemos tomado en nuestros recorridos. Visita nuestro banco de imágenes completo ingresando en: http://bit.ly/fotosmedellinenlacabeza' >";        
+                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Galería'>";        
                                 }
                                 content += "</a>";
                             }

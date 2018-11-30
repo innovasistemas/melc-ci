@@ -74,7 +74,7 @@ function loadSocialNetworks()
         type: 'POST',
         dataType: 'json',
         success: function(data) {
-            var content = "";
+            var content = "<h3 class='text-capitalize'>Redes sociales</h3>";
             $.each(data, function(index, value){
                 content += "<div class='row'>";
                 content += "<div class='col-sm-2'>";
@@ -82,14 +82,87 @@ function loadSocialNetworks()
                 content += "<img src='assets/images/social-networks/" + value.logo + "' />";
                 content += "</a>";
                 content += "</div>";
-                content += "<div class='col-sm-2'>";
-                content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-                content += value.description;
-                content += "</a>";
-                content += "</div>";
+//                content += "<div class='col-sm-2'>";
+//                content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
+//                content += value.description;
+//                content += "</a>";
+//                content += "</div>";
                 content += "</div>";
             });
             $('#links-social-networks').html(content);
+        }
+    }); 
+}
+            
+
+function loadContactInformation()
+{
+    var entity = 'melc_contact_information';
+    var objJson = {
+        'bd': {
+            'table': entity
+        },
+        fields: {
+            '0': 'id',
+            '1': 'address',
+            '2': 'phone',
+            '3': 'cell_phone',
+            '4': 'email'
+        }                   
+    }
+
+    var strJson = JSON.stringify(objJson);
+
+    $.ajax({
+        url: urlListRecord,
+        data: {'dataSend': strJson},
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            var content = "<h3 class='text-capitalize'>contáctanos</h3>";
+            $.each(data, function(index, value){
+                content += "<div class='row'>";
+                content += "<div class='col-sm-2'>";
+                content += "<img src='assets/images/contact-information/address-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-5'>";
+                content += "<h4>dirección</h4>";
+                content += value.address;
+                content += "</div>";
+                content += "</div>";
+                
+                content += "<div class='row'>";
+                content += "<div class='col-sm-2'>";
+                content += "<img src='assets/images/contact-information/phone-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-5'>";
+                content += "<h4>teléfono</h4>";
+                content += value.phone;
+                content += "</div>";
+                content += "</div>";
+                
+                content += "<div class='row'>";
+                content += "<div class='col-sm-2'>";
+                content += "<img src='assets/images/contact-information/phone-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-5'>";
+                content += "<h4>celular</h4>";
+                content += value.cell_phone;
+                content += "</div>";
+                content += "</div>";
+                
+                content += "<div class='row'>";
+                content += "<div class='col-sm-2'>";
+                content += "<img src='assets/images/contact-information/mail-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-5'>";
+                content += "<h4>correo</h4>";
+                content += value.email;
+                content += "</div>";
+                content += "</div>";
+                
+            });
+            $('#contact-information').html(content);
         }
     }); 
 }

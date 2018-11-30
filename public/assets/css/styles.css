@@ -260,6 +260,15 @@ ul.notas li#nota3 {
     max-height: 100%;
 }
 
+.text-subscribe{
+    font-size: 1.4em;
+    color: #FFF;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 .font-carousel{
     font-size: 1.8em;
 }
@@ -423,12 +432,6 @@ a.dropdown-toggle:hover{
     top: 20px;
 }
 
-.div-img {
-    margin-left: 50px;
-    max-width: 333px;
-    height: auto;
-}
-
 .div-img .img {
     width: 100%;
     transform: scale(1);
@@ -478,7 +481,6 @@ a.dropdown-toggle:hover{
     #logo-header{
         content: url('../images/logo-header-mob.png');
     }
-    
     
     #panel-itinerary {
         top: 250px;
@@ -531,7 +533,6 @@ a.dropdown-toggle:hover{
     
     .div-img-institutional-footer{
         right: 8%;
-        /*width: 50%;*/
     }
     
     .img-institutional-footer{
@@ -542,7 +543,6 @@ a.dropdown-toggle:hover{
     .margin-description-advertisement{
         font-size: 0.5em;
     }
-    
     
     
 }
