@@ -94,7 +94,8 @@ function loadUserSession()
 function verifyAuthentication()
 {
     var content;
-    entity = 'melc_access';
+    var entityAccess
+    entityAccess = 'melc_access';
 //        alert("")
 //        $( "#dialog" ).html("sessionStorage.length");
 //        $( "#dialog" ).dialog({
@@ -111,7 +112,7 @@ function verifyAuthentication()
     if(sessionStorage.length > 0){
         var objJson = {
             'db': {
-                'table': entity
+                'table': entityAccess
             },
             fields: {
                 'id': sessionStorage.getItem('session_id'),

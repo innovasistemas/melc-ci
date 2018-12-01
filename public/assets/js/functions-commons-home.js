@@ -82,11 +82,11 @@ function loadSocialNetworks()
                 content += "<img src='assets/images/social-networks/" + value.logo + "' />";
                 content += "</a>";
                 content += "</div>";
-//                content += "<div class='col-sm-2'>";
-//                content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
-//                content += value.description;
-//                content += "</a>";
-//                content += "</div>";
+                content += "<div class='col-sm-2'>";
+                content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
+                content += value.description;
+                content += "</a>";
+                content += "</div>";
                 content += "</div>";
             });
             $('#links-social-networks').html(content);
