@@ -61,13 +61,13 @@ $('#navbar-top').delegate('#about', 'click', function(){
     var month = date.getMonth();
     var day = date.getDate();
     var contentHTML = "";
-    contentHTML += "<small><code>" + day + "-" + parseInt(month + 1) + "-" + year + "</code></small> " ;
-    contentHTML += "<br>";
-    contentHTML += "MELC - medellín en la cabeza";
-    contentHTML += "<br>desarrollado por: ";
-    contentHTML += "<br><strong>jaime montoya</strong> ";
+    contentHTML += "MELC - Medellín en la Cabeza";
+    contentHTML += "<br>Desarrollado por: ";
+    contentHTML += "<br><strong>Jaime Montoya</strong> ";
     contentHTML += "<small><code>(innovasistemas@gmail.com)</code></small>";
-    contentHTML += "<br>&copy; Copyright " + year;
+    contentHTML += "<br>&copy; Copyright - Copyleft " + year;
+    contentHTML += "<br>";
+    contentHTML += "<small><code>" + day + "-" + parseInt(month + 1) + "-" + year + "</code></small> " ;
     
     $( "#dialog" ).html(contentHTML);
     $( "#dialog" ).dialog({

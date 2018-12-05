@@ -385,14 +385,14 @@ function saveRecord(entity, fields, folder)
         cache: false,
         success: function(data) {
             $( "#dialog" ).html(
-                    "<b>respuesta:</b>" + 
-                    "<br><u>datos:</u> " + data.response + 
-                    "<br><u>carga:</u> " + data.responseFile +
-                    "<br><b>filas afectadas:</b> " + data.affectedRows + 
-                    "<br><b>errores:</b>" +
-                    "<br><u>datos:</u> " + data.error +
-                    "<br><u>carga:</u> " + data.errorFile
-                    );
+                "<b>respuesta:</b>" + 
+                "<br><u>datos:</u> " + data.response + 
+                "<br><u>carga:</u> " + data.responseFile +
+                "<br><b>filas afectadas:</b> " + data.affectedRows + 
+                "<br><b>errores:</b>" +
+                "<br><u>datos:</u> " + data.error +
+                "<br><u>carga:</u> " + data.errorFile
+            );
             $( "#dialog" ).dialog({
                 autoOpen: true,
                 modal: true,

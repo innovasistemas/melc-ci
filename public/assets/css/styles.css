@@ -161,35 +161,31 @@ ul.notas li#nota3 {
  
  #panel-itinerary {
     position: absolute;
-    /*top: 107%;*/
     top: 550px;
     left: 30px;
     z-index: 5;
     font-family: 'Roboto','sans-serif';
     padding-left: 25px;
-    width: 25em;
+    width: 30em;
 }
 
 #collapse-itinerary{
     position: relative;
     top: -100px;
-    left: -20px;
+    left: -26px;
     background-color: #FFF;
     font-family: 'Roboto','sans-serif';
     line-height: 20px;
     text-align: left;
+    padding: 20px;
 }
 
 #button-accordion{
     transform: rotate(270deg); 
     margin-top: 65px; 
-    margin-left: -110px;
+    margin-left: -80px;
+    font-weight: bold;
 }
-
-#button-accordion:hover{
-
-}
-
 
 
 /*----------------------------Selectores de clases------------------------------------*/
@@ -280,11 +276,21 @@ ul.notas li#nota3 {
 }
 
 .link-advertisement{
-    color: #FFF
+    color: #FFF;
 }
 
 .link-advertisement:hover{
     color: #FFF;
+}
+
+.link-subscription{
+    color: #FFF;
+    text-decoration: none;
+}
+
+.link-subscription:hover{
+    color: #FFF;
+    text-decoration: underline;
 }
 
 .description-advertisement{
@@ -479,13 +485,14 @@ a.dropdown-toggle:hover{
     }
     
     #logo-header{
-        content: url('../images/logo-header-mob.png');
+        content: url('../images/contact-information/logo-header-mob.png');
     }
     
     #panel-itinerary {
         top: 250px;
+        font-size: 0.8em;
     }
-    
+       
     .navbar-top-home{
         background: #6C00DA;
         width: 35%;

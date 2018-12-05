@@ -132,8 +132,10 @@
                     success: function(data) {
                         var content = "";
                         $.each(data, function(index, value){
-                            content += "<h3 style='color: " + value.color + ";'>" + value.name + "<h3/>";
-                            content += "<img src='assets/images/map-icons/" + value.logo + "' class='img-thumbnail zoom'/>";
+                            content += "<h3 style='color: " + value.color + ";'>"; 
+                            content += "<img src='assets/images/map-icons/" + value.logo + "' class='img-thumbnail zoom'/>&nbsp;&nbsp;&nbsp;";
+                            content += value.name;
+                            content += "<h3/>";
                             content += "<p>" + value.description + "</p>";
                         });
                         $('#content-itinerary').html(content);

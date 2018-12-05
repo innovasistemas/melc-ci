@@ -31,7 +31,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
                     <!--melc-->
-                    <img src="assets/images/logo-header.png" class="header-image margin-logo-navbar img-fluid img-circle" title="Inicio" id="logo-header">
+                    <img src="assets/images/contact-information/logo-header.png" class="header-image margin-logo-navbar img-fluid img-circle" title="Inicio" id="logo-header">
                 </a>
             </div>
 
@@ -40,18 +40,17 @@
             
                          
             <!--<div class="collapse navbar-collapse navbar-ex1-collapse">-->
-            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color text-uppercase navbar-top-home" id="navbar-top-home">
+            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color navbar-top-home" id="navbar-top-home">
                  <ul class="nav navbar-nav">
-                     <li><a href="#content-map" class="anchor">mapa</a></li>
-                    <li><a href="#content-general" class="anchor">galería</a></li>
-                    <li><a href="#content-general" class="anchor">crónicas</a></li>
-                    <li><a href="#content-general" class="anchor">rutas</a></li>
-                    <li><a href="#sign-up" class="anchor">inscríbete</a></li>
-                    <li><a href="#!" class="" data-toggle="modal" data-target="#modal-about-us">nosotros</a></li>
-                    <li><a href="mediator-profile.html" class="">mediadores</a></li>
+                     <li><a href="#content-map" class="anchor">Mapa</a></li>
+                    <li><a href="#img-gallery" class="anchor">Galería</a></li>
+                    <li><a href="#img-chronic" class="anchor">Crónicas</a></li>
+                    <li><a href="#img-itinerary" class="anchor">Rutas</a></li>
+                    <li><a href="#sign-up" class="anchor">Inscríbete</a></li>
+                    <li><a href="#!" class="" data-toggle="modal" data-target="#modal-about-us">Nosotros</a></li>
+                    <li><a href="mediator-profile.html" class="">Mediadores</a></li>
                     <!--<li><a href="#allies-project" class="anchor">aliados</a></li>-->
                 </ul>
-                    
                   
                 <!--SiteSearch Google -->           
                 
@@ -71,8 +70,9 @@
             
             <div id="panel-itinerary">
                 <a id="button-accordion" class="btn btn-primary" data-toggle="collapse" href="#collapse-itinerary" role="button" aria-expanded="false" aria-controls="collapse-itinerary">
-                    ver/ocultar rutas
+                    Ver rutas
                 </a>
+                
                 <div id="collapse-itinerary" class="collapse"></div>
             </div>
             
@@ -92,7 +92,7 @@
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img center-block">
+                <div class="div-img center-block" id="img-chronic">
                     <a href="#!" data-toggle="modal" data-target="#modal-page-construction">
                         <img class="img" src="assets/images/chronicles.png" title="Crónicas" alt="crónicas">   
                     </a>
@@ -100,7 +100,7 @@
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img center-block">
+                <div class="div-img center-block" id="img-itinerary">
                     <a href="itinerary.html">
                         <img class="img" src="assets/images/itinerary.png" title="Rutas" alt="rutas">
                     </a>
@@ -119,6 +119,11 @@
                 </a>
             </div>
             <div class="col-sm-4 text-subscribe">
+                <a href="http://bit.ly/inscripcionesmedellinenlacabeza" target="_blank" title="Suscríbete en Medellín en la Cabeza">
+                    <h2 class="link-subscription">
+                        Inscríbete aquí
+                    </h2>
+                </a>
                 En este link podrás acceder al formulario de inscripción de 
                 Medellín en la Cabeza, lo cual te permitirá recibir quincenalmente 
                 en tu correo nuestra programación de recorridos. Si ya te inscribiste, 
@@ -216,11 +221,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p  class="lead text-center margin-modal">
+                        <p class="lead text-center margin-modal">
                             En este lugar encontrarás los trabajos de algunos jóvenes que participaron en la convocatoria de crónicas Medellín en la Cabeza. Nuestros jurados están leyendo y releyendo. ¡Muy pronto tú conocerás los textos seleccionados!
                         </p>
                         <p class="text-center">
-                            <img src="assets/images/logo-header.png" alt="crónicas"/>
+                            <img src="assets/images/contact-information/logo-header.png" alt="crónicas"/>
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -230,6 +235,10 @@
               </div>
         </div>
         <!-- Fin Modal página en construcción -->
+        
+        <!-- Modal información rutas (guarda todos los modales que se crean dinámicamente para rutas) -->
+        <div id="modal-itinerary"></div>
+        <!-- Fin Modal información rutas -->
         
         
         <!-- Fin contenido -->
@@ -304,15 +313,36 @@
                 // Tooltip
                 $('[data-toggle="tooltip"]').tooltip();
                 
-//                $("#button-accordion").hover(function(){
-//                   console.log("ss") 
-//                });
+
+                // Efecto hover para mostrar las rutas en el mapa
+                $("#button-accordion").click(function (e) {
+                    var options = {};
+                    options = { to: { width: 200, height: 60 } };
+                    
+                    // Run the effect
+                    $( "#collapse-itinerary" ).effect( 'slide', options, 500, callback );
+                });
+                
+                $("#panel-itinerary").mouseleave(function(){
+                    $("#collapse-itinerary").fadeOut();
+                });                
+                
             });
             
             
             //****************************
             //Funciones Javascript
             //****************************
+            
+            // Callback function to bring a hidden box back
+            // Usada en Efecto hover de las rutas
+            function callback() 
+            {
+                setTimeout(function() {
+                    $( "#collapse-itinerary" ).removeAttr( "style" ).hide().fadeIn();
+                }, 2000 );
+            }
+            
             
             function loadAdvertisement()
             {
@@ -349,7 +379,7 @@
                                 content += "<div class='fill text-center image-item-slider'>";
                                 content += "</div>";
                                 content += "<div class='carousel-caption margin-description-advertisement'>";
-                                content += "<p class='description-advertisement text-uppercase'><br>" 
+                                content += "<p class='description-advertisement'><br>" 
                                 content += "<a href='" + value.link + "' class='link-advertisement' target='_blank'>" + value.description + "</a>";
                                 content += "</p>";
                                 content += "</div>";

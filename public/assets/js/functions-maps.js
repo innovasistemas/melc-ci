@@ -56,16 +56,56 @@ function loadMaps()
         success: function(data) {
             var content = "";
             var id;
+            var modal;
+            var modals = "";
+            
             $.each(data, function(index, value){
-                id = 'chkItinerary' + value.map_number;
-                content += "<input type='checkbox' value='" + value.id + "' id='" + id + "' name='" + id + "' onclick='optionsMarkers(\"" + id + "\")' data-toggle='tooltip' data-placement='bottom' title='" + value.description + "'/>";
-                content += "<label for='" + id + "' title='" + value.description + "' style='color:" + value.color + ";'>" + value.name+"</label>";
-                content += "<br>";
+                id = 'chkItinerary' + value.map_number
+                content += "<div class='row'>";
+                content += "<div class='col-sm-12'>";
+                content += "<input type='checkbox' value='" + value.id + "' id='" + id + "' name='" + id + "' onclick='optionsMarkers(\"" + id + "\")' data-toggle='tooltip' data-placement='bottom' title=''/>";
+                content += "<label for='" + id + "' title='' style='color:" + value.color + ";'>" + value.name+"</label>";
+                content += "&nbsp;&nbsp;&nbsp;";
+                content += "<img src='assets/images/information.png' title='Ver información de la ruta' class='img img-thumbnail' style='width:25px; height:25px;' data-toggle='modal' data-target='#modal-itinerary"+ index + "'>";
+                content += "</div>";
+                content += "</div>";
                 idItinerary[index] = parseInt(value.id);        
                 mapNumbers[index] = parseInt(value.map_number);        
                 names[index] = value.name;        
-                logos[index] = value.logo;        
+                logos[index] = value.logo;    
+                
+                modal = '<div class="modal fade" id="modal-itinerary'+ index +'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                            '<div class="modal-dialog" role="document">' +
+                                '<div class="modal-content">' +
+                                    '<div class="modal-header">' +
+                                        '<h2 class="modal-title text-uppercase" id="exampleModalLabel2" style="color:' + value.color + ';">' + 
+                                        '<img src="assets/images/map-icons/' + value.logo + '" class="img-thumbnail zoom" />&nbsp;&nbsp;&nbsp;' +
+                                        value.name + 
+                                        '</h2>' +
+                                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                                            '<span aria-hidden="true">&times;</span>' +
+                                        '</button>' +
+                                    '</div>' +
+                                    '<div class="modal-body lead text-center margin-modal">' +
+                                        '<p class="lead text-center margin-modal">'+
+                                            value.description +
+                                        '</p>'+
+                                        '<p class="text-center">' +
+                                            '<img src="assets/images/contact-information/logo-header.png" alt="rutas"/>' +
+                                        '</p>'+
+                                    '</div>'+
+                                    '<div class="modal-footer">' +
+                                        '<button type="button" class="btn btn-secondary text-capitalize" data-dismiss="modal">cerrar</button>' +
+                                    '</div>' +
+                                '</div>' +
+                              '</div>'+
+                        '</div>';
+                
+                modals += modal;
             });
+            
+            $('#modal-itinerary').html(modals);
+            
             $('#collapse-itinerary').html(content);
         }
     }); 
