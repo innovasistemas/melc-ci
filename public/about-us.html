@@ -32,20 +32,8 @@
         <div id="container" class="modal-dialog lead text-justify">
             
             <p>&nbsp;</p>
-            <h1 class="h1 text-center text-uppercase">MAPA JOVEN DE MEDELLÍN</h1>
+            <h1 class="h1 text-center text-uppercase">Sobre nosotros</h1>
             <p>&nbsp;</p>
-            <p>    
-                Este mapa contiene una selección de lugares que hemos visitado 
-                en nuestros recorridos. Antes de explorarlo puedes preguntarte 
-                ¿qué quiero conocer hoy? ¿dónde y cómo voy a llegar? ¿a quién quiero invitar? 
-                O puedes mirarlo sin expectativas, dejando que alguno de estos 
-                lugares llame tu atención. La ciudad te ofrece algo diferente cada día. 
-                Puedes seguir alguna de las nueve rutas que te proponemos o creando tu propia ruta.
-            </p>
-            
-            ***
-
-            <h2>RUTAS</h2>
             
             <div id="content-main"></div>
             
@@ -101,7 +89,7 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_map';
+            entity = 'melc_contact_information';
             folder = 'no-folder';
             
             function loadRecords()
@@ -111,12 +99,7 @@
                         'table': entity
                     },
                     fields: {
-                        '0': 'id',
-                        '1': 'map_number',
-                        '2': 'name',
-                        '3': 'description',
-                        '4': 'logo',
-                        '5': 'color'
+                        '0': 'about_us'
                     }
                 }
 
@@ -130,11 +113,7 @@
                     success: function(data) {
                         var content = "";
                         $.each(data, function(index, value){
-                            content += "<h3 style='color: " + value.color + ";'>"; 
-                            content += "<img src='assets/images/map-icons/" + value.logo + "' class='img-thumbnail zoom'/>&nbsp;&nbsp;&nbsp;";
-                            content += value.name;
-                            content += "<h3/>";
-                            content += "<p>" + value.description + "</p>";
+                            content += value.about_us;
                         });
                         $('#content-main').html(content);
                     }

@@ -344,17 +344,9 @@ class MasterEngine extends CI_Controller {
     {
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
-            
-//            var_dump(array_values($arrayData['fields'])); 
-//            var_dump(array_keys($arrayData['fields'])); exit();
-            
             $objResult = $this->ManagementModel->verifyAuthentication(
                     $arrayData['db']['table'], array_keys($arrayData['fields']),
                     array_values($arrayData['fields']));
-            
-//            var_dump($objResult->result());exit();
-            
-            
             $arrayResult = [];
             if($objResult->num_rows() > 0){
                 $arrayResult['response'] = "credenciales de acceso correctas";

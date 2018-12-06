@@ -129,6 +129,16 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12"> 
+                            <div class="" id="divAbout">
+                                <label for="txtAbout" class="control-label">nosotros</label>
+                                <!--<input type="text" name="txtAbout" id="txtAbout" class="jqte-test" placeholder="nosotros" maxlength="5000" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="describa el 'acerca de' de la página" disabled="disabled"/>-->                        
+                                <input type="text" name="txtAbout" id="txtAbout" class="jqte-test" />                        
+                            </div>
+                        </div>
+                    </div>
                                      
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
@@ -147,9 +157,10 @@
                         <th>id</th>
                         <th>dirección</th>
                         <th>teléfono</th>
-                        <th>teléfono celular</th>
+                        <th>celular</th>
                         <th>correo</th>
                         <th>logo</th>
+                        <th>nosotros</th>
                         <!--<th>eliminar</th>-->
                     </tr>
                 </thead>
@@ -189,6 +200,7 @@
         <script type="text/javascript" src="../assets/js/scripts-commons.js"></script>
         <script type="text/javascript" src="../assets/js/functions-commons.js"></script>
         <script type="text/javascript" src="../assets/js/select2-4.0.6-rc.1/dist/js/select2.full.js"></script>
+        <script type="text/javascript" src="../assets/js/jquery-te-1.4.0.min.js"></script>
         
         <div id="divStyles"></div>
         
@@ -209,18 +221,38 @@
                         sw = true;
                     }
                     if(sw){
-                        $('input').blur();
-                        var fields = {
-                            'id': $("#txtId").val(),
-                            'address': $("#txtAddress").val(),
-                            'phone': $("#txtPhone").val(),
-                            'cell_phone': $("#txtCellPhone").val(),
-                            'email': $("#txtEmail").val()
-                        }  
+                        $('#fleLogo').focus();
+                        var isFile = false;
+                        if($("#txtLogoView").val().trim().length === 0){
+                            isFile = true;
+                        }else{
+                            if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
+                                isFile = true;
+                            }
+                        }
 
-                        saveRecord(entity, fields, folder);
-                        resetForm();
-                        cleanForm();
+                        if(isFile){
+                            isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 2097152);
+                        }else{
+                            isFile = true;
+                        }
+                        
+                        if(isFile){ 
+                            $('input').blur();
+                            var fields = {
+                                'id': $("#txtId").val(),
+                                'address': $("#txtAddress").val(),
+                                'phone': $("#txtPhone").val(),
+                                'cell_phone': $("#txtCellPhone").val(),
+                                'email': $("#txtEmail").val(),
+                                'about_us': $("#txtAbout").val()
+                            }  
+
+                            saveRecord(entity, fields, folder);
+                            resetForm();
+                            cleanForm();
+                            enabledForm(true);
+                        }
                     }  
                 });
                 
@@ -242,6 +274,10 @@
                     readURL(this);
                 });
                 
+                
+                // Plugin jQuery Text Editor
+                $('.jqte-test').jqte();
+                
             });
             
                         
@@ -250,7 +286,7 @@
             //****************************
             
             entity = 'melc_contact_information';
-            folder = '';
+            folder = 'contact-information';
             
             
             function loadRecords()
@@ -265,7 +301,8 @@
                         '2': 'phone',
                         '3': 'cell_phone',
                         '4': 'email',
-                        '5': 'logo'
+                        '5': 'logo',
+                        '6': 'about_us'
                     }                   
                 }
                 
@@ -290,7 +327,7 @@
                             table += "</td>";
                             table += "<td>";  
                             table += "<img src='../assets/images/contact-information/" + value.logo + "' class='img-thumbnail zoom'/>";  
-                            table += "</td>";
+                            table += "<td>nosotros...</td>";
                             table += "</tr>";
                         });
                         $('#tableData tbody').html(table);
@@ -352,9 +389,10 @@
                             $("#txtEmail").val(objFields.email);
                             if(objFields.logo.trim().length > 0){
                                 $("#logoViewUpdate").attr('class', 'show img-thumbnail');
-                                $("#logoViewUpdate").attr('src', '../assets/images/' + objFields.logo);
-                                $("#txtLogoView").val('../assets/images/' + objFields.logo);
+                                $("#logoViewUpdate").attr('src', '../assets/images/contact-information/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/contact-information/' + objFields.logo);
                             }
+                            $("#txtAbout").jqteVal(objFields.about_us);
                             resetForm("update");
                             enabledForm(false);
                         },

@@ -39,7 +39,7 @@
             <h1 class="h1 text-center text-uppercase">perfiles de nuestros mediadores</h1>
             <p>&nbsp;</p>
             
-            <div id="mediator-profile"></div>
+            <div id="content-main"></div>
             
             <hr>
             
@@ -119,9 +119,11 @@
             //Funciones Javascript
             //****************************
             
+            entity = 'melc_user';
+            folder = 'no-folder';
+            
             function loadMediatorProfile()
             {
-                var entity = 'melc_user';
                 var objJson = {
                     'bd': {
                         'table': entity
@@ -168,7 +170,7 @@
                             content += "</div>";
                         }
                         
-                        $('#mediator-profile').html(content);
+                        $('#content-main').html(content);
                     }
                 }); 
             }

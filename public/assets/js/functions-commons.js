@@ -208,6 +208,7 @@ function cleanForm()
 {
     $("#frmRegister").find('input[type=text], input[type=email], input[type=tel], input[type=hidden], input[type=password], input[type=number], input[type=color], input[type=file], textarea').val('');
     $("#frmRegister").find('.select2').val('').trigger('change');
+    $("#frmRegister").find('.jqte-test').jqteVal('');
 }
 
 
