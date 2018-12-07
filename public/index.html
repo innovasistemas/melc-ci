@@ -42,7 +42,7 @@
             <!--<div class="collapse navbar-collapse navbar-ex1-collapse">-->
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color navbar-top-home" id="navbar-top-home">
                  <ul class="nav navbar-nav">
-                     <li><a href="#content-map" class="anchor">Mapa</a></li>
+                    <li><a href="#content-map" class="anchor">Mapa</a></li>
                     <li><a href="#img-gallery" class="anchor">Galería</a></li>
                     <li><a href="#img-chronic" class="anchor">Crónicas</a></li>
                     <li><a href="#img-itinerary" class="anchor">Rutas</a></li>
@@ -88,21 +88,23 @@
             <p>&nbsp;</p>
             
             <div class="col-sm-4">
-                <div class="div-img center-block" id="img-gallery"></div>
+                <div class="div-img center-block content-image" id="img-gallery"></div>
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img center-block" id="img-chronic">
+                <div class="div-img center-block content-image" id="img-chronic">
                     <a href="#!" data-toggle="modal" data-target="#modal-page-construction">
-                        <img class="img" src="assets/images/chronicles.png" title="Crónicas" alt="crónicas">   
+                        <img class="img" src="assets/images/chronicles.png" title="Crónicas" alt="crónicas"> 
+                        <div class="text-over-image">Crónicas</div>
                     </a>
                 </div>
             </div>
             
             <div class="col-sm-4">
-                <div class="div-img center-block" id="img-itinerary">
+                <div class="div-img center-block content-image" id="img-itinerary">
                     <a href="itinerary.html">
                         <img class="img" src="assets/images/itinerary.png" title="Rutas" alt="rutas">
+                        <div class="text-over-image">Rutas</div>
                     </a>
                 </div>
             </div>
@@ -379,6 +381,7 @@
                                     //Comentario temporal
                                     //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
                                     content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Galería'>";        
+                                    content += "<div class='text-over-image'>Galería</div>";
                                 }
                                 content += "</a>";
                             }

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-11-2018 a las 00:50:31
--- Versión del servidor: 5.7.23
+-- Tiempo de generación: 07-12-2018 a las 09:12:30
+-- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,7 +32,7 @@ CREATE TABLE `melc_access` (
   `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `state` bit(1) NOT NULL DEFAULT b'1',
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `observation` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ninguna',
   `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_time_exit` datetime DEFAULT NULL,
@@ -99,6 +99,7 @@ CREATE TABLE `melc_contact_information` (
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `about_us` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -132,6 +133,7 @@ CREATE TABLE `melc_map` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -157,7 +159,8 @@ CREATE TABLE `melc_newsletter` (
 
 CREATE TABLE `melc_params` (
   `id` bigint(20) NOT NULL,
-  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos'
+  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos',
+  `temporized_session` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indica si la sesión es o no temporizada; por defecto, es 0 (no)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -351,7 +354,7 @@ ALTER TABLE `melc_user`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -411,7 +414,7 @@ ALTER TABLE `melc_profile_user`
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --

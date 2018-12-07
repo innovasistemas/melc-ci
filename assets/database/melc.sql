@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-11-2018 a las 00:48:49
--- Versión del servidor: 5.7.23
+-- Tiempo de generación: 07-12-2018 a las 09:15:29
+-- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,7 +32,7 @@ CREATE TABLE `melc_access` (
   `ip_access` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `user_agent` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `state` bit(1) NOT NULL DEFAULT b'1',
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `observation` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ninguna',
   `date_time_access` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_time_exit` datetime DEFAULT NULL,
@@ -43,10 +43,9 @@ CREATE TABLE `melc_access` (
 -- Volcado de datos para la tabla `melc_access`
 --
 
-INSERT INTO `melc_access` (`id`, `id_melc_profile_user`, `ip_access`, `user_agent`, `token`, `state`, `observation`, `date_time_access`, `date_time_exit`, `date_time_updated`) VALUES
+INSERT INTO `melc_access` (`id`, `id_melc_profile_user`, `ip_access`, `user_agent`, `token`, `active`, `observation`, `date_time_access`, `date_time_exit`, `date_time_updated`) VALUES
 (1, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '/h>Y5#^UFTp,=wT/mpMyuVgM85{vbn', b'1', 'ninguna', '2018-11-21 08:59:36', NULL, '2018-11-21 08:59:36'),
 (2, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '&n)^I?+}2VKcL%qbe_;l.Lx<W,fhG$', b'1', 'ninguna', '2018-11-21 09:02:48', NULL, '2018-11-21 09:02:48'),
-(3, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '.p3]kM\\?z#P<>9Xkk[>i5)*D#yA,P(', b'1', 'ninguna', '2018-11-21 09:04:20', NULL, '2018-11-21 09:04:20'),
 (4, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'BF)@DY:@0{=3^g%>]B|;Vb*RyT+*V6', b'1', 'ninguna', '2018-11-21 09:05:56', NULL, '2018-11-21 09:05:56'),
 (5, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '.j/&YAu19V(y2Ai<cc(s8\\~+w)bDsP', b'1', 'ninguna', '2018-11-21 09:18:07', NULL, '2018-11-21 09:18:07'),
 (6, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'EA&S]2iLlm6b%@3Ez:Zt40AU;yW;MX', b'1', 'ninguna', '2018-11-21 10:49:05', NULL, '2018-11-21 10:49:05'),
@@ -63,7 +62,74 @@ INSERT INTO `melc_access` (`id`, `id_melc_profile_user`, `ip_access`, `user_agen
 (17, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '${Z4I)ks%*v})pL^qgUaLamo+NrM}y', b'1', 'ninguna', '2018-11-22 05:38:58', NULL, '2018-11-22 05:38:58'),
 (18, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'Q=).W-x){;nPptz?*dsReWsBPl2-R7', b'1', 'ninguna', '2018-11-22 05:42:59', NULL, '2018-11-22 05:42:59'),
 (19, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'n\\->B&t#$^GTRhl~^ZoY\\;0^shhXP;', b'1', 'ninguna', '2018-11-22 05:44:31', NULL, '2018-11-22 05:44:31'),
-(20, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'yg)odL0KB{JYB#:=--.4tb@WMo~O0I', b'1', 'ninguna', '2018-11-22 05:45:34', NULL, '2018-11-22 05:45:34');
+(20, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'yg)odL0KB{JYB#:=--.4tb@WMo~O0I', b'1', 'ninguna', '2018-11-22 05:45:34', NULL, '2018-11-22 05:45:34'),
+(21, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'K,t~&c/.IvTja_N#+E=yIx<Dmq*SiX', b'1', 'ninguna', '2018-11-22 12:40:44', NULL, '2018-11-22 12:40:44'),
+(22, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '^&tp73-L~/@k:yQfs+}/C4$%lV~|B0', b'1', 'ninguna', '2018-11-22 12:41:34', NULL, '2018-11-22 12:41:34'),
+(23, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'BkF~1{_Ij38.X=8J&Byp[=%Duk[{=m', b'1', 'ninguna', '2018-11-22 12:46:59', NULL, '2018-11-22 12:46:59'),
+(24, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '(Ue\\LF,E&3E>.s$C9})}XhMAT3Fy1m', b'1', 'ninguna', '2018-11-27 03:17:25', NULL, '2018-11-27 03:17:25'),
+(25, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'K)Y::C~|m0NA$8-g_snww.5*<=*P:/', b'1', 'ninguna', '2018-11-27 03:18:02', NULL, '2018-11-27 03:18:02'),
+(26, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', '+o]])^iTGR?/wB[Od%c$Sh>gyGW-$G', b'1', 'ninguna', '2018-11-27 15:31:29', NULL, '2018-11-27 15:31:29'),
+(27, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'WoKFELi*^4^XGo\\bBuY|\\[ZDQ8LB^C', b'1', 'ninguna', '2018-11-27 15:44:44', NULL, '2018-11-27 15:44:44'),
+(28, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'Vu5zS#mQN}zM(<sv^*zqda>4\\o.PIp', b'1', 'ninguna', '2018-11-27 15:45:40', NULL, '2018-11-27 15:45:40'),
+(29, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'Tk(%;M(VgY3L^-ahfGS0o[,7Tb+f/2', b'1', 'ninguna', '2018-11-27 15:46:07', NULL, '2018-11-27 15:46:07'),
+(30, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'U=1c%$tU6aHMN;OrD1,f^raM78rxiF', b'1', 'ninguna', '2018-11-27 15:46:30', NULL, '2018-11-27 15:46:30'),
+(31, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36', 'xnTale:(uY<(UW;&[FC[-n=&(>L3_O', b'1', 'ninguna', '2018-11-27 15:52:31', NULL, '2018-11-27 15:52:31'),
+(32, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'e5o#f+q?GuuZ|3SV?~rytV:uw)EyXc', b'1', 'ninguna', '2018-11-29 03:47:30', NULL, '2018-11-29 03:47:30'),
+(33, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '%-{Woo@NT2X>D>fnTN[Wwgu*JL5k^%', b'1', 'ninguna', '2018-11-29 16:50:15', NULL, '2018-11-29 16:50:15'),
+(34, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Gs~=L/sa.kT0b6p<6Yux9tjs+RMyRb', b'1', 'ninguna', '2018-12-01 20:54:11', NULL, '2018-12-01 20:54:11'),
+(35, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '<M{oRfL<+5~S_HE{E}^x5\\VKxY3jjB', b'1', 'ninguna', '2018-12-02 17:32:17', NULL, '2018-12-02 17:32:17'),
+(36, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '&5LQKT;IvAvRMxQXT?br7x0$T59PZb', b'1', 'ninguna', '2018-12-02 17:32:43', NULL, '2018-12-02 17:32:43'),
+(37, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'cj8hEa,|p-ARQktygd~D1^B2BOT5@2', b'1', 'ninguna', '2018-12-04 04:06:46', NULL, '2018-12-04 04:06:46'),
+(38, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'X/gXDwU-x*KhSdd(i<^NFh&tG2{9ND', b'1', 'ninguna', '2018-12-05 15:32:30', NULL, '2018-12-05 15:32:30'),
+(39, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '<kwyi6>[Y:l@xm3RjwYJxtw45z}6),', b'1', 'ninguna', '2018-12-06 03:54:50', NULL, '2018-12-06 03:54:50'),
+(40, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'hMW7+?~#?OCvY^b-QL$3-39_KVM~]M', b'1', 'ninguna', '2018-12-06 19:59:01', NULL, '2018-12-06 19:59:01'),
+(41, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', ':\\tts]B6AQcO/?e57D3p/1P:W(&F_4', b'1', 'ninguna', '2018-12-07 01:38:16', NULL, '2018-12-07 01:38:16'),
+(42, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'a0,fe=ZV(c+|Flp*t7>#~_1y$9IJ=O', b'1', 'ninguna', '2018-12-07 01:38:37', NULL, '2018-12-07 01:38:37'),
+(43, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '5<O28-]\\w@<7Txt~9W;3E)*GnLP%2y', b'1', 'ninguna', '2018-12-07 03:08:42', NULL, '2018-12-07 03:08:42'),
+(44, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '3*d\\=-6p}fm-a<;kpZMfwAjvuk\\c7S', b'1', 'ninguna', '2018-12-07 03:10:51', NULL, '2018-12-07 03:10:51'),
+(45, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '%]^C\\OtaXo}AQ{CdJ,cq@eGAhJwsAl', b'1', 'ninguna', '2018-12-07 03:11:15', NULL, '2018-12-07 03:11:15'),
+(46, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '.av9~d].D_bZCmSAG)705EAo=%JP~Q', b'1', 'ninguna', '2018-12-07 03:11:56', NULL, '2018-12-07 03:11:56'),
+(47, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '$bmHy:OwpT7[uie[N/JKi2THG:RDGl', b'1', 'ninguna', '2018-12-07 03:50:33', NULL, '2018-12-07 03:50:33'),
+(48, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'whjk+^2H_mT&5a<8=:QoT+zztS#QV.', b'1', 'ninguna', '2018-12-07 03:52:32', NULL, '2018-12-07 03:52:32'),
+(49, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '{@L.RZ=NaIZ=>>BtAqBAv(&UYPblF+', b'1', 'ninguna', '2018-12-07 03:54:43', NULL, '2018-12-07 03:54:43'),
+(50, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'X,0Ipep|B6gAU?64Ir_V@:jTWeEu-3', b'1', 'ninguna', '2018-12-07 03:55:43', NULL, '2018-12-07 03:55:43'),
+(51, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'T%.Mlzm]Y%g<pf=\\d+X,}B:MvO?FnR', b'1', 'ninguna', '2018-12-07 03:59:32', NULL, '2018-12-07 03:59:32'),
+(52, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '?)u~BQpXC.AT(Z#YF?za<mL|#)G*v*', b'1', 'ninguna', '2018-12-07 04:00:49', NULL, '2018-12-07 04:00:49'),
+(53, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'X$~=x]ds{#2FCUlj~1Gb7F7E>I9/*P', b'0', 'ninguna', '2018-12-07 04:07:29', '0000-00-00 00:00:00', '2018-12-07 04:07:29'),
+(54, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'e;DgtyM16biG5{z+uYN*V]v3q1|c8i', b'0', 'ninguna', '2018-12-07 04:18:26', '0000-00-00 00:00:00', '2018-12-07 04:18:26'),
+(55, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '|nhvDK-,M=9*peRY)?vDY;o12P3>@b', b'0', 'ninguna', '2018-12-07 04:21:52', '0000-00-00 00:00:00', '2018-12-07 04:21:52'),
+(56, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Hz+>Gsf5{tK6n/NmRuY_Uw23h\\dAku', b'0', 'ninguna', '2018-12-07 04:32:18', '2018-11-04 23:34:31', '2018-12-07 04:32:18'),
+(57, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'm7mdH8]$fSN}mB0C$zP@cjJJq|\\6,V', b'0', 'ninguna', '2018-12-07 04:41:51', '2018-12-06 23:42:03', '2018-12-07 04:41:51'),
+(58, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'w?i-\\v4Ud77P+s$Sun*C+&)Ws:A5PE', b'0', 'ninguna', '2018-12-07 04:42:16', '2018-12-06 23:42:25', '2018-12-07 04:42:16'),
+(59, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '^j-ixiqi:F&Ns5,tI%-5E}p.xP}cW[', b'0', 'ninguna', '2018-12-07 04:43:06', '2018-12-06 23:43:55', '2018-12-07 04:43:06'),
+(60, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '=t?8l]kCs1G0/$Zb)~%L]_0yR&d&eo', b'0', 'ninguna', '2018-12-07 05:20:44', '2018-12-07 00:21:46', '2018-12-07 05:20:44'),
+(61, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'b#o_PH[n&58e4OX^n86:~CZoMe&iy/', b'0', 'error de autenticación', '2018-12-07 05:30:14', '2018-12-07 00:31:00', '2018-12-07 05:30:14'),
+(62, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'D}i\\9+jsV<?k@>7SRX8}QFf?B6Pgn$', b'0', 'error de autenticación', '2018-12-07 05:34:42', '2018-12-07 00:34:51', '2018-12-07 05:34:42'),
+(63, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '}xzWHigbyG;\\oTTp9Szs^D_kN@q0f~', b'0', 'error de autenticación', '2018-12-07 05:35:09', '2018-12-07 00:35:18', '2018-12-07 05:35:09'),
+(64, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '@-lVhN&mAc\\GAL2Wbws&:Y{2(Tgo]K', b'0', 'error de autenticación', '2018-12-07 05:35:39', '2018-12-07 00:35:49', '2018-12-07 05:35:39'),
+(71, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'fKNDia<2y*8G~d3O8qXeqNR;[bcVuL', b'0', 'ninguna', '2018-12-07 05:40:34', '2018-12-07 00:40:53', '2018-12-07 05:40:34'),
+(72, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Q}t}7F<~?&,PRrCk44Nc,3ZacOvAfb', b'1', 'ninguna', '2018-12-07 05:42:11', NULL, '2018-12-07 05:42:11'),
+(74, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Nl3hDR0_:dFGO:Ijb}L^{i#(7B4vmP', b'0', 'error de autenticación', '2018-12-07 05:43:37', '2018-12-07 00:43:53', '2018-12-07 05:43:37'),
+(87, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'S*V:j:PRcBUnE;jG]Ky:fV031V5W.c', b'0', 'ninguna', '2018-12-07 05:50:55', '2018-12-07 00:51:31', '2018-12-07 05:50:55'),
+(88, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'J(AQj8cMp-J&\\BUMb_%<WI4D+N:%b4', b'0', 'error de autenticación', '2018-12-07 05:52:08', '2018-12-07 00:52:17', '2018-12-07 05:52:08'),
+(89, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', ':u^(k&U/QW}1=M{df60=pz4T-}4m%j', b'0', 'error de autenticación', '2018-12-07 05:52:30', '2018-12-07 00:53:18', '2018-12-07 05:52:30'),
+(90, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'W*NSS\\BlM0~z1_?}]9?{|km.{,&|kO', b'0', 'error de autenticación', '2018-12-07 05:54:35', '2018-12-07 00:54:44', '2018-12-07 05:54:35'),
+(91, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'fO)&O9=c_?Osh1rBHc>}c8IdcK#hf%', b'0', 'ninguna', '2018-12-07 05:55:02', '2018-12-07 00:55:16', '2018-12-07 05:55:02'),
+(92, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'w89aH/$sHC{0YBfi[$/t_(=>/dRA4,', b'1', 'ninguna', '2018-12-07 05:55:25', NULL, '2018-12-07 05:55:25'),
+(94, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '$R4J=B+8T@NDn)Iki:;?5C=uyf>lrO', b'1', 'ninguna', '2018-12-07 05:57:00', NULL, '2018-12-07 05:57:00'),
+(95, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'd-j?0o_~p+>q%pu?fo^3N2*iR=n5*%', b'0', 'error de autenticación', '2018-12-07 06:05:49', '2018-12-07 01:06:12', '2018-12-07 06:05:49'),
+(97, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Dgmf<3f#z2#qIR?_*-g}.DA._=#eqw', b'0', 'ninguna', '2018-12-07 06:10:57', '2018-12-07 01:11:35', '2018-12-07 06:10:57'),
+(99, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '4U7pMxAVw~@aQLnDyD-CIYzA>2.#92', b'0', 'error de autenticación', '2018-12-07 06:13:25', '2018-12-07 01:13:50', '2018-12-07 06:13:25'),
+(100, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'c~>Vz#q(+9O>3fUna?R95d->lGU9G3', b'0', 'ninguna', '2018-12-07 06:14:47', '2018-12-07 01:15:07', '2018-12-07 06:14:47'),
+(101, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '#eX(Dim{{S*O-u80$HEJ<.gswaus<E', b'1', 'ninguna', '2018-12-07 06:15:15', NULL, '2018-12-07 06:15:15'),
+(103, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'r*MN<FQ8m:a4pTWjsA.Jn>^X)VGX&$', b'1', 'ninguna', '2018-12-07 06:19:21', NULL, '2018-12-07 06:19:21'),
+(104, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '?A64LM&s}q*@rBbGT.nyq.m9)1mGBq', b'0', 'error de autenticación', '2018-12-07 06:21:22', '2018-12-07 01:21:38', '2018-12-07 06:21:22'),
+(105, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'a)rXG<E~e:|4y<*s$QB+Dt.Zp&X9@~', b'1', 'ninguna', '2018-12-07 06:22:17', NULL, '2018-12-07 06:22:17'),
+(107, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'NKzv6EhRX[pC9v=v0P9Y9w^j9Fb_0H', b'1', 'ninguna', '2018-12-07 06:27:58', NULL, '2018-12-07 06:27:58'),
+(108, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'Z77Zbp$x|wg@-y];1]dk4SZzP@O@3%', b'1', 'ninguna', '2018-12-07 06:40:03', NULL, '2018-12-07 06:40:03'),
+(110, 2, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', '%cR+ES5pCO}j@uHHIrfK[y$M.iR(ck', b'0', 'ninguna', '2018-12-07 06:54:22', '2018-12-07 01:54:42', '2018-12-07 06:54:22'),
+(111, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'BaASe{1,Y@TVTIy).v^$Oh}R<u&4vp', b'0', 'ninguna', '2018-12-07 06:55:45', '2018-12-07 01:56:59', '2018-12-07 06:55:45'),
+(112, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'w_KAk6jM?KqV[@$ru-O+3L;cA0y~CY', b'1', 'ninguna', '2018-12-07 06:57:29', NULL, '2018-12-07 06:57:29');
 
 -- --------------------------------------------------------
 
@@ -91,8 +157,8 @@ INSERT INTO `melc_advertisement` (`id`, `name`, `description`, `active`, `link`,
 (4, 'melc', 'El 60% de las personas que callejean con nosotros son mujeres', b'1', '', '2018-09-22 08:31:59', NULL),
 (18, 'recorridos', 'Hemos realizado más de 150 recorridos', b'1', '#!', '2018-09-22 08:31:59', NULL),
 (24, 'Nuevo video', 'El 83% de los jóvenes que participan en Medellín en la Cabeza pertenecen a los estratos 1, 2 y 3', b'1', '', '2018-09-22 08:31:59', NULL),
-(25, 'cine callejero', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com', '2018-09-22 08:31:59', NULL),
-(27, 'anuncio 1', 'anuncio prueba guardar genérico', b'0', 'http://www.youtube.com/#/d', '2018-09-22 08:31:59', NULL);
+(25, 'cine callejero melc', 'Aprender de cine callejeando para seguir educando', b'0', 'http://www.youtube.com', '2018-09-22 08:31:59', NULL),
+(27, 'anuncio 1', 'anuncio prueba genérico', b'0', 'http://www.youtube.com/#/d', '2018-09-22 08:31:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -138,6 +204,7 @@ CREATE TABLE `melc_contact_information` (
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `about_us` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -146,8 +213,8 @@ CREATE TABLE `melc_contact_information` (
 -- Volcado de datos para la tabla `melc_contact_information`
 --
 
-INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `link`, `logo`, `creation_date`, `last_update`) VALUES
-(1, 'Calle 52 Avenida la playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'http://medellinenlacabeza.medellinjoven.com', 'logo-header.png', '2018-09-22 08:36:40', NULL);
+INSERT INTO `melc_contact_information` (`id`, `address`, `phone`, `cell_phone`, `email`, `link`, `logo`, `about_us`, `creation_date`, `last_update`) VALUES
+(1, 'Calle 52 Avenida La Playa', '2556699', '3012256565', 'medellinenlacabeza@gmail.com', 'http://medellinenlacabeza.medellinjoven.com', 'logo-header.png', '<h2 class="text-center">¿QUÉ ES MEDELLÍN EN LA CABEZA?</h2>                         <p>&nbsp;</p>                         <p>                             Medellín en la Cabeza es una propuesta pedagógica de formación y gestión institucional que entiende la ciudad como un espacio educador, un laboratorio para cualquier área del conocimiento, que invita a los jóvenes a participar desde sus contextos y condiciones diversas para favorecer el desarrollo de una ciudadanía con pensamiento crítico y propositivo sobre las realidades de su ciudad y la región.                         </p>                         <p>                             Un joven que emprende el reto de callejear amplía su horizonte, mejora su toma de decisiones, aprende a relacionarse mejor con su entorno y, por lo tanto, tiene más herramientas para transformar su realidad y la de su comunidad.                         </p>                             Con esta convicción hacemos Medellín en la Cabeza, un proyecto que invita a los jóvenes a recorrer su ciudad, apropiarse de ella y hacer de ésta un espacio de aprendizaje para la vida. Estamos seguros de que #CallejearEduca.                         <p>                             En 2018 llegaremos a 2500 jóvenes de toda la ciudad, entre 14 y 28 años de edad, con 180 recorridos pedagógicos, enmarcados en nueve rutas temáticas:                         </p>                          <ol>                             <li>Somos jóvenes, somos diversos.</li>                             <li>Medellín sostenible.</li>                             <li>El centro: un lugar para descubrir.</li>                             <li>¿Tiene Medellín campesinos?</li>                             <li>Medellín en movimiento.</li>                             <li>Haciendo memoria para construir futuro.</li>                             <li>Somos educación, arte y cultura. </li>                             <li>Territorios jóvenes nocturnos. </li>                             <li>Equipamientos públicos para la ciudadanía.</li>                         </ol>', '2018-09-22 08:36:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -191,6 +258,7 @@ CREATE TABLE `melc_map` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -199,16 +267,16 @@ CREATE TABLE `melc_map` (
 -- Volcado de datos para la tabla `melc_map`
 --
 
-INSERT INTO `melc_map` (`id`, `map_number`, `name`, `description`, `logo`, `color`, `creation_date`, `last_update`) VALUES
-(1, 1, 'Haciendo memoria para construir futuro', 'No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día.', 'Memoria.png', '#B3C52D', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(2, 2, 'Medellín en movimiento', 'Estamos seguros de que alguien que conoce y sabe utilizar el sistema de transporte público masivo de la ciudad tiene un alto porcentaje de éxito en conocerla y aprender de ella ¡Un transporte público incluyente, equitativo, seguro, sostenible y conectado a la intermodalidad es la mejor excusa para salir a callejear!', 'Movimiento.png', '#D07200', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(3, 3, 'El centro: un lugar para descubrir', 'El centro de la ciudad es el territorio con menor número de población residente (aproximadamente 80.000), pero por sus calles pasan diariamente cerca de ¡1.2 millones de personas! Muchos de sus lugares convocan a miles de jóvenes cotidianamente: universidades, colegios, teatros, restaurantes, museos, parques, centros financieros y comerciales, clínicas y lugares de diversión nocturna ¡No te niegues la oportunidad de visitar un lugar lleno de historias y cultura!', 'Centro.png', '#009BDB', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(4, 4, '¿Tiene Medellín campesinos?', '¿Sabes qué porcentaje del suelo de Medellín es rural?, ¿cuáles son los corregimientos de nuestra ciudad y qué porcentaje de la población del municipio habita en estos territorios? ¿Sabes cómo se hace una silleta?, ¿qué hacen y venden en Altavista?, ¿qué se cultiva en San Cristóbal?, ¿qué corregimiento tiene un cable aéreo? Cuando tengas las respuestas a las preguntas anteriores, puedes hacerte muchas otras y podrás encontrar la respuesta a la pregunta ¿Tiene Medellín campesinos?', 'Campesinos.png', '#EABE00', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(5, 5, 'Medellín sostenible', 'Ojalá esta ruta motive reflexiones sobre qué consideras y en qué piensas cuando se habla de sostenibilidad. ¿Qué significa que algo sea sostenible?, ¿qué significó para nuestros ancestros el buen vivir? o ¿cuáles podrían ser las relaciones armónicas con la naturaleza? \nMuchos jóvenes tienen presente las últimas contingencias ambientales que ha vivido la ciudad y algunos ya generaron cambios en sus comportamientos y actitudes con la vida. Descubre, pregunta, aporta o imita aquellos comportamientos ciudadanos que nos permitan convivir y reducir nuestro impacto en el medio ambiente ¡Ah!  Pero no olvides que también existen la sostenibilidad social, económica, política, entre otras.\n', 'Sostenible.png', '#539E3F', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(6, 6, 'Equipamientos públicos para la ciudadanía', 'Nuestra ciudad puede estar orgullosa de contar con un importante número de equipamientos públicos en cada una de sus comunas y corregimientos. Parques, plazas, centros culturales, museos, sedes comunales, bibliotecas, UVA, placas polideportivas, parques lineales, instituciones educativas, unidades deportivas, jardín circunvalar y hasta cerros tutelares con reservas forestales. El reto de los jóvenes hoy bajarle al cemento y subirle a los contenidos, la programación, la oferta y las oportunidades de calidad que los ciudadanos pueden encontrar en estos equipamientos; hacer que lo construido socialmente permanezca en el tiempo ¿Cuántos equipamientos de ciudad visitas cotidianamente? ¿Conoces su oferta educativa, cultural y artística? Si no ¡¿qué estás esperando?!', 'Equipamientos.png', '#C96687', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(7, 7, 'Somos educación, arte y cultura', 'Hoy existen muchas expresiones educativas, artísticas y culturales que van más allá de la institucionalidad, donde los jóvenes encontramos múltiples formas de manifestarnos con nuestros talentos y propuestas. No sólo se nos educa, también se aprende con nosotros, desde nuestra capacidad creativa, de innovación y transformación de procesos. Sabemos que la ciudad cuenta con una oferta diversa, numerosa y complementaria, y podemos afirmar que todos los días suceden actividades de este tipo en la ciudad.', 'Educacion.png', '#8B2383', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(8, 8, 'Territorios jóvenes nocturnos', 'Al caer la noche los ritmos cambian, pero aún nos queda mucha energía y buscamos alternativas para compartir. La noche no se puede asociar exclusivamente a la diversión, a la comida o al licor, también la aprovechamos para muchas otras actividades. En las noches algunos estudian, hacen deporte o se dedican a sus actividades productivas ¡La Medellín nocturna es una oportunidad para encontrarnos con los otros! Si eres de los que creen que en la noche hay que entrarse para la casa o la ciudad pierde la gracia, aquí te vamos a contar de muchos lugares que están llenos de vida en las noches.', 'Nocturnos.png', '#001D7E', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
-(9, 9, 'Somos jóvenes, somos diversos.', 'La juventud es tan diversa como la humanidad misma, pero es necesario reconocerla, respetarla y protegerla, porque en ella está la riqueza presente y futura de nuestra sociedad y de nuestra ciudad. Nos gusta recorrer los lugares en los que habitan diferentes juventudes, ya sea por su preferencia sexual, su procedencia étnica, sus gustos musicales, religiosos o deportivos. Nuestros hobbies, saberes, capacidades e ideologías nos diferencian, pero nos dan muchos temas de qué hablar y motivos para conocernos.', 'Diversos.png', '#BF0811', '2018-08-21 12:53:17', '0000-00-00 00:00:00');
+INSERT INTO `melc_map` (`id`, `map_number`, `name`, `description`, `logo`, `color`, `active`, `creation_date`, `last_update`) VALUES
+(1, 1, 'Haciendo memoria para construir futuro', 'No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día.', 'Memoria.png', '#B3C52D', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(2, 2, 'Medellín en movimiento', 'Estamos seguros de que alguien que conoce y sabe utilizar el sistema de transporte público masivo de la ciudad tiene un alto porcentaje de éxito en conocerla y aprender de ella ¡Un transporte público incluyente, equitativo, seguro, sostenible y conectado a la intermodalidad es la mejor excusa para salir a callejear!', 'Movimiento.png', '#D07200', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(3, 3, 'El centro: un lugar para descubrir', 'El centro de la ciudad es el territorio con menor número de población residente (aproximadamente 80.000), pero por sus calles pasan diariamente cerca de ¡1.2 millones de personas! Muchos de sus lugares convocan a miles de jóvenes cotidianamente: universidades, colegios, teatros, restaurantes, museos, parques, centros financieros y comerciales, clínicas y lugares de diversión nocturna ¡No te niegues la oportunidad de visitar un lugar lleno de historias y cultura!', 'Centro.png', '#009bdb', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(4, 4, '¿Tiene Medellín campesinos?', '¿Sabes qué porcentaje del suelo de Medellín es rural?, ¿cuáles son los corregimientos de nuestra ciudad y qué porcentaje de la población del municipio habita en estos territorios? ¿Sabes cómo se hace una silleta?, ¿qué hacen y venden en Altavista?, ¿qué se cultiva en San Cristóbal?, ¿qué corregimiento tiene un cable aéreo? Cuando tengas las respuestas a las preguntas anteriores, puedes hacerte muchas otras y podrás encontrar la respuesta a la pregunta ¿Tiene Medellín campesinos?', 'Campesinos.png', '#EABE00', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(5, 5, 'Medellín sostenible', 'Ojalá esta ruta motive reflexiones sobre qué consideras y en qué piensas cuando se habla de sostenibilidad. ¿Qué significa que algo sea sostenible?, ¿qué significó para nuestros ancestros el buen vivir? o ¿cuáles podrían ser las relaciones armónicas con la naturaleza? \nMuchos jóvenes tienen presente las últimas contingencias ambientales que ha vivido la ciudad y algunos ya generaron cambios en sus comportamientos y actitudes con la vida. Descubre, pregunta, aporta o imita aquellos comportamientos ciudadanos que nos permitan convivir y reducir nuestro impacto en el medio ambiente ¡Ah!  Pero no olvides que también existen la sostenibilidad social, económica, política, entre otras.\n', 'Sostenible.png', '#539E3F', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(6, 6, 'Equipamientos públicos para la ciudadanía', 'Nuestra ciudad puede estar orgullosa de contar con un importante número de equipamientos públicos en cada una de sus comunas y corregimientos. Parques, plazas, centros culturales, museos, sedes comunales, bibliotecas, UVA, placas polideportivas, parques lineales, instituciones educativas, unidades deportivas, jardín circunvalar y hasta cerros tutelares con reservas forestales. El reto de los jóvenes hoy bajarle al cemento y subirle a los contenidos, la programación, la oferta y las oportunidades de calidad que los ciudadanos pueden encontrar en estos equipamientos; hacer que lo construido socialmente permanezca en el tiempo ¿Cuántos equipamientos de ciudad visitas cotidianamente? ¿Conoces su oferta educativa, cultural y artística? Si no ¡¿qué estás esperando?!', 'Equipamientos.png', '#C96687', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(7, 7, 'Somos educación, arte y cultura', 'Hoy existen muchas expresiones educativas, artísticas y culturales que van más allá de la institucionalidad, donde los jóvenes encontramos múltiples formas de manifestarnos con nuestros talentos y propuestas. No sólo se nos educa, también se aprende con nosotros, desde nuestra capacidad creativa, de innovación y transformación de procesos. Sabemos que la ciudad cuenta con una oferta diversa, numerosa y complementaria, y podemos afirmar que todos los días suceden actividades de este tipo en la ciudad.', 'Educacion.png', '#8B2383', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(8, 8, 'Territorios jóvenes nocturnos', 'Al caer la noche los ritmos cambian, pero aún nos queda mucha energía y buscamos alternativas para compartir. La noche no se puede asociar exclusivamente a la diversión, a la comida o al licor, también la aprovechamos para muchas otras actividades. En las noches algunos estudian, hacen deporte o se dedican a sus actividades productivas ¡La Medellín nocturna es una oportunidad para encontrarnos con los otros! Si eres de los que creen que en la noche hay que entrarse para la casa o la ciudad pierde la gracia, aquí te vamos a contar de muchos lugares que están llenos de vida en las noches.', 'Nocturnos.png', '#001D7E', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(9, 9, 'Somos jóvenes, somos diversos.', 'La juventud es tan diversa como la humanidad misma, pero es necesario reconocerla, respetarla y protegerla, porque en ella está la riqueza presente y futura de nuestra sociedad y de nuestra ciudad. Nos gusta recorrer los lugares en los que habitan diferentes juventudes, ya sea por su preferencia sexual, su procedencia étnica, sus gustos musicales, religiosos o deportivos. Nuestros hobbies, saberes, capacidades e ideologías nos diferencian, pero nos dan muchos temas de qué hablar y motivos para conocernos.', 'Diversos.png', '#BF0811', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -253,15 +321,16 @@ INSERT INTO `melc_newsletter` (`id`, `email`, `creation_date`, `last_update`) VA
 
 CREATE TABLE `melc_params` (
   `id` bigint(20) NOT NULL,
-  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos'
+  `expiration_time` smallint(6) NOT NULL COMMENT 'Tiempo de inactividad de la sesión para expirar en segundos',
+  `temporized_session` bit(1) NOT NULL DEFAULT b'0' COMMENT 'Indica si la sesión es o no temporizada; por defecto, es 0 (no)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `melc_params`
 --
 
-INSERT INTO `melc_params` (`id`, `expiration_time`) VALUES
-(1, 60);
+INSERT INTO `melc_params` (`id`, `expiration_time`, `temporized_session`) VALUES
+(1, 60, b'0');
 
 -- --------------------------------------------------------
 
@@ -308,7 +377,7 @@ INSERT INTO `melc_place` (`id`, `name`, `description`, `latitude`, `longitude`, 
 (20, 'Placita de Flórez', '¡Sí, Flórez con “z”, no está mal escrita! Es que su nombre no se debe a la cantidad de flores que bajaban en silletas humanas desde el Corregimiento de Santa Elena, sino a que quien donó el predio para su construcción fue Don Rafael Flórez. Antes de ser la primera plaza de mercado cubierta en la ciudad, fue patronato de trabajadores, convento religioso y hasta circo de toros (no plaza) ¡Tendremos que averiguar también la diferencia entre un circo y una plaza de toros!', 6.245461, -75.5618417, 'https://goo.gl/maps/bpEs7fdwQ4L2', 4, '2018-08-22 13:02:55', '0000-00-00 00:00:00'),
 (21, 'Otros lugares que puedes visitar', 'Palmitas: Asociación de Mujeres de Palmitas - Biblioteca pública - Red Corregimental de Jóvenes - Alguna de las fincas de los campesinos asociados a Campo vivo. Santa Elena: Parque Arví - Centralidad Vereda Mazo con su importante proyecto Sapiencia. Altavista: La Casa Museo y las huertas de la Vereda Manzanillo Crea tu propia lista de lugares corregimentales o te contáctate con la Gerencia de Corregimientos quienes impulsan un importante proyecto de Turismo Rural Comunitario.', 6.3500098, -75.7087648, 'https://goo.gl/maps/RsjN8AERfH62', 4, '2018-08-22 13:05:43', '0000-00-00 00:00:00'),
 (22, 'Universidad Nacional de Colombia (Agronomía)', 'En el campus de Agronomía, que en su interior guarda un oasis ambiental de flora y fauna, puedes encontrar el Palmetum, que es la colección de palmas vivas más grande y diversa del país. Igualmente, el Arboretum, que es una colección de árboles de muchos lugares del mundo que posee la Universidad y, además de servir de hábitat para muchas especies de aves, también es el motivo de muchas investigaciones forestales.', 6.2609775, -75.5766487, 'https://goo.gl/maps/EuZ1i5pmfdL2', 5, '2018-08-22 14:05:17', '0000-00-00 00:00:00'),
-(23, 'Barrio Carlos E. Restrepo', 'Esta unidad residencial construida en los años 70 se consolida como otro gran pulmón de la ciudad, pues en él reposan cerca de 1.800 árboles que hacen parte del importante corredor verde Cerro El Volador, Universidad Nacional, Carlos E. Restrepo y Suramericana. ', 6.2577165, -75.5890918, 'https://goo.gl/maps/kqWeLF8Mw4w', 5, '2018-08-22 14:05:17', '0000-00-00 00:00:00'),
+(23, 'Barrio Carlos E. Restrepo', 'Esta unidad residencial construida en los años 70 se consolida como otro gran pulmón de la ciudad, pues en él reposan cerca de 1.800 árboles que hacen parte del importante corredor verde Cerro El Volador, Universidad Nacional, Carlos E. Restrepo y Suramericana.', 6.2577165, -75.5890918, 'https://goo.gl/maps/kqWeLF8Mw4w', 5, '2018-08-22 14:05:17', '0000-00-00 00:00:00'),
 (24, 'Cerro El Volador', 'Es tal vez el más cerro tutelar mejor conservado y arborizado de los siete con que cuenta la ciudad. En este oasis en medio de la ciudad se puede visitar el mariposario al aire libre, un vivero pedagógico, la estación de abejas angelito y varios miradores desde donde se puede tener hermosas panorámicas a la ciudad ¡Sin duda es un patrimonio natural y arqueológico!', 6.264745, -75.5847107, 'https://goo.gl/maps/ZJYdfCTowoN2', 5, '2018-08-22 14:08:08', '0000-00-00 00:00:00'),
 (25, 'Morro de Moravia', 'Moravia es una flor, dice “Mamá Chila”, quien orienta los recorridos por el barrio que hace unas décadas fue un basurero a cielo abierto y donde se asentaron numerosas familias de manera precaria. Varios años de intervención y la reubicación de la gran mayoría de ellas permitió que el morro hoy sea un gran jardín coronado en su cima con un vivero de plantas ornamentales liderado por mujeres que, además de ofrecer la guía y vender plantas, cuentan una historia de resistencia y perseverancia características de este barrio.', 6.2771457, -75.5700965, 'https://goo.gl/maps/4t4ArpPnwGp', 5, '2018-08-22 14:08:08', '0000-00-00 00:00:00'),
 (26, 'Parque de las pacas – Belén Fátima\r\n', 'Un pequeño grupo de empeliculados con el tema de la sostenibilidad y el problema de las basuras, se dieron a la tarea de explorar estrategias reales y posibles de implementar contando con las dinámicas de la ciudad. Aprovechando los espacios disponibles en su entorno, crearon un proyecto de compostaje con la técnica denominada Pacas bio-digestoras Silva. Con estas han logrado tratar más de 4 toneladas de residuos orgánicos que producen en sus casas ¿Alguna vez habías pensado qué pasa con la basura que produces?', 6.2372616, -75.5858295, 'https://goo.gl/maps/FseJ2PNDUKr', 5, '2018-08-22 14:34:42', '0000-00-00 00:00:00'),
@@ -419,8 +488,7 @@ CREATE TABLE `melc_social_network` (
 
 INSERT INTO `melc_social_network` (`id`, `name`, `description`, `link`, `logo`, `creation_date`, `last_update`) VALUES
 (1, 'facebook', '@delajuventud', 'https://www.facebook.com/delajuventud/', 'fb-footer.png', '2018-09-22 08:45:02', NULL),
-(2, 'instagram', '@medellinenlacabeza', 'https://www.instagram.com/medellinenlacabeza/', 'instagram-footer.png', '2018-09-22 08:45:02', NULL),
-(3, 'correo', 'medellinenlacabeza@gmail.com', 'http://www.gmail.com', 'mail-footer.png', '2018-09-22 08:45:02', NULL);
+(2, 'instagram', '@medellinenlacabeza', 'https://www.instagram.com/medellinenlacabeza/', 'instagram-footer.png', '2018-09-22 08:45:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -567,7 +635,7 @@ ALTER TABLE `melc_user`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -627,7 +695,7 @@ ALTER TABLE `melc_profile_user`
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --

@@ -122,7 +122,8 @@ class ManagementModel extends CI_Model
                 "WHERE id=" . $arrayValues[0]  . " " .
                 "AND BINARY ip_access='" . $arrayValues[1] . "' " .
                 "AND BINARY user_agent='" . $arrayValues[2] . "' " .
-                "AND BINARY token='" . $arrayValues[3] . "'";
+                "AND BINARY token='" . $arrayValues[3] . "' " . 
+                "AND active=1";
         
         return $this->db->query($query);
     }

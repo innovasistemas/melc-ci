@@ -347,6 +347,25 @@ a.dropdown-toggle:hover{
     text-decoration: underline !important;
 }
 
+
+/* Las dos clases que siguen permiten poner texto sobre una imagen*/
+
+.content-image{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.text-over-image{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: #FFF;
+    font-weight: bold; 
+}
+
 .zoom {      
     -webkit-transition: all 0.35s ease-in-out;    
     -moz-transition: all 0.35s ease-in-out;    

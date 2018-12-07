@@ -51,7 +51,7 @@ $('#reloadPage').click(function() {
             
 
 $('#closeSession').click(function() {
-    closeSession();
+    closeSession('ninguna');
 });
             
 

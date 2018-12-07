@@ -93,89 +93,96 @@ function loadUserSession()
 
 function verifyAuthentication()
 {
-    var content;
-    var entityAccess
+    var entityAccess;
     entityAccess = 'melc_access';
-//        alert("")
-//        $( "#dialog" ).html("sessionStorage.length");
-//        $( "#dialog" ).dialog({
-//            autoOpen: true,
-//            modal: true,
-//            buttons: {
-//                "Aceptar": function () {
-//                    $(this).dialog("close");
-//                    
-//                }
-//            } 
-//        });
     
     if(sessionStorage.length > 0){
-        var objJson = {
-            'db': {
-                'table': entityAccess
-            },
-            fields: {
-                'id': sessionStorage.getItem('session_id'),
-                'ip_access': sessionStorage.getItem('ip_access'),
-                'user_agent': sessionStorage.getItem('user_agent'),
-                'token': sessionStorage.getItem('token'),
-            }                   
-        }
-
-        var strJson = JSON.stringify(objJson);
-        
-        $.ajax({
-            url: urlVerifyAuthentication,
-            data: {'dataSend': strJson},
-            type: 'POST',
-            dataType: 'json',
-            success: function(data) {
-                if(data.error !== 0){
-                    closeSession();
-//                    $(location).attr('href', 'index.html');
-                    content = "<b>respuesta:</b><br>" + data.response + 
-                        "<br><b>errores:</b><br>" + data.error;
-                    
-                    $( "#dialog" ).html(content);
-                    $( "#dialog" ).dialog({
-                        autoOpen: true,
-                        modal: true,
-                        buttons: {
-                            "Aceptar": function () {
-                                $(this).dialog("close");
-                                closeSession();
-                            }
-                        } 
-                    });
-                }
+        if(sessionStorage.getItem('session_id') !== null){
+            var objJson = {
+                'db': {
+                    'table': entityAccess
+                },
+                fields: {
+                    'id': sessionStorage.getItem('session_id'),
+                    'ip_access': sessionStorage.getItem('ip_access'),
+                    'user_agent': sessionStorage.getItem('user_agent'),
+                    'token': sessionStorage.getItem('token'),
+                }                   
             }
-        }); 
+
+            var strJson = JSON.stringify(objJson);
+
+            $.ajax({
+                url: urlVerifyAuthentication,
+                data: {'dataSend': strJson},
+                type: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    if(data.error !== 0){
+                        closeSession('error de autenticación');
+                    }
+                }
+            });
+            
+        }else{
+            sessionStorage.clear();
+            $(location).attr('href', 'index.html');
+        }
         
     }else{
-//        content = "<b>respuesta:</b><br>no se ha autenticado en el sisitema" +  
-//                        "<br><b>errores:</b><br>9001";
-        closeSession();
-        
-//        $( "#dialog" ).html(content);
-//        $( "#dialog" ).dialog({
-//            autoOpen: true,
-//            modal: true,
-//            buttons: {
-//                "Aceptar": function () {
-//                    $(this).dialog("close");
-//                    $(location).attr('href', 'index.html');
-//                    
-//                }
-//            } 
-//        });
+        sessionStorage.clear();
+        $(location).attr('href', 'index.html');
     }
 }
 
 
-function closeSession()
+function closeSession(observation)
 {
-    sessionStorage.clear();
-    $(location).attr('href', 'index.html');
+    entity = 'melc_access';
+    folder = 'no-folder';
+    
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    
+    var strDateTimeExit = year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    
+    var fields = {
+        'id': sessionStorage.getItem('session_id'),
+        'active': 0,
+        'observation': observation,
+        'date_time_exit': strDateTimeExit
+    }
+    
+    var objJson = {
+        'db': {
+            'table': entity
+        },
+        'fields': fields,
+        'folder': folder
+    };
+    
+    var strJson = JSON.stringify(objJson);
+    
+    $.ajax({
+        url: urlSaveRecord,
+        data: {'dataSend': strJson},
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            sessionStorage.clear();
+            $(location).attr('href', 'index.html');
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            sessionStorage.clear();
+            $(location).attr('href', 'index.html');
+        }
+    });
+    
 }
 
 

@@ -373,7 +373,7 @@ class MasterEngine extends CI_Controller {
     public function getToken()
     {
         $characters = "0123456789abcdefghijklmnopqrstuvwxyz" . 
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*%/\\$#=&[]{}()~|<>?^.,;:";
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ_@+-*%/$#=&[]{}()~|<>?^.,;:";
         $lenCharacters = strlen($characters);
         $token = "";
         for($i=0; $i < 30; $i++){
