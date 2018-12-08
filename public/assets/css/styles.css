@@ -358,8 +358,8 @@ a.dropdown-toggle:hover{
 
 .text-over-image{
     position: absolute;
-    top: 60%;
-    left: 50%;
+    top: 55%;
+    left: 2%;
     transform: translate(-50%, -50%);
     font-size: 2em;
     color: #FFF;
