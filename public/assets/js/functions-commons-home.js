@@ -131,18 +131,14 @@ function loadContactInformation()
                 content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/address-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-4'>";
-                content += "<strong>";
+                content += "<div class='col-sm-4 font-social-network'>";
                 content += value.address;
-                content += "</strong>"
                 content += "</div>";
                 content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/mail-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-4'>";
-                content += "<strong>";
+                content += "<div class='col-sm-4 font-social-network'>";
                 content += value.email;
-                content += "</strong>";
                 content += "</div>";
                 content += "</div>";
                 
@@ -152,18 +148,14 @@ function loadContactInformation()
                 content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/phone-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-4'>";
-                content += "<strong>";
+                content += "<div class='col-sm-4 font-social-network'>";
                 content += value.phone;
-                content += "</strong>";
                 content += "</div>";
                 content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/phone-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-4'>";
-                content += "<strong>";
+                content += "<div class='col-sm-4 font-social-network'>";
                 content += value.cell_phone;
-                content += "</strong>";
                 content += "</div>";
                 content += "</div>";
                 

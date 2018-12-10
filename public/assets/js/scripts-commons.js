@@ -27,7 +27,7 @@ $('body').ready(function(){
 
 $('[data-toggle="tooltip"]').tooltip();
 
-                
+
 $('#frmRegister').ketchup();
 
 
