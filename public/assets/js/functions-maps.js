@@ -126,7 +126,8 @@ function initMap()
         mapTypeId: 'roadmap'
     });
     var marker = new google.maps.Marker({position: uluru, map: map});
-
+    marker.setVisible(false);
+    
     // This event listener will call addMarker() when the map is clicked.
 //                map.addListener('click', function(event) {
 //                    addMarker(event.latLng);

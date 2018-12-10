@@ -95,6 +95,15 @@ ul.notas li#nota3 {
     height: 100px;
 }
 
+#logo-header{
+    width: 137px;
+    height: 160px;
+    border: 3px solid #FFF;
+    margin-top: -10px;
+    margin-left: 65px;
+    background-color: #6C00DA;
+}
+
 #img-header1{
     background-image:url('../images/header1.png');
 }
@@ -186,6 +195,11 @@ ul.notas li#nota3 {
     margin-left: -80px;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+#logo-alcaldia{
+    width: 213px;
+    height: 334px;
 }
 
 
@@ -301,17 +315,6 @@ ul.notas li#nota3 {
     margin-top:15% !important;
 }
 
-.margin-logo-navbar{
-    
-}
-
-.header-image{
-    max-width: 90%;
-    height: auto;
-    margin-top: -28px;
-    margin-left: 65px;
-}
-
 .hideElement{
     display: none;
 }
@@ -323,7 +326,6 @@ ul.notas li#nota3 {
 .margin-modal{
     margin:5%;
 }
-
 
 .font-social-network{
     color: #6c00DA;
@@ -359,7 +361,7 @@ a.dropdown-toggle:hover{
 .text-over-image{
     position: absolute;
     top: 55%;
-    left: 2%;
+    left: 12%;
     transform: translate(-50%, -50%);
     font-size: 2em;
     color: #FFF;
@@ -506,6 +508,9 @@ a.dropdown-toggle:hover{
     
     #logo-header{
         content: url('../images/contact-information/logo-header-mob.png');
+        width: 60px;
+        height: 75px;
+        margin-left: 15px;
     }
     
     #panel-itinerary {
@@ -519,15 +524,6 @@ a.dropdown-toggle:hover{
         margin-left: 65%;
         margin-top: 0px;
         font-size: 0.8em;
-    }
-    
-    .header-image{
-        margin-top: -25px;
-        margin-left: 20px;
-    }
-    
-    .navbar-img-mob{
-        /*background-image: url('../images/menu-burguer.png') !important;*/
     }
     
     .carousel{
@@ -569,6 +565,10 @@ a.dropdown-toggle:hover{
     
     .margin-description-advertisement{
         font-size: 0.5em;
+    }
+    
+    .text-over-image{
+        left: 2%;
     }
     
     

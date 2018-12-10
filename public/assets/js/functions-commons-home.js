@@ -74,20 +74,26 @@ function loadSocialNetworks()
         type: 'POST',
         dataType: 'json',
         success: function(data) {
-            var content = "<h3 class='text-capitalize'>Redes sociales</h3>";
+            var content = "";
             $.each(data, function(index, value){
-                content += "<div class='row'>";
-                content += "<div class='col-sm-2'>";
+                if(index % 2 === 0){
+                    content += "<div class='row'>";
+                }
+                content += "<div class='col-sm-1'>";
                 content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank'>" 
                 content += "<img src='assets/images/social-networks/" + value.logo + "' />";
                 content += "</a>";
                 content += "</div>";
-                content += "<div class='col-sm-2'>";
+                content += "<div class='col-sm-4'>";
                 content += "<a href='" + value.link +"' title='" + value.name + "' target='_blank' class='font-social-network'>"
                 content += value.description;
                 content += "</a>";
                 content += "</div>";
-                content += "</div>";
+                
+                if(index % 2 === 1){
+                    content += "</div>";
+                }
+                    
             });
             $('#links-social-networks').html(content);
         }
@@ -119,47 +125,49 @@ function loadContactInformation()
         type: 'POST',
         dataType: 'json',
         success: function(data) {
-            var content = "<h3 class='text-capitalize'>contáctanos</h3>";
+            var content = "";
             $.each(data, function(index, value){
                 content += "<div class='row'>";
-                content += "<div class='col-sm-2'>";
+                content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/address-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-5'>";
-                content += "<h4>dirección</h4>";
+                content += "<div class='col-sm-4'>";
+                content += "<strong>";
                 content += value.address;
+                content += "</strong>"
                 content += "</div>";
-                content += "</div>";
-                
-                content += "<div class='row'>";
-                content += "<div class='col-sm-2'>";
-                content += "<img src='assets/images/contact-information/phone-footer.png' />";
-                content += "</div>";
-                content += "<div class='col-sm-5'>";
-                content += "<h4>teléfono</h4>";
-                content += value.phone;
-                content += "</div>";
-                content += "</div>";
-                
-                content += "<div class='row'>";
-                content += "<div class='col-sm-2'>";
-                content += "<img src='assets/images/contact-information/phone-footer.png' />";
-                content += "</div>";
-                content += "<div class='col-sm-5'>";
-                content += "<h4>celular</h4>";
-                content += value.cell_phone;
-                content += "</div>";
-                content += "</div>";
-                
-                content += "<div class='row'>";
-                content += "<div class='col-sm-2'>";
+                content += "<div class='col-sm-1'>";
                 content += "<img src='assets/images/contact-information/mail-footer.png' />";
                 content += "</div>";
-                content += "<div class='col-sm-5'>";
-                content += "<h4>correo</h4>";
+                content += "<div class='col-sm-4'>";
+                content += "<strong>";
                 content += value.email;
+                content += "</strong>";
                 content += "</div>";
                 content += "</div>";
+                
+                content += "<div class='row'>&nbsp;</div>";
+                
+                content += "<div class='row'>";
+                content += "<div class='col-sm-1'>";
+                content += "<img src='assets/images/contact-information/phone-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-4'>";
+                content += "<strong>";
+                content += value.phone;
+                content += "</strong>";
+                content += "</div>";
+                content += "<div class='col-sm-1'>";
+                content += "<img src='assets/images/contact-information/phone-footer.png' />";
+                content += "</div>";
+                content += "<div class='col-sm-4'>";
+                content += "<strong>";
+                content += value.cell_phone;
+                content += "</strong>";
+                content += "</div>";
+                content += "</div>";
+                
+                content += "<div class='row'>&nbsp;</div>";
                 
             });
             $('#contact-information').html(content);
