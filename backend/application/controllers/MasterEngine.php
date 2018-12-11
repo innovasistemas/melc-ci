@@ -44,16 +44,19 @@ class MasterEngine extends CI_Controller {
     //****************************
 
     // Función para devolver un listado general de registros en un objeto JSON. 
-    // Recibe un objeto JSON     // que contiene la tabla, los campos a mostrar 
-    // y un criterio de búsqueda
+    // Recibe un objeto JSON que contiene la tabla, los campos a mostrar 
+    // y uno o varios criterios de búsqueda
     public function listRecords()
     {
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
-            $orderFile = empty($arrayData['bd']['orderField']) 
+            $arrayData['bd']['orderField'] = empty($arrayData['bd']['orderField']) 
                     ? "id" : $arrayData['bd']['orderField'];
-            $objResult = $this->ManagementModel->read($arrayData['bd']['table'], 
-                    array_values($arrayData['fields']), $orderFile);
+            $arrayClauses = empty($arrayData['clauses']) 
+                    ? [] : $arrayData['clauses'];
+                    
+            $objResult = $this->ManagementModel->read($arrayData['bd'], 
+                    array_values($arrayData['fields']), $arrayClauses);
             $arrayResult = [];
             foreach ($objResult->result() as $row){
                 $arrayResult[] = $row;  

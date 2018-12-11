@@ -104,7 +104,7 @@
                 
                 loadLayout(false);
                 
-                loadMediatorProfile();
+                loadRecords();
                 
                 loadContactInformation();
                 
@@ -122,10 +122,10 @@
             entity = 'melc_user';
             folder = 'no-folder';
             
-            function loadMediatorProfile()
+            function loadRecords()
             {
                 var objJson = {
-                    'bd': {
+                    bd: {
                         'table': entity
                     },
                     fields: {
@@ -134,7 +134,10 @@
                         '2': 'user',
                         '3': 'active',
                         '4': 'logo'
-                    }                   
+                    },
+                    clauses: {
+                        'active': 1
+                    }
                 }
                 
                 var strJson = JSON.stringify(objJson);
@@ -148,22 +151,20 @@
                         var column = 0;
                         var content = "<div class='row'>";
                         $.each(data, function(index, value){
-                            if(value.active == 1){
-                                if(index != 0){
-                                    if(column >= 3){
-                                        content += "</div>";
-                                        content += "<div class='row'>";
-                                        column = 0;
-                                    }
-                                    content += "<div class='col-sm-4'>";
-                                    content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>" 
-                                    content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
-                                    content += "</a>";
+                            if(index != 0){
+                                if(column >= 3){
                                     content += "</div>";
-                                    column ++;
+                                    content += "<div class='row'>";
+                                    column = 0;
                                 }
-                                
+                                content += "<div class='col-sm-4'>";
+                                content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>" 
+                                content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
+                                content += "</a>";
+                                content += "</div>";
+                                column ++;
                             }
+                                
                         });
                         
                         if(column < 3){

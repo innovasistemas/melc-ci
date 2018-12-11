@@ -21,20 +21,16 @@ class ManagementModel extends CI_Model
 
     // Función genérica para listar los registros de cualquier entidad;
     // la consulta es ordenada por un campo específico (id por defecto); 
-    // puede incluir un criterio de búsqueda por el campo especificado
-    public function read($table, $arrayFields, $orderField)
+    // puede incluir un array de cláusulas para filtrar
+    public function read($arrayBD, $arrayFields, $arrayClauses)
     {
         $this->db->select($arrayFields);
-        $this->db->from($table);
-        $this->db->order_by($orderField, 'ASC');
-        
-//        if($field != ""){
-//            if(gettype($field != "string")){
-//                $this->db->where($field, $data);                
-//            }else{
-//                $this->db->like($field, $data, 'both');
-//            }
-//        }
+        $this->db->from($arrayBD['table']);        
+        if(count($arrayClauses) > 0){
+            $this->db->where($arrayClauses);            
+        }        
+        $this->db->order_by($arrayBD['orderField'], 'ASC');
+
         return $this->db->get(); 
     }
 

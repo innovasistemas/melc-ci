@@ -87,6 +87,29 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
+                            <div class="form-group" id="divActive">
+                                <label for="optActive" class="control-label">activo</label>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="btn-group" data-toggle="buttons">
+        <!--                                    <span class="input-group-addon">
+                                                <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
+                                            </span>-->
+                                            <label class="btn btn-primary active">si 
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-activetoggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
+                                            </label>
+                                            <label class="btn btn-primary">no 
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" disabled="disabled">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-8"> 
                             <div class="form-group" id="divLatitude">
                                 <label for="txtLatitude" class="control-label">latitud <small>(coordenadas decimales)</small></label>
                                 <div class="input-group">
@@ -158,6 +181,7 @@
                     <tr class="success text-capitalize">
                         <th>nombre</th>
                         <th>descripción</th>
+                        <th>activo</th>
                         <th>latitud</th>
                         <th>longitud</th>
                         <th>enlace</th>
@@ -233,6 +257,7 @@
                                                 'id': $("#txtId").val(),
                                                 'name': $("#txtName").val(),
                                                 'description': $("#txtDescription").val(),
+                                                'active': $("#optActiveYes").is(':checked') ? 1 : 0,
                                                 'latitude': $("#txtLatitude").val(),
                                                 'longitude': $("#txtLongitude").val(),
                                                 'link': $("#txtLink").val(),
@@ -324,7 +349,8 @@
                         '3': 'latitude',
                         '4': 'longitude',
                         '5': 'link',
-                        '6': 'id_map'
+                        '6': 'id_map',
+                        '7': 'active'
                     }                   
                 }
                 
@@ -339,11 +365,13 @@
                     success: function(data) {
                         var table = "";
                         $.each(data, function(index, value){
+                            active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
                             table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description.substr(0, 50) + "...</td>";
+                            table += "<td>" + active + "</td>";
                             table += "<td>" + value.latitude + "</td>";
                             table += "<td>" + value.longitude + "</td>";
                             table += "<td>";
@@ -447,6 +475,11 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
+                            if(objFields.active == 1){
+                                $("#optActiveYes").prop('checked', true);
+                            }else{ 
+                                $("#optActiveNo").prop('checked', true);
+                            }
                             $("#txtLatitude").val(objFields.latitude);
                             $("#txtLongitude").val(objFields.longitude);
                             $("#txtLink").val(objFields.link);

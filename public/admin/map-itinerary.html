@@ -86,6 +86,29 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
+                            <div class="form-group" id="divActive">
+                                <label for="optActive" class="control-label">activo</label>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="btn-group" data-toggle="buttons">
+        <!--                                    <span class="input-group-addon">
+                                                <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
+                                            </span>-->
+                                            <label class="btn btn-primary active">si 
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-activetoggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
+                                            </label>
+                                            <label class="btn btn-primary">no 
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" disabled="disabled">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-8"> 
                             <div class="form-group" id="divMapNumber">
                                 <label for="nbrMapNumber" class="control-label">posición ruta</label>
                                 <div class="input-group">
@@ -148,6 +171,7 @@
                     <tr class="success text-capitalize">
                         <th>nombre</th>
                         <th>descripción</th>
+                        <th>activa</th>
                         <th>ruta número</th>
                         <th>color</th>
                         <th>logo</th>
@@ -228,6 +252,7 @@
                                         'id': $("#txtId").val(),
                                         'name': $("#txtName").val(),
                                         'description': $("#txtDescription").val(),
+                                        'active': $("#optActiveYes").is(':checked') ? 1 : 0,
                                         'map_number': $("#nbrMapNumber").val(),
                                         'color': $("#clrColor").val()
                                     }
@@ -299,11 +324,13 @@
                         '2': 'name',
                         '3': 'description',
                         '4': 'logo',
-                        '5': 'color'
+                        '5': 'color',
+                        '6': 'active'
                     }                   
                 }
                 
                 var strJson = JSON.stringify(objJson);
+                var active;
                  
                 $.ajax({
                     url: urlListRecord,
@@ -313,11 +340,13 @@
                     success: function(data) {
                         var table = "";
                         $.each(data, function(index, value){
+                            active = value.active == 1 ? 'si' : 'no'; 
                             table += "<tr class='info'>";
                             table += "<td>";
                             table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description.substr(0, 50) + "...</td>";
+                            table += "<td>" + active + "</td>";
                             table += "<td>" + value.map_number + "</td>";
                             table += "<td>";
                             table +=  "<div style='background-color:" + value.color + ";'>&nbsp;</div>";
@@ -391,6 +420,11 @@
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
                             $("#txtDescription").val(objFields.description);
+                            if(objFields.active == 1){
+                                $("#optActiveYes").prop('checked', true);
+                            }else{ 
+                                $("#optActiveNo").prop('checked', true);
+                            }
                             $("#nbrMapNumber").val(objFields.map_number);
                             $("#clrColor").val(objFields.color);
                             if(objFields.logo.trim().length > 0){

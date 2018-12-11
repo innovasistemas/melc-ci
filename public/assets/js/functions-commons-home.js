@@ -63,6 +63,9 @@ function loadSocialNetworks()
             '2': 'description',
             '3': 'link',
             '4': 'logo'
+        },
+        clauses: {
+            'active': 1,
         }                   
     }
 

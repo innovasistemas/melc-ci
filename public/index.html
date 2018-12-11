@@ -277,17 +277,21 @@
                     options = { to: { width: 200, height: 60 } };
                     
                     // Run the effect
-                    $( "#collapse-itinerary" ).effect( 'slide', options, 500, callback );
+                    $( "#collapse-itinerary" ).effect( 'slide', options, 300, callback );
                 });
                 
                 $("#panel-itinerary").mouseleave(function(){
                     $("#collapse-itinerary").fadeOut();
                 }); 
                 
+//                $("#panel-itinerary").mouseleave(function(){
+//                    $("#collapse-itinerary").fadeOut(1000, function(){
+//                        
+//                    });
+//                }); 
+//                
                 
-                $('[data-toggle="tooltip"]').tooltip();
-                
-                ('#frmNewsletter').ketchup();
+                $('#frmNewsletter').ketchup();
                 
             });
             
@@ -319,6 +323,9 @@
                         '2': 'description',
                         '3': 'active',
                         '4': 'link'
+                    },
+                    clauses: {
+                        'active': 1
                     }                   
                 }
                 
@@ -332,21 +339,19 @@
                     success: function(data) {
                         var content = "";
                         $.each(data, function(index, value){
-                            if(value.active == 1){
-                                if(index == 0){
-                                    content += "<div class='item active item-slider'>";
-                                }else{
-                                    content += "<div class='item item-slider'>";
-                                }
-                                content += "<div class='fill text-center image-item-slider'>";
-                                content += "</div>";
-                                content += "<div class='carousel-caption margin-description-advertisement'>";
-                                content += "<p class='description-advertisement'><br>" 
-                                content += "<a href='" + value.link + "' class='link-advertisement' target='_blank'>" + value.description + "</a>";
-                                content += "</p>";
-                                content += "</div>";
-                                content += "</div>";
+                            if(index == 0){
+                                content += "<div class='item active item-slider'>";
+                            }else{
+                                content += "<div class='item item-slider'>";
                             }
+                            content += "<div class='fill text-center image-item-slider'>";
+                            content += "</div>";
+                            content += "<div class='carousel-caption margin-description-advertisement'>";
+                            content += "<p class='description-advertisement'><br>" 
+                            content += "<a href='" + value.link + "' class='link-advertisement' target='_blank'>" + value.description + "</a>";
+                            content += "</p>";
+                            content += "</div>";
+                            content += "</div>";
                         });
                         $('#slider-advertisement').html(content);
                     }
@@ -367,6 +372,9 @@
                         '2': 'description',
                         '3': 'logo',
                         '4': 'active'
+                    },
+                    clauses: {
+                        'active': 1
                     }                   
                 }
                 
@@ -380,16 +388,14 @@
                     success: function(data) {
                         var content = "";
                         $.each(data, function(index, value){
-                            if(value.active == 1){
-                                content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>' alt='" + value.description + "'>";
-                                if(index == 0){
-                                    //Comentario temporal
-                                    //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
-                                    content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Galería'>";        
-                                    content += "<div class='img text-over-image'>Galería</div>";
-                                }
-                                content += "</a>";
+                            content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>' alt='" + value.description + "'>";
+                            if(index == 0){
+                                //Comentario temporal
+                                //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías
+                                content += "<img id='img-gallery' class='img' src='assets/images/gallery.png' alt='galería' title='Galería'>";        
+                                content += "<div class='img text-over-image'>Galería</div>";
                             }
+                            content += "</a>";
                         });
                         $('#img-gallery').html(content);
                     }

@@ -107,7 +107,7 @@
             function loadRecords()
             {
                 var objJson = {
-                    'bd': {
+                    bd: {
                         'table': entity
                     },
                     fields: {
@@ -117,6 +117,9 @@
                         '3': 'description',
                         '4': 'logo',
                         '5': 'color'
+                    },
+                    clauses: {
+                        'active': 1
                     }
                 }
 

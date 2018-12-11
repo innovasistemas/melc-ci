@@ -34,7 +34,8 @@ function loadMaps()
     var entity = 'melc_map';
     var objJson = {
         'bd': {
-            'table': entity
+            'table': entity,
+            'orderField': 'map_number'
         },
         fields: {
             '0': 'id',
@@ -43,6 +44,9 @@ function loadMaps()
             '3': 'description',
             '4': 'logo',
             '5': 'color'
+        },
+        clauses: {
+            'active': 1,
         }
     }
 
@@ -128,6 +132,14 @@ function initMap()
     var marker = new google.maps.Marker({position: uluru, map: map});
     marker.setVisible(false);
     
+    
+    google.maps.event.addListener(marker, 'click', function() {
+        console.log(infoWindow)
+        if (infoWindow) {
+            infoWindow.close();
+        };
+    });
+    
     // This event listener will call addMarker() when the map is clicked.
 //                map.addListener('click', function(event) {
 //                    addMarker(event.latLng);
@@ -147,6 +159,9 @@ function initMap()
             '4': 'longitude',
             '5': 'link',
             '6': 'id_map',
+        },
+        clauses: {
+            'active': 1,
         }                   
     }
 
@@ -182,7 +197,7 @@ function addMarker(index, location)
     var contentString = '<div id="content">' +
             '<div id="siteNotice">' +
             '</div>' +
-            '<h1 id="firstHeading" class="firstHeading">' + places[index] + '</h1>' +
+            '<h2 id="firstHeading" class="firstHeading">' + places[index] + '</h2>' +
             '<div id="bodyContent">' +
             '<p>'+ descriptionPlace[index] +'</p>' +
             '<p>Lugar en detalle: <a href="' + urlPlace[index] + '" target="_blank">' + urlPlace[index] + 'dd</a></p>' +
@@ -202,7 +217,19 @@ function addMarker(index, location)
         icon: 'assets/images/map-icons/' + logos[pos]
     });
     
+//    google.maps.event.addListener(marker, 'click', function() {
+//        console.log(infoWindow)
+//        if (infoWindow) {
+//            infoWindow.close();
+//        };
+//    });
+
     marker.addListener('click', function() {
+        if(infoWindow){
+            console.log(marker)
+            infoWindow.close()
+        }
+        
         infoWindow.open(map, marker);
     });
     
