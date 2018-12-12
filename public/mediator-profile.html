@@ -26,45 +26,51 @@
         
         <!-- Inicio contenido - (formulario principal) -->
         <div id="content-map">
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+
         </div>
         
-        <div id="container" class="modal-dialog lead text-justify">
-            
-
-            <h1 class="h1 text-center text-uppercase">perfiles de nuestros mediadores</h1>
+        <div id="container" class="modal-dialog lead text-center mediator-width">
+            <p>&nbsp;</p>
+            <h1 class="h1 text-center text-uppercase">mediadores</h1>
             <p>&nbsp;</p>
             
-            <div id="content-main"></div>
-            
-            <hr>
-            
-            <h2 class="h2 text-center text-uppercase">videos de nuestros mediadores</h2>
-            <div class="row">
-                <div class="col-sm-6">
-                    <iframe width="300" height="200" src="https://www.youtube.com/embed/uCs93dLn9Sc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="col-sm-6">
-                    <iframe width="300" height="200" src="https://www.youtube.com/embed/LqBHJa3monE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <iframe width="300" height="200"" src="https://www.youtube.com/embed/5gD47Yvi3Ik" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="col-sm-6">
-                    <iframe width="300" height="200"" src="https://www.youtube.com/embed/cCEPrSD6bVg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <iframe width="460" height="285" src="https://www.youtube.com/embed/3RFsX6sechk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#content-profile">Perfiles</a></li>
+                    <li><a href="#content-videos">Videos</a></li>
+                </ul>
                 
+                <div id="content-profile">
+                    <h2 class="h2 text-uppercase">perfiles de nuestros mediadores</h2>
+                    <div id="content-main"></div>
+                </div>
+
+                <!--<hr>-->
+                <div id="content-videos">
+                    <h2 class="h2 text-center text-uppercase">videos de nuestros mediadores</h2>
+                    <div id="content-main-videos"></div>
+<!--                    <div class="row">
+                        <div class="col-sm-5">
+                            <iframe width="200" height="200" src="https://www.youtube.com/embed/uCs93dLn9Sc" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-sm-5">
+                            <iframe width="200" height="200" src="https://www.youtube.com/embed/LqBHJa3monE" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <iframe width="200" height="200" src="https://www.youtube.com/embed/5gD47Yvi3Ik" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-sm-5">
+                            <iframe width="200" height="200" src="https://www.youtube.com/embed/cCEPrSD6bVg" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <iframe width="200" height="200" src="https://www.youtube.com/embed/3RFsX6sechk" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>-->
+                </div>
             </div>
             
         </div>
@@ -106,11 +112,18 @@
                 
                 loadRecords();
                 
+                loadVideos();
+                
                 loadContactInformation();
                 
                 loadSocialNetworks();
 
                 loadFooterDate();
+                
+                
+                // Carga de plugins
+                
+                $( "#tabs" ).tabs();
                                 
             });
             
@@ -119,11 +132,12 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_user';
+            
             folder = 'no-folder';
             
             function loadRecords()
-            {
+            { 
+                var entity = 'melc_user';
                 var objJson = {
                     bd: {
                         'table': entity
@@ -152,13 +166,13 @@
                         var content = "<div class='row'>";
                         $.each(data, function(index, value){
                             if(index != 0){
-                                if(column >= 3){
+                                if(column >= 4){
                                     content += "</div>";
                                     content += "<div class='row'>";
                                     column = 0;
                                 }
-                                content += "<div class='col-sm-4'>";
-                                content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>" 
+                                content += "<div class='col-sm-3'>";
+                                content += "<a href='assets/images/mediator-profile/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>"; 
                                 content += "<img src='assets/images/mediator-profile/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
                                 content += "</a>";
                                 content += "</div>";
@@ -167,11 +181,65 @@
                                 
                         });
                         
-                        if(column < 3){
+                        if(column < 4){
                             content += "</div>";
                         }
                         
                         $('#content-main').html(content);
+                    }
+                }); 
+            }
+            
+            
+            
+            
+            function loadVideos()
+            { 
+                var entity = 'melc_video';
+                var objJson = {
+                    bd: {
+                        'table': entity
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'active',
+                        '4': 'link'
+                    },
+                    clauses: {
+                        'active': 1
+                    }
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var column = 0;
+                        var content = "<div class='row'>";
+                        $.each(data, function(index, value){
+                            if(column >= 3){
+                                content += "</div>";
+                                content += "<div class='row'>";
+                                column = 0;
+                            }
+                            content += "<div class='col-sm-4'>";
+                            content += "<iframe width='200' height='200' src='" + value.link + "' frameborder='0' allowfullscreen></iframe>";
+                            content += "</div>";
+                            column ++;
+                                
+                        });
+                        
+                        if(column < 3){
+                            content += "</div>";
+                        }
+                        
+                        $('#content-main-videos').html(content);
                     }
                 }); 
             }

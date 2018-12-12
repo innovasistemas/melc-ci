@@ -337,8 +337,8 @@ ul.notas li#nota3 {
     max-height: 75%;
 }
 
-.table-data{
-    /*width: 50%;*/
+.mediator-width{
+    width: 75% !important;
 }
 
 a.dropdown-toggle{

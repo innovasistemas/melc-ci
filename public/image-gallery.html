@@ -1,0 +1,161 @@
+<!-- 
+
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Medellín en la Cabeza</title>
+        
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+        
+    </head>
+    
+    <body>                
+        <!--Inicio barra de navegación-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="navbar-top"></nav>
+        <!-- Fin barra de navegación-->
+        
+        <!-- Inicio header (cabecera)-->
+        <!-- Half Page Image Background Carousel Header -->
+        <header id="myCarousel" class="carousel slide" data-ride="carousel"></header>
+        <!-- Fin header (cabecera)-->
+        
+        <!-- Inicio contenido - (formulario principal) -->
+        <div id="content-map">
+            
+        </div>
+        
+        <div id="container" class="modal-dialog lead text-justify">
+            
+            <p>&nbsp;</p>
+            <h1 class="h1 text-center text-uppercase">galería de imágenes</h1>
+            <p>&nbsp;</p>
+            
+            <p>
+                Encuentra todas las fotos de <span class="font-social-network">Medellín en la Cabeza</span> en:  
+            <a href="http://bit.ly/fotosmedellinenlacabeza" target="_blank">Flickr</a>
+            </p>
+            
+            <p>&nbsp;</p>
+            
+            <div id="content-main"></div>
+            
+            <hr>
+            
+            
+        </div>
+        
+        
+        <div id="content-common"></div>
+        
+        <!-- Fin contenido -->
+        
+        <!-- Inicio pie de página -->
+        <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
+            
+            <div id="footer-links" class="container-fluid text-center text-md-left"></div>
+            
+            <div id="footer-date" class="footer-copyright text-center py-3 text-capitalize">
+                &copy; <span id="footer-date-copyright"></span> copyright:
+                <a href="#!">medellín en la cabeza</a>
+            </div>
+            
+        </footer>
+        <!-- Fin pie de página -->
+              
+        <!--Scripts de la página-->
+        <script src="assets/js/jquery-2.1.4.js"></script> 
+        <!--<script src="assets/js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>-->
+        <script src="assets/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script src="assets/css/bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.js"></script>
+        <script src="assets/js/jquery.ketchup.0.3.2/js/jquery.ketchup.validations.js"></script>
+        <script src="assets/js/jquery.fancybox.js"></script>
+        <script src="assets/js/functions-commons-home.js"></script>
+        
+        <div id="divStyles"></div>
+        
+        <script>
+            $(function(){ 
+                
+                loadLayout(false);
+                
+                loadRecords();
+                
+                loadContactInformation();
+                
+                loadSocialNetworks();
+
+                loadFooterDate();
+                                
+            });
+            
+            
+            //****************************
+            //Funciones Javascript
+            //****************************
+            
+            entity = 'melc_image_gallery';
+            folder = 'no-folder';
+            
+            function loadRecords()
+            {
+                var objJson = {
+                    bd: {
+                        'table': entity,
+                        'orderField': 'creation_date',
+                        'typeOrder': 'DESC'
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name',
+                        '2': 'description',
+                        '3': 'active',
+                        '4': 'logo'
+                    },
+                    clauses: {
+                        'active': 1
+                    }
+                }
+                
+                var strJson = JSON.stringify(objJson);
+                 
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var column = 0;
+                        var content = "<div class='row'>";
+                        $.each(data, function(index, value){
+                            if(column >= 4){
+                                content += "</div>";
+                                content += "<div class='row'>";
+                                column = 0;
+                            }
+                            content += "<div class='col-sm-3'>";
+                            content += "<a href='assets/images/gallery/" + value.logo +"' title='" + value.name + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.description  + "'>";
+                            content += "<img src='assets/images/gallery/" + value.logo + "' alt='" + value.name + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
+                            content += "</a>";
+                            content += "</div>";
+                            column ++;
+                        });
+                        
+                        if(column < 4){
+                            content += "</div>";
+                        }
+                        
+                        $('#content-main').html(content);
+                    }
+                }); 
+            }
+            
+        </script>
+        
+    </body>
+</html>

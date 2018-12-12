@@ -52,6 +52,8 @@ class MasterEngine extends CI_Controller {
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
             $arrayData['bd']['orderField'] = empty($arrayData['bd']['orderField']) 
                     ? "id" : $arrayData['bd']['orderField'];
+            $arrayData['bd']['typeOrder'] = empty($arrayData['bd']['typeOrder']) 
+                    ? "ASC" : $arrayData['bd']['typeOrder'];
             $arrayClauses = empty($arrayData['clauses']) 
                     ? [] : $arrayData['clauses'];
                     

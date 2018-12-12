@@ -29,7 +29,7 @@ class ManagementModel extends CI_Model
         if(count($arrayClauses) > 0){
             $this->db->where($arrayClauses);            
         }        
-        $this->db->order_by($arrayBD['orderField'], 'ASC');
+        $this->db->order_by($arrayBD['orderField'], $arrayBD['typeOrder']);
 
         return $this->db->get(); 
     }

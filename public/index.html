@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color navbar-top-home" id="navbar-top-home">
                  <ul class="nav navbar-nav">
                     <li><a href="#content-map" class="anchor">Mapa</a></li>
-                    <li><a href="#img-gallery" class="anchor">Galería</a></li>
+                    <li><a href="image-gallery.html">Galería</a></li>
                     <li><a href="#img-chronic" class="anchor">Crónicas</a></li>
                     <li><a href="#img-itinerary" class="anchor">Rutas</a></li>
                     <li><a href="#sign-up" class="anchor">Inscríbete</a></li>
@@ -254,7 +254,7 @@
                 loadFooterDate();
                 
                 
-                //Carga de plugins
+                // Carga de plugins
                 
                 // Efecto de scroll parallax
                 $('.anchor').click(function(){
@@ -364,7 +364,9 @@
                 var entity = 'melc_image_gallery';
                 var objJson = {
                     'bd': {
-                        'table': entity
+                        'table': entity,
+                        'orderField': 'creation_date',
+                        'typeOrder': 'DESC'
                     },
                     fields: {
                         '0': 'id',
