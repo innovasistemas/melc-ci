@@ -43,10 +43,9 @@
                 <a href="#!" title="cerrar sesión" id="closeSession">Cerrar sesión</a>
             </div>
             
-            
             <hr/>
             
-            <h1 class="h1 text-capitalize">anuncios</h1>
+            <h1 class="h1 text-capitalize">carrusel</h1>
             
             <p>&nbsp;</p>
             
@@ -59,12 +58,12 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">referencia</label>
+                                <label for="txtName" class="control-label">título</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="referencia" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la referencia del anuncio" disabled="disabled"/>                        
+                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="título" maxlength="50" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(1))" title="ingrese el título" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -73,12 +72,12 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divDescription">
-                                <label for="txtDescription" class="control-label">texto anuncio</label>
+                                <label for="txtDescription" class="control-label">descripción</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="texto anuncio" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese un texto para el anuncio" disabled="disabled"></textarea>
+                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="300" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
                                 </div>                   
                             </div>
                         </div>
@@ -87,15 +86,15 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divActive">
-                                <label for="optActive" class="control-label">activo</label>
+                                <label for="optActive" class="control-label">activa</label>
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="btn-group" data-toggle="buttons">
         <!--                                    <span class="input-group-addon">
                                                 <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
                                             </span>-->
                                             <label class="btn btn-primary active">si 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-activetoggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-toggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
                                             </label>
                                             <label class="btn btn-primary">no 
                                                 <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" disabled="disabled">
@@ -108,15 +107,21 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-sm-8"> 
-                            <div class="form-group" id="divLink">
-                                <label for="txtLink" class="control-label">enlace</label>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogo">
+                                <label for="fleLogo" class="control-label">imagen</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
                                     </span>
-                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="2000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url o #! para omitir" disabled="disabled"/>                        
-                                </div>                   
+                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <div class="form-group" id="divLogoView">
+                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
+                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
                             </div>
                         </div>
                     </div>
@@ -137,8 +142,8 @@
                     <tr class="success text-capitalize">
                         <th>nombre</th>
                         <th>descripción</th>
-                        <th>activo</th>
-                        <th>enlace</th>
+                        <th>activa</th>
+                        <th>imagen</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -154,8 +159,6 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-        <!--<footer id="footer" class="navbar navbar-color"></footer>-->
-        
         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
             
             <div id="footer-links" class="container-fluid text-center text-md-left"></div>
@@ -188,28 +191,34 @@
             $(function() { 
                 
                 $("#btnSave").click(function(){
-                    var sw = false;
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
-                    if(validateLength($("#divName"), $("#txtName"), 3)){
+                    if(validateLength($("#divName"), $("#txtName"), 1)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            $('#txtLink').focus();
-                            if($("#txtLink").val().length > 0){
-                                if(validateUrl($("#divLink"), $("#txtLink"))){
-                                    sw = true;
-                                }
+                            $('#fleLogo').focus();
+                            var isFile = false;
+                            if($("#txtLogoView").val().trim().length === 0){
+                                isFile = true;
                             }else{
-                                sw = true;
+                                if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
+                                    isFile = true;
+                                }
                             }
-                            if(sw){
+                                
+                            if(isFile){
+                                isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 2097152);
+                            }else{
+                                isFile = true;
+                            }
+                            
+                            if(isFile){
                                 $('input').blur();
                                 var fields = {
                                     'id': $("#txtId").val(),
                                     'name': $("#txtName").val(),
                                     'description': $("#txtDescription").val(),
-                                    'active': $("#optActiveYes").is(':checked') ? 1 : 0,
-                                    'link': $("#txtLink").val()
+                                    'active': $("#optActiveYes").is(':checked') ? 1 : 0
                                 };
                                 
                                 saveRecord(entity, fields, folder);
@@ -217,6 +226,7 @@
                                 cleanForm();
                                 enabledForm(true);
                             }
+                            
                         }
                     }
                 });
@@ -225,7 +235,7 @@
                 //Validaciones focosout: longitud y otros       
                 $("#txtName").focusout(function(){
                     $("#txtName").val($("#txtName").val().trim());
-                    return validateLength($("#divName"), $("#txtName"), 3);
+                    return validateLength($("#divName"), $("#txtName"), 1);
                 });
                 
                 
@@ -235,11 +245,13 @@
                 });
                 
                 
-                $("#txtLink").focusout(function(){
-                    $("#txtLink").val($("#txtLink").val().trim());
-                    if($("#txtLink").val().length > 0){
-                        return validateUrl($("#divLink"), $("#txtLink"));
-                    }
+                $("#fleLogo").focusout(function(){
+                    return validateFile($("#divLogo"), $("#fleLogo")[0], 2097152);
+                });
+                
+                
+                $("#fleLogo").change(function(){
+                    readURL(this);
                 });
                 
                 
@@ -253,8 +265,9 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_advertisement';
-            folder = 'no-folder';
+            entity = 'melc_image_gallery';
+            folder = 'gallery';
+            
             
             function loadRecords()
             {
@@ -267,7 +280,7 @@
                         '1': 'name',
                         '2': 'description',
                         '3': 'active',
-                        '4': 'link'
+                        '4': 'logo'
                     }                   
                 }
                 
@@ -285,20 +298,20 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
-                            table += "<td>";
-                            if(value.link !== null){
-                                table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
+                            table += "<td>";  
+                            if(value.logo !== ''){
+                                table += "<img src='../assets/images/gallery/" + value.logo + "' class='img-thumbnail zoom'/>";  
                             }else{
-                                table += "";
+                                table += "<img src='assets/images/no-photo.jpg' class='img-thumbnail zoom'/>";
                             }
                             table += "</td>";
                             table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
-                            table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "<img src='assets/images/delete.png' class='img-thumbnail' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
                             table += "</tr>";
@@ -363,7 +376,11 @@
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
-                            $("#txtLink").val(objFields.link);
+                            if(objFields.logo.trim().length > 0){
+                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
+                                $("#logoViewUpdate").attr('src', '../assets/images/gallery/' + objFields.logo);
+                                $("#txtLogoView").val('../assets/images/gallery/' + objFields.logo);
+                            }
                             resetForm("update");
                             enabledForm(false);
                         },

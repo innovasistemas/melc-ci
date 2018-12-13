@@ -237,7 +237,6 @@
                 loadListRoute();
                 
                 $("#btnSave").click(function(){
-                    var sw = false;
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
@@ -252,7 +251,6 @@
                                         $('#cboRoute').focus();
                                         if(validateLength($("#divRoute"), $("#cboRoute"), 1)){
                                             $("#frmRegister").find('input, select').blur();
-                                            
                                             var fields = {
                                                 'id': $("#txtId").val(),
                                                 'name': $("#txtName").val(),
@@ -262,7 +260,7 @@
                                                 'longitude': $("#txtLongitude").val(),
                                                 'link': $("#txtLink").val(),
                                                 'id_map': $("#cboRoute").val()
-                                            }
+                                            };
 
                                             saveRecord(entity, fields, folder);
                                             resetForm();

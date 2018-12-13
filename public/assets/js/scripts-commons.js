@@ -65,7 +65,7 @@ $('#navbar-top').delegate('#about', 'click', function(){
     contentHTML += "<br>Desarrollado por: ";
     contentHTML += "<br><strong>Jaime Montoya</strong> ";
     contentHTML += "<small><code>(innovasistemas@gmail.com)</code></small>";
-    contentHTML += "<br>&copy; Copyright - Copyleft " + year;
+    contentHTML += "<br>&copy; Copyright <!-- - <span class='copyleft'>&copy;</span> Copyleft -->" + year;
     contentHTML += "<br>";
     contentHTML += "<small><code>" + day + "-" + parseInt(month + 1) + "-" + year + "</code></small> " ;
     

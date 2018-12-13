@@ -102,6 +102,61 @@ function loadSocialNetworks()
         }
     }); 
 }
+
+
+function loadCarousel()
+{
+    var entity = 'melc_carousel';
+    var objJson = {
+        'bd': {
+            'table': entity
+        },
+        fields: {
+            '0': 'id',
+            '1': 'name',
+            '2': 'description',
+            '3': 'logo',
+            '4': 'active',
+            '5': 'link'
+        },
+        clauses: {
+            'active': 1
+        }                   
+    }
+
+    var strJson = JSON.stringify(objJson);
+
+    $.ajax({
+        url: urlListRecord,
+        data: {'dataSend': strJson},
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            var content = "";
+            var contentIndicators = "";
+            $.each(data, function(index, value){
+                if(index == 0){
+                    content += "<div class='item active'>";
+                    contentIndicators += "<li data-target='#myCarousel' data-slide-to='" + index + "' class='active'></li>";
+                }else{
+                    content += "<div class='item'>";
+                    contentIndicators += "<li data-target='#myCarousel' data-slide-to='" + index + "'></li>";
+                }
+                content += "<div class='fill'>"
+                content += "<a href='" + value.link + "'>";
+                content += "<img src='assets/images/carousel/" + value.logo + "' class='fill' alt='" + value.name + "' />"
+                content += "</a>";
+                content += "<!-- <div class='carousel-caption'>-->";
+                content += "<!--<h2>callejear educa</h2>-->";
+                content += "</div>-->"
+                content += "</div>";
+                content += "</div>";
+            });
+            $('#carousel-inner').html(content);
+            $('#carousel-indicators').html(contentIndicators);
+        }
+    }); 
+}
             
 
 function loadContactInformation()

@@ -239,7 +239,8 @@
                                         'description': $("#txtDescription").val(),
                                         'active': $("#optActiveYes").is(':checked') ? 1 : 0,
                                         'link': $("#txtLink").val()
-                                    }
+                                    };
+                                    
                                     saveRecord(entity, fields, folder);
                                     resetForm();
                                     cleanForm();

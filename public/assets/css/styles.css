@@ -104,18 +104,6 @@ ul.notas li#nota3 {
     background-color: #6C00DA;
 }
 
-#img-header1{
-    background-image:url('../images/header1.png');
-}
-
-#img-header2{
-    background-image:url('../images/header2.png');
-}
-
-#img-header3{
-    background-image:url('../images/header3.png');
-}
-
 #title-map{
     color: #6E6E6E;
     margin-top: 15%; 
@@ -338,7 +326,7 @@ ul.notas li#nota3 {
 }
 
 .mediator-width{
-    width: 75% !important;
+    width: 70% !important;
 }
 
 a.dropdown-toggle{
@@ -366,6 +354,11 @@ a.dropdown-toggle:hover{
     font-size: 2em;
     color: #FFF;
     font-weight: bold; 
+}
+
+.copyleft {
+    display:inline-block;
+    transform: rotate(180deg);
 }
 
 .zoom {      

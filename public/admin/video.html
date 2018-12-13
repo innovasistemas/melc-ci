@@ -46,7 +46,7 @@
             
             <hr/>
             
-            <h1 class="h1 text-capitalize">anuncios</h1>
+            <h1 class="h1 text-capitalize">videos</h1>
             
             <p>&nbsp;</p>
             
@@ -59,12 +59,12 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">referencia</label>
+                                <label for="txtName" class="control-label">nombre</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="referencia" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la referencia del anuncio" disabled="disabled"/>                        
+                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -73,12 +73,12 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divDescription">
-                                <label for="txtDescription" class="control-label">texto anuncio</label>
+                                <label for="txtDescription" class="control-label">descripción</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="texto anuncio" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese un texto para el anuncio" disabled="disabled"></textarea>
+                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="texto anuncio" maxlength="300" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
                                 </div>                   
                             </div>
                         </div>
@@ -188,21 +188,13 @@
             $(function() { 
                 
                 $("#btnSave").click(function(){
-                    var sw = false;
                     $("#txtName").val($("#txtName").val().trim());
                     $("#txtDescription").val($("#txtDescription").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
                         $('#txtDescription').focus();
                         if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
                             $('#txtLink').focus();
-                            if($("#txtLink").val().length > 0){
-                                if(validateUrl($("#divLink"), $("#txtLink"))){
-                                    sw = true;
-                                }
-                            }else{
-                                sw = true;
-                            }
-                            if(sw){
+                            if(validateUrl($("#divLink"), $("#txtLink"))){
                                 $('input').blur();
                                 var fields = {
                                     'id': $("#txtId").val(),
@@ -211,7 +203,7 @@
                                     'active': $("#optActiveYes").is(':checked') ? 1 : 0,
                                     'link': $("#txtLink").val()
                                 };
-                                
+
                                 saveRecord(entity, fields, folder);
                                 resetForm();
                                 cleanForm();
@@ -237,9 +229,7 @@
                 
                 $("#txtLink").focusout(function(){
                     $("#txtLink").val($("#txtLink").val().trim());
-                    if($("#txtLink").val().length > 0){
-                        return validateUrl($("#divLink"), $("#txtLink"));
-                    }
+                    return validateUrl($("#divLink"), $("#txtLink"));
                 });
                 
                 
@@ -253,7 +243,7 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_advertisement';
+            entity = 'melc_video';
             folder = 'no-folder';
             
             function loadRecords()
@@ -290,11 +280,7 @@
                             table += "<td>" + value.description + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";
-                            if(value.link !== null){
-                                table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
-                            }else{
-                                table += "";
-                            }
+                            table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
                             table += "</td>";
                             table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";

@@ -49,32 +49,10 @@
                 <div id="content-videos">
                     <h2 class="h2 text-center text-uppercase">videos de nuestros mediadores</h2>
                     <div id="content-main-videos"></div>
-<!--                    <div class="row">
-                        <div class="col-sm-5">
-                            <iframe width="200" height="200" src="https://www.youtube.com/embed/uCs93dLn9Sc" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-sm-5">
-                            <iframe width="200" height="200" src="https://www.youtube.com/embed/LqBHJa3monE" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <iframe width="200" height="200" src="https://www.youtube.com/embed/5gD47Yvi3Ik" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="col-sm-5">
-                            <iframe width="200" height="200" src="https://www.youtube.com/embed/cCEPrSD6bVg" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <iframe width="200" height="200" src="https://www.youtube.com/embed/3RFsX6sechk" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>-->
                 </div>
             </div>
             
         </div>
-        
         
         <div id="content-common"></div>
         
@@ -109,6 +87,8 @@
             $(function(){ 
                 
                 loadLayout(false);
+                
+                loadCarousel();
                 
                 loadRecords();
                 
@@ -189,8 +169,6 @@
                     }
                 }); 
             }
-            
-            
             
             
             function loadVideos()
