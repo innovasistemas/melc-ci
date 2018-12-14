@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-12-2018 a las 09:12:30
+-- Tiempo de generación: 13-12-2018 a las 22:33:22
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -51,6 +51,23 @@ CREATE TABLE `melc_advertisement` (
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL,
   `link` varchar(4000) COLLATE utf8_unicode_ci DEFAULT '#!',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_carousel`
+--
+
+CREATE TABLE `melc_carousel` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
+  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -176,6 +193,7 @@ CREATE TABLE `melc_place` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `id_map` bigint(20) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -189,8 +207,9 @@ CREATE TABLE `melc_place` (
 
 CREATE TABLE `melc_profile` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -205,7 +224,7 @@ CREATE TABLE `melc_profile_user` (
   `id` bigint(20) NOT NULL,
   `id_melc_profile` bigint(20) NOT NULL,
   `id_melc_user` bigint(20) NOT NULL,
-  `active` bit(1) NOT NULL DEFAULT b'1',
+  `active` bit(1) NOT NULL DEFAULT b'0',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -221,6 +240,7 @@ CREATE TABLE `melc_social_network` (
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
   `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'social-networks.png',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
@@ -249,6 +269,22 @@ CREATE TABLE `melc_user` (
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_video`
+--
+
+CREATE TABLE `melc_video` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -264,6 +300,12 @@ ALTER TABLE `melc_access`
 -- Indices de la tabla `melc_advertisement`
 --
 ALTER TABLE `melc_advertisement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `melc_carousel`
+--
+ALTER TABLE `melc_carousel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -294,8 +336,7 @@ ALTER TABLE `melc_image_gallery`
 -- Indices de la tabla `melc_map`
 --
 ALTER TABLE `melc_map`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `map_number` (`map_number`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `melc_newsletter`
@@ -347,6 +388,12 @@ ALTER TABLE `melc_user`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indices de la tabla `melc_video`
+--
+ALTER TABLE `melc_video`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -354,12 +401,17 @@ ALTER TABLE `melc_user`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
 ALTER TABLE `melc_advertisement`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT de la tabla `melc_carousel`
+--
+ALTER TABLE `melc_carousel`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `melc_comment`
 --
@@ -404,7 +456,7 @@ ALTER TABLE `melc_place`
 -- AUTO_INCREMENT de la tabla `melc_profile`
 --
 ALTER TABLE `melc_profile`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `melc_profile_user`
 --
@@ -414,12 +466,17 @@ ALTER TABLE `melc_profile_user`
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --
 ALTER TABLE `melc_user`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT de la tabla `melc_video`
+--
+ALTER TABLE `melc_video`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --

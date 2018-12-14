@@ -140,7 +140,7 @@
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success text-capitalize">
-                        <th>nombre</th>
+                        <th>título</th>
                         <th>descripción</th>
                         <th>activa</th>
                         <th>imagen</th>
@@ -213,7 +213,7 @@
                             }
                             
                             if(isFile){
-                                $('input').blur();
+                                $("#frmRegister").find('input, textarea').blur();
                                 var fields = {
                                     'id': $("#txtId").val(),
                                     'name': $("#txtName").val(),

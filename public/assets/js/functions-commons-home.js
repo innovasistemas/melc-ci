@@ -143,7 +143,11 @@ function loadCarousel()
                     contentIndicators += "<li data-target='#myCarousel' data-slide-to='" + index + "'></li>";
                 }
                 content += "<div class='fill'>"
-                content += "<a href='" + value.link + "'>";
+                if(value.link !== '#!'){
+                    content += "<a href='" + value.link + "' target='_blank'>";
+                }else{
+                    content += "<a href='" + value.link + "'>";
+                }
                 content += "<img src='assets/images/carousel/" + value.logo + "' class='fill' alt='" + value.name + "' />"
                 content += "</a>";
                 content += "<!-- <div class='carousel-caption'>-->";

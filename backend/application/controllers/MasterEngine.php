@@ -204,7 +204,7 @@ class MasterEngine extends CI_Controller {
                 $fTempName = $_FILES['inputFile']['tmp_name'];
 
                 if((strpos($fType, "jpeg") || strpos($fType, "png") || 
-                        strpos($fType, "gif")) && $fSize <= 2097152){
+                        strpos($fType, "gif")) && $fSize <= 3145728){
 
                     if(move_uploaded_file($fTempName, 
                             $_SERVER['DOCUMENT_ROOT'] .  

@@ -250,7 +250,7 @@
                                     if(validateUrl($("#divLink"), $("#txtLink"))){
                                         $('#cboRoute').focus();
                                         if(validateLength($("#divRoute"), $("#cboRoute"), 1)){
-                                            $("#frmRegister").find('input, select').blur();
+                                            $("#frmRegister").find('input, select, textarea').blur();
                                             var fields = {
                                                 'id': $("#txtId").val(),
                                                 'name': $("#txtName").val(),
@@ -306,7 +306,7 @@
                 });
                 
                 
-                $("#cboRoute").on('select2:closing',function(){
+                $("#cboRoute").on('select2:closing', function(){
                     return validateLength($("#divRoute"), $("#cboRoute"), 1);
                 });
                 
@@ -440,6 +440,9 @@
                     fields: {
                         '0': 'id',
                         '1': 'name'
+                    },
+                    clauses: {
+                        'active': 1
                     }                   
                 }
 

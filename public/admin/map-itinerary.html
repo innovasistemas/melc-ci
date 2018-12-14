@@ -247,7 +247,7 @@
                                 }
 
                                 if(isFile){
-                                    $('input').blur();
+                                    $("#frmRegister").find('input, textarea').blur();
                                     var fields = {
                                         'id': $("#txtId").val(),
                                         'name': $("#txtName").val(),

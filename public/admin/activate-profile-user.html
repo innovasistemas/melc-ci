@@ -34,10 +34,12 @@
                     <span id="user-session" class="user-session navbar-link"></span>
                 <!--</a>-->
             </div>
-            
+
             <div id="menu-register" class="text-capitalize">
                 <a href="#!" title="nuevo" id="newRecord">nuevo registro</a>
                 |
+<!--                <a href="#!" title="importar" id="importExcel">importar excel</a>
+                |-->
                 <a href="#!" title="recargar" id="reloadPage">recargar página</a>
                 |
                 <a href="#!" title="cerrar sesión" id="closeSession">Cerrar sesión</a>
@@ -45,7 +47,7 @@
             
             <hr/>
             
-            <h1 class="h1 text-capitalize">carrusel</h1>
+            <h1 class="h1 text-capitalize">activar perfil usuario</h1>
             
             <p>&nbsp;</p>
             
@@ -57,13 +59,14 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
-                            <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">título</label>
+                            <div class="form-group" id="divProfile">
+                                <label for="cboProfile" class="control-label">perfil</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="título" maxlength="50" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(2))" title="ingrese el título" disabled="disabled"/>                        
+                                    <select name="cboProfile" id="cboProfile" class="form-control input-lg select2" style="width: 100%;" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="seleccione el perfil" disabled="disabled">
+                                    </select>
                                 </div>                   
                             </div>
                         </div>
@@ -71,13 +74,14 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
-                            <div class="form-group" id="divDescription">
-                                <label for="txtDescription" class="control-label">descripción</label>
+                            <div class="form-group" id="divUser">
+                                <label for="cboUser" class="control-label">perfil</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="descripción" maxlength="300" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese una descripción" disabled="disabled"></textarea>
+                                    <select name="cboUser" id="cboUser" class="form-control input-lg select2" style="width: 100%;" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="seleccione el usuario" disabled="disabled">
+                                    </select>
                                 </div>                   
                             </div>
                         </div>
@@ -86,15 +90,15 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divActive">
-                                <label for="optActive" class="control-label">activa</label>
+                                <label for="optActive" class="control-label">activo</label>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <div class="btn-group" data-toggle="buttons">
         <!--                                    <span class="input-group-addon">
                                                 <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
                                             </span>-->
                                             <label class="btn btn-primary active">si 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-toggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-activetoggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
                                             </label>
                                             <label class="btn btn-primary">no 
                                                 <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" disabled="disabled">
@@ -106,39 +110,9 @@
                         </div>
                     </div>
                     
-                    <div class="row">
-                        <div class="col-sm-8"> 
-                            <div class="form-group" id="divLink">
-                                <label for="txtLink" class="control-label">enlace</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
-                                    </span>
-                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="2000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url o #! para omitir" disabled="disabled"/>                        
-                                </div>                   
-                            </div>
-                        </div>
-                    </div>
                     
-                    <div class="row">
-                        <div class="col-sm-6"> 
-                            <div class="form-group" id="divLogo">
-                                <label for="fleLogo" class="control-label">imagen</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-12-camera.png"/>
-                                    </span>
-                                    <input type="file" name="fleLogo" id="fleLogo" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="seleccione una imagen (gif, jpg, png - máx 2MB)" disabled="disabled"/>                        
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6"> 
-                            <div class="form-group" id="divLogoView">
-                                <img id="logoViewUpdate" class="img-thumbnail hide" alt="" src="#" />
-                                <input type="hidden" name="txtLogoView" id="txtLogoView" value="" />
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                                      
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
@@ -154,11 +128,10 @@
             <caption><div id='resultTotal'></div></caption>
                 <thead>
                     <tr class="success text-capitalize">
-                        <th>título</th>
-                        <th>descripción</th>
-                        <th>activa</th>
-                        <th>enlace</th>
-                        <th>imagen</th>
+                        <th>id</th>
+                        <th>perfil</th>
+                        <th>usuario</th>
+                        <th>activo</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -174,6 +147,8 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
+        <!--<footer id="footer" class="navbar navbar-color"></footer>-->
+        
         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
             
             <div id="footer-links" class="container-fluid text-center text-md-left"></div>
@@ -205,77 +180,48 @@
         <script>
             $(function() { 
                 
+                loadListProfile();
+                loadListUser();
+                
                 $("#btnSave").click(function(){
-                    $("#txtName").val($("#txtName").val().trim());
-                    $("#txtDescription").val($("#txtDescription").val().trim());
-                    if(validateLength($("#divName"), $("#txtName"), 2)){
-                        $('#txtDescription').focus();
-                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            $('#txtLink').focus();
-                            if(validateUrl($("#divLink"), $("#txtLink"))){
-                                $('#fleLogo').focus();
-                                var isFile = false;
-                                if($("#txtLogoView").val().trim().length === 0){
-                                    isFile = true;
-                                }else{
-                                    if($("#txtLogoView").val() !== $("#logoViewUpdate").attr('src')){
-                                        isFile = true;
-                                    }
-                                }
+                    if(validateLength($("#divProfile"), $("#cboProfile"), 1)){    
+                        $('#cboUser').focus();
+                        if(validateLength($("#divUser"), $("#cboUser"), 1)){
+                            $("#frmRegister").find('input, select, textarea').blur();
+                            var fields = {
+                                'id': $("#txtId").val(),
+                                'id_melc_profile': $("#cboProfile").val(),
+                                'id_melc_user': $("#cboUser").val(),
+                                'active': $("#optActiveYes").is(':checked') ? 1 : 0,
+                            };
 
-                                if(isFile){
-                                    isFile = validateFile($("#divLogo"), $("#fleLogo")[0], 3145728);
-                                }else{
-                                    isFile = true;
-                                }
-
-                                if(isFile){
-                                    $('input').blur();
-                                    var fields = {
-                                        'id': $("#txtId").val(),
-                                        'name': $("#txtName").val(),
-                                        'description': $("#txtDescription").val(),
-                                        'active': $("#optActiveYes").is(':checked') ? 1 : 0,
-                                        'link': $("#txtLink").val()
-                                    };
-
-                                    saveRecord(entity, fields, folder);
-                                    resetForm();
-                                    cleanForm();
-                                    enabledForm(true);
-                                }
-                            }
+                            saveRecord(entity, fields, folder);
+                            resetForm();
+                            cleanForm();
+                            enabledForm(true);
                         }
                     }
                 });
                 
                 
                 //Validaciones focosout: longitud y otros       
-                $("#txtName").focusout(function(){
-                    $("#txtName").val($("#txtName").val().trim());
-                    return validateLength($("#divName"), $("#txtName"), 2);
+                
+                $("#cboProfile").on('select2:closing', function(){
+                    return validateLength($("#divProfile"), $("#cboProfile"), 1);
                 });
                 
                 
-                $("#txtDescription").focusout(function(){
-                    $("#txtDescription").val($("#txtDescription").val().trim());
-                    return validateLength($("#divDescription"), $("#txtDescription"), 3);
+                $("#cboUser").on('select2:closing', function(){
+                    return validateLength($("#divUser"), $("#cboUser"), 1);
                 });
                 
                 
-                $("#txtLink").focusout(function(){
-                    $("#txtLink").val($("#txtLink").val().trim());
-                    return validateUrl($("#divLink"), $("#txtLink"));
-                });
-                
-                
-                $("#fleLogo").focusout(function(){
-                    return validateFile($("#divLogo"), $("#fleLogo")[0], 3145728);
-                });
-                
-                
-                $("#fleLogo").change(function(){
-                    readURL(this);
+                $('.select2').select2({
+                    placeholder: 'seleccione una opción',
+                    language: "es",
+                    allowClear: true
+//                    width: 'resolve'
+//                    theme: 'classic'
                 });
                 
                 
@@ -289,8 +235,8 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_carousel';
-            folder = 'carousel';
+            entity = 'melc_profile_user';
+            folder = 'no-folder';
             
             
             function loadRecords()
@@ -301,11 +247,9 @@
                     },
                     fields: {
                         '0': 'id',
-                        '1': 'name',
-                        '2': 'description',
-                        '3': 'active',
-                        '4': 'logo',
-                        '5': 'link'
+                        '1': 'id_melc_profile',
+                        '2': 'id_melc_user',
+                        '3': 'active'
                     }                   
                 }
                 
@@ -323,23 +267,14 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#!' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' class='link-update' title='editar' onclick='//updateRecord(" + JSON.stringify(value) + ");'>" + value.id + "</a>";
                             table += "</td>";
-                            table += "<td>" + value.description + "</td>";
+                            table += "<td>" + value.id_melc_profile + "</td>";
+                            table += "<td>" + value.id_melc_user + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";
-                            table += "<a href='" + value.link + "' title='enlace carrousel' target='_blank'>" + value.link + "</a>";
-                            table += "</td>";  
-                            table += "<td>";  
-                            if(value.logo !== null){
-                                table += "<img src='../assets/images/carousel/" + value.logo + "' class='img-thumbnail zoom'/>";  
-                            }else{
-                                table += "&nbsp;";
-                            }
-                            table += "</td>";
-                            table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
-                            table += "<img src='assets/images/delete.png' class='img-thumbnail' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
                             table += "</tr>";
@@ -387,6 +322,74 @@
             }
                         
             
+            function loadListProfile()
+            {
+                var entity2 = 'melc_profile';
+                var objJson = {
+                    'bd': {
+                        'table': entity2
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'name'
+                    },
+                    clauses: {
+                        'active': 1
+                    }                   
+                }
+
+                var strJson = JSON.stringify(objJson);
+
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "<option value='' selected='selected'></option>";
+                        $.each(data, function(index, value){
+                            content += "<option value='" + value.id + "'>" + value.name + "</option>";
+                        });
+                        $('#cboProfile').html(content);
+                    }
+                }); 
+            }
+            
+            
+            function loadListUser()
+            {
+                var entity2 = 'melc_user';
+                var objJson = {
+                    'bd': {
+                        'table': entity2
+                    },
+                    fields: {
+                        '0': 'id',
+                        '1': 'user'
+                    },
+                    clauses: {
+                        'active': 1
+                    }                   
+                }
+
+                var strJson = JSON.stringify(objJson);
+
+                $.ajax({
+                    url: urlListRecord,
+                    data: {'dataSend': strJson},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        var content = "<option value='' selected='selected'></option>";
+                        $.each(data, function(index, value){
+                            content += "<option value='" + value.id + "'>" + value.user + "</option>";
+                        });
+                        $('#cboUser').html(content);
+                    }
+                }); 
+            }
+            
+            
             function updateRecord(objFields)
             {
                 $( "#dialog" ).html("¿está seguro?");
@@ -404,12 +407,8 @@
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
-                            $("#txtLink").val(objFields.link);
-                            if(objFields.logo.trim().length > 0){
-                                $("#logoViewUpdate").attr('class', 'show img-thumbnail');
-                                $("#logoViewUpdate").attr('src', '../assets/images/carousel/' + objFields.logo);
-                                $("#txtLogoView").val('../assets/images/carousel/' + objFields.logo);
-                            }
+                            
+                            $('#cboRoute').val(objFields.id_map).trigger('change') ;
                             resetForm("update");
                             enabledForm(false);
                         },

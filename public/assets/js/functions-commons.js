@@ -376,7 +376,8 @@ function saveRecord(entity, fields, folder)
     
     var strJson = JSON.stringify(objJson);
     
-    var formData = new FormData($("#frmRegistro"));
+//    var formData = new FormData($("#frmRegistro"));
+    var formData = new FormData();
     formData.append('dataSend', strJson);
     
     if($("form").find("input:file").prop("type") === "file"){
@@ -485,8 +486,30 @@ function deleteRecord(entity, folder, id)
                                 }
                             } 
                         });
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $( "#dialog" ).html(
+                                "<b>respuesta:</b>" + 
+                                "<br><span class='text-danger'>Sucedió un problema al tratar de eliminar. Es posible que el registro tenga restricciones por integridad de la base de datos.</span>" + 
+                                "<br><b>incidencia</b>" + 
+                                "<br><span class='text-danger'>" + textStatus + "</span>" +
+                                "<br><b>tipo de error</b>" + 
+                                "<br><span class='text-danger'>" + errorThrown + "</span>" +
+                                "<br><b>estado:</b>" +
+                                "<br><span class='text-danger'>" + XMLHttpRequest.status + "</span>" +
+                                "<!--br><b>detalle:</b>" +
+                                "<br>" + XMLHttpRequest.responseText + "-->"
+                                );
+                        $( "#dialog" ).dialog({
+                            autoOpen: true,
+                            modal: true,
+                            buttons: {
+                                "Aceptar": function () {
+                                    $(this).dialog("close");
+                                }
+                            } 
+                        });
                     }
-
                 });
             },
             "cancelar": function(){

@@ -200,7 +200,8 @@
 
                 var strJson = JSON.stringify(objJson);
 
-                var formData = new FormData($("#frmRegistro"));
+//                var formData = new FormData($("#frmRegistro"));
+                var formData = new FormData();
                 formData.append('dataSend', strJson);
 
                 if($("form").find("input:file").prop("type") === "file"){
