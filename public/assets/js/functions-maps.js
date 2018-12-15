@@ -133,8 +133,8 @@ function initMap()
     marker.setVisible(false);
     
     
+    // Cerrar los infoWindow (en revisión)
     google.maps.event.addListener(marker, 'click', function() {
-        console.log(infoWindow)
         if (infoWindow) {
             infoWindow.close();
         };

@@ -92,16 +92,22 @@ ul.notas li#nota3 {
 
 #navbar-top{
     background-image: url('../images/menu-bar.png');
-    height: 100px;
+    height: 70px;
+}
+
+#logo-header img{
+    width: 137px;
+    height: 160px;
 }
 
 #logo-header{
-    width: 137px;
-    height: 160px;
+    width:160px;
+    height:160px;
     border: 3px solid #FFF;
     margin-top: -10px;
     margin-left: 65px;
     background-color: #6C00DA;
+    text-align: center;
 }
 
 #title-map{
@@ -187,13 +193,32 @@ ul.notas li#nota3 {
 
 #logo-alcaldia{
     width: 213px;
-    height: 334px;
+    margin-top: 85px;
+}
+
+#contact-information,
+#links-social-networks,
+#frmNewsletter {
+    font-size: 0.8em;
+    text-align: left;
+}
+
+#contact-information .font-social-network,
+#links-social-networks .font-social-network {
+    margin-top: 6px;
+    display: block;
+}
+
+#contact-information img,
+#links-social-networks img {
+    max-width: 100%;
+    height: 30px;
 }
 
 
 /*----------------------------Selectores de clases------------------------------------*/
 .carousel{
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .navbar-top-home{
@@ -509,6 +534,10 @@ a.dropdown-toggle:hover{
     #panel-itinerary {
         top: 250px;
         font-size: 0.8em;
+    }
+    
+    #logo-alcaldia{
+        margin-top: 0;
     }
        
     .navbar-top-home{

@@ -31,7 +31,9 @@
                 </button>
                 <a class="navbar-brand" href="index.html">
                     <!--melc-->
-                    <img src="assets/images/contact-information/logo-header.png" class="img-fluid img-circle" title="Inicio" id="logo-header">
+                    <div class="img-circle" id="logo-header">
+                        <img src="assets/images/contact-information/logo-header.png" class="img-fluid" title="Inicio" >
+                    </div>
                 </a>
             </div>
 
@@ -43,7 +45,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-color navbar-top-home" id="navbar-top-home">
                  <ul class="nav navbar-nav">
                     <li><a href="#content-map" class="anchor">Mapa</a></li>
-                    <li><a href="image-gallery.html">Galería</a></li>
+                    <li><a href="#img-gallery" class="anchor">Galería</a></li>
                     <li><a href="#img-chronic" class="anchor">Crónicas</a></li>
                     <li><a href="#img-itinerary" class="anchor">Rutas</a></li>
                     <li><a href="#sign-up" class="anchor">Inscríbete</a></li>
@@ -392,7 +394,8 @@
                     success: function(data) {
                         var content = "";
                         $.each(data, function(index, value){
-                            content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>' alt='" + value.description + "'>";
+//                            content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ===> Todas las fotos en:  <a href=\"http://bit.ly/fotosmedellinenlacabeza\" target=\"_blank\">http://bit.ly/fotosmedellinenlacabeza</a>' alt='" + value.description + "'>";
+                            content += "<a href='assets/images/gallery/" + value.logo + "' data-fancybox='gallery' data-caption='" + value.description + ". &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"image-gallery.html\" class=\"btn btn-success\">Visita la galería completa presionando clic aquí</a>' alt='" + value.description + "'>";
                             if(index == 0){
                                 //Comentario temporal
                                 //Elemento estático. Por definir si permanece en su lugar original de acuerdo al uso de las galerías

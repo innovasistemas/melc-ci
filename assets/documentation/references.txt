@@ -240,4 +240,13 @@ http://jqueryte.com/
 
 
 
+google maps api hide places
+https://fontawesome.com/icons?d=gallery
+https://developers.google.com/maps/documentation/javascript/reference/map#Map.fitBounds
+https://mapstyle.withgoogle.com/
+https://developers.google.com/maps/documentation/javascript/styling?csw=1#style_array_example
+https://stackoverflow.com/questions/7337266/how-to-disable-places-on-google-map-v3
+
+google maps api hide places
+
 

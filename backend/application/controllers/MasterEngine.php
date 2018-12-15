@@ -388,4 +388,14 @@ class MasterEngine extends CI_Controller {
         return $token;
     }
     
+    public function newsletterSuscription()
+    {
+        // 1. Recibir info del formulario
+        
+        // 2. Sendy::getInstance()->suscribe($email); // devuelve true si exitoso o false si error
+        
+        // Errores: Sendy::getInstance()->getErrorMessage();
+        
+    }
+    
 }
