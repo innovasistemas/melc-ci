@@ -43,10 +43,9 @@
                 <a href="#!" title="cerrar sesión" id="closeSession">Cerrar sesión</a>
             </div>
             
-            
             <hr/>
             
-            <h1 class="h1 text-capitalize">anuncios</h1>
+            <h1 class="h1 text-capitalize">crónicas</h1>
             
             <p>&nbsp;</p>
             
@@ -59,12 +58,12 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divName">
-                                <label for="txtName" class="control-label">referencia</label>
+                                <label for="txtName" class="control-label">nombre</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-609-newspaper.png"/>
                                     </span>
-                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="referencia" maxlength="20" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese la referencia del anuncio" disabled="disabled"/>                        
+                                    <input type="text" name="txtName" id="txtName" class="form-control input-lg" placeholder="nombre" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre de la crónica" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -72,13 +71,13 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
-                            <div class="form-group" id="divDescription">
-                                <label for="txtDescription" class="control-label">texto anuncio</label>
+                            <div class="form-group" id="divAuthor">
+                                <label for="txtAuthor" class="control-label">autor</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-40-notes.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-4-user.png"/>
                                     </span>
-                                    <textarea name="txtDescription" id="txtDescription" class="form-control input-lg" placeholder="texto anuncio" maxlength="100" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese un texto para el anuncio" disabled="disabled"></textarea>
+                                    <input type="text" name="txtAuthor" id="txtAuthor" class="form-control input-lg" placeholder="autor" maxlength="50" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required, minlength(3))" title="ingrese el nombre del autor" disabled="disabled"/>                        
                                 </div>                   
                             </div>
                         </div>
@@ -87,15 +86,15 @@
                     <div class="row">
                         <div class="col-sm-8"> 
                             <div class="form-group" id="divActive">
-                                <label for="optActive" class="control-label">activo</label>
+                                <label for="optActive" class="control-label">activa</label>
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <div class="btn-group" data-toggle="buttons">
         <!--                                    <span class="input-group-addon">
                                                 <img src="css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-170-record.png"/>
                                             </span>-->
                                             <label class="btn btn-primary active">si 
-                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-activetoggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
+                                                <input type="radio" class="form-control" name="optActive" id="optActiveYes" value="1" data-toggle="tooltip" data-placement="bottom" title="si" checked="checked" disabled="disabled">
                                             </label>
                                             <label class="btn btn-primary">no 
                                                 <input type="radio" class="form-control" name="optActive" id="optActiveNo" value="0" data-toggle="tooltip" data-placement="bottom" title="no" disabled="disabled">
@@ -109,18 +108,33 @@
                     
                     <div class="row">
                         <div class="col-sm-8"> 
-                            <div class="form-group" id="divLink">
-                                <label for="txtLink" class="control-label">enlace</label>
+                            <div class="form-group" id="divDate">
+                                <label for="txtDate" class="control-label">Fecha</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-371-globe-af.png"/>
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-46-calendar.png"/>
                                     </span>
-                                    <input type="text" name="txtLink" id="txtLink" class="form-control input-lg" placeholder="enlace" maxlength="2000" data-toggle="tooltip" data-placement="bottom" data-validate="validate(url)" title="ingrese la url o #! para omitir" disabled="disabled"/>                        
-                                </div>                   
+                                    <input type="text" name="txtDate" id="txtDate" class="form-control input-lg" placeholder="fecha" readonly="readonly" data-toggle="tooltip" data-placement="bottom" data-validate="validate(required)" title="Ingrese la fecha de creación del texto" disabled="disabled"/>
+                                    <span class="input-group-addon">
+                                        <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-257-delete.png" id="imgDeleteDate" title="Borrar fecha"/>
+                                    </span>
+                                </div>
+                                <!--&nbsp;
+                                <img src="images/calendar.jpg" id="imgCalendario" class="imgCalendario"/>-->
                             </div>
                         </div>
                     </div>
-                                     
+                    
+                    <div class="row">
+                        <div class="col-sm-12"> 
+                            <div class="" id="divText">
+                                <label for="txtText" class="control-label">Texto</label>
+                                <!--<input type="text" name="txtText" id="txtText" class="jqte-test" placeholder="nosotros" maxlength="5000" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="describa el 'acerca de' de la página" disabled="disabled"/>-->                        
+                                <input type="text" name="txtText" id="txtText" class="jqte-test" data-validate="validate(required)" />                        
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <input type="button" value="enviar datos" class="btn btn-primary" id="btnSave" title="enviar datos" disabled="disabled"/>
                         <input type="reset" value="restablecer" class="btn btn-info" id="btnReset" title="restablecer" disabled="disabled"/>
@@ -136,9 +150,9 @@
                 <thead>
                     <tr class="success text-capitalize">
                         <th>nombre</th>
-                        <th>descripción</th>
-                        <th>activo</th>
-                        <th>enlace</th>
+                        <th>autor</th>
+                        <th>fecha</th>
+                        <th>activa</th>
                         <th>eliminar</th>
                     </tr>
                 </thead>
@@ -154,8 +168,6 @@
         <!-- Fin contenido -->
         
         <!-- Inicio pie de página -->
-        <!--<footer id="footer" class="navbar navbar-color"></footer>-->
-        
         <footer id="footer" class="page-footer font-small blue pt-4 mt-4 navbar-color">
             
             <div id="footer-links" class="container-fluid text-center text-md-left"></div>
@@ -188,34 +200,45 @@
             $(function() { 
                 
                 $("#btnSave").click(function(){
-                    var sw = false;
                     $("#txtName").val($("#txtName").val().trim());
-                    $("#txtDescription").val($("#txtDescription").val().trim());
+                    $("#txtAuthor").val($("#txtAuthor").val().trim());
+                    $("#txtText").val($("#txtText").val().trim());
+                    $("#txtDate").val($("#txtDate").val().trim());
                     if(validateLength($("#divName"), $("#txtName"), 3)){
-                        $('#txtDescription').focus();
-                        if(validateLength($("#divDescription"), $("#txtDescription"), 3)){
-                            $('#txtLink').focus();
-                            if($("#txtLink").val().length > 0){
-                                if(validateUrl($("#divLink"), $("#txtLink"))){
-                                    sw = true;
+                        $('#txtAuthor').focus();
+                        if(validateLength($("#divAuthor"), $("#txtAuthor"), 3)){
+//                            $('#txtDate').focus();
+                            if(validateLength($("#divDate"), $("#txtDate"), 8)){
+                                $('#txtText').focus();
+                                if(validateLength($("#divText"), $("#txtText"), 8)){
+                                    $("#frmRegister").find('input, textarea').blur();
+                                    var fields = {
+                                        'id': $("#txtId").val(),
+                                        'name': $("#txtName").val(),
+                                        'author': $("#txtAuthor").val(),
+                                        'text': $("#txtText").val(),
+                                        'date': $("#txtDate").val(),
+                                        'active': $("#optActiveYes").is(':checked') ? 1 : 0
+                                    };
+
+                                    saveRecord(entity, fields, folder);
+                                    resetForm();
+                                    cleanForm();
+                                    enabledForm(true);
+                                }else{
+                                    $( "#dialog" ).html("Ingrese el texto de la crónica");
+                                    $( "#dialog" ).dialog({
+                                        autoOpen: true,
+                                        modal: true,
+                                        buttons: {
+                                            "aceptar": function () {
+                                               $(this).dialog("close");
+                                               $("#btnReset").focus();
+                                            }
+                                        } 
+
+                                    });
                                 }
-                            }else{
-                                sw = true;
-                            }
-                            if(sw){
-                                $("#frmRegister").find('input, textarea').blur();
-                                var fields = {
-                                    'id': $("#txtId").val(),
-                                    'name': $("#txtName").val(),
-                                    'description': $("#txtDescription").val(),
-                                    'active': $("#optActiveYes").is(':checked') ? 1 : 0,
-                                    'link': $("#txtLink").val()
-                                };
-                                
-                                saveRecord(entity, fields, folder);
-                                resetForm();
-                                cleanForm();
-                                enabledForm(true);
                             }
                         }
                     }
@@ -235,16 +258,49 @@
                 });
                 
                 
-                $("#txtLink").focusout(function(){
-                    $("#txtLink").val($("#txtLink").val().trim());
-                    if($("#txtLink").val().length > 0){
-                        return validateUrl($("#divLink"), $("#txtLink"));
-                    }
+                $("#txtDate").focusout(function(){
+                    $("#txtDate").val($("#txtDate").val().trim());
+                    return validateLength($("#divDate"), $("#txtDate"), 10);
+                });
+                
+                
+                $("#txtText").focusout(function(){
+                    $("#txtText").val($("#txtText").val().trim());
+                    return valiTextLength($("#divText"), $("#txtText"), 10);
                 });
                 
                 
                 // Plugin jQuery Text Editor
                 $('.jqte-test').jqte();
+                
+                
+                $("#imgDeleteDate").click(function(e){
+                    $("#txtDate").val(""); 
+                    $("#txtDate").focus();
+                });
+                
+                
+                //Ajustes en el datepicker 
+                var date = new Date();
+                var rangeMin = date.getFullYear() - 1900;
+                var rangeMax = 0;
+                
+                $("#txtDate").datepicker({
+//                    buttonImage: "images/calendar.jpg",
+                    buttonImageOnly: true,
+                    changeYear: true,
+                    changeMonth: true,
+                    //yearRange: '-116:+100',
+                    yearRange: '-' + rangeMin + ':+' + rangeMax,
+                    maxDate:'+0m +0d',
+                    showButtonPanel: true      
+                });
+                               
+                $("#txtDate").change(function(){
+                    $("#txtDate").focus();                   
+                });
+                                                                                     
+                //Fin ajustes datepicker
                 
             });
             
@@ -253,8 +309,9 @@
             //Funciones Javascript
             //****************************
             
-            entity = 'melc_advertisement';
+            entity = 'melc_chronic';
             folder = 'no-folder';
+            
             
             function loadRecords()
             {
@@ -265,9 +322,10 @@
                     fields: {
                         '0': 'id',
                         '1': 'name',
-                        '2': 'description',
-                        '3': 'active',
-                        '4': 'link'
+                        '2': 'author',
+                        '3': 'text',
+                        '4': 'date',
+                        '5': 'active'
                     }                   
                 }
                 
@@ -285,20 +343,14 @@
                             active = value.active == 1 ? 'si' : 'no';
                             table += "<tr class='info'>";
                             table += "<td>";
-                            table += "<a href='#!' class='link-update' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
+                            table += "<a href='#!' title='editar' onclick='updateRecord(" + JSON.stringify(value) + ");'>" + value.name + "</a>";
                             table += "</td>";
-                            table += "<td>" + value.description + "</td>";
+                            table += "<td>" + value.author + "</td>";
+                            table += "<td>" + value.date + "</td>";
                             table += "<td>" + active + "</td>";
                             table += "<td>";
-                            if(value.link !== null){
-                                table += "<a href='" + value.link + "' title='enlace del anuncio' target='_blank'>" + value.link + "</a>";
-                            }else{
-                                table += "";
-                            }
-                            table += "</td>";
-                            table += "<td>";
                             table += "<a href='#!' class='link-delete' onclick='deleteRecord(\"" + entity + "\", \"" + folder + "\", " + value.id +")'>";
-                            table += "<img src='assets/images/delete.png' class='img-thumbnail ink-delete' width='30' height='30' title='eliminar' alt='eliminar'>";
+                            table += "<img src='assets/images/delete.png' class='img-thumbnail' width='30' height='30' title='eliminar' alt='eliminar'>";
                             table += "</a>";
                             table += "</td>";
                             table += "</tr>";
@@ -357,13 +409,15 @@
                             $(this).dialog("close"); 
                             $("#txtId").val(objFields.id);
                             $("#txtName").val(objFields.name);
-                            $("#txtDescription").val(objFields.description);
+                            $("#txtAuthor").val(objFields.author);
+                            $("#txtDate").val(objFields.date);
+                            $("#txtDate").datepicker("setDate", new Date(objFields.date));
                             if(objFields.active == 1){
                                 $("#optActiveYes").prop('checked', true);
                             }else{ 
                                 $("#optActiveNo").prop('checked', true);
                             }
-                            $("#txtLink").val(objFields.link);
+                            $("#txtText").jqteVal(objFields.text);
                             resetForm("update");
                             enabledForm(false);
                         },

@@ -47,7 +47,7 @@ class MasterEngine extends CI_Controller {
     // Recibe un objeto JSON que contiene la tabla, los campos a mostrar 
     // y uno o varios criterios de búsqueda
     public function listRecords()
-    {
+    { 
         if(!empty($this->input->post("dataSend"))){
             $arrayData = json_decode($this->input->post("dataSend"), TRUE);
             $arrayData['bd']['orderField'] = empty($arrayData['bd']['orderField']) 
@@ -141,6 +141,11 @@ class MasterEngine extends CI_Controller {
             
             // Comprobar si hay imagen para subirla
             if(!empty($_FILES)){
+                // Eliminar archivo existente cuando es actualización
+                if((int)$arrayData['fields']['id'] != 0){
+                    $arrayFile = $this->deleteFile($arrayData['db']['table'], 
+                        $arrayData['fields']['id'], $arrayData['folder']);
+                }
                 $arrayFile = $this->loadFile($arrayData['folder']);
                 $arrayData['fields']['logo'] = $arrayFile['nameFile']; 
             }else{
@@ -199,6 +204,8 @@ class MasterEngine extends CI_Controller {
                 'xmlhttprequest'){
             if(!empty($_FILES['inputFile'])){
                 $fName = $_FILES['inputFile']['name'];
+                $fName = $this->changeFileName($fName, $folder);
+                
                 $fType = $_FILES['inputFile']['type'];
                 $fSize = $_FILES['inputFile']['size'];
                 $fTempName = $_FILES['inputFile']['tmp_name'];
@@ -282,6 +289,25 @@ class MasterEngine extends CI_Controller {
     }
     
     
+    public function changeFileName($nameFile, $folder)
+    {
+        $lengthNameFile = strlen($nameFile);
+        $lastPointPosition = strrpos($nameFile, '.');
+        $name = substr($nameFile, 0, $lastPointPosition);
+        
+        if($folder == "contact-information"){
+            $name = "logo-header";
+            $ext = "png";
+        }else{
+            $name = $name . "-" . time();
+            $ext = substr($nameFile, $lastPointPosition + 1, $lengthNameFile - 
+                ($lastPointPosition + 1));
+        }
+        $nameFile = $name . "." . $ext;
+        return $nameFile;
+    }
+
+
     //****************************
     // Funciones para el tratamiento de la autenticación
     //****************************
@@ -387,6 +413,9 @@ class MasterEngine extends CI_Controller {
 
         return $token;
     }
+    
+    
+    
     
     public function newsletterSuscription()
     {

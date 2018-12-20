@@ -198,7 +198,7 @@
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-46-calendar.png"/>
                                     </span>
-                                    <input type="text" name="txtBirthDate" id="txtBirthDate" class="form-control input-lg" placeholder="Fecha de nacimiento" readonly="readonly" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="Ingrese la fecha de nacimiento" disabled="disabled"/>
+                                    <input type="text" name="txtBirthDate" id="txtBirthDate" class="form-control input-lg" placeholder="fecha de nacimiento" readonly="readonly" data-toggle="tooltip" data-placement="bottom" data-validate="validate()" title="Ingrese la fecha de nacimiento" disabled="disabled"/>
                                     <span class="input-group-addon">
                                         <img src="../assets/css/glyphicons_free/glyphicons_free/glyphicons/png/glyphicons-257-delete.png" id="imgDeleteDate" title="Borrar fecha"/>
                                     </span>
@@ -420,27 +420,6 @@
                     $("#txtBirthDate").focus();                   
                 });
                                                                                      
-                $.datepicker.regional['es'] = {
-                    closeText: 'Cerrar',
-                    prevText: 'Anterior',
-                    nextText: 'Siguiente',
-                    currentText: 'Hoy',
-                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-                    weekHeader: 'Sm',
-                    dateFormat: 'yy/mm/dd',
-                    firstDay: 0,
-                    isRTL: false,
-                    showMonthAfterYear: false,
-                    yearSuffix: '',
-                    showWeek: true
-                };
-                
-                $.datepicker.setDefaults($.datepicker.regional['es']);                
-                  
                 //Fin ajustes datepicker
                 
             });
