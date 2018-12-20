@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-12-2018 a las 22:33:22
+-- Tiempo de generación: 20-12-2018 a las 04:30:52
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -68,6 +68,23 @@ CREATE TABLE `melc_carousel` (
   `link` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL DEFAULT b'1',
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_chronic`
+--
+
+CREATE TABLE `melc_chronic` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
+  `date` date NOT NULL,
+  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -309,6 +326,12 @@ ALTER TABLE `melc_carousel`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `melc_chronic`
+--
+ALTER TABLE `melc_chronic`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `melc_comment`
 --
 ALTER TABLE `melc_comment`
@@ -401,7 +424,7 @@ ALTER TABLE `melc_video`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -411,7 +434,12 @@ ALTER TABLE `melc_advertisement`
 -- AUTO_INCREMENT de la tabla `melc_carousel`
 --
 ALTER TABLE `melc_carousel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `melc_chronic`
+--
+ALTER TABLE `melc_chronic`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_comment`
 --
@@ -431,7 +459,7 @@ ALTER TABLE `melc_contact_information`
 -- AUTO_INCREMENT de la tabla `melc_image_gallery`
 --
 ALTER TABLE `melc_image_gallery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
@@ -456,22 +484,22 @@ ALTER TABLE `melc_place`
 -- AUTO_INCREMENT de la tabla `melc_profile`
 --
 ALTER TABLE `melc_profile`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_profile_user`
 --
 ALTER TABLE `melc_profile_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --
 ALTER TABLE `melc_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `melc_video`
 --

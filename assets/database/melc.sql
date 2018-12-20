@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-12-2018 a las 22:17:53
+-- Tiempo de generación: 20-12-2018 a las 04:27:54
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -142,7 +142,11 @@ INSERT INTO `melc_access` (`id`, `id_melc_profile_user`, `ip_access`, `user_agen
 (122, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36', 'L*lA7.92BGOBgL0bGnXR(Q3lX.EwCJ', b'1', 'ninguna', '2018-12-12 14:54:07', NULL, '2018-12-12 14:54:07'),
 (123, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', '9:l}#-:GQ:9&ZvStSF&d4iiFX_>;O@', b'1', 'ninguna', '2018-12-13 06:34:47', NULL, '2018-12-13 06:34:47'),
 (124, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 'Mw$Il(3FXFm~%I3ydl()fuFc8#~SQg', b'0', 'ninguna', '2018-12-13 23:33:41', '2018-12-13 20:34:25', '2018-12-13 23:33:41'),
-(125, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 'sc~aVfx/_@pUuB*H6{L]btF*6Z#:HB', b'1', 'ninguna', '2018-12-14 01:34:53', NULL, '2018-12-14 01:34:53');
+(125, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 'sc~aVfx/_@pUuB*H6{L]btF*6Z#:HB', b'1', 'ninguna', '2018-12-14 01:34:53', NULL, '2018-12-14 01:34:53'),
+(126, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0', ',).u$WW=dPRrxg}Ei}<s;zo[VQT,Dj', b'0', 'ninguna', '2018-12-14 06:17:53', '2018-12-14 08:54:10', '2018-12-14 06:17:53'),
+(127, 4, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0', '(f?N^wTow:hB^L%:[YXEANESM.|8I3', b'1', 'ninguna', '2018-12-14 13:56:08', NULL, '2018-12-14 13:56:08'),
+(128, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 'WQyA}I>RhX4TU|vUwy4xcPQ|ZK?Vru', b'1', 'ninguna', '2018-12-18 22:47:08', NULL, '2018-12-18 22:47:08'),
+(129, 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36', 'fDc7.#(Hg^gh@pkKjzK2>pRpGCw{a#', b'1', 'ninguna', '2018-12-19 12:42:57', NULL, '2018-12-19 12:42:57');
 
 -- --------------------------------------------------------
 
@@ -198,6 +202,32 @@ INSERT INTO `melc_carousel` (`id`, `name`, `description`, `link`, `active`, `log
 (1, 'melc', 'medellín en la cabeza', 'http://medellinenlacabeza.medellinjoven.com', b'1', 'header1.png', '2018-12-13 03:13:30', NULL),
 (2, 'Secretaría', 'Secretaría de la Juventud', '#!', b'1', 'header2.png', '2018-12-13 03:13:30', NULL),
 (3, 'TPTU', 'Teatro Pablo Tobón Uribe', '#!', b'1', 'header3.png', '2018-12-13 03:13:30', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_chronic`
+--
+
+CREATE TABLE `melc_chronic` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
+  `date` date NOT NULL,
+  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `melc_chronic`
+--
+
+INSERT INTO `melc_chronic` (`id`, `name`, `author`, `active`, `date`, `text`, `creation_date`, `last_update`) VALUES
+(1, 'Conociendo la ciudad', 'Pedro Zapata', b'1', '2018-12-03', '<h2 class="text-center">¿QUÉ ES MEDELLÍN EN LA CABEZA?</h2>                         <p>&nbsp;</p>                         <p>                             Medellín en la Cabeza es una propuesta pedagógica de formación y gestión institucional que entiende la ciudad como un espacio educador, un laboratorio para cualquier área del conocimiento, que invita a los jóvenes a participar desde sus contextos y condiciones diversas para favorecer el desarrollo de una ciudadanía con pensamiento crítico y propositivo sobre las realidades de su ciudad y la región.                         </p>                         <p>                             Un joven que emprende el reto de callejear amplía su horizonte, mejora su toma de decisiones, aprende a relacionarse mejor con su entorno y, por lo tanto, tiene más herramientas para transformar su realidad y la de su comunidad.                         </p>                             Con esta convicción hacemos Medellín en la Cabeza, un proyecto que invita a los jóvenes a recorrer su ciudad, apropiarse de ella y hacer de ésta un espacio de aprendizaje para la vida. Estamos seguros de que #CallejearEduca.                         <p>                             En 2018 llegaremos a 2500 jóvenes de toda la ciudad, entre 14 y 28 años de edad, con 180 recorridos pedagógicos, enmarcados en nueve rutas temáticas:                         </p>                          <ol>                             <li>Somos jóvenes, somos diversos.</li>                             <li>Medellín sostenible.</li>                             <li>El centro: un lugar para descubrir.</li>                             <li>¿Tiene Medellín campesinos?</li>                             <li>Medellín en movimiento.</li>                             <li>Haciendo memoria para construir futuro.</li>                             <li>Somos educación, arte y cultura. </li>                             <li>Territorios jóvenes nocturnos. </li>                             <li>Equipamientos públicos para la ciudadanía.</li>                         </ol>', '2018-12-18 04:21:52', NULL),
+(2, 'Un viaje por mi mágica ciudad', 'María González Zea', b'1', '2018-08-01', '<h2 class="text-center"><span style="color:rgb(255,0,255);">¿QUÉ ES MEDELLÍN EN LA CABEZA?</span></h2>                         <p>&nbsp;</p>                         <p>                             Medellín en la Cabeza es una propuesta pedagógica de formación y gestión institucional que entiende la ciudad como un espacio educador, un laboratorio para cualquier área del conocimiento, que invita a los jóvenes a participar desde sus contextos y condiciones diversas para favorecer el desarrollo de una ciudadanía con pensamiento crítico y propositivo sobre las realidades de su ciudad y la región.                         </p>                         <p>                             Un joven que emprende el reto de callejear amplía su horizonte, mejora su toma de decisiones, aprende a relacionarse mejor con su entorno y, por lo tanto, tiene más herramientas para transformar su realidad y la de su comunidad.                         </p>                             Con esta convicción hacemos Medellín en la Cabeza, un proyecto que invita a los jóvenes a recorrer su ciudad, apropiarse de ella y hacer de ésta un espacio de aprendizaje para la vida. Estamos seguros de que #CallejearEduca.                         <p>                             En 2018 llegaremos a 2500 jóvenes de toda la ciudad, entre 14 y 28 años de edad, con 180 recorridos pedagógicos, enmarcados en nueve rutas temáticas:                         </p>                          <ul><span style="color:rgb(147,196,125);"><li style="color: rgb(147, 196, 125);">Somos jóvenes, somos diversos.</li>                             <li style="color: rgb(147, 196, 125);">Medellín sostenible.</li>                             <li style="color: rgb(147, 196, 125);">El centro: un lugar para descubrir.</li>                             <li style="color: rgb(147, 196, 125);">¿Tiene Medellín campesinos?</li>                             <li style="color: rgb(147, 196, 125);">Medellín en movimiento.</li>                             <li style="color: rgb(147, 196, 125);">Haciendo memoria para construir futuro.</li>                             <li style="color: rgb(147, 196, 125);">Somos educación, arte y cultura. </li>                             <li style="color: rgb(147, 196, 125);">Territorios jóvenes nocturnos. </li>                             <li style="color: rgb(147, 196, 125);">Equipamientos públicos para la ciudadanía.</li></span></ul>', '2018-12-18 04:21:52', NULL),
+(3, 'La eterna primavera', 'Juan Zapata', b'1', '2018-05-06', '<b>La eterna primavera</b><p><br></p><p>Texto de los relatos de los callejeros<br></p><p><br></p><p></p>', '2018-12-20 07:02:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -307,7 +337,7 @@ CREATE TABLE `melc_map` (
 --
 
 INSERT INTO `melc_map` (`id`, `map_number`, `name`, `description`, `logo`, `color`, `active`, `creation_date`, `last_update`) VALUES
-(1, 1, 'Haciendo memoria para construir futuro', 'No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día.', 'Memoria.png', '#B3C52D', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
+(1, 1, 'Haciendo memoria para construir futuro', 'No se trata de darnos golpes de pecho, tampoco de quejarnos eternamente, ni de lamentarnos por las duras épocas de violencia que ha vivido nuestra ciudad. Esta ruta busca dignificar a las víctimas, para comprender lo que hemos permitido como sociedad y también para darnos la posibilidad de mirar con otros ojos esos lugares por los que pasamos cotidianamente y se convierten en paisaje, pese a que allí sucedieron acontecimientos importantes que marcaron nuestra historia. ¡Los jóvenes no son el futuro, son el presente! Y lo que hagamos conjuntamente permitirá construir una mejor ciudad cada día.', 'Memoria.png', '#b3c52d', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
 (2, 2, 'Medellín en movimiento', 'Estamos seguros de que alguien que conoce y sabe utilizar el sistema de transporte público masivo de la ciudad tiene un alto porcentaje de éxito en conocerla y aprender de ella ¡Un transporte público incluyente, equitativo, seguro, sostenible y conectado a la intermodalidad es la mejor excusa para salir a callejear!', 'Movimiento.png', '#D07200', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
 (3, 3, 'El centro: un lugar para descubrir', 'El centro de la ciudad es el territorio con menor número de población residente (aproximadamente 80.000), pero por sus calles pasan diariamente cerca de ¡1.2 millones de personas! Muchos de sus lugares convocan a miles de jóvenes cotidianamente: universidades, colegios, teatros, restaurantes, museos, parques, centros financieros y comerciales, clínicas y lugares de diversión nocturna ¡No te niegues la oportunidad de visitar un lugar lleno de historias y cultura!', 'Centro.png', '#009bdb', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
 (4, 4, '¿Tiene Medellín campesinos?', '¿Sabes qué porcentaje del suelo de Medellín es rural?, ¿cuáles son los corregimientos de nuestra ciudad y qué porcentaje de la población del municipio habita en estos territorios? ¿Sabes cómo se hace una silleta?, ¿qué hacen y venden en Altavista?, ¿qué se cultiva en San Cristóbal?, ¿qué corregimiento tiene un cable aéreo? Cuando tengas las respuestas a las preguntas anteriores, puedes hacerte muchas otras y podrás encontrar la respuesta a la pregunta ¿Tiene Medellín campesinos?', 'Campesinos.png', '#EABE00', b'1', '2018-08-21 12:53:17', '0000-00-00 00:00:00'),
@@ -506,7 +536,8 @@ CREATE TABLE `melc_profile_user` (
 
 INSERT INTO `melc_profile_user` (`id`, `id_melc_profile`, `id_melc_user`, `active`, `creation_date`, `last_update`) VALUES
 (1, 1, 1, b'1', '2018-08-15 04:27:16', NULL),
-(2, 2, 4, b'0', '2018-11-21 11:34:13', NULL);
+(2, 2, 4, b'0', '2018-11-21 11:34:13', NULL),
+(4, 2, 2, b'1', '2018-12-14 13:55:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -562,7 +593,7 @@ CREATE TABLE `melc_user` (
 --
 
 INSERT INTO `melc_user` (`id`, `user`, `password`, `name`, `address`, `phone`, `cell_phone`, `email`, `birth_date`, `active`, `description`, `logo`, `creation_date`, `last_update`) VALUES
-(1, 'admin', 'admin', 'administrador web', '', '', '', 'admin@localhost.com', '0000-00-00', b'1', '', 'thumbnail.png', '2018-08-15 04:22:19', NULL),
+(1, 'admin', 'admin', 'Jaime', 'tptu', '333', '314', 'admin@localhost.com', '2001-12-03', b'1', 'administrador web', '', '2018-08-15 04:22:19', NULL),
 (2, 'edwin', 'edwin', '', '', '', '', 'edwin@localhost.com', '0000-00-00', b'1', '', '01_EDWIN_MED.png', '2018-08-15 04:33:26', NULL),
 (3, 'darlin', 'darlin', '', '', '', '', 'darlin@localhost.com', '0000-00-00', b'1', '', '02_DARLIN_MED.png', '2018-08-15 04:33:26', NULL),
 (4, 'evelyn', 'evelyn', 'evelyn moreno', '', '', '', 'evelyn@localhost.com', '0000-00-00', b'1', '', '04_EVELYN_MED.png', '2018-08-15 04:35:49', NULL),
@@ -572,7 +603,9 @@ INSERT INTO `melc_user` (`id`, `user`, `password`, `name`, `address`, `phone`, `
 (8, 'luis', 'luis', '', '', '', '', 'luis@localhost.com', '0000-00-00', b'1', '', '09_LUIS_MIGUEL_MED.png', '2018-08-15 04:39:40', NULL),
 (9, 'manuela', 'manuela', '', '', '', '', 'manuela@localhost.com', '0000-00-00', b'1', '', '11_MANUELA_MED.png', '2018-08-15 04:39:40', NULL),
 (10, 'anton', 'anton', '', '', '', '', 'anton@localhost.com', '0000-00-00', b'1', '', '12_ANTON_MED.png', '2018-08-15 04:40:47', NULL),
-(11, 'dalia', 'dalia', '', '', '', '', 'dalia@localhost.com', '0000-00-00', b'1', '', '13_DALIA_MED.png', '2018-08-15 04:40:47', NULL);
+(11, 'dalia', 'dalia', '', '', '', '', 'dalia@localhost.com', '0000-00-00', b'1', '', '13_DALIA_MED.png', '2018-08-15 04:40:47', NULL),
+(12, 'nuevo', '22222222', 'nuevo usuario mel', 'lejos de aquí', '22222222', '20002222000', 'nuevo@nose.tal', '1997-12-16', b'1', 'nuevo usuario en el sistema melc', 'logo-header.png', '2018-12-14 12:41:50', NULL),
+(13, 'aaaa', 'aaaaaaaa', 'aaaa', 'aaa aaaa', '33333', '33333', 'aaaa@aaa.aa', '2018-12-04', b'0', '33333', 'Captura de pantalla de 2018-08-31 03-41-47.png', '2018-12-14 12:59:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -622,6 +655,12 @@ ALTER TABLE `melc_advertisement`
 -- Indices de la tabla `melc_carousel`
 --
 ALTER TABLE `melc_carousel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `melc_chronic`
+--
+ALTER TABLE `melc_chronic`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -717,7 +756,7 @@ ALTER TABLE `melc_video`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -727,7 +766,12 @@ ALTER TABLE `melc_advertisement`
 -- AUTO_INCREMENT de la tabla `melc_carousel`
 --
 ALTER TABLE `melc_carousel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `melc_chronic`
+--
+ALTER TABLE `melc_chronic`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_comment`
 --
@@ -747,7 +791,7 @@ ALTER TABLE `melc_contact_information`
 -- AUTO_INCREMENT de la tabla `melc_image_gallery`
 --
 ALTER TABLE `melc_image_gallery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
@@ -772,22 +816,22 @@ ALTER TABLE `melc_place`
 -- AUTO_INCREMENT de la tabla `melc_profile`
 --
 ALTER TABLE `melc_profile`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_profile_user`
 --
 ALTER TABLE `melc_profile_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --
 ALTER TABLE `melc_user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `melc_video`
 --
