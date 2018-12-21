@@ -226,7 +226,7 @@ function addMarker(index, location)
 
     marker.addListener('click', function() {
         if(infoWindow){
-            console.log(marker)
+//            console.log(marker)
             infoWindow.close()
         }
         

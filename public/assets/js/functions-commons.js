@@ -244,6 +244,8 @@ function resetForm(state)
 //        theme: 'classic'
     });
     
+    $('#frmRegister').find('#map-places').css({'visibility':'hidden'});
+    
 }
         
 
@@ -354,6 +356,7 @@ function newRecord()
                 cleanForm(); 
                 enabledForm(false);
                 $("#txtId").val('0');
+                $('#frmRegister').find('#map-places').css({'visibility':'visible'});
                 $(':input:visible:enabled:first').focus();
             },
             "cancelar": function(){

@@ -160,7 +160,15 @@ ul.notas li#nota3 {
     height: 500px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
 
- }
+}
+
+#map-places {
+    height: 300px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+/*    position: relative; 
+    overflow: visible;*/
+    visibility: hidden;
+}
  
  #panel-itinerary {
     position: absolute;
