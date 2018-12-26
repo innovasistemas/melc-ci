@@ -342,7 +342,6 @@ function validateFile(division, input, maxSize)
 // Funciones del CRUD
 //****************************
 
-
 function newRecord()
 {
     $( "#dialog" ).html("¿está seguro?");

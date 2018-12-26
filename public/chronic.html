@@ -84,6 +84,10 @@
                 
                 loadFooterDate();
                 
+                
+                // Carga de plugins
+                
+                
             });
             
             
@@ -120,15 +124,17 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function(data) {
-                        var content = "";
+                        var content = "<h3>Navega a través de las crónicas</h3><div style='max-height: 50px;'>Presiona clic sobre cada título que ves abajo</div>";
                         $.each(data, function(index, value){
                             content += "<h3 class='font-social-network'>Crónica " + (index + 1) + ": " + value.name + "</h3>"; 
+                            content += "<div>";
                             content += "<strong>Autor:</strong> " + value.author + "<br/>";
                             content += "<strong>Fecha:</strong> " +value.date + "<br/>";;
-                            content += "<div>" + value.text + "</div>";
-                            content += "<hr/>";
+                            content += "<p>" + value.text + "</p>";
+                            content += "</div>";
                         });
                         $('#content-main').html(content);
+                        $('#content-main').accordion();
                     }
                 });
             }

@@ -3,13 +3,13 @@
     The markers are stored in an array.
     The user can then click an option to hide, show or delete the markers.)
  * 
- *  Funciones para el tratamiento de los mapas.
+ *  Funciones para el tratamiento de los mapas en la home.
  * 
  */
 
 // Variables globales a nivel de página
             
-// Variables para el mapa            
+// Variables y arrays para el mapa            
 var map;
 var markers = [];
 
@@ -19,7 +19,7 @@ var mapNumbers = [];
 var names = [];
 var logos = [];
 
-// Array para guardar datos de lugares
+// Arrays para guardar datos de lugares
 var idMap = [];
 var idMapNumbers = [];
 var locations = [];
@@ -129,22 +129,10 @@ function initMap()
         title: 'Medellín',
         mapTypeId: 'roadmap'
     });
+    
     var marker = new google.maps.Marker({position: uluru, map: map});
     marker.setVisible(false);
     
-    
-    // Cerrar los infoWindow (en revisión)
-    google.maps.event.addListener(marker, 'click', function() {
-        if (infoWindow) {
-            infoWindow.close();
-        };
-    });
-    
-    // This event listener will call addMarker() when the map is clicked.
-//                map.addListener('click', function(event) {
-//                    addMarker(event.latLng);
-//                });
-
     var entity = 'melc_place';
     var objJson = {
         'bd': {
@@ -191,6 +179,10 @@ function initMap()
 
 
 //***************************************************************
+
+// Definir como array global para que admita el método close en algoritmo.  
+var infoWindow = [];
+
 // Adds a marker to the map and push to the array.
 function addMarker(index, location) 
 { 
@@ -204,7 +196,7 @@ function addMarker(index, location)
             '</div>' +
             '</div>';
 
-    var infoWindow = new google.maps.InfoWindow({
+    infoWindow[index]= new google.maps.InfoWindow({
         content: contentString
     });
         
@@ -217,20 +209,14 @@ function addMarker(index, location)
         icon: 'assets/images/map-icons/' + logos[pos]
     });
     
-//    google.maps.event.addListener(marker, 'click', function() {
-//        console.log(infoWindow)
-//        if (infoWindow) {
-//            infoWindow.close();
-//        };
-//    });
-
     marker.addListener('click', function() {
         if(infoWindow){
-//            console.log(marker)
-            infoWindow.close()
+            for(var i = 0; i < infoWindow.length; i++){
+                infoWindow[i].close();
+            }
         }
         
-        infoWindow.open(map, marker);
+        infoWindow[index].open(map, marker);
     });
     
     markers.push(marker);

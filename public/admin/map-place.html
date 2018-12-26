@@ -325,6 +325,19 @@
                 });
                 
                 
+                $("#txtLatitude").change(function(){
+//                    marker.setPosition().lat($('#txtLatitude').val()); 
+//                    marker.setPosition().lng($('#txtLongitude').val()); 
+                    console.log(marker)
+                });
+                
+                
+                $("#txtLongitude").change(function(){
+//                    marker.setPosition().lat($('#txtLatitude').val()); 
+//                    marker.setPosition().lng($('#txtLongitude').val()); 
+                });
+                
+                
                 $('.select2').select2({
                     placeholder: 'seleccione una opción',
                     language: "es",
@@ -388,7 +401,7 @@
                             table += "<td>" + value.longitude + "</td>";
                             table += "<td>";
                             if(value.link !== null){
-                                table += "<a href='" + value.link + "' title='enlace del lugar' target='_blank'>" + value.link + "</a>";
+                                table += "<a href='" + value.link + "' title='" + value.link + "' target='_blank'>" + value.link.substr(0, 17) + "...</a>";
                             }else{
                                 table += "";
                             }
@@ -511,7 +524,9 @@
                 });
             }
             
-            var marker
+            
+            var marker;
+            
             // Initialize and add the map
             function initMap() 
             {
@@ -539,7 +554,7 @@
                     animation: google.maps.Animation.DROP,
                     position: uluru
                 });
-//                marker.addListener('click', toggleBounce);
+                
                 marker.addListener('click', function(){
                     if (marker.getAnimation() !== null) {
                         marker.setAnimation(null);
@@ -549,21 +564,10 @@
                 });
                 
                 marker.addListener('dragend', function (event){
-                    alert(this.getPosition().lat() + "," + this.getPosition().lng());
+                    $('#txtLatitude').val(this.getPosition().lat()); 
+                    $('#txtLongitude').val(this.getPosition().lng());
                 });
             }
-            
-            
-//            function toggleBounce() 
-//            {
-//                if (marker.getAnimation() !== null) {
-//                    marker.setAnimation(null);
-//                } else {
-//                    marker.setAnimation(google.maps.Animation.BOUNCE);
-//                }
-//                
-//            }
-            
             
         </script>
         
