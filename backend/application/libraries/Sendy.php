@@ -1,5 +1,7 @@
 <?php
 
+use \vendor\GuzzleHttp\guzzle\src\Client;
+
 class Sendy {
 
     private static $_instance;
@@ -7,9 +9,11 @@ class Sendy {
     private $_apiKey;
     private $_listId;
     private $_error;
-
+    
+    
+    
     public function __construct() {
-        $this->_client = new \GuzzleHttp\Client([
+        $this->_client = new GuzzleHttp\Client([
             // Base URI is used with relative requests
             'base_uri' => 'http://sendy.medellinjoven.com',
         ]);

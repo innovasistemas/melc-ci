@@ -26,6 +26,7 @@ class MasterEngine extends CI_Controller {
         $this->load->helper(array("url", "form"));
         $this->load->library('form_validation');
         $this->load->model("ManagementModel");
+        $this->load->library("Sendy");
     }
 
     public function __destruct() 
@@ -415,15 +416,25 @@ class MasterEngine extends CI_Controller {
     }
     
     
-    
+    //****************************
+    // Funciones para el tratamiento de las suscripciones (newsletter)
+    //****************************
     
     public function newsletterSuscription()
     {
         // 1. Recibir info del formulario
+        // 2. a) Sendy::getInstance()->suscribe($email); // devuelve true si exitoso o false si error
+        //    b) Errores: Sendy::getInstance()->getErrorMessage();
         
-        // 2. Sendy::getInstance()->suscribe($email); // devuelve true si exitoso o false si error
-        
-        // Errores: Sendy::getInstance()->getErrorMessage();
+        if(!empty($this->input->post('txtEmail'))){
+            if(Sendy::getInstance()->subscribe($this->input->post('txtEmail'))){
+                echo 'ok';
+            }else{
+                echo 'bad' . Sendy::getInstance()->getErrorMessage();
+            }
+        }else{
+        }
+        header('Location: ../../../public/');
         
     }
     

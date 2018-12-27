@@ -142,6 +142,7 @@
                         </div>
                         
                         <div class="col-sm-6">
+                            <p class="text-lowercase">Usa el mapa para seleccionar las coordenadas</p>
                             <div id="map-places"></div>
                         </div>
                         
@@ -541,11 +542,6 @@
                     mapTypeId: 'roadmap',
                     disableDefaultUI: true
                 });
-//                var marker = new google.maps.Marker({position: uluru, map: mapPlace});
-//                marker.setVisible(false);
-//                google.maps.event.addListener(marker, 'click', function() {
-//                    alert('')
-//                });
                 
                 marker = new google.maps.Marker({
                     map: mapPlace,
