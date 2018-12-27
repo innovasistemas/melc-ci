@@ -26,7 +26,7 @@ class MasterEngine extends CI_Controller {
         $this->load->helper(array("url", "form"));
         $this->load->library('form_validation');
         $this->load->model("ManagementModel");
-        $this->load->library("Sendy");
+//        $this->load->library("Sendy");
     }
 
     public function __destruct() 
@@ -427,11 +427,11 @@ class MasterEngine extends CI_Controller {
         //    b) Errores: Sendy::getInstance()->getErrorMessage();
         
         if(!empty($this->input->post('txtEmail'))){
-            if(Sendy::getInstance()->subscribe($this->input->post('txtEmail'))){
+//            if(Sendy::getInstance()->subscribe($this->input->post('txtEmail'))){
                 echo 'ok';
-            }else{
-                echo 'bad' . Sendy::getInstance()->getErrorMessage();
-            }
+//            }else{
+//                echo 'bad' . Sendy::getInstance()->getErrorMessage();
+//            }
         }else{
         }
         header('Location: ../../../public/');
