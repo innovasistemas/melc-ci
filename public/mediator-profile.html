@@ -117,7 +117,7 @@
             
             function loadRecords()
             { 
-                var entity = 'melc_user';
+                var entity = 'melc_mediator';
                 var objJson = {
                     bd: {
                         'table': entity
@@ -145,19 +145,17 @@
                         var column = 0;
                         var content = "<div class='row'>";
                         $.each(data, function(index, value){
-                            if(index != 0){
-                                if(column >= 4){
-                                    content += "</div>";
-                                    content += "<div class='row'>";
-                                    column = 0;
-                                }
-                                content += "<div class='col-sm-3'>";
-                                content += "<a href='assets/images/user/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>"; 
-                                content += "<img src='assets/images/user/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
-                                content += "</a>";
+                            if(column >= 4){
                                 content += "</div>";
-                                column ++;
+                                content += "<div class='row'>";
+                                column = 0;
                             }
+                            content += "<div class='col-sm-3'>";
+                            content += "<a href='assets/images/user/" + value.logo +"' title='" + value.user + " (clic y navega)' data-fancybox='gallery' data-caption='" + value.user  + "'>"; 
+                            content += "<img src='assets/images/user/" + value.logo + "' alt='" + value.user + "' class='thumbnail img-thumbnail-mediator-profile zoom' />";
+                            content += "</a>";
+                            content += "</div>";
+                            column ++;
                                 
                         });
                         

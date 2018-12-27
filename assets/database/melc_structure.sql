@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-12-2018 a las 04:30:52
+-- Tiempo de generación: 27-12-2018 a las 12:28:49
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -168,6 +168,29 @@ CREATE TABLE `melc_map` (
   `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `color` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
   `active` bit(1) NOT NULL DEFAULT b'1',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `melc_mediator`
+--
+
+CREATE TABLE `melc_mediator` (
+  `id` bigint(20) NOT NULL,
+  `user` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `cell_phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `birth_date` date NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'0',
+  `description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'thumbnail.png',
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -362,6 +385,14 @@ ALTER TABLE `melc_map`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `melc_mediator`
+--
+ALTER TABLE `melc_mediator`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `user` (`user`);
+
+--
 -- Indices de la tabla `melc_newsletter`
 --
 ALTER TABLE `melc_newsletter`
@@ -424,7 +455,7 @@ ALTER TABLE `melc_video`
 -- AUTO_INCREMENT de la tabla `melc_access`
 --
 ALTER TABLE `melc_access`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- AUTO_INCREMENT de la tabla `melc_advertisement`
 --
@@ -459,7 +490,7 @@ ALTER TABLE `melc_contact_information`
 -- AUTO_INCREMENT de la tabla `melc_image_gallery`
 --
 ALTER TABLE `melc_image_gallery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `melc_map`
 --
@@ -494,7 +525,7 @@ ALTER TABLE `melc_profile_user`
 -- AUTO_INCREMENT de la tabla `melc_social_network`
 --
 ALTER TABLE `melc_social_network`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `melc_user`
 --
