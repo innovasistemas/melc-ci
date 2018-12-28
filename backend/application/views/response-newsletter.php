@@ -43,14 +43,19 @@
             
             <br><br>
             
-            <a href="#!" id="link-home" title="Inicio">
-                <h3 class="text-center">
-                    Regresar a la página de inicio
-                </h3>
-            </a>
+            <div class="text-center">
+                <a href="#!" class="link-home" title="Inicio">
+                    <h3>
+                        Regresar a la página de inicio
+                    </h3>
+                </a>
+
+                <a href="#!" class="link-home" title="Inicio">
+                    <img src="http://medellinenlacabeza.medellinjoven.com/public/assets/images/contact-information/logo-header.png" alt="Medellín en la Cabeza" />
+                </a>
+            </div>
             
         </div>
-        <br><br><br><br><br>
         <div id="content-common"></div>
         
         <!-- Fin contenido -->
@@ -89,7 +94,7 @@
                 
                 loadFooterDate();
                 
-                $("#link-home").click(function(){
+                $(".link-home").click(function(){
                    $(location).attr('href', urlBase); 
                 });
                 
