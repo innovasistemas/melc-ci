@@ -1,24 +1,21 @@
 <?php
 
-use \vendor\GuzzleHttp\guzzle\src\Client;
-
 class Sendy {
 
     private static $_instance;
-    private /* @var $client \GuzzleHttp\Client */ $_client;
+    private /* @var $client Client */ $_client;
+    private $_baseUri;
     private $_apiKey;
     private $_listId;
     private $_error;
     
-    
-    
     public function __construct() {
-        $this->_client = new GuzzleHttp\Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://sendy.medellinjoven.com',
-        ]);
+        $this->_baseUri = 'http://sendy.medellinjoven.com';
         $this->_apiKey = 'CHgxLI9SMAfa7EhTt1Re';
         $this->_listId = '61TRiAsoRy2MtMJOIKlMQg';
+        $this->_client = curl_init();
+        curl_setopt($this->_client, CURLOPT_POST, true);
+        curl_setopt($this->_client, CURLOPT_RETURNTRANSFER, true);
     }
     /** @return Sendy */
     public static function getInstance() {
@@ -34,12 +31,16 @@ class Sendy {
             'boolean' => 'true'
         );
         if ($name) $data['name'] = $name;
-        $result = $this->_client->post('/subscribe', $data);
-        if ($result->getBody() == '1') {
+     
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/subscribe');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        
+        if ($result == '1') {
             $this->_error = null;
             return true;
         } else {
-            switch ($result->getBody()) {
+            switch ($result) {
                 case 'Invalid email address.':
                     $this->_error = 'El correo electrónico ingresado no es válido';
                     break;
@@ -62,12 +63,14 @@ class Sendy {
             'list' => $this->_listId,
             'boolean' => 'true'
         );
-        $result = $this->_client->post('/unsubscribe', $data);
-        if ($result->getBody() == '1') {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/unsubscribe');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        if ($result == '1') {
             $this->_error = null;
             return true;
         } else {
-            switch ($result->getBody()) {
+            switch ($result) {
                 case 'Invalid email address.':
                     $this->_error = 'El correo electrónico ingresado no es válido';
                     break;
@@ -84,12 +87,14 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/delete.php', $data);
-        if ($result->getBody() == '1') {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/delete.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        if ($result == '1') {
             $this->_error = null;
             return true;
         } else {
-            $this->_error = $result->getBody();
+            $this->_error = $result;
             return false;
         }
     }
@@ -100,8 +105,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Subscribed':
                 $this->_error = null;
                 return true;
@@ -114,7 +121,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -125,8 +132,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Unsubscribed':
                 $this->_error = null;
                 return true;
@@ -139,7 +148,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -150,8 +159,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Unconfirmed':
                 $this->_error = null;
                 return true;
@@ -164,7 +175,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -175,8 +186,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Bounced':
                 $this->_error = null;
                 return true;
@@ -189,7 +202,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -200,8 +213,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Soft bounced':
                 $this->_error = null;
                 return true;
@@ -214,7 +229,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -225,8 +240,10 @@ class Sendy {
             'list_id' => $this->_listId,
             'api_key' => $this->_apiKey
         );
-        $result = $this->_client->post('/api/subscribers/subscription-status.php', $data);
-        switch ($result->getBody()) {
+        curl_setopt($this->_client, CURLOPT_URL, $this->_baseUri.'/api/subscribers/subscription-status.php');
+        curl_setopt($this->_client, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($this->_client);
+        switch ($result) {
             case 'Complained':
                 $this->_error = null;
                 return true;
@@ -239,7 +256,7 @@ class Sendy {
                 return false;
                 break;
             default:
-                $this->_error = $result->getBody();
+                $this->_error = $result;
                 return false;
                 break;
         }
@@ -248,5 +265,5 @@ class Sendy {
     function getErrorMessage() {
         return $this->_error;
     }
-
+   
 }

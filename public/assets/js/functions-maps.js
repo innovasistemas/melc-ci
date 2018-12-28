@@ -26,6 +26,7 @@ var locations = [];
 var places = [];
 var descriptionPlace = [];
 var urlPlace = [];
+var infoWindow = []; 
 
 
 // Función para cargar las rutas (mapas)
@@ -179,9 +180,6 @@ function initMap()
 
 
 //***************************************************************
-
-// Definir como array global para que admita el método close en algoritmo.  
-var infoWindow = [];
 
 // Adds a marker to the map and push to the array.
 function addMarker(index, location) 
